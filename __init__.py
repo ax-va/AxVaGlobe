@@ -1,5 +1,4 @@
 """Logical-graphical library PyGlobe3D"""
-__all__ = ['core']
 
 
 class PackageInformation:
