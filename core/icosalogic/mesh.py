@@ -1,0 +1,47 @@
+from pyglobe3d.core.common.private_to_rewrite import PrivateToRewrite
+from pyglobe3d.core.icosalogic.edge import Edge
+from pyglobe3d.core.icosalogic.grid_consts import Grid
+from pyglobe3d.core.icosalogic.node import Node
+from pyglobe3d.core.icosalogic.node_attrs import NodeIndex
+from pyglobe3d.core.icosalogic.triangle import Triangle
+from pyglobe3d.core.icosalogic.triangle_attrs import TriangleIndex
+
+
+class Mesh(PrivateToRewrite):
+    def __init__(self, partition=1):
+        self.GRID = Grid(partition=partition)
+        self.EDGES = tuple(Edge(grid=self.GRID, index=i) for i in range(0, self.GRID.NUMBER_OF_EDGES))
+
+    def create_node(self, index=0):
+        return Node(
+            index_object=NodeIndex(
+                grid=self.GRID,
+                index=index
+            )
+        )
+
+    def create_triangle(self, index=0):
+        return Triangle(
+            index_object=TriangleIndex(
+                grid=self.GRID,
+                index=index
+            )
+        )
+
+
+if __name__ == '__main__':
+    ms = Mesh(partition=4)
+    nd31 = ms.create_node(index=31)
+    print('-'*10)
+    for ns in nd31.neighboring_nodes:
+        print(ns)
+    print('-' * 10)
+    for ts in nd31.adjacent_triangles:
+        print(ts)
+    print('-' * 10)
+    tr31 = ms.create_triangle(index=31)
+    print('-' * 10)
+    for ns in tr31.triangle_nodes:
+        print(ns)
+
+    # grd = Grid(-10)

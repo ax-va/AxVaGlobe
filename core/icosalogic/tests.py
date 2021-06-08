@@ -1,0 +1,114 @@
+from pyglobe3d.core.icosalogic.mesh import Mesh
+from pyglobe3d.core.icosalogic.node import Node
+from pyglobe3d.core.icosalogic.node_attrs import NodeIndex, NodeLocation
+
+partition4_neighboring_nodes = {
+    0: (1, 2, 3, 4, 5),
+    1: (0, 2, 7, 6, 15, 5),
+    7: (1, 2, 8, 18, 17, 6),
+    8: (2, 9, 20, 19, 18, 7),
+    13: (4, 5, 14, 27, 26, 12),
+    15: (5, 1, 6, 30, 29, 14),
+    16: (6, 17, 32, 31, 50, 30),
+    25: (12, 26, 44, 43, 42, 24),
+    29: (14, 15, 30, 49, 48, 28),
+    31: (16, 32, 52, 51, 50),
+    32: (16, 17, 33, 53, 52, 31),
+    34: (18, 19, 35, 55, 54, 33),
+    40: (22, 23, 41, 61, 60, 39),
+    43: (25, 44, 64, 63, 42),
+    50: (30, 16, 31, 51, 70, 49),
+    51: (50, 31, 52, 72, 71, 70),
+    52: (31, 32, 53, 73, 72, 51),
+    55: (34, 35, 56, 76, 75, 54),
+    60: (39, 40, 61, 81, 80, 59),
+    65: (44, 45, 66, 86, 85, 64),
+    70: (49, 50, 51, 71, 90, 69),
+    71: (70, 51, 72, 92, 91, 90),
+    82: (61, 62, 83, 103, 102, 81),
+    90: (69, 70, 71, 91, 110, 89),
+    91: (90, 71, 92, 112, 111, 110),
+    107: (86, 87, 108, 128, 127, 106),
+    111: (110, 91, 112, 131, 130),
+    115: (94, 95, 116, 134, 114),
+    119: (98, 99, 120, 137, 118),
+    121: (100, 101, 122, 139, 138, 120),
+    127: (106, 107, 128, 143, 126),
+    128: (107, 108, 129, 144, 143, 127),
+    130: (109, 110, 111, 131, 145, 129),
+    131: (111, 112, 132, 146, 145, 130),
+    132: (112, 113, 133, 147, 146, 131),
+    134: (115, 116, 135, 148, 133, 114),
+    140: (123, 124, 141, 152, 139, 122),
+    142: (125, 126, 143, 154, 153, 141),
+    143: (127, 128, 144, 154, 142, 126),
+    145: (129, 130, 131, 146, 155, 144),
+    147: (132, 133, 148, 157, 156, 146),
+    151: (138, 139, 152, 159, 158, 150),
+    158: (150, 151, 159, 161, 157, 149),
+    160: (154, 155, 156, 161, 159, 153),
+    161: (156, 157, 158, 159, 160)
+}
+
+
+def test_edges():
+    pass
+
+
+def test_nodes():
+    print("Running a node test:")
+    mesh = Mesh(partition=4)
+
+    print("index-layer&position-index transformation...")
+    for index in range(0, mesh.GRID.LAST_NODE_INDEX):
+        nd1 = mesh.create_node(index=index)
+        nd2 = Node(
+            location_object=NodeLocation(
+                grid=mesh.GRID,
+                layer=nd1.layer,
+                position_in_layer=nd1.position_in_layer
+            )
+        )
+        nd3 = Node(
+            index_object=NodeIndex(
+                grid=mesh.GRID,
+                index=nd2.index
+            )
+        )
+
+        assert nd1.index == nd2.index == nd3.index
+        assert nd1.layer == nd2.layer == nd3.layer
+        assert nd1.position_in_layer == nd2.position_in_layer == nd3.position_in_layer
+        assert nd1 == nd2 == nd3
+    print("...is OK")
+
+    print("node comparison...")
+    for index1 in range(0, mesh.GRID.LAST_NODE_INDEX):
+        for index2 in range(0, mesh.GRID.LAST_NODE_INDEX):
+            nd1 = mesh.create_node(index=index1)
+            nd2 = mesh.create_node(index=index2)
+            if index1 < index2:
+                assert nd1 < nd2
+            if index1 <= index2:
+                assert nd1 <= nd2
+            if index1 > index2:
+                assert nd1 > nd2
+            if index1 >= index2:
+                assert nd1 >= nd2
+            if index1 != index2:
+                assert nd1 != nd2
+    print("...is OK")
+
+    for index in partition4_neighboring_nodes:
+        nd = mesh.create_node(index=index)
+        nn_indices1 = partition4_neighboring_nodes[index]
+        nn_indices2 = tuple(x.index for x in nd.neighboring_nodes)
+        assert nn_indices1 == nn_indices2
+
+
+def test_triangles():
+    pass
+
+
+if __name__ == '__main__':
+    test_nodes()
