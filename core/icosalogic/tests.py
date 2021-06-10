@@ -55,21 +55,21 @@ def test_nodes():
 
     for index in mesh4_neighboring_nodes:
         nd = mesh.create_node(index=index)
-        nn_indices1 = mesh4_neighboring_nodes[index]
-        nn_indices2 = tuple(x.index for x in nd.neighboring_nodes)
+        n_n_indices1 = mesh4_neighboring_nodes[index]
+        n_n_indices2 = tuple(x.index for x in nd.neighboring_nodes)
         # print(index)
         # print(nn_indices1)
         # print(nn_indices2)
-        assert nn_indices1 == nn_indices2
+        assert n_n_indices1 == n_n_indices2
 
     for index in mesh4_adjacent_triangles:
         nd = mesh.create_node(index=index)
-        at_indices1 = mesh4_adjacent_triangles[index]
-        at_indices2 = tuple(x.index for x in nd.adjacent_triangles)
+        a_t_indices1 = mesh4_adjacent_triangles[index]
+        a_t_indices2 = tuple(x.index for x in nd.adjacent_triangles)
         # print(index)
         # print(at_indices1)
         # print(at_indices2)
-        assert at_indices1 == at_indices2
+        assert a_t_indices1 == a_t_indices2
 
 
 def test_triangles():
