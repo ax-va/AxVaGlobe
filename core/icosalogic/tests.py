@@ -1,3 +1,4 @@
+# Use to test: py.test tests.py
 from pyglobe3d.core.icosalogic.mesh import Mesh
 from pyglobe3d.core.icosalogic.node import Node
 from pyglobe3d.core.icosalogic.node_attrs import NodeIndex, NodeLocation
@@ -9,7 +10,7 @@ def test_edges():
 
 
 def test_nodes():
-    print("Running a node test:")
+    print("Running the node test:")
     mesh = Mesh(partition=4)
 
     print("index-layer&position-index transformation...")
