@@ -60,7 +60,7 @@ class Grid(ConstantAttributes):
         self.NUMBER_OF_TRIANGLES = self.SQUARED_PARTITION_X20
 
     def __repr__(self):
-        return f'{self.__class__.__name__}(partition={self.PARTITION})'
+        return f'Grid(partition={self.PARTITION})'
 
 
 if __name__ == '__main__':
