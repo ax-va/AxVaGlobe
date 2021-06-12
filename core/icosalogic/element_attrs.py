@@ -1,4 +1,4 @@
-from pyglobe3d.core.common.private_to_rewrite import PrivateToRewrite
+from pyglobe3d.core.common.const_attrs import ConstantAttributes
 from pyglobe3d.core.icosalogic.grid_consts import Grid
 from pyglobe3d.core.icosalogic.logical_errors import ElementLayerValueError, UncomparableElementsError
 
@@ -44,7 +44,7 @@ def _check_position_in_layer(setter):
     return checker
 
 
-class ElementIndex(PrivateToRewrite):
+class ElementIndex(ConstantAttributes):
     def __init__(self, grid=Grid(), index=0):
         self.GRID = grid
         self._set_index(index)
@@ -78,7 +78,7 @@ class ElementIndex(PrivateToRewrite):
 ########################################################################################################################
 
 
-class ElementLocation(PrivateToRewrite):
+class ElementLocation(ConstantAttributes):
     def __init__(self, grid=Grid(), layer=0, position_in_layer=0):
         self.GRID = grid
         self._set_layer(layer)

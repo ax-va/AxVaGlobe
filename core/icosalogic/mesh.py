@@ -1,4 +1,4 @@
-from pyglobe3d.core.common.private_to_rewrite import PrivateToRewrite
+from pyglobe3d.core.common.const_attrs import ConstantAttributes
 from pyglobe3d.core.icosalogic.edge import Edge
 from pyglobe3d.core.icosalogic.grid_consts import Grid
 from pyglobe3d.core.icosalogic.node import Node
@@ -7,7 +7,7 @@ from pyglobe3d.core.icosalogic.triangle import Triangle
 from pyglobe3d.core.icosalogic.triangle_attrs import TriangleIndex
 
 
-class Mesh(PrivateToRewrite):
+class Mesh(ConstantAttributes):
     def __init__(self, partition=1):
         self.GRID = Grid(partition=partition)
         self.EDGES = tuple(Edge(grid=self.GRID, index=i) for i in range(0, self.GRID.NUMBER_OF_EDGES))

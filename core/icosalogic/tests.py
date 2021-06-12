@@ -1,4 +1,4 @@
-# Use to test: py.test tests.py
+# Use the 'pytest' package to test in the command line: py.test tests.py
 from pyglobe3d.core.icosalogic.mesh import Mesh
 from pyglobe3d.core.icosalogic.node import Node
 from pyglobe3d.core.icosalogic.node_attrs import NodeIndex, NodeLocation
@@ -30,9 +30,10 @@ def test_nodes():
             )
         )
 
-        assert nd1.index == nd2.index == nd3.index
-        assert nd1.layer == nd2.layer == nd3.layer
-        assert nd1.position_in_layer == nd2.position_in_layer == nd3.position_in_layer
+        assert nd1.index == nd2.index == nd3.index, 'Node indices do not match'
+        assert nd1.layer == nd2.layer == nd3.layer, 'Node layers do not match'
+        assert nd1.position_in_layer == nd2.position_in_layer == nd3.position_in_layer, \
+            'Node positions in layer do not match'
         assert nd1 == nd2 == nd3
     print("...is OK")
 
@@ -42,15 +43,15 @@ def test_nodes():
             nd1 = mesh.create_node(index=index1)
             nd2 = mesh.create_node(index=index2)
             if index1 < index2:
-                assert nd1 < nd2
+                assert nd1 < nd2, 'node1 < node2 does not hold'
             if index1 <= index2:
-                assert nd1 <= nd2
+                assert nd1 <= nd2, 'node1 <= node2 does not hold'
             if index1 > index2:
-                assert nd1 > nd2
+                assert nd1 > nd2, 'node1 > nod2 does not hold'
             if index1 >= index2:
-                assert nd1 >= nd2
+                assert nd1 >= nd2, 'node1 >= node2 does not hold'
             if index1 != index2:
-                assert nd1 != nd2
+                assert nd1 != nd2, 'node1 != node2 does not hold'
     print("...is OK")
 
     for index in mesh4_neighboring_nodes:
@@ -60,7 +61,7 @@ def test_nodes():
         # print(index)
         # print(nn_indices1)
         # print(nn_indices2)
-        assert n_n_indices1 == n_n_indices2
+        assert n_n_indices1 == n_n_indices2, 'Calculated neighboring nodes do not match test neighboring nodes'
 
     for index in mesh4_adjacent_triangles:
         nd = mesh.create_node(index=index)
@@ -69,7 +70,7 @@ def test_nodes():
         # print(index)
         # print(at_indices1)
         # print(at_indices2)
-        assert a_t_indices1 == a_t_indices2
+        assert a_t_indices1 == a_t_indices2, 'Calculated adjacent triangles do not match test adjacent triangles'
 
 
 def test_triangles():

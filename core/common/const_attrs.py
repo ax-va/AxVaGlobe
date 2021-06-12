@@ -1,4 +1,4 @@
-class PrivateToRewrite:
+class ConstantAttributes:
     def __setattr__(self, key, value):
         if key not in self.__dict__:
             self.__dict__[key] = value

@@ -1,8 +1,8 @@
-from pyglobe3d.core.common.private_to_rewrite import PrivateToRewrite
+from pyglobe3d.core.common.const_attrs import ConstantAttributes
 from pyglobe3d.core.icosalogic.logical_errors import PartitionValueError
 
 
-class Grid(PrivateToRewrite):
+class Grid(ConstantAttributes):
     def __init__(self, partition=1):
         # The partition's value of 1 corresponds to the icosahedron
         if not isinstance(partition, int) or partition < 1:
