@@ -12,7 +12,7 @@ def _check_edge_index(setter):
         if not 0 <= edge_index < 30:
             raise TypeError(f'The edge index must be in the range from 0 to 30 exclusive '
                             f'and the specified index of {edge_index} is outside this range')
-        return setter(edge_object, edge_index)
+        setter(edge_object, edge_index)
     return checker
 
 

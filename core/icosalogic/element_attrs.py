@@ -8,8 +8,8 @@ def _check_index(setter):
     def checker(index_object, index):
         if not index_object.__class__.is_index_correct(index_object.GRID, index):
             raise TypeError(f'The {index_object.ELEMENT_NAME["element"]} index of {index} does '
-                            f'not match the grid "{index_object.grid_object}"')
-        return setter(index_object, index)
+                            f"not match the grid '{index_object.GRID}'")
+        setter(index_object, index)
     return checker
 
 
@@ -19,7 +19,7 @@ def _check_layer(setter):
         grid = location_object.GRID
         if not location_object.__class__.is_layer_correct(grid, layer):
             raise ElementLayerValueError({location_object.ELEMENT_NAME["element"]}, grid, layer)
-        return setter(location_object, layer)
+        setter(location_object, layer)
     return checker
 
 
@@ -40,7 +40,7 @@ def _check_position_in_layer(setter):
         else:  # The layer is in the 3rd part
             if not location_object.__class__.is_position_in_layer_in_part3_correct(grid, layer, position_in_layer):
                 raise position_in_layer_error
-        return setter(location_object, position_in_layer)
+        setter(location_object, position_in_layer)
     return checker
 
 
