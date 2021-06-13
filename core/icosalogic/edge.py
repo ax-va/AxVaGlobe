@@ -1,3 +1,5 @@
+import functools
+
 from collections import namedtuple
 from typing import Generator
 
@@ -6,8 +8,9 @@ from pyglobe3d.core.icosalogic.node import Node
 from pyglobe3d.core.icosalogic.node_attrs import NodeLocation
 
 
-# checking decorator
+# Decorator checks edge index
 def _check_edge_index(setter):
+    @functools.wraps(setter)
     def checker(edge_object, edge_index):
         if not 0 <= edge_index < 30:
             raise TypeError(f'The edge index must be in the range from 0 to 30 exclusive '

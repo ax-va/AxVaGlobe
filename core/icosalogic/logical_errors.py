@@ -4,7 +4,7 @@ class LogicalError(Exception):
 
 class ElementLayerValueError(LogicalError):
     def __init__(self, element, grid, layer):
-        self.message = f"The {element} layer of {layer} does not match the grid '{grid}'"
+        self.message = f'The {element} layer of {layer} does not match the grid {grid!r}'
         LogicalError.__init__(self, self.message)
 
 

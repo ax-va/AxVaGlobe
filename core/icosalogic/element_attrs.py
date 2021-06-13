@@ -1,20 +1,24 @@
+import functools
+
 from pyglobe3d.core.common.const_attrs import ConstantAttributes
 from pyglobe3d.core.icosalogic.grid_consts import Grid
 from pyglobe3d.core.icosalogic.logical_errors import ElementLayerValueError, UncomparableElementsError
 
 
-# checking decorator
+# Decorator checks node / triangle index
 def _check_index(setter):
+    @functools.wraps(setter)
     def checker(index_object, index):
         if not index_object.__class__.is_index_correct(index_object.GRID, index):
             raise TypeError(f'The {index_object.ELEMENT_NAME["element"]} index of {index} does '
-                            f"not match the grid '{index_object.GRID}'")
+                            f'not match the grid {index_object.GRID!r}')
         setter(index_object, index)
     return checker
 
 
-# checking decorator
+# Decorator checks node / triangle layer
 def _check_layer(setter):
+    @functools.wraps(setter)
     def checker(location_object, layer):
         grid = location_object.GRID
         if not location_object.__class__.is_layer_correct(grid, layer):
@@ -23,8 +27,9 @@ def _check_layer(setter):
     return checker
 
 
-# checking decorator
+# Decorator checks node / triangle position in the layer
 def _check_position_in_layer(setter):
+    @functools.wraps(setter)
     def checker(location_object, position_in_layer):
         grid = location_object.GRID
         layer = location_object.LAYER

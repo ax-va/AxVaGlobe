@@ -100,6 +100,9 @@ if __name__ == '__main__':
     print(node31.nearest_layer_edges_number)
 
     node161 = Node(NodeIndex(grid=Grid(partition=4), index=161))
-    node162 = Node(NodeIndex(grid=Grid(partition=4), index=162))
+    # node162 = Node(NodeIndex(grid=Grid(partition=4), index=162))
+
+    chuck = 'Chuck'
+    print(f'Hello {chuck!r}')
 
 
