@@ -8,7 +8,7 @@ from pyglobe3d.core.icosalogic.logical_errors import ElementLayerValueError, Unc
 def _check_index(setter):
     """
     The decorator function checks the node index or triangle index before setting it.
-    The check is required only for debugging and can be disabled in the release.
+    Checking is required only for debugging and can be disabled in the release.
 
     """
     @functools.wraps(setter)
@@ -23,7 +23,7 @@ def _check_index(setter):
 def _check_layer(setter):
     """
     The decorator function checks the node layer or triangle layer before setting it.
-    The check is required only for debugging and can be disabled in the release.
+    Checking is required only for debugging and can be disabled in the release.
 
     """
     @functools.wraps(setter)
@@ -39,7 +39,7 @@ def _check_position_in_layer(setter):
     """
     The decorator function checks the node position in the layer or triangle position
     in the layer before setting it.
-    The check is required only for debugging and can be disabled in the release.
+    Checking is required only for debugging and can be disabled in the release.
 
     """
     @functools.wraps(setter)

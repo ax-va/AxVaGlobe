@@ -11,7 +11,7 @@ from pyglobe3d.core.icosalogic.node_attrs import NodeLocation
 def _check_edge_index(setter):
     """
     The decorator function checks the edge index before setting it.
-    The check is required only for debugging and can be disabled in the release.
+    Checking is required only for debugging and can be disabled in the release.
 
     """
     @functools.wraps(setter)
