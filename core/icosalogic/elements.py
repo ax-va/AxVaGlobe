@@ -1,4 +1,4 @@
-from pyglobe3d.core.icosalogic.logical_errors import UncomparableElementsError
+from pyglobe3d.core.icosalogic.element_errs import UncomparableElementsError
 
 
 class ElementWithIndexObject:

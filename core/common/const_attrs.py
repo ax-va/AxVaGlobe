@@ -1,4 +1,4 @@
-from pyglobe3d.core.common.common_errors import ConstantAttributeRewriteError
+from pyglobe3d.core.common.common_errs import ConstantAttributeRewriteError
 
 
 class ConstantAttributes:

@@ -4,7 +4,7 @@ from collections import namedtuple
 from typing import Generator
 
 from pyglobe3d.core.icosalogic.grid_consts import Grid
-from pyglobe3d.core.icosalogic.logical_errors import EdgeIndexValueError
+from pyglobe3d.core.icosalogic.element_errs import EdgeIndexValueError
 from pyglobe3d.core.icosalogic.node import Node
 from pyglobe3d.core.icosalogic.node_attrs import NodeLocation
 

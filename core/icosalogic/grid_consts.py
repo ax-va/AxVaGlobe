@@ -1,5 +1,5 @@
 from pyglobe3d.core.common.const_attrs import ConstantAttributes
-from pyglobe3d.core.icosalogic.logical_errors import PartitionValueError
+from pyglobe3d.core.icosalogic.element_errs import PartitionValueError
 
 
 class Grid(ConstantAttributes):

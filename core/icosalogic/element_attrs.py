@@ -2,7 +2,7 @@ import functools
 
 from pyglobe3d.core.common.const_attrs import ConstantAttributes
 from pyglobe3d.core.icosalogic.grid_consts import Grid
-from pyglobe3d.core.icosalogic.logical_errors import ElementIndexValueError, \
+from pyglobe3d.core.icosalogic.element_errs import ElementIndexValueError, \
     ElementLayerValueError, ElementPositionInLayerValueError
 
 
