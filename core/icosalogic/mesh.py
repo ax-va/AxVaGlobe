@@ -13,20 +13,10 @@ class Mesh(ConstantAttributes):
         self.EDGES = tuple(Edge(grid=self.GRID, index=i) for i in range(0, self.GRID.NUMBER_OF_EDGES))
 
     def create_node(self, index=0):
-        return Node(
-            index_object=NodeIndex(
-                grid=self.GRID,
-                index=index
-            )
-        )
+        return Node.create_node(grid=self.GRID, index=index)
 
     def create_triangle(self, index=0):
-        return Triangle(
-            index_object=TriangleIndex(
-                grid=self.GRID,
-                index=index
-            )
-        )
+        return Triangle.create_triangle(grid=self.GRID, index=index)
 
 
 if __name__ == '__main__':

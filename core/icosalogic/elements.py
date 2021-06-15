@@ -71,7 +71,7 @@ class ElementWithLocationObject(metaclass=ABCMeta):
 
 
 class ElementWithIndexAndLocationObjects(ElementWithIndexObject, ElementWithLocationObject, metaclass=ABCMeta):
-    def _set_attributes(self, index_object, location_object):
+    def __init__(self, index_object, location_object):
         if location_object:
             self._location_object = location_object
             self._index_object = self._location_object.index_object

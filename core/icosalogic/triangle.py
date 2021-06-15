@@ -1,3 +1,4 @@
+from pyglobe3d.core.icosalogic.grid_consts import Grid
 from pyglobe3d.core.icosalogic.elements import ElementWithIndexAndLocationObjects
 from pyglobe3d.core.icosalogic.triangle_attrs import TriangleIndex, TriangleLocation
 
@@ -11,8 +12,17 @@ class Triangle(ElementWithIndexAndLocationObjects):
                  index_object: TriangleIndex = None,
                  location_object: TriangleLocation = None
                  ):
-        ElementWithIndexAndLocationObjects._set_attributes(self, index_object, location_object)
+        ElementWithIndexAndLocationObjects.__init__(self, index_object, location_object)
         self._triangle_nodes = None
+
+    @classmethod
+    def create_triangle(cls, grid=Grid(), index=0):
+        return cls(
+            index_object=TriangleIndex(
+                grid=grid,
+                index=index
+            )
+        )
 
     @property
     def triangle_nodes(self):

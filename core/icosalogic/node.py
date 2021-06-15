@@ -1,3 +1,4 @@
+from pyglobe3d.core.icosalogic.grid_consts import Grid
 from pyglobe3d.core.icosalogic.elements import ElementWithIndexAndLocationObjects
 from pyglobe3d.core.icosalogic.node_attrs import NodeIndex, NodeLocation
 
@@ -11,7 +12,7 @@ class Node(ElementWithIndexAndLocationObjects):
                  index_object: NodeIndex = None,
                  location_object: NodeLocation = None
                  ):
-        ElementWithIndexAndLocationObjects._set_attributes(self, index_object, location_object)
+        ElementWithIndexAndLocationObjects.__init__(self, index_object, location_object)
         self._adjacent_triangles = None
         self._nearest_layer_edge_nodes = None
         self._nearest_layer_edges = None
@@ -19,6 +20,15 @@ class Node(ElementWithIndexAndLocationObjects):
         self._neighboring_nodes = None
         self._neighboring_nodes_number = None
         self._node_neighbors_object = None
+
+    @classmethod
+    def create_node(cls, grid=Grid(), index=0):
+        return cls(
+            index_object=NodeIndex(
+                grid=grid,
+                index=index
+            )
+        )
 
     @property
     def adjacent_triangles(self):
