@@ -2,9 +2,7 @@ from pyglobe3d.core.common.const_attrs import ConstantAttributes
 from pyglobe3d.core.icosalogic.edge import Edge
 from pyglobe3d.core.icosalogic.grid_consts import Grid
 from pyglobe3d.core.icosalogic.node import Node
-from pyglobe3d.core.icosalogic.node_attrs import NodeIndex
 from pyglobe3d.core.icosalogic.triangle import Triangle
-from pyglobe3d.core.icosalogic.triangle_attrs import TriangleIndex
 
 
 class Mesh(ConstantAttributes):
