@@ -1,7 +1,9 @@
+from abc import ABCMeta
+
 from pyglobe3d.core.icosalogic.element_errs import UncomparableElementsError
 
 
-class ElementWithIndexObject:
+class ElementWithIndexObject(metaclass=ABCMeta):
     def __eq__(self, other):
         return other is not None \
                and self.__class__ == other.__class__ \
@@ -54,7 +56,7 @@ class ElementWithIndexObject:
         return self._index_object.INDEX
 
 
-class ElementWithLocationObject:
+class ElementWithLocationObject(metaclass=ABCMeta):
     @property
     def grid(self):
         return self._location_object.GRID
@@ -68,7 +70,7 @@ class ElementWithLocationObject:
         return self._location_object.POSITION_IN_LAYER
 
 
-class ElementWithIndexAndLocationObjects(ElementWithIndexObject, ElementWithLocationObject):
+class ElementWithIndexAndLocationObjects(ElementWithIndexObject, ElementWithLocationObject, metaclass=ABCMeta):
     def _set_attributes(self, index_object, location_object):
         if location_object:
             self._location_object = location_object

@@ -93,10 +93,9 @@ class NodeNeighbors:
         else:  # The the part-3-pole case
             self._set_adjacent_triangles_in_part3_pole()
 
-        triangle_names = [f'triangle{i}' for i in range(0, self._triangles_number)]
-        Result = namedtuple('Triangles', triangle_names)
-        self._adjacent_triangles = Result(
-            *(
+        Result = namedtuple('Triangles', [f'triangle{i}' for i in range(0, self._triangles_number)])
+        self._adjacent_triangles = Result._make(
+            (
                 Triangle(
                     location_object=TriangleLocation(
                         grid=self._grid,
@@ -328,20 +327,18 @@ class NodeNeighbors:
         else:
             self._set_nearest_layer_edges_and_edge_nodes_in_part3()
 
-        edge_names = [f'edge{i}' for i in range(0, self._edges_number)]
-        Result = namedtuple('Edges', edge_names)
-        self._nearest_layer_edges = Result(
-            *(
+        Result = namedtuple('Edges', [f'edge{i}' for i in range(0, self._edges_number)])
+        self._nearest_layer_edges = Result._make(
+            (
                 Edge(
                     grid=self._grid,
                     index=self._edge_indices[i]
                 ) for i in range(0, self._edges_number)
             )
         )
-        node_names = [f'node{i}' for i in range(0, self._edges_number)]
-        Result = namedtuple('Nodes', node_names)
-        self._nearest_layer_edge_nodes = Result(
-            *(
+        Result = namedtuple('Nodes', [f'node{i}' for i in range(0, self._edges_number)])
+        self._nearest_layer_edge_nodes = Result._make(
+            (
                 Node(
                     location_object=NodeLocation(
                         grid=self._grid,
@@ -459,10 +456,9 @@ class NodeNeighbors:
         else:  # The part-3-pole case
             self._set_neighboring_nodes_in_part3_pole()
 
-        node_names = [f'node{i}' for i in range(0, self._nodes_number)]
-        Result = namedtuple('Nodes', node_names)
-        self._neighboring_nodes = Result(
-            *(
+        Result = namedtuple('Nodes', [f'node{i}' for i in range(0, self._nodes_number)])
+        self._neighboring_nodes = Result._make(
+            (
                 Node(
                     location_object=NodeLocation(
                         grid=self._grid,

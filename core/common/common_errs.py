@@ -8,4 +8,4 @@ class CommonError(CoreError):
 class ConstantAttributeRewriteError(CommonError):
     def __init__(self, attribute_name):
         self.message = f'The attribute {attribute_name!r} is constant and cannot be rewritten'
-        super().__init__(self, self.message)
+        CommonError.__init__(self, self.message)

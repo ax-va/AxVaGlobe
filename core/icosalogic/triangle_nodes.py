@@ -38,8 +38,8 @@ class TriangleNodes:
             self._set_triangle_nodes_in_part3()
 
         Result = namedtuple('Nodes', ['node0', 'node1', 'node3'])
-        self._triangle_nodes = Result(
-            *(
+        self._triangle_nodes = Result._make(
+            (
                 Node(
                     location_object=NodeLocation(
                         grid=self._grid,

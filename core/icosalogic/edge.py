@@ -475,8 +475,8 @@ class Edge:
             self._icosahedron_node_positions_in_layers[1] = 0
 
         Result = namedtuple('Nodes', ['node0', 'node1'])
-        self._icosahedron_nodes = Result(
-            *(
+        self._icosahedron_nodes = Result._make(
+            (
                 Node(
                     location_object=NodeLocation(
                         grid=self._grid,

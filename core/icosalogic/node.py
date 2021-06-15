@@ -102,7 +102,7 @@ if __name__ == '__main__':
     node161 = Node(NodeIndex(grid=Grid(partition=4), index=161))
     # node162 = Node(NodeIndex(grid=Grid(partition=4), index=162))
 
-    chuck = 'Chuck'
-    print(f'Hello {chuck!r}')
+    # chuck = 'Chuck'
+    # print(f'Hello {chuck!r}')
 
 
