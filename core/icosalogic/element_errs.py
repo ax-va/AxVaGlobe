@@ -33,7 +33,7 @@ class ElementPositionInLayerValueError(ElementError):
 
 class PartitionValueError(ElementError):
     def __init__(self):
-        self.message = 'The partition of the icosahedron grid is not a positive integer'
+        self.message = 'The partition of the grid is not a positive integer'
         super().__init__(self, self.message)
 
 
