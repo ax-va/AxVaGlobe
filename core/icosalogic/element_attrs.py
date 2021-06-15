@@ -2,7 +2,8 @@ import functools
 
 from pyglobe3d.core.common.const_attrs import ConstantAttributes
 from pyglobe3d.core.icosalogic.grid_consts import Grid
-from pyglobe3d.core.icosalogic.logical_errors import ElementLayerValueError, UncomparableElementsError
+from pyglobe3d.core.icosalogic.logical_errors import ElementIndexValueError, \
+    ElementLayerValueError, ElementPositionInLayerValueError
 
 
 def _check_index(setter):
@@ -14,8 +15,11 @@ def _check_index(setter):
     @functools.wraps(setter)
     def checker(index_object, index):
         if not index_object.__class__.is_index_correct(index_object.GRID, index):
-            raise TypeError(f'The {index_object.ELEMENT_NAME["element"]} index of {index} does '
-                            f'not match the grid {index_object.GRID!r}')
+            raise ElementIndexValueError(
+                element_name=index_object.ELEMENT_NAME["element"],
+                grid=index_object.GRID,
+                index=index
+            )
         setter(index_object, index)
     return checker
 
@@ -30,7 +34,11 @@ def _check_layer(setter):
     def checker(location_object, layer):
         grid = location_object.GRID
         if not location_object.__class__.is_layer_correct(grid, layer):
-            raise ElementLayerValueError({location_object.ELEMENT_NAME["element"]}, grid, layer)
+            raise ElementLayerValueError(
+                element_name=location_object.ELEMENT_NAME["element"],
+                grid=grid,
+                layer=layer
+            )
         setter(location_object, layer)
     return checker
 
@@ -46,9 +54,12 @@ def _check_position_in_layer(setter):
     def checker(location_object, position_in_layer):
         grid = location_object.GRID
         layer = location_object.LAYER
-        position_in_layer_error \
-            = TypeError(f'The {location_object.ELEMENT_NAME["element"]} position of {position_in_layer} '
-                        f'in the layer of {layer} does not match the layer')
+        position_in_layer_error = ElementPositionInLayerValueError(
+            element_name=location_object.ELEMENT_NAME["element"],
+            grid=grid,
+            layer=layer,
+            position_in_layer=position_in_layer
+        )
         if location_object.__class__.is_layer_in_part2(grid, layer):
             if not location_object.__class__.is_position_in_layer_in_part2_correct(grid, position_in_layer):
                 raise position_in_layer_error

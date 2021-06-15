@@ -1,6 +1,9 @@
+from pyglobe3d.core.common.common_errors import ConstantAttributeRewriteError
+
+
 class ConstantAttributes:
     def __setattr__(self, key, value):
         if key not in self.__dict__:
             self.__dict__[key] = value
         else:
-            raise AttributeError('The attribute is constant and cannot be rewritten')
+            raise ConstantAttributeRewriteError(attribute_name=key)

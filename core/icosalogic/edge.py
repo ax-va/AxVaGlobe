@@ -4,6 +4,7 @@ from collections import namedtuple
 from typing import Generator
 
 from pyglobe3d.core.icosalogic.grid_consts import Grid
+from pyglobe3d.core.icosalogic.logical_errors import EdgeIndexValueError
 from pyglobe3d.core.icosalogic.node import Node
 from pyglobe3d.core.icosalogic.node_attrs import NodeLocation
 
@@ -15,11 +16,10 @@ def _check_edge_index(setter):
 
     """
     @functools.wraps(setter)
-    def checker(edge_object, edge_index):
-        if not 0 <= edge_index < 30:
-            raise TypeError(f'The edge index must be in the range from 0 to 30 exclusive '
-                            f'and the specified index of {edge_index} is outside this range')
-        setter(edge_object, edge_index)
+    def checker(edge_object, index):
+        if not 0 <= index < 30:
+            raise EdgeIndexValueError(index=index)
+        setter(edge_object, index)
     return checker
 
 
@@ -64,7 +64,7 @@ class Edge:
         self._icosahedron_nodes = None
 
     def __repr__(self):
-        return f'Edge(grid={self._grid}, edge_index={self._index})'
+        return f'{self.__class__.__name__}(grid={self._grid}, index={self._index})'
 
     @property
     def icosahedron_nodes(self) -> namedtuple:
