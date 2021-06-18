@@ -77,360 +77,304 @@ class Edge:
         return self._index
 
     def edge_nodes_generator(self) -> Generator[Node, None, None]:
-        yield from self._edge_nodes_generators[self._index]()
+        for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE):
+            yield from self._edge_nodes_generators[self._index](i)
 
-    def _edge0_nodes_generator(self):
-        return (
-            Node(
+    def _edge0_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i,
                     position_in_layer=0,
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge1_nodes_generator(self):
-        return (
-            Node(
+    def _edge1_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i,
                     position_in_layer=i   
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge2_nodes_generator(self):
-        return (
-            Node(
+    def _edge2_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i,
                     position_in_layer=2 * i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge3_nodes_generator(self):
-        return (
-            Node(
+    def _edge3_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i,
                     position_in_layer=3 * i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge4_nodes_generator(self):
-        return (
-            Node(
+    def _edge4_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i,
                     position_in_layer=4 * i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge5_nodes_generator(self):
-        return (
-            Node(
+    def _edge5_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge6_nodes_generator(self):
-        return (
-            Node(
+    def _edge6_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=i + self._grid.PARTITION
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge7_nodes_generator(self):
-        return (
-            Node(
+    def _edge7_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=i + self._grid.PARTITION_X2
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge8_nodes_generator(self):
-        return (
-            Node(
+    def _edge8_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=i + self._grid.PARTITION_X3
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge9_nodes_generator(self):
-        for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE):
-            if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1:
-                yield Node(
-                    location_object=NodeLocation(
-                        grid=self._grid,
-                        layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
-                        position_in_layer=i + self._grid.PARTITION_X4
-                    )
+    def _edge9_nodes_generator(self, i):
+        if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1:
+            yield Node(
+                location_object=NodeLocation(
+                    grid=self._grid,
+                    layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
+                    position_in_layer=i + self._grid.PARTITION_X4
                 )
-            else:
-                yield Node(
-                    location_object=NodeLocation(
-                        grid=self._grid,
-                        layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
-                        position_in_layer=0
-                    )
-                )
-
-    def _edge10_nodes_generator(self):
-        return (
-            Node(
+            )
+        else:
+            yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=0
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
+            )
+
+    def _edge10_nodes_generator(self, i):
+        yield Node(
+                location_object=NodeLocation(
+                    grid=self._grid,
+                    layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
+                    position_in_layer=0
+                )
         )
 
-    def _edge11_nodes_generator(self):
-        return (
-            Node(
+    def _edge11_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge12_nodes_generator(self):
-        return (
-            Node(
+    def _edge12_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=self._grid.PARTITION
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge13_nodes_generator(self):
-        return (
-            Node(
+    def _edge13_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=i + self._grid.PARTITION
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge14_nodes_generator(self):
-        return (
-            Node(
+    def _edge14_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=self._grid.PARTITION_X2
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge15_nodes_generator(self):
-        return (
-            Node(
+    def _edge15_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=i + self._grid.PARTITION_X2
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge16_nodes_generator(self):
-        return (
-            Node(
+    def _edge16_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=self._grid.PARTITION_X3
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge17_nodes_generator(self):
-        return (
-            Node(
+    def _edge17_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=i + self._grid.PARTITION_X3
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge18_nodes_generator(self):
-        return (
-            Node(
+    def _edge18_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=self._grid.PARTITION_X4
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge19_nodes_generator(self):
-        for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE):
-            if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1:
-                yield Node(
-                    location_object=NodeLocation(
-                        grid=self._grid,
-                        layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
-                        position_in_layer=i + self._grid.PARTITION_X4
-                    )
+    def _edge19_nodes_generator(self, i):
+        if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1:
+            yield Node(
+                location_object=NodeLocation(
+                    grid=self._grid,
+                    layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
+                    position_in_layer=i + self._grid.PARTITION_X4
                 )
-            else:
-                yield Node(
-                    location_object=NodeLocation(
-                        grid=self._grid,
-                        layer=self._grid.LAST_NODE_LAYER_IN_PART2,
-                        position_in_layer=0
-                    )
+            )
+        else:
+            yield Node(
+                location_object=NodeLocation(
+                    grid=self._grid,
+                    layer=self._grid.LAST_NODE_LAYER_IN_PART2,
+                    position_in_layer=0
                 )
+            )
 
-    def _edge20_nodes_generator(self):
-        return (
-            Node(
+    def _edge20_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.LAST_NODE_LAYER_IN_PART2,
                     position_in_layer=i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge21_nodes_generator(self):
-        return (
-            Node(
+    def _edge21_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.LAST_NODE_LAYER_IN_PART2,
                     position_in_layer=i + self._grid.PARTITION
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge22_nodes_generator(self):
-        return (
-            Node(
+    def _edge22_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.LAST_NODE_LAYER_IN_PART2,
                     position_in_layer=i + self._grid.PARTITION_X2
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge23_nodes_generator(self):
-        return (
-            Node(
+    def _edge23_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.LAST_NODE_LAYER_IN_PART2,
                     position_in_layer=i + self._grid.PARTITION_X3
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge24_nodes_generator(self):
-        for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE):
-            if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1:
-                yield Node(
-                    location_object=NodeLocation(
-                        grid=self._grid,
-                        layer=self._grid.LAST_NODE_LAYER_IN_PART2,
-                        position_in_layer=i + self._grid.PARTITION_X4
-                    )
+    def _edge24_nodes_generator(self, i):
+        if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1:
+            yield Node(
+                location_object=NodeLocation(
+                    grid=self._grid,
+                    layer=self._grid.LAST_NODE_LAYER_IN_PART2,
+                    position_in_layer=i + self._grid.PARTITION_X4
                 )
-            else:
-                yield Node(
-                    location_object=NodeLocation(
-                        grid=self._grid,
-                        layer=self._grid.LAST_NODE_LAYER_IN_PART2,
-                        position_in_layer=0
-                    )
+            )
+        else:
+            yield Node(
+                location_object=NodeLocation(
+                    grid=self._grid,
+                    layer=self._grid.LAST_NODE_LAYER_IN_PART2,
+                    position_in_layer=0
                 )
+            )
 
-    def _edge25_nodes_generator(self):
-        return (
-            Node(
+    def _edge25_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.LAST_NODE_LAYER_IN_PART2,
                     position_in_layer=0
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge26_nodes_generator(self):
-        return (
-            Node(
+    def _edge26_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.LAST_NODE_LAYER_IN_PART2,
                     position_in_layer=self._grid.PARTITION - i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge27_nodes_generator(self):
-        return (
-            Node(
+    def _edge27_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.LAST_NODE_LAYER_IN_PART2,
                     position_in_layer=self._grid.PARTITION_X2 - 2 * i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge28_nodes_generator(self):
-        return (
-            Node(
+    def _edge28_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.LAST_NODE_LAYER_IN_PART2,
                     position_in_layer=self._grid.PARTITION_X3 - 3 * i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
-    def _edge29_nodes_generator(self):
-        return (
-            Node(
+    def _edge29_nodes_generator(self, i):
+        yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=i + self._grid.LAST_NODE_LAYER_IN_PART2,
                     position_in_layer=self._grid.PARTITION_X4 - 4 * i
                 )
-            ) for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE)
         )
 
     def _set_icosahedron_nodes(self):
