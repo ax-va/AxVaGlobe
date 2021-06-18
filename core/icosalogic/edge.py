@@ -77,6 +77,7 @@ class Edge:
         return self._index
 
     def edge_nodes_generator(self) -> Generator[Node, None, None]:
+        """ """
         for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE):
             yield from self._edge_nodes_generators[self._index](i)
 
