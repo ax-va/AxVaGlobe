@@ -162,16 +162,14 @@ class Edge:
         )
 
     def _edge9_nodes_generator(self, i):
-        if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1:
-            yield Node(
-                location_object=NodeLocation(
-                    grid=self._grid,
-                    layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
-                    position_in_layer=i + self._grid.PARTITION_X4
-                )
+        yield Node(
+            location_object=NodeLocation(
+                grid=self._grid,
+                layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
+                position_in_layer=i + self._grid.PARTITION_X4
             )
-        else:
-            yield Node(
+        ) if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1 else \
+            Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
@@ -261,16 +259,14 @@ class Edge:
         )
 
     def _edge19_nodes_generator(self, i):
-        if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1:
-            yield Node(
-                location_object=NodeLocation(
-                    grid=self._grid,
-                    layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
-                    position_in_layer=i + self._grid.PARTITION_X4
-                )
+        yield Node(
+            location_object=NodeLocation(
+                grid=self._grid,
+                layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
+                position_in_layer=i + self._grid.PARTITION_X4
             )
-        else:
-            yield Node(
+        ) if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1 else \
+            Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.LAST_NODE_LAYER_IN_PART2,
@@ -315,16 +311,14 @@ class Edge:
         )
 
     def _edge24_nodes_generator(self, i):
-        if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1:
-            yield Node(
-                location_object=NodeLocation(
-                    grid=self._grid,
-                    layer=self._grid.LAST_NODE_LAYER_IN_PART2,
-                    position_in_layer=i + self._grid.PARTITION_X4
-                )
+        yield Node(
+            location_object=NodeLocation(
+                grid=self._grid,
+                layer=self._grid.LAST_NODE_LAYER_IN_PART2,
+                position_in_layer=i + self._grid.PARTITION_X4
             )
-        else:
-            yield Node(
+        ) if i < self._grid.NUMBER_OF_NODES_IN_EDGE - 1 else \
+            Node(
                 location_object=NodeLocation(
                     grid=self._grid,
                     layer=self._grid.LAST_NODE_LAYER_IN_PART2,
@@ -468,4 +462,5 @@ if __name__ == '__main__':
     from collections.abc import Generator
     print(isinstance(edge24.edge_nodes_generator(), Generator))
     print(edge24.icosahedron_nodes.node0)
+    print(True==2)
 
