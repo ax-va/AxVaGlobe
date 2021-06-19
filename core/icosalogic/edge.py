@@ -462,5 +462,4 @@ if __name__ == '__main__':
     from collections.abc import Generator
     print(isinstance(edge24.edge_nodes_generator(), Generator))
     print(edge24.icosahedron_nodes.node0)
-    print(True==1)
 
