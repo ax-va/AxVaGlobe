@@ -1,4 +1,7 @@
-# Use the 'pytest' package to test in the command line: py.test tests.py
+"""
+Write 'py.test tests.py' in the command line to test by using the 'pytest' package
+
+"""
 from pyglobe3d.core.icosalogic.mesh import Mesh
 from pyglobe3d.core.icosalogic.node import Node
 from pyglobe3d.core.icosalogic.node_attrs import NodeIndex, NodeLocation
