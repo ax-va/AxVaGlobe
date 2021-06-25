@@ -68,7 +68,7 @@ class ModelViewGL(MatrixGL):
 
 
 if __name__ == '__main__':
-    mat = ModelViewMatrixGL()
+    mat = ModelViewGL()
     print(mat.entries)
     mat.rotate(around='x', degrees=-90)
     print(mat.entries)
