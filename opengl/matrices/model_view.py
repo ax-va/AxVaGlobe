@@ -14,9 +14,9 @@ class ModelViewGL(MatrixGL):
             'z': self._rotate_around_z,
         }
 
-    def rotate(self, around='x', degrees=-90):
+    def rotate(self, around, degrees):
         radians = degrees * RAD_DIV_DEG
-        self._rotate_funcs[around](radians)
+        self._rotate_funcs.get(around, 'x')(radians)
 
     def _rotate_around_x(self, radians):
         rotation_matrix = np.array(
