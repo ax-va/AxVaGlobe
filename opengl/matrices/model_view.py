@@ -94,6 +94,6 @@ class ModelViewGL(MatrixGL):
 if __name__ == '__main__':
     mat = ModelViewGL()
     print(mat.column_concat)
-    mat.rotate(around='x', degrees=-90)
+    mat.rotate(around='x', degrees=-90.)
     print(mat.column_concat)
 

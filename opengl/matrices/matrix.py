@@ -1,6 +1,7 @@
 import array
+import math
 
-RAD_DIV_DEG = 1.745_329_251_994_330e-2
+RAD_DIV_DEG = math.pi / 180
 
 
 class MatrixGL:
