@@ -10,7 +10,7 @@ class MatrixGL:
 
     @property
     def entries(self):
-        return np.float32(self._matrix.flatten(order='F'))
+        return np.float32(self._matrix.reshape(16, order='F'))
 
     def set_identity(self):
         self._matrix[:, :] = 0
