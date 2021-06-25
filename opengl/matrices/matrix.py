@@ -1,3 +1,4 @@
+import array
 import numpy as np
 
 RAD_DIV_DEG = 1.745_329_251_994_330e-2
@@ -6,11 +7,14 @@ RAD_DIV_DEG = 1.745_329_251_994_330e-2
 class MatrixGL:
     def __init__(self):
         self._matrix = np.identity(4)
-        print(self._matrix.dtype)
 
     @property
     def entries(self):
-        return np.float32(self._matrix.reshape(16, order='F'))
+        return array.array('f', self._matrix.flatten(order='F'))
+
+    @property
+    def matrix(self):
+        return self._matrix
 
     def set_identity(self):
         self._matrix[:, :] = 0
@@ -19,5 +23,4 @@ class MatrixGL:
 
 if __name__ == '__main__':
     mt = MatrixGL()
-    print(mt.entries.dtype)
     print(mt.entries)
