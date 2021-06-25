@@ -8,7 +8,7 @@ class ModelViewMatrixGL(MatrixGL):
     def __init__(self):
         MatrixGL.__init__(self)
         self._inverse_matrix = MatrixGL().matrix
-        self._rotate = {
+        self._rotate_funcs = {
             'x': self._rotate_around_x,
             'y': self._rotate_around_y,
             'z': self._rotate_around_z,
@@ -16,7 +16,7 @@ class ModelViewMatrixGL(MatrixGL):
 
     def rotate(self, around, degrees):
         radians = degrees * RAD_DIV_DEG
-        self._rotate.get(around, 'z')(radians)
+        self._rotate_funcs.get(around, 'z')(radians)
 
     def _rotate_around_x(self, radians):
         rotation_matrix = np.array(
