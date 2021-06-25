@@ -4,7 +4,7 @@ import math
 from pyglobe3d.opengl.matrices.matrix import MatrixGL, RAD_DIV_DEG
 
 
-class ModelViewMatrixGL(MatrixGL):
+class ModelViewGL(MatrixGL):
     def __init__(self):
         MatrixGL.__init__(self)
         self._inverse_matrix = MatrixGL().matrix
@@ -14,9 +14,9 @@ class ModelViewMatrixGL(MatrixGL):
             'z': self._rotate_around_z,
         }
 
-    def rotate(self, around, degrees):
+    def rotate(self, around='x', degrees=-90):
         radians = degrees * RAD_DIV_DEG
-        self._rotate_funcs.get(around, 'z')(radians)
+        self._rotate_funcs[around](radians)
 
     def _rotate_around_x(self, radians):
         rotation_matrix = np.array(
