@@ -1,6 +1,6 @@
 import math
 
-from pyglobe3d.opengl.matrices.matrix import MatrixGL, RAD_DIV_DEG
+from pyglobe3d.opengl.matrices.matrix import MatrixGL
 
 
 class ModelViewGL(MatrixGL):
@@ -13,7 +13,7 @@ class ModelViewGL(MatrixGL):
         }
 
     def rotate(self, around, degrees):
-        radians = degrees * RAD_DIV_DEG
+        radians = degrees / 180 * math.pi
         cos_t = math.cos(radians)
         sin_t = math.sin(radians)
         self._rotate_funcs.get(around, 'x')(cos_t, sin_t)
