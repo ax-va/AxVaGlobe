@@ -1,6 +1,5 @@
 import array
-
-from itertools import product
+import itertools
 
 
 class MatrixGL:
@@ -19,7 +18,7 @@ class MatrixGL:
         return self._matrix
 
     def set_identity(self):
-        for value in map(lambda i, j: 0. if i != j else 1., product(range(4), range(4)))
+        for value in map(lambda i, j: 0. if i != j else 1., itertools.product(range(4), range(4)))
             self._matrix[i][j] = value
 
 
