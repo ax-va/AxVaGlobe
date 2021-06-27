@@ -1,9 +1,9 @@
 import math
 
-from pyglobe3d.opengl.matrices.matrix import MatrixGL
+from pyglobe3d.opengl.matrices.matrix import Matrix
 
 
-class ModelViewGL(MatrixGL):
+class ModelView(Matrix):
     def __init__(self):
         MatrixGL.__init__(self)
         self._rotate_funcs = {
@@ -92,7 +92,7 @@ class ModelViewGL(MatrixGL):
 
 
 if __name__ == '__main__':
-    mat = ModelViewGL()
+    mat = ModelView()
     print(mat.as_array)
     mat.rotate(around='x', degrees=-90.)
     print(mat.as_array)
