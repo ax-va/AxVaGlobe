@@ -18,7 +18,7 @@ class MatrixGL:
         return self._matrix
 
     def set_identity(self):
-        for i, j in itertools.product(range(4), range(4))
+        for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = 0. if i != j else 1.
 
 
