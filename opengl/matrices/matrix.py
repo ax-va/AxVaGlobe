@@ -1,4 +1,4 @@
-import array as arr
+import array
 
 
 class MatrixGL:
@@ -9,8 +9,8 @@ class MatrixGL:
                         [0., 0., 0., 1.]]
 
     @property
-    def array(self):
-        return arr.array('f', (self._matrix[i][j] for i in range(4) for j in range(4)))
+    def as_array(self):
+        return array.array('f', (self._matrix[i][j] for i in range(4) for j in range(4)))
 
     @property
     def matrix(self):
