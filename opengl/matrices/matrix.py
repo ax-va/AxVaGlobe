@@ -2,7 +2,7 @@ import array
 import itertools
 
 
-class MatrixGL:
+class Matrix:
     def __init__(self):
         self._matrix = [[1., 0., 0., 0.],
                         [0., 1., 0., 0.],
@@ -23,6 +23,6 @@ class MatrixGL:
 
 
 if __name__ == '__main__':
-    mt = MatrixGL()
+    mt = Matrix()
     print(mt.matrix)
     print(mt.as_array)
