@@ -1,7 +1,4 @@
 import array
-import math
-
-RAD_DIV_DEG = math.pi / 180
 
 
 class MatrixGL:
@@ -12,17 +9,12 @@ class MatrixGL:
                         [0., 0., 0., 1.]]
 
     @property
-    def c_array(self):
-        return array.array('f', self.column_concat)
+    def array(self):
+        return array.array('f', (self._matrix[i][j] for i in range(4) for j in range(4)))
 
     @property
-    def column_concat(self):
-        concat = [None] * 16
-        concat[:4] = self._matrix[0]
-        concat[4:8] = self._matrix[1]
-        concat[8:12] = self._matrix[2]
-        concat[12:] = self._matrix[3]
-        return concat
+    def matrix(self):
+        return self._matrix
 
     def set_identity(self):
         for i in range(4):
@@ -32,6 +24,5 @@ class MatrixGL:
 
 if __name__ == '__main__':
     mt = MatrixGL()
-    print(mt.column_concat)
-    print(mt.c_array)
-    print(RAD_DIV_DEG)
+    print(mt.matrix)
+    print(mt.array)
