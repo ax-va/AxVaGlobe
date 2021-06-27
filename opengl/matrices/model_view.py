@@ -1,9 +1,9 @@
 import math
 
-from pyglobe3d.opengl.matrices.matrix import Matrix
+from pyglobe3d.opengl.matrices.matrix import Matrix4X4
 
 
-class ModelView(Matrix):
+class ModelView(Matrix4X4):
     def __init__(self):
         MatrixGL.__init__(self)
         self._rotate_funcs = {
