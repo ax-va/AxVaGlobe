@@ -5,7 +5,7 @@ from pyglobe3d.opengl.matrices.matrix import Matrix4X4
 
 class ModelView(Matrix4X4):
     def __init__(self):
-        MatrixGL.__init__(self)
+        Matrix4X4.__init__(self)
         self._rotate_funcs = {
             'x': self._rotate_around_x,
             'y': self._rotate_around_y,
