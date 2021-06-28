@@ -1,6 +1,6 @@
 import math
 
-from pyglobe3d.opengl.matrices.matrix import Mat4X4
+from pyglobe3d.opengl.matrices.mat4x4 import Mat4X4
 
 
 class ModelView(Mat4X4):
