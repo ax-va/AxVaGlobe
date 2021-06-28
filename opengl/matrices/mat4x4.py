@@ -11,7 +11,7 @@ class Mat4X4:
 
     @property
     def as_array(self):
-        return array.array('f', (self._matrix[i][j] for i in range(4) for j in range(4)))
+        return array.array('f', (self._matrix[i][j] for j in range(4) for i in range(4)))
 
     @property
     def matrix(self):
