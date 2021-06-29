@@ -10,7 +10,7 @@ class Mat4X4:
                         [0., 0., 0., 1.]]
 
     @property
-    def as_array(self):
+    def column_array(self):
         return array.array('f', (self._matrix[i][j] for j in range(4) for i in range(4)))
 
     @property
@@ -30,4 +30,4 @@ class Mat4X4:
 if __name__ == '__main__':
     mt = Mat4X4()
     print(mt.matrix)
-    print(mt.as_array)
+    print(mt.column_array)
