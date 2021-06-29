@@ -2,7 +2,7 @@ import array
 import itertools
 
 
-class Mat4X4:
+class Matrix4X4:
     def __init__(self):
         self._matrix = [[1., 0., 0., 0.],
                         [0., 1., 0., 0.],
@@ -28,6 +28,6 @@ class Mat4X4:
 
 
 if __name__ == '__main__':
-    mt = Mat4X4()
+    mt = Matrix4X4()
     print(mt.matrix)
     print(mt.column_array)
