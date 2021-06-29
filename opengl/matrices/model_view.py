@@ -1,11 +1,11 @@
 import math
 
-from pyglobe3d.opengl.matrices.mat4x4 import Mat4X4
+from pyglobe3d.opengl.matrices.matrix4x4 import Matrix4X4
 
 
-class ModelView(Mat4X4):
+class ModelView(Matrix4X4):
     def __init__(self):
-        Mat4X4.__init__(self)
+        Matrix4X4.__init__(self)
         self._rotate_funcs = {
             'x': self._rotate_around_x,
             'y': self._rotate_around_y,
