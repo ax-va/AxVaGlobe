@@ -93,7 +93,7 @@ class ModelView(Mat4X4):
 
 if __name__ == '__main__':
     mat = ModelView()
-    print(mat.as_array)
+    print(mat.column_array)
     mat.rotate(around='x', degrees=-90.)
-    print(mat.as_array)
+    print(mat.column_array)
 
