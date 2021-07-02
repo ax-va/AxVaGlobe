@@ -1,11 +1,11 @@
 import math
 
-from pyglobe3d.opengl.matrices.matrix4x4 import Matrix4X4
+from pyglobe3d.opengl.matrices.matrix import OpenGLMatrix
 
 
-class ModelView(Matrix4X4):
+class OpenGLModelView(OpenGLMatrix):
     def __init__(self):
-        Matrix4X4.__init__(self)
+        OpenGLMatrix.__init__(self)
         self._rotate_funcs = {
             'x': self._rotate_around_x,
             'y': self._rotate_around_y,
@@ -92,7 +92,7 @@ class ModelView(Matrix4X4):
 
 
 if __name__ == '__main__':
-    mat = ModelView()
+    mat = OpenGLModelView()
     print(mat.column_array)
     mat.rotate(around='x', degrees=-90.)
     print(mat.column_array)
