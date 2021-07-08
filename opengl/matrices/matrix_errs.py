@@ -9,7 +9,7 @@ class OrthographicError(MatrixError):
     pass
 
 
-class ClippingPlanesError(OrthographicError):
-    def __init__(self, value1, value2):
-        self.message = f'The value of ({value2} - {value1}) of clipping planes must be nonzero'
+class EqualClippingPlanesError(OrthographicError):
+    def __init__(self, plane1, plane2):
+        self.message = f'The value of ({plane2} - {plane1}) of clipping planes must be nonzero'
         OrthographicError.__init__(self, self.message)
