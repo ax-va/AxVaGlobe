@@ -24,7 +24,7 @@ class OpenGLMatrix:
     def transpose(self):
         for i in range(0, 3):
             for j in range(i + 1, 4):
-              self._matrix[i][j], self._matrix[j][i] = self._matrix[j][i], self._matrix[i][j]
+                self._matrix[i][j], self._matrix[j][i] = self._matrix[j][i], self._matrix[i][j]
 
 
 if __name__ == '__main__':

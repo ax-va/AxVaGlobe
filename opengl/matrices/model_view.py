@@ -96,4 +96,3 @@ if __name__ == '__main__':
     print(mat.column_array)
     mat.rotate(around='x', degrees=-90.)
     print(mat.column_array)
-
