@@ -39,5 +39,3 @@ class OpenGLOrthographic(OpenGLMatrix):
         self._matrix[1, 3] = -(self._top + self._bottom) / top_minus_bottom
         self._matrix[2, 2] = 2. / far_minus_near
         self._matrix[2, 3] = -(self._far + self._near) / far_minus_near
-
-
