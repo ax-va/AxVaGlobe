@@ -9,19 +9,7 @@ class OrthographicError(MatrixError):
     pass
 
 
-class RightMinusLeftValueError(OrthographicError):
-    def __init__(self):
-        self.message = 'The value of (right - left) of clipping planes is zero'
-        OrthographicError.__init__(self, self.message)
-
-
-class TopMinusBottomValueError(OrthographicError):
-    def __init__(self):
-        self.message = 'The value of (top - bottom) of clipping planes is zero'
-        OrthographicError.__init__(self, self.message)
-
-
-class FarMinusNearValueError(OrthographicError):
-    def __init__(self):
-        self.message = 'The value of (far - near) of clipping planes is zero'
+class ClippingPlanesError(OrthographicError):
+    def __init__(self, value1, value2):
+        self.message = f'The value of ({value2} - {value1}) of clipping planes must be nonzero'
         OrthographicError.__init__(self, self.message)
