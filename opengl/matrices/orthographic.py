@@ -9,10 +9,10 @@ class Orthographic(Projection):
 
     def _set_matrix_entries(self):
         """
-        [[ 2. / (right - left), 0., 0., -(right + left) / (right - left)],
-         [0., 2. / (top - bottom), 0., -(top + bottom) / (top - bottom)],
-         [0., 0., -2. / (far - near), -(far + near) / (far - near)],
-         [0., 0., 0., 1.]]
+        P = [[ 2. / (right - left), 0., 0., -(right + left) / (right - left)],
+            [0., 2. / (top - bottom), 0., -(top + bottom) / (top - bottom)],
+            [0., 0., -2. / (far - near), -(far + near) / (far - near)],
+            [0., 0., 0., 1.]]
         """
         right_minus_left = self._right - self._left
         top_minus_bottom = self._top - self._bottom
