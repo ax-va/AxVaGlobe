@@ -93,6 +93,6 @@ class ModelView(OpenGLMatrix):
 
 if __name__ == '__main__':
     mat = ModelView()
-    print(mat.as_array)
+    print(mat.float32_array)
     mat.rotate(around='x', degrees=-90.)
-    print(mat.as_array)
+    print(mat.float32_array)
