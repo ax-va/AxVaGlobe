@@ -1,4 +1,4 @@
-import array as array_
+import array
 import itertools
 
 
@@ -10,8 +10,8 @@ class OpenGLMatrix:
                         [0., 0., 0., 1.]]
 
     @property
-    def array(self):
-        return array_.array('f', (self._matrix[i][j] for j in range(4) for i in range(4)))
+    def float32_array(self):
+        return array.array('f', (self._matrix[i][j] for j in range(4) for i in range(4)))
 
     @property
     def matrix(self):
@@ -30,4 +30,4 @@ class OpenGLMatrix:
 if __name__ == '__main__':
     mt = OpenGLMatrix()
     print(mt.matrix)
-    print(mt.array)
+    print(mt.float32_array)
