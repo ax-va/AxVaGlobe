@@ -3,7 +3,7 @@ import math
 from pyglobe3d.opengl.matrices.matrix import OpenGLMatrix
 
 
-class OpenGLModelView(OpenGLMatrix):
+class ModelView(OpenGLMatrix):
     def __init__(self):
         OpenGLMatrix.__init__(self)
         self._rotate_funcs = {
@@ -92,7 +92,7 @@ class OpenGLModelView(OpenGLMatrix):
 
 
 if __name__ == '__main__':
-    mat = OpenGLModelView()
+    mat = ModelView()
     print(mat.column_array)
     mat.rotate(around='x', degrees=-90.)
     print(mat.column_array)
