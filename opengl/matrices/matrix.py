@@ -10,7 +10,7 @@ class OpenGLMatrix:
                         [0., 0., 0., 1.]]
 
     @property
-    def column_array(self):
+    def as_array(self):
         return array.array('f', (self._matrix[i][j] for j in range(4) for i in range(4)))
 
     @property
@@ -30,4 +30,4 @@ class OpenGLMatrix:
 if __name__ == '__main__':
     mt = OpenGLMatrix()
     print(mt.matrix)
-    print(mt.column_array)
+    print(mt.as_array)
