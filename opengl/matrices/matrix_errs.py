@@ -5,11 +5,11 @@ class MatrixError(OpenGLError):
     pass
 
 
-class OrthographicError(MatrixError):
+class ProjectionError(MatrixError):
     pass
 
 
-class EqualClippingPlanesError(OrthographicError):
+class EqualClippingPlanesError(ProjectionError):
     def __init__(self, plane1, plane2):
-        self.message = f'The value of ({plane2} - {plane1}) of clipping planes must be nonzero'
-        OrthographicError.__init__(self, self.message)
+        self.message = f'The value ({plane2} - {plane1}) of clipping planes must be nonzero'
+        ProjectionError.__init__(self, self.message)
