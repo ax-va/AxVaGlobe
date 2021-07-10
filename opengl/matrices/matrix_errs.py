@@ -1,11 +1,11 @@
 from pyglobe3d.opengl.opengl_errs import OpenGLError
 
 
-class MatrixError(OpenGLError):
+class OpenGLMatrixError(OpenGLError):
     pass
 
 
-class ProjectionError(MatrixError):
+class ProjectionError(OpenGLMatrixError):
     pass
 
 
