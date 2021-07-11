@@ -8,7 +8,7 @@ from pyglobe3d.opengl.matrices.matrix_errs import NotAOpenGLMatrixError
 
 
 class OpenGLMatrix(metaclass=ABCMeta):
-    _multiply_ways = {'left': 0, 'right': 1, 'elementwise': 2}
+    _mult_ways = {'left': 0, 'right': 1, 'elementwise': 2}
     
     def __init__(self):
         self._matrix = [[1., 0., 0., 0.],
@@ -16,7 +16,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
         
-        self._multiply_functions = (self.multiply_left, self.multiply_right, self.multiply_elementwise)
+        self._mult_functions = (self.multiply_left, self.multiply_right, self.multiply_elementwise)
         
     @property
     def float32_array(self):
@@ -39,7 +39,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
         instance.multiply(other, way='elementwise') changes the matrix instance._matrix by 
         elementwise multiplying instance._matrix and other._matrix
         """
-        self._multiply_functions[OpenGLMatrix._multiply_ways[way]](other)
+        self._mult_functions[OpenGLMatrix._mult_ways[way]](other)
         
     def multiply_elementwise(self, other):
         """
