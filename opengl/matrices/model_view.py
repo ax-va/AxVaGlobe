@@ -52,7 +52,7 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         A = R * A
         """
-        for j in  range(4):
+        for j in range(4):
             self._matrix[0][j], self._matrix[1][j] = \
                 cos_t * self._matrix[0][j] - sin_t * self._matrix[1][j], \
                 sin_t * self._matrix[0][j] + cos_t * self._matrix[1][j]
