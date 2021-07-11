@@ -15,6 +15,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
                         [0., 0., 0., 1.]]
         self._multiply_functions = (self.multiply_left, self.multiply_right, self.multiply_elementwise)
         self._multiply_ways = {0: 0, 'left': 0, 1: 1, 'right': 1, 2: 2, 'elementwise': 2}
+        
     @property
     def float32_array(self):
         """
