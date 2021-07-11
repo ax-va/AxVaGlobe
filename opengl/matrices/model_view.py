@@ -26,21 +26,10 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         A = R * A
         """
-        self._matrix[1][0], self._matrix[2][0] = \
-            cos_t * self._matrix[1][0] - sin_t * self._matrix[2][0], \
-            sin_t * self._matrix[1][0] + cos_t * self._matrix[2][0]
-
-        self._matrix[1][1], self._matrix[2][1] = \
-            cos_t * self._matrix[1][1] - sin_t * self._matrix[2][1], \
-            sin_t * self._matrix[1][1] + cos_t * self._matrix[2][1]
-
-        self._matrix[1][2], self._matrix[2][2] = \
-            cos_t * self._matrix[1][2] - sin_t * self._matrix[2][2], \
-            sin_t * self._matrix[1][2] + cos_t * self._matrix[2][2]
-
-        self._matrix[1][3], self._matrix[2][3] = \
-            cos_t * self._matrix[1][3] - sin_t * self._matrix[2][3], \
-            sin_t * self._matrix[1][3] + cos_t * self._matrix[2][3]
+        for j in range(4):
+            self._matrix[1][j], self._matrix[2][j] = \
+                cos_t * self._matrix[1][j] - sin_t * self._matrix[2][j], \
+                sin_t * self._matrix[1][j] + cos_t * self._matrix[2][j]
 
     def _rotate_around_y(self, cos_t, sin_t):
         """
@@ -50,21 +39,10 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         A = R * A
         """
-        self._matrix[0][0], self._matrix[2][0] = \
-            cos_t * self._matrix[0][0] + sin_t * self._matrix[2][0], \
-            -sin_t * self._matrix[0][0] + cos_t * self._matrix[2][0]
-
-        self._matrix[0][1], self._matrix[2][1] = \
-            cos_t * self._matrix[0][1] + sin_t * self._matrix[2][1], \
-            -sin_t * self._matrix[0][1] + cos_t * self._matrix[2][1]
-
-        self._matrix[0][2], self._matrix[2][2] = \
-            cos_t * self._matrix[0][2] + sin_t * self._matrix[2][2], \
-            -sin_t * self._matrix[0][2] + cos_t * self._matrix[2][2]
-
-        self._matrix[0][3], self._matrix[2][3] = \
-            cos_t * self._matrix[0][3] + sin_t * self._matrix[2][3], \
-            -sin_t * self._matrix[0][3] + cos_t * self._matrix[2][3]
+        for j in range(4):
+            self._matrix[0][j], self._matrix[2][j] = \
+                cos_t * self._matrix[0][j] + sin_t * self._matrix[2][j], \
+                -sin_t * self._matrix[0][j] + cos_t * self._matrix[2][j]
 
     def _rotate_around_z(self, cos_t, sin_t):
         """
@@ -74,21 +52,10 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         A = R * A
         """
-        self._matrix[0][0], self._matrix[1][0] = \
-            cos_t * self._matrix[0][0] - sin_t * self._matrix[1][0], \
-            sin_t * self._matrix[0][0] + cos_t * self._matrix[1][0]
-
-        self._matrix[0][1], self._matrix[1][1] = \
-            cos_t * self._matrix[0][1] - sin_t * self._matrix[1][1], \
-            sin_t * self._matrix[0][1] + cos_t * self._matrix[1][1]
-
-        self._matrix[0][2], self._matrix[1][2] = \
-            cos_t * self._matrix[0][2] - sin_t * self._matrix[1][2], \
-            sin_t * self._matrix[0][2] + cos_t * self._matrix[1][2]
-
-        self._matrix[0][3], self._matrix[1][3] = \
-            cos_t * self._matrix[0][3] - sin_t * self._matrix[1][3], \
-            sin_t * self._matrix[0][3] + cos_t * self._matrix[1][3]
+        for j in  range(4):
+            self._matrix[0][j], self._matrix[1][j] = \
+                cos_t * self._matrix[0][j] - sin_t * self._matrix[1][j], \
+                sin_t * self._matrix[0][j] + cos_t * self._matrix[1][j]
 
 
 if __name__ == '__main__':
