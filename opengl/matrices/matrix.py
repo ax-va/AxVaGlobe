@@ -21,6 +21,15 @@ class OpenGLMatrix(metaclass=ABCMeta):
     @property
     def matrix(self):
         return self._matrix
+    
+    def multiply(self, other, right=False):
+        """
+        instance.mutliply(other) changes instance._matrix as A = B * A, and
+        instance.mutliply(other, right=True) changes instance._matrix as A = A * B,
+        where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
+        respectively
+        """
+        (self.multiply_left, self.multiply_right)[right](other)
 
     def multiply_left(self, other):
         """
