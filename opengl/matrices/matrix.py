@@ -1,8 +1,13 @@
 import array
 import itertools
+import math
+
+from abc import ABCMeta
+
+from pyglobe3d.opengl.matrices.matrix_errs import NotAOpenGLMatrix
 
 
-class OpenGLMatrix:
+class OpenGLMatrix(metaclass=ABCMeta):
     def __init__(self):
         self._matrix = [[1., 0., 0., 0.],
                         [0., 1., 0., 0.],
@@ -16,6 +21,34 @@ class OpenGLMatrix:
     @property
     def matrix(self):
         return self._matrix
+
+    def left_dot(self, other):
+        """
+        A = M * A
+        """
+        if other is None or self.__class__ == other.__class__:
+            raise NotAOpenGLMatrix(other, self.__class__.__name__)
+
+        for j in range(4):
+            self._matrix[0][j], self._matrix[1][j], self._matrix[2][j], self._matrix[3][j] = \
+                math.fsum(other.matrix[0][k] * self._matrix[k][j] for k in range(4)), \
+                math.fsum(other.matrix[1][k] * self._matrix[k][j] for k in range(4)), \
+                math.fsum(other.matrix[2][k] * self._matrix[k][j] for k in range(4)), \
+                math.fsum(other.matrix[3][k] * self._matrix[k][j] for k in range(4))
+
+    def right_dot(self, other):
+        """
+        A = A * M
+        """
+        if other is None or self.__class__ == other.__class__:
+            raise NotAOpenGLMatrix(other, self.__class__.__name__)
+
+        for i in range(4):
+            self._matrix[i][0], self._matrix[i][1], self._matrix[i][2], self._matrix[i][3] = \
+                math.fsum(self._matrix[i][k] * other.matrix[k][0] for k in range(4)), \
+                math.fsum(self._matrix[i][k] * other.matrix[k][1] for k in range(4)), \
+                math.fsum(self._matrix[i][k] * other.matrix[k][2] for k in range(4)), \
+                math.fsum(self._matrix[i][k] * other.matrix[k][3] for k in range(4))
 
     def set_identity(self):
         for i, j in itertools.product(range(4), range(4)):

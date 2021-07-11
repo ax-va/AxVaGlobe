@@ -13,7 +13,7 @@ class ModelView(OpenGLMatrix):
         }
 
     def rotate(self, around, degrees):
-        radians = degrees / 180. * math.pi
+        radians = math.radians(degrees)
         cos_t = math.cos(radians)
         sin_t = math.sin(radians)
         self._rotate_funcs.get(around, 'x')(cos_t, sin_t)
