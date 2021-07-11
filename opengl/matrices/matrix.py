@@ -24,7 +24,8 @@ class OpenGLMatrix(metaclass=ABCMeta):
 
     def left_dot(self, other):
         """
-        A = M * A
+        A = B * A,
+        where 'other' is B
         """
         if other is None or self.__class__ == other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
@@ -38,7 +39,8 @@ class OpenGLMatrix(metaclass=ABCMeta):
 
     def right_dot(self, other):
         """
-        A = A * M
+        A = A * B,
+        where 'other' is B
         """
         if other is None or self.__class__ == other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
