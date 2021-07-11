@@ -19,7 +19,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
     def float32_array(self):
         """
         instance.float32_array returns the matrix instance._matrix as the column wise array,
-        in which the entries are of the type float32
+        in which the entries are of the C type float
         """
         return array.array('f', (self._matrix[i][j] for j in range(4) for i in range(4)))
 
