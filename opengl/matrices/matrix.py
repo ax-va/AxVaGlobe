@@ -22,10 +22,10 @@ class OpenGLMatrix(metaclass=ABCMeta):
     def matrix(self):
         return self._matrix
 
-    def dot_left(self, other):
+    def multiply_left(self, other):
         """
-        mat.dot_left(other) changes mat._matrix as A = B * A,
-        where mat._matrix is A, other._matrix is B, and * is matrix multiplication
+        instance.mutliply_left(other) changes instance._matrix as A = B * A,
+        where instance._matrix is A, other._matrix is B, and * is matrix multiplication
         """
         if other is None or self.__class__ == other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
@@ -37,10 +37,10 @@ class OpenGLMatrix(metaclass=ABCMeta):
                 math.fsum(other.matrix[2][k] * self._matrix[k][j] for k in range(4)), \
                 math.fsum(other.matrix[3][k] * self._matrix[k][j] for k in range(4))
 
-    def dot_right(self, other):
+    def multiply_right(self, other):
         """
-        mat.dot_right(other) changes mat._matrix as A = A * B,
-        where mat._matrix is A, other._matrix is B, and * is matrix multiplication
+        instance.mutliply_right(other) changes instance._matrix as A = A * B,
+        where instance._matrix is A, other._matrix is B, and * is matrix multiplication
         """
         if other is None or self.__class__ == other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
