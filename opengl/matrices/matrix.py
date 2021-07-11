@@ -14,7 +14,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
         self._multiply_functions = (self.multiply_left, self.multiply_right, self.multiply_elementwise)
-        
+        self._multiply_ways = {0: 0, 'left': 0, 1: 1, 'right': 1, 2: 2, 'elementwise': 2}
     @property
     def float32_array(self):
         """
@@ -30,13 +30,15 @@ class OpenGLMatrix(metaclass=ABCMeta):
     def multiply(self, other, way=0):
         """
         instance.multiply(other) changes the matrix instance._matrix as A = B * A, and
-        instance.multiply(other, way=1) changes the matrix instance._matrix as A = A * B,
+        instance.multiply(other, way=1) or instance.multiply(other, way='right')
+        changes the matrix instance._matrix as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and matrix product
         referred to as dot product, respectively.
-        instance.multiply(other, way=2) changes the matrix instance._matrix by elementwise 
-        multiplying instance._matrix and other._matrix
+        instance.multiply(other, way=2) or instance.multiply(other, way='elementwise')
+        changes the matrix instance._matrix by elementwise multiplying instance._matrix 
+        and other._matrix
         """
-        self._multiply_functions[way](other)
+        self._multiply_functions[self._multiply_ways[way]](other)
         
     def multiply_elementwise(self, other):
         """
