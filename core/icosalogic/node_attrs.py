@@ -4,10 +4,15 @@ from pyglobe3d.core.icosalogic.element_attrs import ElementIndex, ElementLocatio
 from pyglobe3d.core.icosalogic.grid_consts import Grid
 
 
-class NodeIndex(ElementIndex):
-    CONJUGATE_CLASS = {'ElementLocation': NodeLocation}
-    ELEMENT_NAME = {'element': 'node'} 
-    
+class NodeAttributes:
+    ELEMENT_NAME = {'element': 'node'}
+
+
+########################################################################################################################
+########################################################################################################################
+
+
+class NodeIndex(ElementIndex, NodeAttributes):
     def __init__(self, grid: Grid = Grid(), index: int = 0):
         ElementIndex.__init__(self, grid, index)
 
@@ -75,10 +80,7 @@ class NodeIndex(ElementIndex):
 ########################################################################################################################
 
 
-class NodeLocation(ElementLocation):
-    CONJUGATE_CLASS = {'ElementIndex': NodeIndex}
-    ELEMENT_NAME = {'element': 'node'}
-    
+class NodeLocation(ElementLocation, NodeAttributes):
     def __init__(self, grid=Grid(), layer=0, position_in_layer=0):
         ElementLocation.__init__(self, grid, layer, position_in_layer)
 
@@ -151,3 +153,11 @@ class NodeLocation(ElementLocation):
     def _get_layer_index_increment_in_part3(self):
         return self.GRID.LAST_NODE_INDEX \
                - (5 * (self.GRID.LAST_NODE_LAYER - self.LAYER + 1) * (self.GRID.LAST_NODE_LAYER - self.LAYER)) // 2
+
+
+########################################################################################################################
+########################################################################################################################
+
+
+NodeIndex.CONJUGATE_CLASS = {'ElementLocation': NodeLocation}
+NodeLocation.CONJUGATE_CLASS = {'ElementIndex': NodeIndex}

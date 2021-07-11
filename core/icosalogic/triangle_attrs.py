@@ -4,10 +4,15 @@ from pyglobe3d.core.icosalogic.element_attrs import ElementIndex, ElementLocatio
 from pyglobe3d.core.icosalogic.grid_consts import Grid
 
 
-class TriangleIndex(ElementIndex):
-    CONJUGATE_CLASS = {'ElementLocation': TriangleLocation}
-    ELEMENT_NAME = {'element': 'triangle'} 
-    
+class TriangleAttributes:
+    ELEMENT_NAME = {'element': 'triangle'}
+
+
+########################################################################################################################
+########################################################################################################################
+
+
+class TriangleIndex(ElementIndex, TriangleAttributes):
     def __init__(self, grid: Grid = Grid(), index: int = 0):
         ElementIndex.__init__(self, grid, index)
 
@@ -57,10 +62,7 @@ class TriangleIndex(ElementIndex):
 ########################################################################################################################
 
 
-class TriangleLocation(ElementLocation):
-    CONJUGATE_CLASS = {'ElementIndex': TriangleIndex}
-    ELEMENT_NAME = {'element': 'triangle'}
-    
+class TriangleLocation(ElementLocation, TriangleAttributes):
     def __init__(self, grid=Grid(), layer=0, position_in_layer=0):
         ElementLocation.__init__(self, grid, layer, position_in_layer)
 
@@ -112,3 +114,11 @@ class TriangleLocation(ElementLocation):
     def _get_layer_index_increment_in_part3(self):
         return self.GRID.SQUARED_PARTITION_X20 \
                - 5 * (self.GRID.PARTITION_X3 - self.LAYER) * (self.GRID.PARTITION_X3 - self.LAYER)
+
+
+########################################################################################################################
+########################################################################################################################
+
+
+TriangleIndex.CONJUGATE_CLASS = {'ElementLocation': TriangleLocation}
+TriangleLocation.CONJUGATE_CLASS = {'ElementIndex': TriangleIndex}
