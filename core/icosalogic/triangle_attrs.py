@@ -5,9 +5,10 @@ from pyglobe3d.core.icosalogic.grid_consts import Grid
 
 
 class TriangleIndex(ElementIndex):
+    CONJUGATE_CLASS = {'ElementLocation': TriangleLocation}
+    ELEMENT_NAME = {'element': 'triangle'} 
+    
     def __init__(self, grid: Grid = Grid(), index: int = 0):
-        self.CONJUGATE_CLASS = {'ElementLocation': TriangleLocation}
-        self.ELEMENT_NAME = {'element': 'triangle'}
         ElementIndex.__init__(self, grid, index)
 
     @staticmethod
@@ -57,9 +58,10 @@ class TriangleIndex(ElementIndex):
 
 
 class TriangleLocation(ElementLocation):
+    CONJUGATE_CLASS = {'ElementIndex': TriangleIndex}
+    ELEMENT_NAME = {'element': 'triangle'}
+    
     def __init__(self, grid=Grid(), layer=0, position_in_layer=0):
-        self.CONJUGATE_CLASS = {'ElementIndex': TriangleIndex}
-        self.ELEMENT_NAME = {'element': 'triangle'}
         ElementLocation.__init__(self, grid, layer, position_in_layer)
 
     @staticmethod
