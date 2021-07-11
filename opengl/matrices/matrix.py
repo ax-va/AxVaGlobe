@@ -33,7 +33,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
     def multiply(self, other, way='left'):
         """
         instance.multiply(other) changes the matrix instance._matrix as A = B * A, and
-        instance.multiply(other, way='right') changes the matrix instance._matrix as A = A * B,
+        instance.multiply(other, way='right') as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and the matrix product
         referred to as dot product, respectively.
         instance.multiply(other, way='element-wise') changes the matrix instance._matrix by
