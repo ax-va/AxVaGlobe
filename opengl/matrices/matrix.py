@@ -16,7 +16,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
         
-        self._mult_functions = (self._multiply_left, self._multiply_right, self._multiply_elementwise)
+        self._mult_functions = (self._mult_left, self._mult_right, self._mult_elementwise)
         
     @property
     def float32_array(self):
@@ -58,17 +58,17 @@ class OpenGLMatrix(metaclass=ABCMeta):
             for j in range(i + 1, 4):
                 self._matrix[i][j], self._matrix[j][i] = self._matrix[j][i], self._matrix[i][j]
                 
-    def _multiply_elementwise(self, other):
+    def _mult_elementwise(self, other):
         """
-        instance.multiply_elementwise(other) changes the matrix instance._matrix by 
+        instance._mult_elementwise(other) changes the matrix instance._matrix by 
         elementwise multiplying instance._matrix and other._matrix
         """
         for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = self._matrix[i][j] * other.matrix[i][j]
 
-    def _multiply_left(self, other):
+    def _mult_left(self, other):
         """
-        instance.multiply_left(other) changes the matrix instance._matrix as A = B * A,
+        instance._mult_left(other) changes the matrix instance._matrix as A = B * A,
         where A, B, and * denote instance._matrix, other._matrix, and matrix product
         referred to as dot product, respectively
         """
@@ -79,9 +79,9 @@ class OpenGLMatrix(metaclass=ABCMeta):
                 math.fsum(other.matrix[2][k] * self._matrix[k][j] for k in range(4)), \
                 math.fsum(other.matrix[3][k] * self._matrix[k][j] for k in range(4))
 
-    def _multiply_right(self, other):
+    def _mult_right(self, other):
         """
-        instance.multiply_right(other) changes the matrix instance._matrix as A = A * B,
+        instance._mult_right(other) changes the matrix instance._matrix as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and matrix product
         referred to as dot product, respectively
         """
