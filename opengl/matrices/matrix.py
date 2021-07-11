@@ -8,7 +8,7 @@ from pyglobe3d.opengl.matrices.matrix_errs import NotAOpenGLMatrixError
 
 
 class OpenGLMatrix(metaclass=ABCMeta):
-    _mult_ways = {'left': 0, 'right': 1, 'elementwise': 2}
+    _mul_ways = {'left': 0, 'right': 1, 'element-wise': 2}
     
     def __init__(self):
         self._matrix = [[1., 0., 0., 0.],
@@ -16,7 +16,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
         
-        self._mult_functions = (self._mult_left, self._mult_right, self._mult_elementwise)
+        self._mul_functions = (self._mul_left, self._mul_right, self._mul_element_wise)
         
     @property
     def float32_array(self):
@@ -34,18 +34,18 @@ class OpenGLMatrix(metaclass=ABCMeta):
         """
         instance.multiply(other) changes the matrix instance._matrix as A = B * A, and
         instance.multiply(other, way='right') changes the matrix instance._matrix as A = A * B,
-        where A, B, and * denote instance._matrix, other._matrix, and matrix product
+        where A, B, and * denote instance._matrix, other._matrix, and the matrix product
         referred to as dot product, respectively.
-        instance.multiply(other, way='elementwise') changes the matrix instance._matrix by 
-        elementwise multiplying instance._matrix and other._matrix.
+        instance.multiply(other, way='element-wise') changes the matrix instance._matrix by
+        the element-wise product of instance._matrix and other._matrix.
         """
         if other is None or self.__class__ != other.__class__:
             raise NotAOpenGLMatrixError(other, self.__class__.__name__)
-        self._mult_functions[OpenGLMatrix._mult_ways[way]](other)
+        self._mul_functions[OpenGLMatrix._mul_ways[way]](other)
         
     def set_identity(self):
         """
-        instance.set_indentity() sets the matrix instance._matrix to the identity matrix
+        instance.set_identity() sets the matrix instance._matrix to the identity matrix
         """
         for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = 0. if i != j else 1.
@@ -58,18 +58,18 @@ class OpenGLMatrix(metaclass=ABCMeta):
             for j in range(i + 1, 4):
                 self._matrix[i][j], self._matrix[j][i] = self._matrix[j][i], self._matrix[i][j]
                 
-    def _mult_elementwise(self, other):
+    def _mul_element_wise(self, other):
         """
-        instance._mult_elementwise(other) changes the matrix instance._matrix by 
-        elementwise multiplying instance._matrix and other._matrix
+        instance._mul_element_wise(other) changes the matrix instance._matrix by
+        the element-wise product of instance._matrix and other._matrix
         """
         for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = self._matrix[i][j] * other.matrix[i][j]
 
-    def _mult_left(self, other):
+    def _mul_left(self, other):
         """
-        instance._mult_left(other) changes the matrix instance._matrix as A = B * A,
-        where A, B, and * denote instance._matrix, other._matrix, and matrix product
+        instance._mul_left(other) changes the matrix instance._matrix as A = B * A,
+        where A, B, and * denote instance._matrix, other._matrix, and the matrix product
         referred to as dot product, respectively
         """
         for j in range(4):
@@ -79,10 +79,10 @@ class OpenGLMatrix(metaclass=ABCMeta):
                 math.fsum(other.matrix[2][k] * self._matrix[k][j] for k in range(4)), \
                 math.fsum(other.matrix[3][k] * self._matrix[k][j] for k in range(4))
 
-    def _mult_right(self, other):
+    def _mul_right(self, other):
         """
-        instance._mult_right(other) changes the matrix instance._matrix as A = A * B,
-        where A, B, and * denote instance._matrix, other._matrix, and matrix product
+        instance._mul_right(other) changes the matrix instance._matrix as A = A * B,
+        where A, B, and * denote instance._matrix, other._matrix, and the matrix product
         referred to as dot product, respectively
         """
         for i in range(4):
