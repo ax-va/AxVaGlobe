@@ -13,7 +13,8 @@ class OpenGLMatrix(metaclass=ABCMeta):
                         [0., 1., 0., 0.],
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
-
+        self._multiply_functions = (self.multiply_left, self.multiply_right)
+        
     @property
     def float32_array(self):
         return array.array('f', (self._matrix[i][j] for j in range(4) for i in range(4)))
@@ -29,7 +30,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
         where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
         respectively
         """
-        (self.multiply_left, self.multiply_right)[right](other)
+        self._multiply_functions[right](other)
 
     def multiply_left(self, other):
         """
