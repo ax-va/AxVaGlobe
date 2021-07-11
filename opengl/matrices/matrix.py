@@ -4,7 +4,7 @@ import math
 
 from abc import ABCMeta
 
-from pyglobe3d.opengl.matrices.matrix_errs import NotAOpenGLMatrix
+from pyglobe3d.opengl.matrices.matrix_errs import NotAOpenGLMatrixError
 
 
 class OpenGLMatrix(metaclass=ABCMeta):
@@ -43,7 +43,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
         referred to as dot, respectively
         """
         if other is None or self.__class__ != other.__class__:
-            raise NotAOpenGLMatrix(other, self.__class__.__name__)
+            raise NotAOpenGLMatrixError(other, self.__class__.__name__)
         for j in range(4):
             self._matrix[0][j], self._matrix[1][j], self._matrix[2][j], self._matrix[3][j] = \
                 math.fsum(other.matrix[0][k] * self._matrix[k][j] for k in range(4)), \
@@ -58,7 +58,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
         referred to as dot, respectively
         """
         if other is None or self.__class__ != other.__class__:
-            raise NotAOpenGLMatrix(other, self.__class__.__name__)
+            raise NotAOpenGLMatrixError(other, self.__class__.__name__)
         for i in range(4):
             self._matrix[i][0], self._matrix[i][1], self._matrix[i][2], self._matrix[i][3] = \
                 math.fsum(self._matrix[i][k] * other.matrix[k][0] for k in range(4)), \
