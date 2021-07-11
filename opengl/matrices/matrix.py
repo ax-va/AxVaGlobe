@@ -22,9 +22,9 @@ class OpenGLMatrix(metaclass=ABCMeta):
     def matrix(self):
         return self._matrix
 
-    def left_dot(self, other):
+    def dot_left(self, other):
         """
-        mat.left_dot(other) changes mat._matrix as A = B * A,
+        mat.dot_left(other) changes mat._matrix as A = B * A,
         where mat._matrix is A, other._matrix is B, and * is matrix multiplication
         """
         if other is None or self.__class__ == other.__class__:
@@ -37,9 +37,9 @@ class OpenGLMatrix(metaclass=ABCMeta):
                 math.fsum(other.matrix[2][k] * self._matrix[k][j] for k in range(4)), \
                 math.fsum(other.matrix[3][k] * self._matrix[k][j] for k in range(4))
 
-    def right_dot(self, other):
+    def dot_right(self, other):
         """
-        mat.right_dot(other) changes mat._matrix as A = A * B,
+        mat.dot_right(other) changes mat._matrix as A = A * B,
         where mat._matrix is A, other._matrix is B, and * is matrix multiplication
         """
         if other is None or self.__class__ == other.__class__:
