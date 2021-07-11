@@ -21,18 +21,6 @@ class OpenGLMatrix(metaclass=ABCMeta):
     @property
     def matrix(self):
         return self._matrix
-    
-    def dot(self, other, side='left'):
-        """
-        mat.dot(other) changes 'mat._matrix' as A = B * A or as A = A * B if side = 'right',
-        where mat._matrix is A, other._matrix is B, and * is matrix multiplication
-        """
-        if side == 'left':
-            self.left_dot(other)
-        elif side == 'right':
-            self.right_dot(other)
-        else:
-            pass
 
     def left_dot(self, other):
         """
