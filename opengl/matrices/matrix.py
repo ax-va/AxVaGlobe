@@ -25,7 +25,8 @@ class OpenGLMatrix(metaclass=ABCMeta):
     def multiply_left(self, other):
         """
         instance.mutliply_left(other) changes instance._matrix as A = B * A,
-        where instance._matrix is A, other._matrix is B, and * is matrix multiplication
+        where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
+        respectively
         """
         if other is None or self.__class__ != other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
@@ -39,7 +40,8 @@ class OpenGLMatrix(metaclass=ABCMeta):
     def multiply_right(self, other):
         """
         instance.mutliply_right(other) changes instance._matrix as A = A * B,
-        where instance._matrix is A, other._matrix is B, and * is matrix multiplication
+        where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
+        respectively
         """
         if other is None or self.__class__ != other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
