@@ -18,7 +18,7 @@ def _check_index(setter):
     def checker(index_object, index):
         if not index_object.__class__.is_index_correct(index_object.GRID, index):
             raise ElementIndexValueError(
-                element_name=index_object.ELEMENT_NAME["element"],
+                element_name=index_object.__class__.ELEMENT_NAME['element'],
                 grid=index_object.GRID,
                 index=index
             )
@@ -37,7 +37,7 @@ def _check_layer(setter):
         grid = location_object.GRID
         if not location_object.__class__.is_layer_correct(grid, layer):
             raise ElementLayerValueError(
-                element_name=location_object.ELEMENT_NAME["element"],
+                element_name=location_object.__class__.ELEMENT_NAME['element'],
                 grid=grid,
                 layer=layer
             )
@@ -57,7 +57,7 @@ def _check_position_in_layer(setter):
         grid = location_object.GRID
         layer = location_object.LAYER
         position_in_layer_error = ElementPositionInLayerValueError(
-            element_name=location_object.ELEMENT_NAME["element"],
+            element_name=location_object.__class__.ELEMENT_NAME['element'],
             grid=grid,
             layer=layer,
             position_in_layer=position_in_layer
@@ -94,7 +94,7 @@ class ElementIndex(ConstantAttributes, metaclass=ABCMeta):
         else:  # The node index is in the 3rd part
             layer, position_in_layer = self._get_location_in_part3()
 
-        return self.CONJUGATE_CLASS['ElementLocation'](
+        return self.__class__.CONJUGATE_CLASS['ElementLocation'](
             grid=self.GRID,
             layer=layer,
             position_in_layer=position_in_layer
@@ -125,7 +125,7 @@ class ElementLocation(ConstantAttributes, metaclass=ABCMeta):
 
     @property
     def index_object(self):
-        return self.CONJUGATE_CLASS['ElementIndex'](
+        return self.__class__.CONJUGATE_CLASS['ElementIndex'](
             grid=self.GRID,
             index=self.index
         )
