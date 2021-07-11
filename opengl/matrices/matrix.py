@@ -37,7 +37,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
         where A, B, and * denote instance._matrix, other._matrix, and matrix product
         referred to as dot product, respectively.
         instance.multiply(other, way='elementwise') changes the matrix instance._matrix by 
-        elementwise multiplying instance._matrix and other._matrix
+        elementwise multiplying instance._matrix and other._matrix.
         """
         if other is None or self.__class__ != other.__class__:
             raise NotAOpenGLMatrixError(other, self.__class__.__name__)
