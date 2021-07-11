@@ -13,7 +13,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
                         [0., 1., 0., 0.],
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
-        self._multiply_functions = (self.multiply_left, self.multiply_right)
+        self._multiply_functions = (self.multiply_left, self.multiply_right, self.multiply_elementwise)
         
     @property
     def float32_array(self):
@@ -27,18 +27,30 @@ class OpenGLMatrix(metaclass=ABCMeta):
     def matrix(self):
         return self._matrix
     
-    def multiply(self, other, right=False):
+    def multiply(self, other, way=0):
         """
-        instance.mutliply(other) changes the matrix instance._matrix as A = B * A, and
-        instance.mutliply(other, right=True) changes the matrix instance._matrix as A = A * B,
+        instance.multiply(other) changes the matrix instance._matrix as A = B * A, and
+        instance.multiply(other, way=1) changes the matrix instance._matrix as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and matrix product
-        referred to as dot product, respectively
+        referred to as dot product, respectively, and
+        instance.multiply(other, way=2) changes the matrix instance._matrix by elementwise 
+        multiplying instance._matrix and other._matrix
         """
-        self._multiply_functions[right](other)
+        self._multiply_functions[way](other)
+        
+    def multiply_elementwise(self, other):
+        """
+        instance.multiply_elementwise(other) changes the matrix instance._matrix by 
+        elementwise multiplying instance._matrix and other._matrix
+        """
+        if other is None or self.__class__ != other.__class__:
+            raise NotAOpenGLMatrixError(other, self.__class__.__name__)
+        for i, j in itertools.product(range(4), range(4)):
+            self._matrix[i][j] = self._matrix[i][j] * other.matrix[i][j]
 
     def multiply_left(self, other):
         """
-        instance.mutliply_left(other) changes the matrix instance._matrix as A = B * A,
+        instance.multiply_left(other) changes the matrix instance._matrix as A = B * A,
         where A, B, and * denote instance._matrix, other._matrix, and matrix product
         referred to as dot product, respectively
         """
@@ -53,7 +65,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
 
     def multiply_right(self, other):
         """
-        instance.mutliply_right(other) changes the matrix instance._matrix as A = A * B,
+        instance.multiply_right(other) changes the matrix instance._matrix as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and matrix product
         referred to as dot product, respectively
         """
