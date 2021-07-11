@@ -63,6 +63,9 @@ class OpenGLMatrix(metaclass=ABCMeta):
                 math.fsum(self._matrix[i][k] * other.matrix[k][3] for k in range(4))
 
     def set_identity(self):
+        """
+        instance.set_indentity() sets instance._matrix to the identity matrix
+        """
         for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = 0. if i != j else 1.
             
