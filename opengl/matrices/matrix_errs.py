@@ -5,7 +5,7 @@ class OpenGLMatrixError(OpenGLError):
     pass
 
 
-class NotAOpenGLMatrix(OpenGLMatrixError):
+class NotAOpenGLMatrixError(OpenGLMatrixError):
     def __init__(self, instance, cls):
         self.message = f'The instance {instance} is not of the class {cls}'
         OpenGLMatrixError.__init__(self, self.message)
