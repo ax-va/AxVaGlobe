@@ -17,6 +17,9 @@ class OpenGLMatrix(metaclass=ABCMeta):
         
     @property
     def float32_array(self):
+        """
+        instance.float32_array returns the matrix instance._matrix as the columnwise array
+        """
         return array.array('f', (self._matrix[i][j] for j in range(4) for i in range(4)))
 
     @property
@@ -25,8 +28,8 @@ class OpenGLMatrix(metaclass=ABCMeta):
     
     def multiply(self, other, right=False):
         """
-        instance.mutliply(other) changes instance._matrix as A = B * A, and
-        instance.mutliply(other, right=True) changes instance._matrix as A = A * B,
+        instance.mutliply(other) changes the matrix instance._matrix as A = B * A, and
+        instance.mutliply(other, right=True) changes the matrix instance._matrix as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
         respectively
         """
@@ -34,7 +37,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
 
     def multiply_left(self, other):
         """
-        instance.mutliply_left(other) changes instance._matrix as A = B * A,
+        instance.mutliply_left(other) changes the matrix instance._matrix as A = B * A,
         where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
         respectively
         """
@@ -49,7 +52,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
 
     def multiply_right(self, other):
         """
-        instance.mutliply_right(other) changes instance._matrix as A = A * B,
+        instance.mutliply_right(other) changes the matrix instance._matrix as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
         respectively
         """
@@ -64,12 +67,15 @@ class OpenGLMatrix(metaclass=ABCMeta):
 
     def set_identity(self):
         """
-        instance.set_indentity() sets instance._matrix to the identity matrix
+        instance.set_indentity() sets the matrix instance._matrix to the identity matrix
         """
         for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = 0. if i != j else 1.
             
     def transpose(self):
+        """
+        instance.transpose() transposes the matrix instance._matrix
+        """
         for i in range(0, 3):
             for j in range(i + 1, 4):
                 self._matrix[i][j], self._matrix[j][i] = self._matrix[j][i], self._matrix[i][j]
