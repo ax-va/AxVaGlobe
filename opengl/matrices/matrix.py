@@ -18,7 +18,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
     @property
     def float32_array(self):
         """
-        instance.float32_array returns the matrix instance._matrix as the columnwise array
+        instance.float32_array returns the matrix instance._matrix as the column wise array
         """
         return array.array('f', (self._matrix[i][j] for j in range(4) for i in range(4)))
 
