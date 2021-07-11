@@ -23,6 +23,10 @@ class OpenGLMatrix(metaclass=ABCMeta):
         return self._matrix
     
     def dot(self, other, side='left'):
+        """
+        mat.dot(other) changes 'mat._matrix' as A = B * A or as A = A * B if side = 'right',
+        where mat._matrix is A, other._matrix is B, and * is matrix multiplication
+        """
         if side == 'left':
             self.left_dot(other)
         elif side == 'right':
@@ -32,8 +36,8 @@ class OpenGLMatrix(metaclass=ABCMeta):
 
     def left_dot(self, other):
         """
-        mat.left_dot(other) changes 'mat._matrix' as A = B * A,
-        where 'mat._matrix' is A, 'other._matrix' is B, and '*' is matrix multiplication
+        mat.left_dot(other) changes mat._matrix as A = B * A,
+        where mat._matrix is A, other._matrix is B, and * is matrix multiplication
         """
         if other is None or self.__class__ == other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
@@ -47,8 +51,8 @@ class OpenGLMatrix(metaclass=ABCMeta):
 
     def right_dot(self, other):
         """
-        mat.right_dot(other) changes 'mat._matrix' as A = A * B,
-        where 'mat._matrix' is A, 'other._matrix' is B, and '*' is matrix multiplication
+        mat.right_dot(other) changes mat._matrix as A = A * B,
+        where mat._matrix is A, other._matrix is B, and * is matrix multiplication
         """
         if other is None or self.__class__ == other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
