@@ -16,7 +16,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
         
-        self._mult_functions = (self.multiply_left, self.multiply_right, self.multiply_elementwise)
+        self._mult_functions = (self._multiply_left, self._multiply_right, self._multiply_elementwise)
         
     @property
     def float32_array(self):
@@ -39,48 +39,10 @@ class OpenGLMatrix(metaclass=ABCMeta):
         instance.multiply(other, way='elementwise') changes the matrix instance._matrix by 
         elementwise multiplying instance._matrix and other._matrix
         """
+        if other is None or self.__class__ != other.__class__:
+            raise NotAOpenGLMatrixError(other, self.__class__.__name__)
         self._mult_functions[OpenGLMatrix._mult_ways[way]](other)
         
-    def multiply_elementwise(self, other):
-        """
-        instance.multiply_elementwise(other) changes the matrix instance._matrix by 
-        elementwise multiplying instance._matrix and other._matrix
-        """
-        if other is None or self.__class__ != other.__class__:
-            raise NotAOpenGLMatrixError(other, self.__class__.__name__)
-        for i, j in itertools.product(range(4), range(4)):
-            self._matrix[i][j] = self._matrix[i][j] * other.matrix[i][j]
-
-    def multiply_left(self, other):
-        """
-        instance.multiply_left(other) changes the matrix instance._matrix as A = B * A,
-        where A, B, and * denote instance._matrix, other._matrix, and matrix product
-        referred to as dot product, respectively
-        """
-        if other is None or self.__class__ != other.__class__:
-            raise NotAOpenGLMatrixError(other, self.__class__.__name__)
-        for j in range(4):
-            self._matrix[0][j], self._matrix[1][j], self._matrix[2][j], self._matrix[3][j] = \
-                math.fsum(other.matrix[0][k] * self._matrix[k][j] for k in range(4)), \
-                math.fsum(other.matrix[1][k] * self._matrix[k][j] for k in range(4)), \
-                math.fsum(other.matrix[2][k] * self._matrix[k][j] for k in range(4)), \
-                math.fsum(other.matrix[3][k] * self._matrix[k][j] for k in range(4))
-
-    def multiply_right(self, other):
-        """
-        instance.multiply_right(other) changes the matrix instance._matrix as A = A * B,
-        where A, B, and * denote instance._matrix, other._matrix, and matrix product
-        referred to as dot product, respectively
-        """
-        if other is None or self.__class__ != other.__class__:
-            raise NotAOpenGLMatrixError(other, self.__class__.__name__)
-        for i in range(4):
-            self._matrix[i][0], self._matrix[i][1], self._matrix[i][2], self._matrix[i][3] = \
-                math.fsum(self._matrix[i][k] * other.matrix[k][0] for k in range(4)), \
-                math.fsum(self._matrix[i][k] * other.matrix[k][1] for k in range(4)), \
-                math.fsum(self._matrix[i][k] * other.matrix[k][2] for k in range(4)), \
-                math.fsum(self._matrix[i][k] * other.matrix[k][3] for k in range(4))
-
     def set_identity(self):
         """
         instance.set_indentity() sets the matrix instance._matrix to the identity matrix
@@ -95,6 +57,40 @@ class OpenGLMatrix(metaclass=ABCMeta):
         for i in range(0, 3):
             for j in range(i + 1, 4):
                 self._matrix[i][j], self._matrix[j][i] = self._matrix[j][i], self._matrix[i][j]
+                
+    def _multiply_elementwise(self, other):
+        """
+        instance.multiply_elementwise(other) changes the matrix instance._matrix by 
+        elementwise multiplying instance._matrix and other._matrix
+        """
+        for i, j in itertools.product(range(4), range(4)):
+            self._matrix[i][j] = self._matrix[i][j] * other.matrix[i][j]
+
+    def _multiply_left(self, other):
+        """
+        instance.multiply_left(other) changes the matrix instance._matrix as A = B * A,
+        where A, B, and * denote instance._matrix, other._matrix, and matrix product
+        referred to as dot product, respectively
+        """
+        for j in range(4):
+            self._matrix[0][j], self._matrix[1][j], self._matrix[2][j], self._matrix[3][j] = \
+                math.fsum(other.matrix[0][k] * self._matrix[k][j] for k in range(4)), \
+                math.fsum(other.matrix[1][k] * self._matrix[k][j] for k in range(4)), \
+                math.fsum(other.matrix[2][k] * self._matrix[k][j] for k in range(4)), \
+                math.fsum(other.matrix[3][k] * self._matrix[k][j] for k in range(4))
+
+    def _multiply_right(self, other):
+        """
+        instance.multiply_right(other) changes the matrix instance._matrix as A = A * B,
+        where A, B, and * denote instance._matrix, other._matrix, and matrix product
+        referred to as dot product, respectively
+        """
+        for i in range(4):
+            self._matrix[i][0], self._matrix[i][1], self._matrix[i][2], self._matrix[i][3] = \
+                math.fsum(self._matrix[i][k] * other.matrix[k][0] for k in range(4)), \
+                math.fsum(self._matrix[i][k] * other.matrix[k][1] for k in range(4)), \
+                math.fsum(self._matrix[i][k] * other.matrix[k][2] for k in range(4)), \
+                math.fsum(self._matrix[i][k] * other.matrix[k][3] for k in range(4))
 
 
 if __name__ == '__main__':
