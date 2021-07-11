@@ -2,12 +2,10 @@ import array
 import itertools
 import math
 
-from abc import ABCMeta
-
 from pyglobe3d.opengl.matrices.matrix_errs import NotAOpenGLMatrixError
 
 
-class OpenGLMatrix(metaclass=ABCMeta):
+class OpenGLMatrix:
     _mul_ways = {'left': 0, 'right': 1, 'element-wise': 2}
     
     def __init__(self):
