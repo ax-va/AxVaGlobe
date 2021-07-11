@@ -35,7 +35,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
         instance.multiply(other) changes the matrix instance._matrix as A = B * A, and
         instance.multiply(other, way='right') as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and the matrix product
-        referred to as dot product, respectively.
+        referred to as the dot product, respectively.
         instance.multiply(other, way='element-wise') changes the matrix instance._matrix by
         the element-wise product of instance._matrix and other._matrix.
         """
@@ -70,7 +70,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
         """
         instance._mul_left(other) changes the matrix instance._matrix as A = B * A,
         where A, B, and * denote instance._matrix, other._matrix, and the matrix product
-        referred to as dot product, respectively
+        referred to as the dot product, respectively
         """
         for j in range(4):
             self._matrix[0][j], self._matrix[1][j], self._matrix[2][j], self._matrix[3][j] = \
@@ -83,7 +83,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
         """
         instance._mul_right(other) changes the matrix instance._matrix as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and the matrix product
-        referred to as dot product, respectively
+        referred to as the dot product, respectively
         """
         for i in range(4):
             self._matrix[i][0], self._matrix[i][1], self._matrix[i][2], self._matrix[i][3] = \
