@@ -31,16 +31,16 @@ class OpenGLMatrix(metaclass=ABCMeta):
         """
         instance.mutliply(other) changes the matrix instance._matrix as A = B * A, and
         instance.mutliply(other, right=True) changes the matrix instance._matrix as A = A * B,
-        where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
-        respectively
+        where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication
+        referred to as dot, respectively
         """
         self._multiply_functions[right](other)
 
     def multiply_left(self, other):
         """
         instance.mutliply_left(other) changes the matrix instance._matrix as A = B * A,
-        where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
-        respectively
+        where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication
+        referred to as dot, respectively
         """
         if other is None or self.__class__ != other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
@@ -54,8 +54,8 @@ class OpenGLMatrix(metaclass=ABCMeta):
     def multiply_right(self, other):
         """
         instance.mutliply_right(other) changes the matrix instance._matrix as A = A * B,
-        where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication,
-        respectively
+        where A, B, and * denote instance._matrix, other._matrix, and matrix multiplication
+        referred to as dot, respectively
         """
         if other is None or self.__class__ != other.__class__:
             raise NotAOpenGLMatrix(other, self.__class__.__name__)
