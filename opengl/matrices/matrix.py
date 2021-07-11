@@ -32,7 +32,7 @@ class OpenGLMatrix(metaclass=ABCMeta):
         instance.multiply(other) changes the matrix instance._matrix as A = B * A, and
         instance.multiply(other, way=1) changes the matrix instance._matrix as A = A * B,
         where A, B, and * denote instance._matrix, other._matrix, and matrix product
-        referred to as dot product, respectively, and
+        referred to as dot product, respectively.
         instance.multiply(other, way=2) changes the matrix instance._matrix by elementwise 
         multiplying instance._matrix and other._matrix
         """
