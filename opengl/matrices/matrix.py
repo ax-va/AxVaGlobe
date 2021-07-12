@@ -5,16 +5,18 @@ import math
 from pyglobe3d.opengl.matrices.matrix_errs import NotAOpenGLMatrixError
 
 
-class OpenGLMatrix:
-    _mul_ways = {'left': 0, 'right': 1, 'element-wise': 2}
-    
+class OpenGLMatrix:    
     def __init__(self):
         self._matrix = [[1., 0., 0., 0.],
                         [0., 1., 0., 0.],
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
         
-        self._mul_funcs = (self._mul_left, self._mul_right, self._mul_element_wise)
+        self._mul_funcs = {
+            'left': self._mul_left, 
+            'right': self._mul_right, 
+            'element-wise': self._mul_element_wise,
+        }
         
     @property
     def float32_array(self):
@@ -39,7 +41,7 @@ class OpenGLMatrix:
         """
         if other is None or self.__class__ != other.__class__:
             raise NotAOpenGLMatrixError(other, self.__class__.__name__)
-        self._mul_funcs[OpenGLMatrix._mul_ways[way]](other)
+        self._mul_funcs[way](other)
         
     def set_identity(self):
         """
