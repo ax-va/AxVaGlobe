@@ -16,7 +16,7 @@ class ModelView(OpenGLMatrix):
         radians = math.radians(degrees)
         cos_t = math.cos(radians)
         sin_t = math.sin(radians)
-        if len(around) == 1:
+        if around == 'x' or around == 'y' or around == 'z':
             self._rotate_funcs[around](cos_t, sin_t)
         else:
             self._rotate_around_axis(around, cos_t, sin_t)
