@@ -34,6 +34,11 @@ class OpenGLMatrix:
     def matrix(self, matrix):
         for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = matrix[i][j]
+            
+    def clear(self, entries=None):
+        self.set_zeros()
+        if entries is not None:
+            self.set_entries(entries)
     
     def multiply(self, other, way='left'):
         """
