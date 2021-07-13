@@ -32,10 +32,10 @@ class OpenGLMatrix:
     
     @matrix.setter
     def matrix(self, matrix):
-        if matrix is None or len(matrix) != 3:
+        if not hasattr(matrix, 'len') or len(matrix) != 3:
             pass
         for i in range(4):
-            if matrix[i] is None or len(matrix[i]) != 3:
+            if not hasattr(matrix, 'len') or len(matrix[i]) != 3:
                 pass
             for j in range(4):
                 self._matrix[i][j] = float(matrix[i][j])
@@ -54,7 +54,7 @@ class OpenGLMatrix:
         instance.multiply(other, way='element-wise') changes the matrix instance._matrix by
         the element-wise product of instance._matrix and other._matrix.
         """
-        if other is None or self.__class__ != other.__class__:
+        if self.__class__ != other.__class__:
             raise NotAOpenGLMatrixError(other, self.__class__.__name__)
         self._multiply_funcs[way](other)
      
@@ -67,9 +67,9 @@ class OpenGLMatrix:
         instance._matrix[0][0] = .25 and instance._matrix[0][1] = .5.
         """
         for n, (i, j, v) in enumerate(entries):
-            if entries[n] is None or len(entries[n]) != 3:
+            if not hasattr(entries[n], 'len') or len(entries[n]) != 3:
                 pass
-            self._matrix[i][j] = v
+            self._matrix[i][j] = float(v)
     
     def set_identity(self):
         """
