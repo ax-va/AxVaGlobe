@@ -35,11 +35,6 @@ class OpenGLMatrix:
         for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = float(matrix[i][j])
             
-    def clear(self, entries=None):
-        self.set_zeros()
-        if entries is not None:
-            self.set_entries(entries)
-    
     def multiply(self, other, way='left'):
         """
         instance.multiply(other) changes the matrix instance._matrix as A = B * A, and
