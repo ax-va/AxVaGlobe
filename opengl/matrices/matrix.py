@@ -32,13 +32,8 @@ class OpenGLMatrix:
     
     @matrix.setter
     def matrix(self, matrix):
-        if not hasattr(matrix, 'len') or len(matrix) != 3:
-            pass
-        for i in range(4):
-            if not hasattr(matrix, 'len') or len(matrix[i]) != 3:
-                pass
-            for j in range(4):
-                self._matrix[i][j] = float(matrix[i][j])
+        for i, j in itertools.product(range(4), range(4)):
+            self._matrix[i][j] = float(matrix[i][j])
             
     def clear(self, entries=None):
         self.set_zeros()
@@ -66,9 +61,7 @@ class OpenGLMatrix:
         For example, entries = [[0, 0, .25], [0, 1, .5]] sets
         instance._matrix[0][0] = .25 and instance._matrix[0][1] = .5.
         """
-        for n, (i, j, v) in enumerate(entries):
-            if not hasattr(entries[n], 'len') or len(entries[n]) != 3:
-                pass
+        for i, j, v in entries:
             self._matrix[i][j] = float(v)
     
     def set_identity(self):
