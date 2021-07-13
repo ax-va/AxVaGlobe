@@ -45,7 +45,7 @@ class OpenGLMatrix:
      
     def set_entries(self, entries):
         """
-        instance,set_entries(entries) sets entries of instance._matrix given by
+        instance.set_entries(entries) sets entries of instance._matrix given by
         an iterable object containing iterable subobjects with a row index, a column 
         index, and a value.  For example, entries = [[0, 0, .25], [0, 1, .5] set
         instance._matrix[0][0] = .25 and instance._matrix[0][1] = .5.
