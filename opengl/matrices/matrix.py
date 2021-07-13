@@ -32,8 +32,13 @@ class OpenGLMatrix:
     
     @matrix.setter
     def matrix(self, matrix):
-        for i, j in itertools.product(range(4), range(4)):
-            self._matrix[i][j] = matrix[i][j]
+        if matrix is None or len(matrix) != 3:
+            pass
+        for i in range(4):
+            if len(matrix[i] != 3):
+                pass
+            for j in range(4):
+                self._matrix[i][j] = float(matrix[i][j])
             
     def clear(self, entries=None):
         self.set_zeros()
