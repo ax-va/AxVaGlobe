@@ -35,7 +35,7 @@ class OpenGLMatrix:
         if matrix is None or len(matrix) != 3:
             pass
         for i in range(4):
-            if matrix is None or len(matrix[i] != 3):
+            if matrix[i] is None or len(matrix[i] != 3):
                 pass
             for j in range(4):
                 self._matrix[i][j] = float(matrix[i][j])
