@@ -52,7 +52,7 @@ class OpenGLMatrix:
             
     def set_zeros(self):
         """
-        instance.set_identity() sets the matrix instance._matrix to the matrix containing zeros
+        instance.set_zeros() sets the matrix instance._matrix to zero entries
         """
         for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = 0.
