@@ -66,7 +66,9 @@ class OpenGLMatrix:
         For example, entries = [[0, 0, .25], [0, 1, .5]] sets
         instance._matrix[0][0] = .25 and instance._matrix[0][1] = .5.
         """
-        for i, j, v in entries:
+        for n, (i, j, v) in enumerate(entries):
+            if entries[n] is None or len(entries[n]) != 3:
+                pass
             self._matrix[i][j] = v
     
     def set_identity(self):
