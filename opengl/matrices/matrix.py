@@ -30,6 +30,11 @@ class OpenGLMatrix:
     def matrix(self):
         return self._matrix
     
+    @matrix.setter
+    def matrix(self, matrix):
+        for i, j in itertools.product(range(4), range(4)):
+            self._matrix[i][j] = matrix[i][j]
+    
     def multiply(self, other, way='left'):
         """
         instance.multiply(other) changes the matrix instance._matrix as A = B * A, and
