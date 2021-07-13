@@ -50,6 +50,13 @@ class OpenGLMatrix:
         for i, j in itertools.product(range(4), range(4)):
             self._matrix[i][j] = 0. if i != j else 1.
             
+    def set_zeros(self):
+        """
+        instance.set_identity() sets the matrix instance._matrix to the matrix containing zeros
+        """
+        for i, j in itertools.product(range(4), range(4)):
+            self._matrix[i][j] = 0.
+            
     def transpose(self):
         """
         instance.transpose() transposes the matrix instance._matrix
