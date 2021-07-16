@@ -24,7 +24,7 @@ class ModelView(OpenGLMatrix):
             
     def _rotate_around_axis(self, axis, cos_t, sin_t):
         """
-        P = [[math.cos(radians) + (1. - math.cos(radians)) * x**2,
+        R = [[math.cos(radians) + (1. - math.cos(radians)) * x**2,
               (1. - math.cos(radians)) * x * y - math.sin(radians) * z,
               (1. - math.cos(radians)) * x * z + math.sin(radians) * y, 0.],
              [(1. - math.cos(radians)) * y * x + math.sin(radians) * z,
@@ -34,7 +34,7 @@ class ModelView(OpenGLMatrix):
               (1. - math.cos(radians)) * z * y + math.sin(radians) * x,
               math.cos(radians) + (1. - math.cos(radians)) * z**2, 0.],
              [0., 0., 0., 1.]]
-        A = P * A
+        A = R * A
         """
         vector_length = math.hypot(*axis)
         if vector_length == 0:
