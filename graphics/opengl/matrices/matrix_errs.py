@@ -1,14 +1,13 @@
-from pyglobe3d.opengl.opengl_errs import OpenGLError
+from pyglobe3d.graphics.opengl.opengl_errs import OpenGLError
 
 
 class OpenGLMatrixError(OpenGLError):
     pass
 
 
-class NotAOpenGLMatrixError(OpenGLMatrixError):
-    def __init__(self, instance, cls):
-        self.message = f'The instance {instance} is not of the class {cls}'
-        OpenGLMatrixError.__init__(self, self.message)
+class ZeroLengthVectorError(OpenGLMatrixError):
+    def __init__(self, vector):
+        self.message = f'The vector {vector} must not have zero length'
 
 
 class ProjectionError(OpenGLMatrixError):

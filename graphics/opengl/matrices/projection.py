@@ -1,6 +1,6 @@
 from abc import ABCMeta
 
-from pyglobe3d.opengl.matrices.matrix import OpenGLMatrix
+from pyglobe3d.graphics.opengl.matrices.matrix import OpenGLMatrix
 
 
 class Projection(OpenGLMatrix, metaclass=ABCMeta):

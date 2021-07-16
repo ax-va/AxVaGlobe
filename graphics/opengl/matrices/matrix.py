@@ -2,15 +2,16 @@ import array
 import itertools
 import math
 
-from pyglobe3d.opengl.matrices.matrix_errs import NotAOpenGLMatrixError
-
 
 class OpenGLMatrix:    
-    def __init__(self):
+    def __init__(self, matrix=None):
         self._matrix = [[1., 0., 0., 0.],
                         [0., 1., 0., 0.],
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
+
+        if matrix is not None:
+            self._set_matrix(matrix)
         
         self._multiply_funcs = {
             'left': self._multiply_left, 
@@ -32,8 +33,7 @@ class OpenGLMatrix:
     
     @matrix.setter
     def matrix(self, matrix):
-        for i, j in itertools.product(range(4), range(4)):
-            self._matrix[i][j] = float(matrix[i][j])
+        self._set_matrix(matrix)
             
     def multiply(self, other, way='left'):
         """
@@ -44,8 +44,6 @@ class OpenGLMatrix:
         instance.multiply(other, way='element-wise') changes the matrix instance._matrix by
         the element-wise product of instance._matrix and other._matrix.
         """
-        if self.__class__ != other.__class__:
-            raise NotAOpenGLMatrixError(other, self.__class__.__name__)
         self._multiply_funcs[way](other)
      
     def set_entries(self, entries):
@@ -114,6 +112,11 @@ class OpenGLMatrix:
                 math.fsum(self._matrix[i][k] * other.matrix[k][1] for k in range(4)), \
                 math.fsum(self._matrix[i][k] * other.matrix[k][2] for k in range(4)), \
                 math.fsum(self._matrix[i][k] * other.matrix[k][3] for k in range(4))
+
+    def _set_matrix(self, matrix):
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                self._matrix[i][j] = float(matrix[i][j])
 
 
 if __name__ == '__main__':
