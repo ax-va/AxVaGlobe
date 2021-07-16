@@ -45,7 +45,7 @@ class OpenGLMatrix:
         instance.multiply(by_matrix=other, way='element-wise') changes the matrix instance._matrix by
         the element-wise product of instance._matrix and other._matrix.
         """
-        self._multiply_funcs[way](with_matrix)
+        self._multiply_funcs[way](by_matrix)
      
     def set_entries(self, entries):
         """
