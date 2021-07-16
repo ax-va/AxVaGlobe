@@ -50,7 +50,7 @@ class ModelView(OpenGLMatrix):
             [_1_minus_cos_t * xz - sin_t * y, _1_minus_cos_t * yz + sin_t * x, cos_t + _1_minus_cos_t * z**2]
         ]
         rotation = OpenGLMatrix(matrix=rotation_matrix)
-        self.multiply(other=rotation, way='left')
+        self.multiply(with_matrix=rotation, way='left')
 
     def _rotate_around_x(self, cos_t, sin_t):
         """
