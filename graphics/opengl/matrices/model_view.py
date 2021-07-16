@@ -1,7 +1,7 @@
 import math
 
 from pyglobe3d.graphics.opengl.matrices.matrix import OpenGLMatrix
-from pyglobe3d.graphics.opengl.matrices.matrix_errs import ZeroLengthVectorError
+from pyglobe3d.graphics.opengl.matrices.matrix_errs import ZeroVectorLengthError
 
 
 class ModelView(OpenGLMatrix):
@@ -38,7 +38,7 @@ class ModelView(OpenGLMatrix):
         """
         vector_length = math.hypot(*axis)
         if vector_length == 0:
-            raise ZeroLengthVectorError(axis)
+            raise ZeroVectorLengthError(axis)
         x, y, z = (coord / vector_length for coord in axis)
         _1_minus_cos_t = 1. - cos_t
         xy = x * y

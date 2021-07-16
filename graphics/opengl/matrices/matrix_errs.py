@@ -5,7 +5,7 @@ class OpenGLMatrixError(OpenGLError):
     pass
 
 
-class ZeroLengthVectorError(OpenGLMatrixError):
+class ZeroVectorLengthError(OpenGLMatrixError):
     def __init__(self, vector):
         self.message = f'The vector {vector} must not have zero length'
 
