@@ -1,2 +1,2 @@
 # pyglobe3d
- Open-source logical-graphical Python library for making globes by discrete-surface units and more
+PyGlobe3D is a free open-source logical-graphical Python library for making globes by discrete-surface units and more
