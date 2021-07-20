@@ -13,6 +13,7 @@ class Orthographic(Projection):
                    [0., 2. / (top - bottom), 0., -(top + bottom) / (top - bottom)],
                    [0., 0., -2. / (far - near), -(far + near) / (far - near)],
                    [0., 0., 0., 1.]]
+        with v = P_ortho * v
         """
         right_minus_left = self._right - self._left
         top_minus_bottom = self._top - self._bottom
