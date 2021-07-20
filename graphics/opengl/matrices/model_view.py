@@ -44,7 +44,7 @@ class ModelView(OpenGLMatrix):
         """
         if scaling != 1:
             for ax in axes:
-                self._scale-funcs[ax](scaling)
+                self._scale_funcs[ax](scaling)
 
     def translate(self, translation):
         """
