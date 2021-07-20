@@ -34,7 +34,7 @@ class ModelView(OpenGLMatrix):
                 rad = math.radians(deg)
                 self._rotate_around_axis(math.cos(rad), math.sin(rad), ax)
 
-    def scale(self, scaling, axes=None):
+    def scale(self, scaling):
         """
         S = [[x_scaling, 0., 0., 0.],
              [0., y_scaling, 0., 0.],
@@ -42,17 +42,12 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = S * A and v_new = A * v_old
         """
-        if axes is None:
-            if scaling != 1:
-                self._scale_x(scaling)
-                self._scale_y(scaling)
-                self._scale_z(scaling)
-        elif isinstance(axes, str):
-            for sc, ax in itertools.product(scaling, axes):
-                if sc != 1:
-                    self._scale_funcs[ax](sc)
+        if scaling != 1:
+            self._scale_x(scaling)
+            self._scale_y(scaling)
+            self._scale_z(scaling)
 
-    def translate(self, translation, along=None):
+    def translate(self, translation):
         """
         T = [[1., 0., 0., x_translation],
              [0., 1., 0., y_translation],
@@ -60,18 +55,13 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = T * A and v_new = A * v_old
         """
-        if isinstance(along, str):
-            for tr, ax in itertools.product(translation, along):
-                if tr != 0:
-                    self._translate_funcs[ax](tr)
-        elif along is None:
-            x_tr, y_tr, z_tr = translation
-            if x_tr != 0:
-                self._translate_along_x(x_tr)
-            if y_tr != 0:
-                self._translate_along_y(y_tr)
-            if z_tr != 0:
-                self._translate_along_z(z_tr)
+        x_tr, y_tr, z_tr = translation
+        if x_tr != 0:
+            self._translate_along_x(x_tr)
+        if y_tr != 0:
+            self._translate_along_y(y_tr)
+        if z_tr != 0:
+            self._translate_along_z(z_tr)
 
     def _rotate_around_axis(self, cos_t, sin_t, axis):
         """
@@ -212,8 +202,6 @@ if __name__ == '__main__':
     print(mat.float32_array)
     mat.rotate(degrees=[-90, 60], around=[[1, 1, 1], [1, 2, 3]])
     print(mat.float32_array)
-    mat.translate(translation=[-1, -2], along='xz')
     mat.translate(translation=[-1, -1, -1])
-    mat.scale(scaling=[0.5, 0.5], axes='xz')
     mat.scale(scaling=2)
     print(mat.float32_array)
