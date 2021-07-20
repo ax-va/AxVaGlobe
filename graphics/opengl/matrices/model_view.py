@@ -24,15 +24,13 @@ class ModelView(OpenGLMatrix):
             'z': self._translate_along_z,
         }
 
-    def rotate(self, degrees, around):
-        if isinstance(around, str):
-            for deg, ax in itertools.product(degrees, around):
+    def rotate(self, degrees, around):        
+        for deg, ax in itertools.product(degrees, around):
                 rad = math.radians(deg)
-                self._rotate_funcs[ax](math.cos(rad), math.sin(rad))
-        else:
-            for deg, ax in itertools.product(degrees, around):
-                rad = math.radians(deg)
-                self._rotate_around_axis(math.cos(rad), math.sin(rad), ax)
+                if isinstance(ax, str):
+                    self._rotate_funcs[ax](math.cos(rad), math.sin(rad))
+                else: 
+                    self._rotate_around_axis(math.cos(rad), math.sin(rad), ax)
 
     def scale(self, scaling, axes='xyz'):
         """
