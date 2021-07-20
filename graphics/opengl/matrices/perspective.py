@@ -1,3 +1,5 @@
+import math
+
 from pyglobe3d.graphics.opengl.matrices.matrix_errs import EqualClippingPlanesError
 from pyglobe3d.graphics.opengl.matrices.projection import Projection
 
@@ -7,13 +9,33 @@ class Perspective(Projection):
         Projection.__init__(self, left, right, bottom, top, near, far)
         self._set_matrix_entries()
 
+    @classmethod
+    def create_perspective(cls, fov_y, aspect, near, far):
+        """
+        Creates a Perspective instance with instance._matrix equal to P_persp, where
+        P_persp = [[1. / aspect, 0., 0., 0.],
+                   [0., 1. / math.tan(fov_y / 2), 0., 0.],
+                   [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
+                   [0., 0., -1., 0.]
+
+        :param fov_y: field of view in y, the vertical angle (in degrees) of viewable space
+        :param aspect: aspect ratio, the ratio width/height of the near (and also far) clipping plane
+        :param near: distance of the near clipping plane from the eye
+        :param far: distance of the far clipping plane from the eye
+        :return: Perspective instance
+        """
+        radians = math.radians(fov_y)
+        top = near * math.tan(radians / 2)
+        right = aspect * top
+        return cls(right, top, near, far)
+
     def _set_matrix_entries(self):
         """
         P_persp = [[ 2. * near / (right - left), 0., (right + left) / (right - left), 0.],
                    [0., 2. * near / (top - bottom), (top + bottom) / (top - bottom), 0.],
                    [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
                    [0., 0., -1., 0.]]
-        with v = P_persp * v
+        with v_new = P_persp * v_old
         """
         right_minus_left = self._right - self._left
         top_minus_bottom = self._top - self._bottom
