@@ -27,7 +27,7 @@ class Perspective(Projection):
         """
         Creates a Perspective instance with instance._matrix equal to P_persp, where
         P_persp = [[1. / aspect, 0., 0., 0.],
-                   [0., 1. / math.tan(fov_y / 2), 0., 0.],
+                   [0., 1. / math.tan(math.radians(fov_y) / 2), 0., 0.],
                    [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
                    [0., 0., -1., 0.]
 
@@ -37,8 +37,7 @@ class Perspective(Projection):
         :param far: distance of the far clipping plane from the eye
         :return: Perspective instance
         """
-        radians = math.radians(fov_y)
-        top = near * math.tan(radians / 2)
+        top = near * math.tan(math.radians(fov_y) / 2)
         right = aspect * top
         return cls(right, top, near, far)
 
