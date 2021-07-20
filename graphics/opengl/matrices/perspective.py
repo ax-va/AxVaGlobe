@@ -6,6 +6,19 @@ from pyglobe3d.graphics.opengl.matrices.projection import Projection
 
 class Perspective(Projection):
     def __init__(self, right, top, near, far, left=None, bottom=None):
+        """
+        Initializes a Perspective instance by instance._matrix equal to P_persp, where
+        P_persp = [[ 2. * near / (right - left), 0., (right + left) / (right - left), 0.],
+                   [0., 2. * near / (top - bottom), (top + bottom) / (top - bottom), 0.],
+                   [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
+                   [0., 0., -1., 0.]]
+        :param right: distance of the right clipping plane from the origin
+        :param top: distance of the top clipping plane from the origin
+        :param near: distance of the near clipping plane from the eye
+        :param far: distance of the far clipping plane from the eye
+        :param left: distance of the left clipping plane from the origin
+        :param bottom: distance of the bottom clipping plane from the origin
+        """
         Projection.__init__(self, left, right, bottom, top, near, far)
         self._set_matrix_entries()
 
@@ -35,7 +48,6 @@ class Perspective(Projection):
                    [0., 2. * near / (top - bottom), (top + bottom) / (top - bottom), 0.],
                    [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
                    [0., 0., -1., 0.]]
-        with v_new = P_persp * v_old
         """
         right_minus_left = self._right - self._left
         top_minus_bottom = self._top - self._bottom
