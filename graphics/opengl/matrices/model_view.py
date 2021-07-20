@@ -34,7 +34,7 @@ class ModelView(OpenGLMatrix):
                 rad = math.radians(deg)
                 self._rotate_around_axis(math.cos(rad), math.sin(rad), ax)
 
-    def scale(self, scaling):
+    def scale(self, scaling, axes='xyz'):
         """
         S = [[x_scaling, 0., 0., 0.],
              [0., y_scaling, 0., 0.],
@@ -43,9 +43,8 @@ class ModelView(OpenGLMatrix):
         with A = S * A and v_new = A * v_old
         """
         if scaling != 1:
-            self._scale_x(scaling)
-            self._scale_y(scaling)
-            self._scale_z(scaling)
+            for ax in axes:
+                selself._scale-funcs[ax](scaling)            self._scale_x(scaling)
 
     def translate(self, translation):
         """
