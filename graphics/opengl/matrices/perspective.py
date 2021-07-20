@@ -12,6 +12,7 @@ class Perspective(Projection):
                    [0., 2. * near / (top - bottom), (top + bottom) / (top - bottom), 0.],
                    [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
                    [0., 0., -1., 0.]]
+
         :param right: distance of the right clipping plane from the origin
         :param top: distance of the top clipping plane from the origin
         :param near: distance of the near clipping plane from the eye
