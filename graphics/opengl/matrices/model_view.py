@@ -44,11 +44,11 @@ class ModelView(OpenGLMatrix):
             self._scale_funcs[axis](scaling)
         else:
             x_scal, y_scal, z_scal = scaling
-            if x_scal!= 1:
+            if x_scal != 1:
                 self._scale_x(x_scal)
             if y_scal != 1:
                 self._scale_y(y_scal)
-            if z_scal!= 1:
+            if z_scal != 1:
                 self._scale_z(z_scal)
 
     def translate(self, translation, along=None):
