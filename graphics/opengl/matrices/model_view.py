@@ -26,12 +26,11 @@ class ModelView(OpenGLMatrix):
 
     def rotate(self, degrees, around):
         for deg, ax in itertools.product(degrees, around):
-            if deg != 0:
-                rad = math.radians(deg)
-                if isinstance(ax, str):
-                    self._rotate_funcs[ax](math.cos(rad), math.sin(rad))
-                else: 
-                    self._rotate_around_axis(math.cos(rad), math.sin(rad), ax)
+            rad = math.radians(deg)
+            if isinstance(ax, str):
+                self._rotate_funcs[ax](math.cos(rad), math.sin(rad))
+            else: 
+                self._rotate_around_axis(math.cos(rad), math.sin(rad), ax)
 
     def scale(self, scaling, axes='xyz'):
         """
@@ -41,9 +40,8 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = S * A and v_new = A * v_old
         """
-        if scaling != 1:
-            for ax in axes:
-                self._scale_funcs[ax](scaling)
+        for ax in axes:
+            self._scale_funcs[ax](scaling)
 
     def translate(self, translation, along='xyz'):
         """
@@ -53,9 +51,8 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = T * A and v_new = A * v_old
         """
-        for tr, ax in itertools.product(translation, along):
-            if tr != 0:
-                self._translate_funcs[ax](tr)
+        for trans, ax in itertools.product(translation, along):
+            self._translate_funcs[ax](trans)
 
     def _rotate_around_axis(self, cos_t, sin_t, axis):
         """
