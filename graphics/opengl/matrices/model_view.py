@@ -1,3 +1,4 @@
+import itertools
 import math
 
 from pyglobe3d.graphics.opengl.matrices.matrix import OpenGLMatrix
@@ -24,15 +25,16 @@ class ModelView(OpenGLMatrix):
         }
 
     def rotate(self, degrees, around):
-        radians = math.radians(degrees)
-        cos_t = math.cos(radians)
-        sin_t = math.sin(radians)
-        if around == 'x' or around == 'y' or around == 'z':
-            self._rotate_funcs[around](cos_t, sin_t)
+        if isinstance(around, str):
+            for deg, ax in itertools.product(degrees, around):
+                rad = math.radians(deg)
+                self._rotate_funcs[ax](math.cos(rad), math.sin(rad))
         else:
-            self._rotate_around_axis(cos_t, sin_t, around)
+            for deg, ax in itertools.product(degrees, around):
+                rad = math.radians(deg)
+                self._rotate_around_axis(math.cos(rad), math.sin(rad), ax)
 
-    def scale(self, scaling, axis=None):
+    def scale(self, scaling, axes=None):
         """
         S = [[x_scaling, 0., 0., 0.],
              [0., y_scaling, 0., 0.],
@@ -40,16 +42,15 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = S * A and v_new = A * v_old
         """
-        if axis == 'x' or axis == 'y' or axis == 'z':
-            self._scale_funcs[axis](scaling)
-        else:
-            x_scal, y_scal, z_scal = scaling
-            if x_scal != 1:
-                self._scale_x(x_scal)
-            if y_scal != 1:
-                self._scale_y(y_scal)
-            if z_scal != 1:
-                self._scale_z(z_scal)
+        if axes is None:
+            if scaling != 1:
+                self._scale_x(scaling)
+                self._scale_y(scaling)
+                self._scale_z(scaling)
+        elif isinstance(axes, str):
+            for sc, ax in itertools.product(scaling, axes):
+                if sc != 1:
+                    self._scale_funcs[ax](sc)
 
     def translate(self, translation, along=None):
         """
@@ -59,16 +60,18 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = T * A and v_new = A * v_old
         """
-        if along == 'x' or along == 'y' or along == 'z':
-            self._translate_funcs[along](translation)
-        else:
-            x_trans, y_trans, z_trans = translation
-            if x_trans != 0:
-                self._translate_along_x(x_trans)
-            if y_trans != 0:
-                self._translate_along_y(y_trans)
-            if z_trans != 0:
-                self._translate_along_z(z_trans)
+        if isinstance(along, str):
+            for tr, ax in itertools.product(translation, along):
+                if tr != 0:
+                    self._translate_funcs[ax](tr)
+        elif along is None:
+            x_tr, y_tr, z_tr = translation
+            if x_tr != 0:
+                self._translate_along_x(x_tr)
+            if y_tr != 0:
+                self._translate_along_y(y_tr)
+            if z_tr != 0:
+                self._translate_along_z(z_tr)
 
     def _rotate_around_axis(self, cos_t, sin_t, axis):
         """
@@ -205,12 +208,12 @@ class ModelView(OpenGLMatrix):
 if __name__ == '__main__':
     mat = ModelView()
     print(mat.float32_array)
-    mat.rotate(degrees=-90, around='x')
+    mat.rotate(degrees=[-90, 30], around='xz')
     print(mat.float32_array)
-    mat.rotate(degrees=-90, around=[1, 1, 1])
+    mat.rotate(degrees=[-90, 60], around=[[1, 1, 1], [1, 2, 3]])
     print(mat.float32_array)
-    mat.translate(translation=-1, along='x')
+    mat.translate(translation=[-1, -2], along='xz')
     mat.translate(translation=[-1, -1, -1])
-    mat.scale(scaling=2, axis='x')
-    mat.scale(scaling=[0.5, 0.5, 0.5])
+    mat.scale(scaling=[0.5, 0.5], axes='xz')
+    mat.scale(scaling=2)
     print(mat.float32_array)
