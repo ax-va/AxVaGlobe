@@ -15,8 +15,8 @@ class Perspective(Projection):
 
         :param right: distance of the right clipping plane from the origin
         :param top: distance of the top clipping plane from the origin
-        :param near: distance of the near clipping plane from the eye
-        :param far: distance of the far clipping plane from the eye
+        :param near: distance of the near clipping plane from the eye in the origin
+        :param far: distance of the far clipping plane from the eye in the origin
         :param left: distance of the left clipping plane from the origin
         :param bottom: distance of the bottom clipping plane from the origin
         """
@@ -34,8 +34,8 @@ class Perspective(Projection):
 
         :param fov_y: field of view in y, the vertical angle (in degrees) of viewable space
         :param aspect: aspect ratio, the ratio width/height of the near (and also far) clipping plane
-        :param near: distance of the near clipping plane from the eye
-        :param far: distance of the far clipping plane from the eye
+        :param near: distance of the near clipping plane from the eye in the origin
+        :param far: distance of the far clipping plane from the eye in the origin
         :return: Perspective instance
         """
         top = near * math.tan(math.radians(fov_y) / 2)
