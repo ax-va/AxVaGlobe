@@ -13,12 +13,12 @@ class Perspective(Projection):
                    [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
                    [0., 0., -1., 0.]]
 
-        :param right: right clipping plane from the origin
-        :param top: top clipping plane from the origin
+        :param right: displacement of the right clipping plane from the origin
+        :param top: displacement of the top clipping plane from the origin
         :param near: distance of the near clipping plane from the eye in the origin
         :param far: distance of the far clipping plane from the eye in the origin
-        :param left: left clipping plane from the origin
-        :param bottom: bottom clipping plane from the origin
+        :param left: displacement of the left clipping plane from the origin
+        :param bottom: displacement of the bottom clipping plane from the origin
         """
         Projection.__init__(self, left, right, bottom, top, near, far)
         self._set_matrix_entries()
