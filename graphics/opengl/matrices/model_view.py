@@ -46,7 +46,7 @@ class ModelView(OpenGLMatrix):
             for ax in axes:
                 self._scale_funcs[ax](scaling)
 
-    def translate(self, translation):
+    def translate(self, translation, along='xyz'):
         """
         T = [[1., 0., 0., x_translation],
              [0., 1., 0., y_translation],
@@ -54,13 +54,9 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = T * A and v_new = A * v_old
         """
-        x_tr, y_tr, z_tr = translation
-        if x_tr != 0:
-            self._translate_along_x(x_tr)
-        if y_tr != 0:
-            self._translate_along_y(y_tr)
-        if z_tr != 0:
-            self._translate_along_z(z_tr)
+        for tr, ax in itertools.product(translation, along):
+            if tr != 0:
+                self._translate_funcs[ax](tr)
 
     def _rotate_around_axis(self, cos_t, sin_t, axis):
         """
