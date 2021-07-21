@@ -59,7 +59,7 @@ class ModelView(OpenGLMatrix):
         except TypeError:
             self._translate_funcs[ax](trans)
             
-    def _rotate(deg, ax):
+    def _rotate(self, deg, ax):
         rad = math.radians(deg)
         if isinstance(ax, str):
             self._rotate_funcs[ax](math.cos(rad), math.sin(rad))
