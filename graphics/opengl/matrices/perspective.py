@@ -47,6 +47,7 @@ class Perspective(Projection):
 
     def _set_matrix_entries(self):
         """
+        Sets the entries of instance._matrix according to 
         P_persp = [[ 2. * near / (right - left), 0., (right + left) / (right - left), 0.],
                    [0., 2. * near / (top - bottom), (top + bottom) / (top - bottom), 0.],
                    [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
