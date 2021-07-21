@@ -5,6 +5,9 @@ from pyglobe3d.graphics.opengl.matrices.projection import Projection
 
 
 class Perspective(Projection):
+    """
+    Describes an OpenGL perspective-projection matrix
+    """
     def __init__(self, right, top, near, far, left=None, bottom=None):
         """
         Initializes a Perspective instance by instance._matrix equal to P_persp, where
@@ -32,8 +35,8 @@ class Perspective(Projection):
                    [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
                    [0., 0., -1., 0.]
 
-        :param fov_y: field of view in y, the vertical angle (in degrees) of viewable space
-        :param aspect: aspect ratio, the ratio width/height of the near (and also far) clipping plane
+        :param fov_y: field of view in y, that is, the vertical angle (in degrees) of viewable space
+        :param aspect: aspect ratio, that is, the ratio width/height of the near (and also far) clipping plane
         :param near: distance of the near clipping plane from the eye in the origin
         :param far: distance of the far clipping plane from the eye in the origin
         :return: Perspective instance
