@@ -130,3 +130,5 @@ if __name__ == '__main__':
     mt = OpenGLMatrix()
     print(mt.matrix)
     print(mt.float32_array)
+    mt2 = OpenGLMatrix(matrix=mt.matrix)
+    print(mt2.float32_array)
