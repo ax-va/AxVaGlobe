@@ -44,6 +44,9 @@ class OpenGLMatrix:
         referred to as the dot product, respectively.
         instance.multiply(by_matrix=other, way='element-wise') changes the matrix instance._matrix by
         the element-wise product of instance._matrix and other._matrix.
+
+        :param by_matrix: OpenGLMatrix instance
+        :param way: multiplication way
         """
         self._multiply_funcs[way](by_matrix)
      
@@ -54,6 +57,9 @@ class OpenGLMatrix:
         a column index, and a value. 
         For example, instance.set_entries(entries=[[0, 0, .25], [0, 1, .5]]) sets
         instance._matrix[0][0] = .25 and instance._matrix[0][1] = .5.
+
+        :param entries: new entries in the form of iterable object containing iterable
+        subobjects with a row index, a column index, and a value
         """
         for i, j, v in entries:
             self._matrix[i][j] = float(v)

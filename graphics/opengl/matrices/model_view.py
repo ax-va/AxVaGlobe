@@ -1,4 +1,3 @@
-import itertools
 import math
 
 from pyglobe3d.graphics.opengl.matrices.matrix import OpenGLMatrix
@@ -26,10 +25,10 @@ class ModelView(OpenGLMatrix):
 
     def rotate(self, degrees, around):
         try:
-            for deg, ax in itertools.product(degrees, around):
+            for deg, ax in zip(degrees, around):
                 self._rotate(deg, ax)
         except TypeError:
-            self._rotate(deg, ax)            
+            self._rotate(degrees, around)
 
     def scale(self, scaling, axes='xyz'):
         """
@@ -39,10 +38,7 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = S * A and v_new = A * v_old
         """
-        try:
-            for ax in axes:
-                self._scale_funcs[ax](scaling)
-        except TypeError:
+        for ax in axes:
             self._scale_funcs[ax](scaling)
 
     def translate(self, translation, along='xyz'):
@@ -54,10 +50,10 @@ class ModelView(OpenGLMatrix):
         with A = T * A and v_new = A * v_old
         """
         try:
-            for trans, ax in itertools.product(translation, along):
-                self._translate_funcs[ax](trans)
+            for trt, ax in zip(translation, along):
+                self._translate_funcs[ax](trt)
         except TypeError:
-            self._translate_funcs[ax](trans)
+            self._translate_funcs[along](translation)
             
     def _rotate(self, deg, ax):
         rad = math.radians(deg)
@@ -202,9 +198,13 @@ if __name__ == '__main__':
     mat = ModelView()
     print(mat.float32_array)
     mat.rotate(degrees=[-90, 30], around='xz')
+    mat.rotate(degrees=15, around='y')
     print(mat.float32_array)
-    mat.rotate(degrees=[-90, 60], around=[[1, 1, 1], [1, 2, 3]])
+    mat.rotate(degrees=[-90, 15, 30], around=[[1, 1, 1], 'x', [1, 2, 3]])
+    mat.rotate(degrees=30, around=[1, 1, 1])
     print(mat.float32_array)
     mat.translate(translation=[-1, -1, -1])
+    mat.translate(translation=5, along='z')
     mat.scale(scaling=2)
+    mat.scale(scaling=2, axes='xy')
     print(mat.float32_array)

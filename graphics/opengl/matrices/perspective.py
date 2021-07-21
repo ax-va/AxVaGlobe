@@ -27,21 +27,21 @@ class Perspective(Projection):
         self._set_matrix_entries()
 
     @classmethod
-    def create_perspective(cls, fov_y, aspect, near, far):
+    def create_perspective(cls, fovy, aspect, near, far):
         """
         Creates a Perspective instance with instance._matrix equal to P_persp, where
         P_persp = [[1. / aspect, 0., 0., 0.],
-                   [0., 1. / math.tan(math.radians(fov_y) / 2), 0., 0.],
+                   [0., 1. / math.tan(math.radians(fovy) / 2), 0., 0.],
                    [0., 0., -(far + near) / (far - near), -2. * far * near / (far - near)],
                    [0., 0., -1., 0.]
 
-        :param fov_y: field of view in y, that is, the vertical angle (in degrees) of viewable space
+        :param fovy: field of view in y, that is, the vertical angle (in degrees) of viewable space
         :param aspect: aspect ratio, that is, the ratio width/height of the near (and also far) clipping plane
         :param near: distance of the near clipping plane from the eye in the origin
         :param far: distance of the far clipping plane from the eye in the origin
         :return: Perspective instance
         """
-        top = near * math.tan(math.radians(fov_y) / 2)
+        top = near * math.tan(math.radians(fovy) / 2)
         right = aspect * top
         return cls(right, top, near, far)
 
@@ -70,3 +70,9 @@ class Perspective(Projection):
         self._matrix[2][3] = -2. * self._far * self._near / far_minus_near
         self._matrix[3][2] = -1.
         self._matrix[3][3] = 0.
+
+
+if __name__ == '__main__':
+    p = Perspective(right=1, top=1, near=1, far=2)
+    help(p.__init__)
+    help(Perspective.create_perspective)
