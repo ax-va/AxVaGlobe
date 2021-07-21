@@ -5,7 +5,7 @@ from pyglobe3d.core.icosalogic.triangle_attrs import TriangleIndex, TriangleLoca
 
 class Triangle(ElementWithIndexAndLocationObjects):
     """
-    Describes a logical node located on the icosahedron.
+    Describes a logical triangle located on the icosahedron.
 
     """
     def __init__(self,
