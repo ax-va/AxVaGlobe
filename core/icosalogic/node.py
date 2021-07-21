@@ -5,7 +5,7 @@ from pyglobe3d.core.icosalogic.node_attrs import NodeIndex, NodeLocation
 
 class Node(ElementWithIndexAndLocationObjects):
     """
-    Describes a logical node located on the icosahedron.
+    Describes a logical node located on the icosahedron
 
     """
     def __init__(self,
