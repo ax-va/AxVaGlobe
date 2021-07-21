@@ -58,8 +58,8 @@ class OpenGLMatrix:
         For example, instance.set_entries(entries=[[0, 0, .25], [0, 1, .5]]) sets
         instance._matrix[0][0] = .25 and instance._matrix[0][1] = .5.
 
-        :param entries: new entries in the form of iterable object containing iterable
-        subobjects with a row index, a column index, and a value
+        :param entries: new matrix entries in the form of iterable object containing
+        iterable subobjects with a row index, a column index, and a value
         """
         for i, j, v in entries:
             self._matrix[i][j] = float(v)
