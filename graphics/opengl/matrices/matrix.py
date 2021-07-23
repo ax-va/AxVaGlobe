@@ -9,10 +9,8 @@ class OpenGLMatrix:
                         [0., 1., 0., 0.],
                         [0., 0., 1., 0.],
                         [0., 0., 0., 1.]]
-
         if matrix is not None:
-            self._set_matrix(matrix)
-        
+            self._set_matrix(matrix)        
         self._multiply_funcs = {
             'left': self._multiply_left, 
             'right': self._multiply_right, 
