@@ -59,7 +59,11 @@ class OpenGLMatrix:
         :param entries: new matrix entries in the form of iterable object containing
         iterable subobjects with a row index, a column index, and a value
         """
-        for i, j, v in entries:
+        try:
+            for i, j, v in entries:
+                self._matrix[i][j] = float(v)
+        except TypeError:
+            i, j, v = entries
             self._matrix[i][j] = float(v)
     
     def set_identity(self):
