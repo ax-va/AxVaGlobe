@@ -59,23 +59,23 @@ def test_nodes(mesh):
     print("adjacent triangles...")
     for index in mesh4_adjacent_triangles:
         nd = mesh.create_node(index=index)
-        a_t_indices1 = mesh4_adjacent_triangles[index]
-        a_t_indices2 = tuple(x.index for x in nd.adjacent_triangles)
+        ad_tr_indices1 = mesh4_adjacent_triangles[index]
+        ad_tr_indices2 = tuple(x.index for x in nd.adjacent_triangles)
         # print(index)
-        # print(a_t_indices1)
-        # print(a_t_indices2)
-        assert a_t_indices1 == a_t_indices2, 'Calculated adjacent triangles do not match test adjacent triangles'
+        # print(ad_tr_indices1)
+        # print(ad_tr_indices2)
+        assert ad_tr_indices1 == ad_tr_indices2, 'Calculated adjacent triangles do not match test adjacent triangles'
     print("...are OK")
 
     print("neighboring nodes...")
     for index in mesh4_neighboring_nodes:
         nd = mesh.create_node(index=index)
-        n_n_indices1 = mesh4_neighboring_nodes[index]
-        n_n_indices2 = tuple(x.index for x in nd.neighboring_nodes)
+        ne_ns_indices1 = mesh4_neighboring_nodes[index]
+        ne_ns_indices2 = tuple(x.index for x in nd.neighboring_nodes)
         # print(index)
-        # print(n_n_indices1)
-        # print(n_n_indices2)
-        assert n_n_indices1 == n_n_indices2, 'Calculated neighboring nodes do not match test neighboring nodes'
+        # print(ne_ns_indices1)
+        # print(ne_ns_indices2)
+        assert ne_ns_indices1 == ne_ns_indices2, 'Calculated neighboring nodes do not match test neighboring nodes'
     print("...are OK")
 
 
@@ -85,9 +85,9 @@ def test_triangles(mesh):
     print("triangle nodes...")
     for index in mesh4_triangle_nodes:
         tr = mesh.create_triangle(index=index)
-        t_n_indices1 = mesh4_triangle_nodes[index]
-        t_n_indices2 = tuple(x.index for x in tr.triangle_nodes)
-        assert t_n_indices1 == t_n_indices2, 'Calculated triangle nodes do not match test triangle nodes'
+        tr_ns_indices1 = mesh4_triangle_nodes[index]
+        tr_ns_indices2 = tuple(x.index for x in tr.triangle_nodes)
+        assert tr_ns_indices1 == tr_ns_indices2, 'Calculated triangle nodes do not match test triangle nodes'
     print("...are OK")
 
 
