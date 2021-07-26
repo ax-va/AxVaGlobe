@@ -91,7 +91,7 @@ def test_triangles(mesh):
     print("...are OK")
 
 
-mesh = Mesh(partition=4)
-test_nodes(mesh)
+msh = Mesh(partition=4)
+test_nodes(msh)
 print('-'*20)
-test_triangles(mesh)
+test_triangles(msh)
