@@ -1,22 +1,21 @@
 """
-Write 'py.test tests.py' in the command line to test by using the 'pytest' package
-
+Write 'py.test tests.py' in the terminal to test by using the 'pytest' package.
+For this, change the path in Windows by 'cd pyglobe3d\core\icosalogic\'.
 """
 from pyglobe3d.core.icosalogic.mesh import Mesh
 from pyglobe3d.core.icosalogic.node import Node
 from pyglobe3d.core.icosalogic.node_attrs import NodeIndex, NodeLocation
-from pyglobe3d.core.icosalogic.mesh4_test_data import mesh4_adjacent_triangles, mesh4_neighboring_nodes
+from pyglobe3d.core.icosalogic.mesh4_test_data import \
+    mesh4_adjacent_triangles, mesh4_neighboring_nodes, mesh4_triangle_nodes
 
 
 def test_edges():
     pass
 
 
-def test_nodes():
+def test_nodes(mesh):
     print("Running the node test:")
-    mesh = Mesh(partition=4)
-
-    print("index-layer&position-index transformation...")
+    print("transformation index -> layer and position -> index...")
     for index in range(0, mesh.GRID.LAST_NODE_INDEX):
         nd1 = mesh.create_node(index=index)
         nd2 = Node(
@@ -57,27 +56,42 @@ def test_nodes():
                 assert nd1 != nd2, 'node1 != node2 does not hold'
     print("...is OK")
 
-    for index in mesh4_neighboring_nodes:
-        nd = mesh.create_node(index=index)
-        n_n_indices1 = mesh4_neighboring_nodes[index]
-        n_n_indices2 = tuple(x.index for x in nd.neighboring_nodes)
-        # print(index)
-        # print(nn_indices1)
-        # print(nn_indices2)
-        assert n_n_indices1 == n_n_indices2, 'Calculated neighboring nodes do not match test neighboring nodes'
-
+    print("adjacent triangles...")
     for index in mesh4_adjacent_triangles:
         nd = mesh.create_node(index=index)
         a_t_indices1 = mesh4_adjacent_triangles[index]
         a_t_indices2 = tuple(x.index for x in nd.adjacent_triangles)
         # print(index)
-        # print(at_indices1)
-        # print(at_indices2)
+        # print(a_t_indices1)
+        # print(a_t_indices2)
         assert a_t_indices1 == a_t_indices2, 'Calculated adjacent triangles do not match test adjacent triangles'
+    print("...are OK")
+
+    print("neighboring nodes...")
+    for index in mesh4_neighboring_nodes:
+        nd = mesh.create_node(index=index)
+        n_n_indices1 = mesh4_neighboring_nodes[index]
+        n_n_indices2 = tuple(x.index for x in nd.neighboring_nodes)
+        # print(index)
+        # print(n_n_indices1)
+        # print(n_n_indices2)
+        assert n_n_indices1 == n_n_indices2, 'Calculated neighboring nodes do not match test neighboring nodes'
+    print("...are OK")
 
 
-def test_triangles():
-    pass
+def test_triangles(mesh):
+    print("Running the triangle test:")
+
+    print("triangle nodes...")
+    for index in mesh4_triangle_nodes:
+        tr = mesh.create_triangle(index=index)
+        t_n_indices1 = mesh4_triangle_nodes[index]
+        t_n_indices2 = tuple(x.index for x in tr.triangle_nodes)
+        assert t_n_indices1 == t_n_indices2, 'Calculated triangle nodes do not match test triangle nodes'
+    print("...are OK")
 
 
-test_nodes()
+mesh = Mesh(partition=4)
+test_nodes(mesh)
+print('-'*20)
+test_triangles(mesh)
