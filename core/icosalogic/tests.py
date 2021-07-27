@@ -92,6 +92,6 @@ def test_triangles(mesh):
 
 
 msh = Mesh(partition=4)
-test_nodes(msh)
-print('-'*20)
+# test_nodes(msh)
+# print('-'*20)
 test_triangles(msh)
