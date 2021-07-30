@@ -1,4 +1,4 @@
-mesh4_adjacent_triangles = {
+adjacent_triangles_data = {
     0: (0, 1, 2, 3, 4),
     1: (4, 0, 6, 5, 19, 18),
     2: (0, 1, 9, 8, 7, 6),
@@ -163,7 +163,7 @@ mesh4_adjacent_triangles = {
     161: (315, 316, 317, 318, 319)
 }
 
-mesh4_neighboring_nodes = {
+neighboring_nodes_data = {
     0: (1, 2, 3, 4, 5),
     1: (0, 2, 7, 6, 15, 5),
     2: (0, 3, 9, 8, 7, 1),
@@ -328,7 +328,7 @@ mesh4_neighboring_nodes = {
     161: (156, 157, 158, 159, 160)
 }
 
-mesh4_triangle_nodes = {
+triangle_nodes_data = {
     0: (0, 1, 2),
     1: (0, 2, 3),
     2: (0, 3, 4),

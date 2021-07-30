@@ -5,15 +5,15 @@ For this, change the path in Windows by 'cd pyglobe3d\core\icosalogic\'.
 from pyglobe3d.core.icosalogic.mesh import Mesh
 from pyglobe3d.core.icosalogic.node import Node
 from pyglobe3d.core.icosalogic.node_attrs import NodeIndex, NodeLocation
-from pyglobe3d.core.icosalogic.mesh4_test_data import \
-    mesh4_adjacent_triangles, mesh4_neighboring_nodes, mesh4_triangle_nodes
+
+import pyglobe3d.core.icosalogic.mesh4_test_data as mesh4_data
 
 
 def test_edges():
     pass
 
 
-def test_nodes(mesh):
+def test_nodes(mesh, adjacent_triangles_data, neighboring_nodes_data):
     print("Running the node test:")
     print("transformation index -> layer and position -> index...")
     for index in range(0, mesh.GRID.LAST_NODE_INDEX):
@@ -57,9 +57,9 @@ def test_nodes(mesh):
     print("...is OK")
 
     print("adjacent triangles...")
-    for index in mesh4_adjacent_triangles:
+    for index in adjacent_triangles_data:
         nd = mesh.create_node(index=index)
-        ad_tr_indices1 = mesh4_adjacent_triangles[index]
+        ad_tr_indices1 = adjacent_triangles_data[index]
         ad_tr_indices2 = tuple(x.index for x in nd.adjacent_triangles)
         # print(index)
         # print(ad_tr_indices1)
@@ -68,9 +68,9 @@ def test_nodes(mesh):
     print("...are OK")
 
     print("neighboring nodes...")
-    for index in mesh4_neighboring_nodes:
+    for index in neighboring_nodes_data:
         nd = mesh.create_node(index=index)
-        ne_ns_indices1 = mesh4_neighboring_nodes[index]
+        ne_ns_indices1 = neighboring_nodes_data[index]
         ne_ns_indices2 = tuple(x.index for x in nd.neighboring_nodes)
         # print(index)
         # print(ne_ns_indices1)
@@ -79,19 +79,19 @@ def test_nodes(mesh):
     print("...are OK")
 
 
-def test_triangles(mesh):
+def test_triangles(mesh, triangle_nodes_data):
     print("Running the triangle test:")
 
     print("triangle nodes...")
-    for index in mesh4_triangle_nodes:
+    for index in triangle_nodes_data:
         tr = mesh.create_triangle(index=index)
-        tr_ns_indices1 = mesh4_triangle_nodes[index]
+        tr_ns_indices1 = triangle_nodes_data[index]
         tr_ns_indices2 = tuple(x.index for x in tr.triangle_nodes)
         assert tr_ns_indices1 == tr_ns_indices2, 'Calculated triangle nodes do not match test triangle nodes'
     print("...are OK")
 
 
-msh = Mesh(partition=4)
-# test_nodes(msh)
-# print('-'*20)
-test_triangles(msh)
+mesh4 = Mesh(partition=4)
+test_nodes(mesh4, mesh4_data.adjacent_triangles_data, mesh4_data.neighboring_nodes_data)
+print('-'*20)
+test_triangles(mesh4, mesh4_data.triangle_nodes_data)
