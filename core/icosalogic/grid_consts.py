@@ -34,6 +34,7 @@ class Grid(ConstantAttributes):
         self.FIRST_NODE_INDEX_IN_PART3 \
             = self.SQUARED_PARTITION_MINUS_PARTITION_X2_5_PLUS_SQUARED_PARTITION_X5_PLUS_PARTITION_X5 + 1
         self.FIRST_NODE_LAYER_IN_PART2 = self.PARTITION
+        self.FIRST_NODE_LAYER_IN_PART3 = self.PARTITION_X2
         self.FIRST_TRIANGLE_INDEX_IN_PART2 = self.SQUARED_PARTITION_X5
         self.FIRST_TRIANGLE_INDEX_IN_PART3 = self.SQUARED_PARTITION_X15
         self.FIRST_TRIANGLE_LAYER_IN_PART2 = self.PARTITION
@@ -64,7 +65,15 @@ class Grid(ConstantAttributes):
 
 
 if __name__ == '__main__':
-    gd = Grid(10)
-    print(gd)
-    print(gd.LAST_NODE_INDEX_IN_PART2)
+    grd = Grid(4)
+    print(grd)
+    print(grd.LAST_NODE_INDEX_IN_PART1)
+    print(grd.FIRST_NODE_INDEX_IN_PART2)
+    print(grd.LAST_NODE_INDEX_IN_PART2)
+    print(grd.FIRST_NODE_INDEX_IN_PART3)
+    print(grd.LAST_NODE_INDEX)
+    print(grd.LAST_NODE_LAYER_IN_PART1)
+    print(grd.FIRST_NODE_LAYER_IN_PART2)
+    print(grd.LAST_NODE_LAYER_IN_PART2)
+    print(grd.FIRST_NODE_LAYER_IN_PART3)
     # gd.PARTITION = 20
