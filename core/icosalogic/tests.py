@@ -9,6 +9,10 @@ from pyglobe3d.core.icosalogic.node_attrs import NodeIndex, NodeLocation
 import pyglobe3d.core.icosalogic.mesh4_test_data as mesh4_data
 
 
+def test_grid():
+    pass
+
+
 def test_edges():
     pass
 
