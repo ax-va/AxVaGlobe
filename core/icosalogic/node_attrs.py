@@ -81,7 +81,7 @@ class NodeIndex(ElementIndex, NodeAttributes):
 
 
 class NodeLocation(ElementLocation, NodeAttributes):
-    def __init__(self, grid=Grid(), layer=0, position_in_layer=0):
+    def __init__(self, grid: Grid = Grid(), layer: int = 0, position_in_layer: int = 0):
         ElementLocation.__init__(self, grid, layer, position_in_layer)
 
     @staticmethod
