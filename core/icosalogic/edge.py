@@ -1,7 +1,7 @@
 import functools
 
 from collections import namedtuple
-from typing import Generator
+from typing import Generator, NamedTuple
 
 from pyglobe3d.core.icosalogic.grid_consts import Grid
 from pyglobe3d.core.icosalogic.element_errs import EdgeIndexValueError
@@ -15,16 +15,18 @@ def _check_edge_index(setter):
     Checking is required only for debugging and can be disabled in the release.
 
     """
+
     @functools.wraps(setter)
     def checker(edge_object, index):
         if not 0 <= index < 30:
             raise EdgeIndexValueError(index=index)
         setter(edge_object, index)
+
     return checker
 
 
 class Edge:
-    def __init__(self, grid=Grid(), index=0):
+    def __init__(self, grid: Grid = Grid(), index: int = 0) -> None:
         self._grid = grid
         self._set_index(index)
         self._edge_nodes_generators = (
@@ -80,7 +82,7 @@ class Edge:
         for i in range(0, self._grid.NUMBER_OF_NODES_IN_EDGE):
             yield from self._edge_nodes_generators[self._index](i)
 
-    def _edge0_nodes_generator(self, i):
+    def _edge0_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -89,7 +91,7 @@ class Edge:
                 )
         )
 
-    def _edge1_nodes_generator(self, i):
+    def _edge1_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -98,7 +100,7 @@ class Edge:
                 )
         )
 
-    def _edge2_nodes_generator(self, i):
+    def _edge2_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -107,7 +109,7 @@ class Edge:
                 )
         )
 
-    def _edge3_nodes_generator(self, i):
+    def _edge3_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -116,7 +118,7 @@ class Edge:
                 )
         )
 
-    def _edge4_nodes_generator(self, i):
+    def _edge4_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -125,7 +127,7 @@ class Edge:
                 )
         )
 
-    def _edge5_nodes_generator(self, i):
+    def _edge5_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -134,7 +136,7 @@ class Edge:
                 )
         )
 
-    def _edge6_nodes_generator(self, i):
+    def _edge6_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -143,7 +145,7 @@ class Edge:
                 )
         )
 
-    def _edge7_nodes_generator(self, i):
+    def _edge7_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -152,7 +154,7 @@ class Edge:
                 )
         )
 
-    def _edge8_nodes_generator(self, i):
+    def _edge8_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -161,7 +163,7 @@ class Edge:
                 )
         )
 
-    def _edge9_nodes_generator(self, i):
+    def _edge9_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
             location_object=NodeLocation(
                 grid=self._grid,
@@ -177,16 +179,16 @@ class Edge:
                 )
             )
 
-    def _edge10_nodes_generator(self, i):
+    def _edge10_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
-                    layer=self._grid.FIRST_NODE_LAYER_IN_PART2,
+                    layer=i + self._grid.FIRST_NODE_LAYER_IN_PART2,
                     position_in_layer=0
                 )
         )
 
-    def _edge11_nodes_generator(self, i):
+    def _edge11_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -195,7 +197,7 @@ class Edge:
                 )
         )
 
-    def _edge12_nodes_generator(self, i):
+    def _edge12_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -204,7 +206,7 @@ class Edge:
                 )
         )
 
-    def _edge13_nodes_generator(self, i):
+    def _edge13_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -213,7 +215,7 @@ class Edge:
                 )
         )
 
-    def _edge14_nodes_generator(self, i):
+    def _edge14_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -222,7 +224,7 @@ class Edge:
                 )
         )
 
-    def _edge15_nodes_generator(self, i):
+    def _edge15_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -231,7 +233,7 @@ class Edge:
                 )
         )
 
-    def _edge16_nodes_generator(self, i):
+    def _edge16_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -240,7 +242,7 @@ class Edge:
                 )
         )
 
-    def _edge17_nodes_generator(self, i):
+    def _edge17_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -249,7 +251,7 @@ class Edge:
                 )
         )
 
-    def _edge18_nodes_generator(self, i):
+    def _edge18_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -258,7 +260,7 @@ class Edge:
                 )
         )
 
-    def _edge19_nodes_generator(self, i):
+    def _edge19_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
             location_object=NodeLocation(
                 grid=self._grid,
@@ -274,7 +276,7 @@ class Edge:
                 )
             )
 
-    def _edge20_nodes_generator(self, i):
+    def _edge20_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -283,7 +285,7 @@ class Edge:
                 )
         )
 
-    def _edge21_nodes_generator(self, i):
+    def _edge21_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -292,7 +294,7 @@ class Edge:
                 )
         )
 
-    def _edge22_nodes_generator(self, i):
+    def _edge22_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -301,7 +303,7 @@ class Edge:
                 )
         )
 
-    def _edge23_nodes_generator(self, i):
+    def _edge23_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -310,7 +312,7 @@ class Edge:
                 )
         )
 
-    def _edge24_nodes_generator(self, i):
+    def _edge24_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
             location_object=NodeLocation(
                 grid=self._grid,
@@ -326,7 +328,7 @@ class Edge:
                 )
             )
 
-    def _edge25_nodes_generator(self, i):
+    def _edge25_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -335,7 +337,7 @@ class Edge:
                 )
         )
 
-    def _edge26_nodes_generator(self, i):
+    def _edge26_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -344,7 +346,7 @@ class Edge:
                 )
         )
 
-    def _edge27_nodes_generator(self, i):
+    def _edge27_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -353,7 +355,7 @@ class Edge:
                 )
         )
 
-    def _edge28_nodes_generator(self, i):
+    def _edge28_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -362,7 +364,7 @@ class Edge:
                 )
         )
 
-    def _edge29_nodes_generator(self, i):
+    def _edge29_nodes_generator(self, i: int) -> Generator[Node, None, None]:
         yield Node(
                 location_object=NodeLocation(
                     grid=self._grid,
@@ -371,7 +373,7 @@ class Edge:
                 )
         )
 
-    def _set_icosahedron_nodes(self):
+    def _set_icosahedron_nodes(self) -> None:
         if 10 <= self._index <= 19:
             self._icosahedron_node_layers[0] = self._grid.FIRST_NODE_LAYER_IN_PART2
             self._icosahedron_node_layers[1] = self._grid.LAST_NODE_LAYER_IN_PART2
@@ -426,7 +428,7 @@ class Edge:
         )
 
     @_check_edge_index
-    def _set_index(self, index):
+    def _set_index(self, index: int) -> None:
         self._index = index
 
 
