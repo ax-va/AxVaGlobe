@@ -18,7 +18,7 @@ class Icosahedron:
         """
         r = self._radius
         ph = self._phi
-        r_cos_th =  r * self._cos_theta
+        r_cos_th = r * self._cos_theta
         r_sin_th = r * math.sin(self._theta)
         return np.array([
             [0., 0., r],  # [x, y, z] of vertex 0
