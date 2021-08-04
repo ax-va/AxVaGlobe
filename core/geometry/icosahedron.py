@@ -12,9 +12,9 @@ class Icosahedron:
     @property
     def vertex_np_array(self):
         """
-        x = r * sin(theta) * cos(phi)
-        y = r * sin(theta) * sin(phi)
-        z = r * cos(theta)
+        x = r * math.sin(theta) * math.cos(phi)
+        y = r * math.sin(theta) * math.sin(phi)
+        z = r * math.cos(theta)
         """
         r = self._radius
         ph = self._phi
