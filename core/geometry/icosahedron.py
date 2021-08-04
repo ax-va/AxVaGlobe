@@ -16,12 +16,9 @@ class Icosahedron:
         y = r * sin(theta) * sin(phi)
         z = r * cos(theta)
         """
-        r = self._radius
-        cos_th = self._cos_theta
-        th = self._theta
         ph = self._phi
-        r_cos_th = r * cos_th
-        r_sin_th = r * math.sin(th)
+        r_cos_th = self._radius * self._cos_theta
+        r_sin_th = self._radius * math.sin(self._theta)
         return np.array([
             [0., 0., r],  # [x, y, z] of vertex 0
             [r_sin_th, 0., r_cos_th],  # vertex 1
