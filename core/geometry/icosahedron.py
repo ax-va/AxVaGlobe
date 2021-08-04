@@ -24,10 +24,10 @@ class Icosahedron:
             [0., 0., r],  # [x, y, z] of vertex 0
             [r_sin_th, 0., r_cos_th],  # vertex 1
             [r_sin_th * math.cos(ph), r_sin_th * math.sin(ph), r_cos_th],  # vertex 2
-            [r_sin_th * math.cos(2 * ph), r_sin_th * math.sin(2 * ph), r_cos_th],  # vertex 3
-            [r_sin_th * math.cos(2 * ph), r_sin_th * math.sin(2 * ph), r_cos_th],  # vertex 3
-            [r_sin_th * math.cos(3 * ph), r_sin_th * math.sin(3 * ph), r_cos_th],  # vertex 4
-            [r_sin_th * math.cos(4 * ph), r_sin_th * math.sin(4 * ph), r_cos_th],  # vertex 5
+            [r_sin_th * math.cos(2. * ph), r_sin_th * math.sin(2. * ph), r_cos_th],  # vertex 3
+            [r_sin_th * math.cos(2. * ph), r_sin_th * math.sin(2. * ph), r_cos_th],  # vertex 3
+            [r_sin_th * math.cos(3. * ph), r_sin_th * math.sin(3. * ph), r_cos_th],  # vertex 4
+            [r_sin_th * math.cos(4. * ph), r_sin_th * math.sin(4. * ph), r_cos_th],  # vertex 5
             [r_sin_th * math.cos(-0.5 * ph), r_sin_th * math.sin(-0.5 * ph), -r_cos_th],  # vertex 6
             [r_sin_th * math.cos(0.5 * ph), r_sin_th * math.sin(0.5 * ph), -r_cos_th],  # vertex 7
             [r_sin_th * math.cos(1.5 * ph), 0., -r_cos_th],  # vertex 8
