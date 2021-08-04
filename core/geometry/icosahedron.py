@@ -7,7 +7,6 @@ class Icosahedron:
         self._radius = radius
         self._cos_theta = math.sqrt(2. / (5. + math.sqrt(5.)))
         self._theta = math.acos(self._cos_theta)  # the first angle of rotation in radians from the z-axis
-        self._pi_minus_theta = math.pi - self._theta
         self._phi = 0.4 * math.pi  # 72 degrees in radians
 
     @property
