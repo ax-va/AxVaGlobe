@@ -1,5 +1,6 @@
 import math
 
+from pyglobe3d.core.geometry.rotation import get_rotation_matrix
 from pyglobe3d.graphics.opengl.matrices.matrix import OpenGLMatrix
 from pyglobe3d.graphics.opengl.matrices.matrix_errs import ZeroVectorLengthError
 
@@ -80,16 +81,7 @@ class ModelView(OpenGLMatrix):
         if vector_length == 0:
             raise ZeroVectorLengthError(axis)
         x, y, z = (coord / vector_length for coord in axis)
-        _1_minus_cos_t = 1. - cos_t
-        xy = x * y
-        xz = x * z
-        yz = y * z
-        rotation_matrix = [
-            [cos_t + _1_minus_cos_t * x**2, _1_minus_cos_t * xy - sin_t * z, _1_minus_cos_t * xz + sin_t * y],
-            [_1_minus_cos_t * xy + sin_t * z, cos_t + _1_minus_cos_t * y**2, _1_minus_cos_t * yz - sin_t * x],
-            [_1_minus_cos_t * xz - sin_t * y, _1_minus_cos_t * yz + sin_t * x, cos_t + _1_minus_cos_t * z**2]
-        ]
-        self.multiply(by_matrix=OpenGLMatrix(matrix=rotation_matrix))
+        self.multiply(by_matrix=OpenGLMatrix(matrix=get_rotation_matrix(x, y, z, cos_t, sin_t)))
 
     def _rotate_around_x(self, cos_t, sin_t):
         """

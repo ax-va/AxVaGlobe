@@ -7,34 +7,8 @@ class Icosahedron:
         self._radius = radius
         self._cos_theta = math.sqrt(2. / (5. + math.sqrt(5.)))
         self._theta = math.acos(self._cos_theta)  # the first angle of rotation in radians from the z-axis
+        self._sin_theta = math.sin(self._theta)
         self._phi = 0.4 * math.pi  # 72 degrees in radians
-
-    @property
-    def vertex_np_array(self):
-        """
-        x = r * math.sin(theta) * math.cos(phi)
-        y = r * math.sin(theta) * math.sin(phi)
-        z = r * math.cos(theta)
-        """
-        r = self._radius
-        ph = self._phi
-        r_cos_th = r * self._cos_theta
-        r_sin_th = r * math.sin(self._theta)
-        return np.array([
-            [0., 0., r],  # [x, y, z] of vertex 0
-            [r_sin_th, 0., r_cos_th],  # vertex 1
-            [r_sin_th * math.cos(ph), r_sin_th * math.sin(ph), r_cos_th],  # vertex 2
-            [r_sin_th * math.cos(2. * ph), r_sin_th * math.sin(2. * ph), r_cos_th],  # vertex 3
-            [r_sin_th * math.cos(3. * ph), r_sin_th * math.sin(3. * ph), r_cos_th],  # vertex 3
-            [r_sin_th * math.cos(4. * ph), r_sin_th * math.sin(4. * ph), r_cos_th],  # vertex 4
-            [r_sin_th * math.cos(5. * ph), r_sin_th * math.sin(5. * ph), r_cos_th],  # vertex 5
-            [r_sin_th * math.cos(-0.5 * ph), r_sin_th * math.sin(-0.5 * ph), -r_cos_th],  # vertex 6
-            [r_sin_th * math.cos(0.5 * ph), r_sin_th * math.sin(0.5 * ph), -r_cos_th],  # vertex 7
-            [r_sin_th * math.cos(1.5 * ph), 0., -r_cos_th],  # vertex 8
-            [r_sin_th * math.cos(2.5 * ph), r_sin_th * math.sin(2.5 * ph), -r_cos_th],  # vertex 9
-            [r_sin_th * math.cos(3.5 * ph), r_sin_th * math.sin(3.5 * ph), -r_cos_th],  # vertex 10
-            [0., 0., -r]  # vertex 11
-        ])
 
     @property
     def index_np_array(self):
@@ -59,6 +33,37 @@ class Icosahedron:
             [8, 11, 9],  # triangle 17
             [9, 11, 10],  # triangle 18
             [10, 11, 6]  # triangle 19
+        ])
+
+    @property
+    def theta(self):
+        return self._theta
+
+    @property
+    def vertex_np_array(self):
+        """
+        x = r * math.sin(theta) * math.cos(phi)
+        y = r * math.sin(theta) * math.sin(phi)
+        z = r * math.cos(theta)
+        """
+        r = self._radius
+        ph = self._phi
+        r_cos_th = r * self._cos_theta
+        r_sin_th = r * self._sin_theta
+        return np.array([
+            [0., 0., r],  # [x, y, z] of vertex 0
+            [r_sin_th, 0., r_cos_th],  # vertex 1
+            [r_sin_th * math.cos(ph), r_sin_th * math.sin(ph), r_cos_th],  # vertex 2
+            [r_sin_th * math.cos(2. * ph), r_sin_th * math.sin(2. * ph), r_cos_th],  # vertex 3
+            [r_sin_th * math.cos(3. * ph), r_sin_th * math.sin(3. * ph), r_cos_th],  # vertex 3
+            [r_sin_th * math.cos(4. * ph), r_sin_th * math.sin(4. * ph), r_cos_th],  # vertex 4
+            [r_sin_th * math.cos(5. * ph), r_sin_th * math.sin(5. * ph), r_cos_th],  # vertex 5
+            [r_sin_th * math.cos(-0.5 * ph), r_sin_th * math.sin(-0.5 * ph), -r_cos_th],  # vertex 6
+            [r_sin_th * math.cos(0.5 * ph), r_sin_th * math.sin(0.5 * ph), -r_cos_th],  # vertex 7
+            [r_sin_th * math.cos(1.5 * ph), 0., -r_cos_th],  # vertex 8
+            [r_sin_th * math.cos(2.5 * ph), r_sin_th * math.sin(2.5 * ph), -r_cos_th],  # vertex 9
+            [r_sin_th * math.cos(3.5 * ph), r_sin_th * math.sin(3.5 * ph), -r_cos_th],  # vertex 10
+            [0., 0., -r]  # vertex 11
         ])
 
 

@@ -7,7 +7,7 @@ from pyglobe3d.core.icosalogic.triangle import Triangle
 
 
 class Mesh(ConstantAttributes):
-    def __init__(self, partition=1):
+    def __init__(self, partition: int = 1):
         self.GRID = Grid(partition=partition)
         # 30 edges of the icosahedron:
         self.EDGES = tuple(Edge(grid=self.GRID, index=index) for index in range(0, self.GRID.NUMBER_OF_EDGES))

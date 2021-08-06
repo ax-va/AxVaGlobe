@@ -82,6 +82,14 @@ class ElementWithIndexAndLocationObjects(ElementWithIndexObject, ElementWithLoca
             self._index_object = self.__init__.__annotations__['index_object']()
             self._location_object = self.__init__.__annotations__['location_object']()
 
+    @property
+    def index_object(self):
+        return self._index_object
+
+    @property
+    def location_object(self):
+        return self._location_object
+
 
 if __name__ == '__main__':
     e = ElementWithIndexObject()

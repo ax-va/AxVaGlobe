@@ -50,7 +50,7 @@ class Node(ElementWithIndexAndLocationObjects):
     
     @property
     def nearest_layer_edges_number(self):
-        if not self._nearest_layer_edges_number:
+        if not self._node_neighbors_object:
             self._set_node_neighbors_object()
         return self._nearest_layer_edges_number
 
@@ -62,7 +62,7 @@ class Node(ElementWithIndexAndLocationObjects):
     
     @property
     def neighboring_nodes_number(self):
-        if not self._neighboring_nodes_number:
+        if not self._node_neighbors_object:
             self._set_node_neighbors_object()
         return self._neighboring_nodes_number
 
@@ -111,6 +111,10 @@ if __name__ == '__main__':
 
     node161 = Node(NodeIndex(grid=Grid(partition=4), index=161))
     # node162 = Node(NodeIndex(grid=Grid(partition=4), index=162))
+
+    node69 = Node(NodeIndex(grid=Grid(partition=4), index=69))
+    print(node69.nearest_layer_edges)
+    print(node69.nearest_layer_edge_nodes)
 
     # chuck = 'Chuck'
     # print(f'Hello {chuck!r}')
