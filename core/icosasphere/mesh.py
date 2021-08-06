@@ -26,7 +26,7 @@ class Mesh:
             if node.nearest_layer_edges == 2:  # otherwise the node is on an edge and was already added into the cash
                 vertex0 = self._vertex_cash[node.nearest_layer_edge_nodes.node0.index]
                 vertex1 = self._vertex_cash[node.nearest_layer_edge_nodes.node1.index]
-                # radians =
+                radians = ...
 
     def _cash_icosahedron_vertices(self):
         icosahedron_vertices = self._icosahedron.vertex_np_array
