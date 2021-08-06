@@ -17,7 +17,7 @@ class Mesh:
             if node.index not in self._vertex_cash:
                 vertex0 = self._vertex_cash[edge.icosahedron_nodes.node0.index]
                 vertex1 = self._vertex_cash[edge.icosahedron_nodes.node1.index]
-                radians = self._icosahedron.theta / (node.layer - edge.icosahedron_nodes.node0.layer)
+                radians = self._icosahedron.theta / self._logic_mesh.GRID.PARTITION * ...
                 self._vertex_cash[node.index] = rotate(vertex0, vertex1, radians)
 
     def add_node(self, node):
