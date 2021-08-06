@@ -7,9 +7,8 @@ from pyglobe3d.core.icosasphere.icosahedron import Icosahedron
 
 class Mesh:
     def __init__(self, partition: int = 1, radius: float = 1.0):
-        self._radius = radius
         self._logic_mesh = LogicMesh(partition=partition)
-        self._icosahedron = Icosahedron(radius=self._radius)
+        self._icosahedron = Icosahedron(radius=radius)
         self._cash_icosahedron_vertices()
 
     def add_edge_nodes(self, edges, nodes):
