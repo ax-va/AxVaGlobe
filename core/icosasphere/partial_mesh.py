@@ -1,7 +1,7 @@
 import numpy as np
 
 from pyglobe3d.core.geometry.rotation import get_rotated_vertex
-from pyglobe3d.core.icosasphere.mesh import AnyMesh
+from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 
 
 class PartialMesh(AnyMesh):
