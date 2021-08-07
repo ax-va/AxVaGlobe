@@ -1,7 +1,7 @@
-from pyglobe3d.graphics.opengl.opengl_errs import OpenGLError
+from pyglobe3d.graphics.graphics_errs import GraphicsError
 
 
-class OpenGLMatrixError(OpenGLError):
+class OpenGLMatrixError(GraphicsError):
     pass
 
 

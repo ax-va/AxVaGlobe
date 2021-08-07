@@ -1,5 +1,5 @@
-from pyglobe3d.graphics.opengl.matrices.matrix_errs import EqualClippingPlanesError
-from pyglobe3d.graphics.opengl.matrices.projection import Projection
+from pyglobe3d.graphics.opengl_matrices.matrix_errs import EqualClippingPlanesError
+from pyglobe3d.graphics.opengl_matrices.projection import Projection
 
 
 class Orthographic(Projection):
