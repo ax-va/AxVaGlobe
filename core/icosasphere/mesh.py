@@ -5,7 +5,7 @@ from pyglobe3d.core.icosalogic import Mesh as LogicMesh
 from pyglobe3d.core.icosasphere.icosahedron import Icosahedron
 
 
-class Mesh:
+class AnyMesh:
     def __init__(self, partition: int = 1, radius: float = 1.0):
         self._logic_mesh = LogicMesh(partition=partition)
         self._icosahedron = Icosahedron(radius=radius)
@@ -35,6 +35,6 @@ class Mesh:
 
 
 if __name__ == '__main__':
-    msh = Mesh(partition=4)
+    msh = AnyMesh(partition=4)
     print(msh._vertex_cash)
 
