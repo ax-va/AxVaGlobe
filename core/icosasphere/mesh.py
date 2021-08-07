@@ -1,6 +1,6 @@
 import numpy as np
 
-from pyglobe3d.core.geometry.rotation import rotate
+from pyglobe3d.core.geometry.rotation import get_rotated_vertex
 from pyglobe3d.core.icosalogic import Mesh as LogicMesh
 from pyglobe3d.core.icosasphere.icosahedron import Icosahedron
 
@@ -17,7 +17,7 @@ class Mesh:
                 vertex0 = self._vertex_cash[edge.icosahedron_nodes.node0.index]
                 vertex1 = self._vertex_cash[edge.icosahedron_nodes.node1.index]
                 radians = self._icosahedron.theta / self._logic_mesh.GRID.PARTITION * ...
-                self._vertex_cash[node.index] = rotate(vertex0, vertex1, radians)
+                self._vertex_cash[node.index] = get_rotated_vertex(vertex0, vertex1, radians)
 
     def add_node(self, node):
         if node.index not in self._vertex_cash:
