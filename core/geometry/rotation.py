@@ -32,7 +32,7 @@ def get_rotated_vertex(vertex0: np.array, vertex1: np.array, radians: float) -> 
     x, y, z = normalize(normal)
     cos_t = math.cos(radians)
     sin_t = math.sin(radians)
-    rotation_matrix = np.array(get_rotation_matrix(x, y, z, cos_t, sin_t))
+    rotation_matrix = np.array(get_rotation_matrix_as_list(x, y, z, cos_t, sin_t))
     return np.dot(rotation_matrix, vertex0)
 
 
