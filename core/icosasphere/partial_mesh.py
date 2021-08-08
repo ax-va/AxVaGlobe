@@ -8,7 +8,7 @@ class PartialMesh(AnyMesh):
     def __init__(self, partition: int = 1, radius: float = 1.0):
         AnyMesh.__init__(self, partition, radius)
         self._theta_factor = self.icosahedron.theta / self.logic_mesh.partition
-        self._add_icosahedron_vertices()
+        self._add_icosahedron_nodes()
 
     @property
     def vertex_cash(self):
@@ -32,7 +32,7 @@ class PartialMesh(AnyMesh):
             if node.index not in self._vertex_cash:
                 self._add_edge_node(edge, node)
 
-    def _add_icosahedron_vertices(self):
+    def _add_icosahedron_nodes(self):
         icosahedron_vertices = self.icosahedron.vertex_np_array
         icosahedron_nodes_indices = (node.index for node in self.logic_mesh.ICOSAHEDRON_NODES)
         self._vertex_cash = dict(zip(icosahedron_nodes_indices, icosahedron_vertices))
