@@ -1,3 +1,5 @@
+from collections import namedtuple
+
 from pyglobe3d.core.icosalogic.grid_consts import Grid
 from pyglobe3d.core.icosalogic.node import Node
 from pyglobe3d.core.icosalogic.node_attrs import NodeIndex
@@ -23,13 +25,16 @@ class Icosahedron:
 
     @property
     def icosahedron_nodes(self):
-        return tuple(
-            Node(
-                index_object=NodeIndex(
-                    grid=self._grid,
-                    index=index
-                )
-            ) for index in self._icosahedron_node_indices
+        Result = namedtuple('IcosahedronNodes', [f'icosahedron_node{i}' for i in range(12)])
+        return Result._make(
+            (
+                Node(
+                    index_object=NodeIndex(
+                        grid=self._grid,
+                        index=index
+                    )
+                ) for index in self._icosahedron_node_indices
+            )
         )
 
 

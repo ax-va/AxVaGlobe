@@ -14,6 +14,8 @@ class Node(ElementWithIndexAndLocationObjects):
                  ):
         ElementWithIndexAndLocationObjects.__init__(self, index_object, location_object)
         self._adjacent_triangles = None
+        self._adjacent_triangles_number = None
+        self._division_ratios = None
         self._nearest_layer_edge_nodes = None
         self._nearest_layer_edges = None
         self._nearest_layer_edges_number = None
@@ -35,6 +37,18 @@ class Node(ElementWithIndexAndLocationObjects):
         if not self._node_neighbors_object:
             self._set_node_neighbors_object()
         return self._adjacent_triangles
+
+    @property
+    def adjacent_triangles_number(self):
+        if not self._node_neighbors_object:
+            self._set_node_neighbors_object()
+        return self._adjacent_triangles_number
+
+    @property
+    def division_ratios(self):
+        if not self._node_neighbors_object:
+            self._set_node_neighbors_object()
+        return self._division_ratios
 
     @property
     def nearest_layer_edge_nodes(self):
@@ -70,6 +84,8 @@ class Node(ElementWithIndexAndLocationObjects):
         from pyglobe3d.core.icosalogic.node_neighbors import NodeNeighbors
         self._node_neighbors_object = NodeNeighbors(base_node=self)
         self._adjacent_triangles = self._node_neighbors_object.adjacent_triangles
+        self._adjacent_triangles_number = self._node_neighbors_object.adjacent_triangles_number
+        self._division_ratios = self._node_neighbors_object.division_ratios
         self._nearest_layer_edge_nodes = self._node_neighbors_object.nearest_layer_edge_nodes
         self._nearest_layer_edges = self._node_neighbors_object.nearest_layer_edges
         self._nearest_layer_edges_number = self._node_neighbors_object.nearest_edges_number
@@ -119,6 +135,43 @@ if __name__ == '__main__':
     node33 = Node(NodeIndex(grid=Grid(partition=4), index=33))
     print(node33.nearest_layer_edges)
     print(node33.nearest_layer_edge_nodes)
+
+    node88 = Node(NodeIndex(grid=Grid(partition=4), index=88))
+    print(node88.division_ratios)
+    node87 = Node(NodeIndex(grid=Grid(partition=4), index=87))
+    print(node87.division_ratios)
+    node89 = Node(NodeIndex(grid=Grid(partition=4), index=89))
+    print(node89.division_ratios)
+    node90 = Node(NodeIndex(grid=Grid(partition=4), index=90))
+    print(node90.division_ratios)
+    node71 = Node(NodeIndex(grid=Grid(partition=4), index=71))
+    print(node71.division_ratios)
+    node51 = Node(NodeIndex(grid=Grid(partition=4), index=51))
+    print(node51.division_ratios)
+    node31 = Node(NodeIndex(grid=Grid(partition=4), index=31))
+    print(node31.division_ratios)
+    node111 = Node(NodeIndex(grid=Grid(partition=4), index=111))
+    print(node111.division_ratios)
+    node17 = Node(NodeIndex(grid=Grid(partition=4), index=17))
+    print(node17.division_ratios)
+    node32 = Node(NodeIndex(grid=Grid(partition=4), index=32))
+    print(node32.division_ratios)
+    node50 = Node(NodeIndex(grid=Grid(partition=4), index=50))
+    print(node50.division_ratios)
+    node16 = Node(NodeIndex(grid=Grid(partition=4), index=16))
+    print(node16.division_ratios)
+    node143 = Node(NodeIndex(grid=Grid(partition=4), index=143))
+    print(node143.division_ratios)
+    node144 = Node(NodeIndex(grid=Grid(partition=4), index=144))
+    print(node144.division_ratios)
+    node161 = Node(NodeIndex(grid=Grid(partition=4), index=161))
+    print(node161.division_ratios)
+    node0 = Node(NodeIndex(grid=Grid(partition=4), index=0))
+    print(node0.division_ratios)
+    node31 = Node(NodeIndex(grid=Grid(partition=4), index=31))
+    print(node31.division_ratios)
+    node35 = Node(NodeIndex(grid=Grid(partition=4), index=35))
+    print(node35.division_ratios)
 
     # chuck = 'Chuck'
     # print(f'Hello {chuck!r}')

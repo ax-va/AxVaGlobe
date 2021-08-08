@@ -30,6 +30,8 @@ class NodeNeighbors:
         self._edges_number = None
         self._nearest_layer_edges = None
         self._nearest_layer_edge_nodes = None
+        self._division_values = [None, None]
+        self._division_ratios = None
 
     @property
     def base_node(self):
@@ -40,6 +42,24 @@ class NodeNeighbors:
         if not self._adjacent_triangles:
             self._set_adjacent_triangles()
         return self._adjacent_triangles
+
+    @property
+    def adjacent_triangles_number(self):
+        if not self._triangles_number:
+            self._set_adjacent_triangles()
+        return self._triangles_number
+
+    @property
+    def division_ratios(self):
+        if not self._division_ratios:
+            self._set_nearest_layer_edges_and_edge_nodes()
+        return self._division_ratios
+
+    @property
+    def nearest_edges_number(self):
+        if not self._edges_number:
+            self._set_nearest_layer_edges_and_edge_nodes()
+        return self._edges_number
 
     @property
     def nearest_layer_edges(self):
@@ -60,15 +80,9 @@ class NodeNeighbors:
         return self._neighboring_nodes
 
     @property
-    def adjacent_triangles_number(self):
-        return self._triangles_number
-
-    @property
-    def nearest_edges_number(self):
-        return self._edges_number
-
-    @property
     def neighboring_nodes_number(self):
+        if not self._nodes_number:
+            self._set_neighboring_nodes()
         return self._nodes_number
 
     def _set_adjacent_triangles(self):
@@ -348,6 +362,8 @@ class NodeNeighbors:
                 ) for i in range(0, self._edges_number)
             )
         )
+        Result = namedtuple('DivisionRatios', 'ratio0  ratio1')
+        self._division_ratios = Result(self._division_values[0], self._division_values[1])
 
     def _set_nearest_layer_edges_and_edge_nodes_in_part1(self):
         self._edge_node_layers[0] = self._layer
@@ -359,25 +375,31 @@ class NodeNeighbors:
                 self._edge_node_positions_in_layers[0] = self._edge_indices[0] * self._layer
                 self._edge_indices[1] = self._edge_indices[0] + 1
                 self._edge_node_positions_in_layers[1] = self._edge_node_positions_in_layers[0] + self._layer
+                self._division_values[0] = self._position_in_layer - self._edge_node_positions_in_layers[0]
+                self._division_values[1] = self._edge_node_positions_in_layers[1] - self._position_in_layer
                 if self._edge_indices[1] >= 5:  # Take into account cyclicity
                     self._edge_indices[1] = 0
                     self._edge_node_positions_in_layers[1] = 0
             else:  # The node itself is the edge node
                 self._edges_number = 1
                 self._edge_node_positions_in_layers[0] = self._position_in_layer
+                self._division_values[0] = self._layer
+                self._division_values[1] = self._grid.PARTITION - self._layer
         else:  # This is the north-pole case
             self._edges_number = 1
             self._edge_indices[0] = 0
             self._edge_node_positions_in_layers[0] = self._position_in_layer
+            self._division_values[0] = 0
+            self._division_values[1] = self._grid.PARTITION
 
     def _set_nearest_layer_edges_and_edge_nodes_in_part2(self):
         n = self._position_in_layer // self._grid.PARTITION
-        if self._layer != self._grid.FIRST_NODE_LAYER_IN_PART2:
-            if self._layer != self._grid.LAST_NODE_LAYER_IN_PART2:
+        k = self._position_in_layer % self._grid.PARTITION
+        nn = n * self._grid.PARTITION
+        if self._layer != self._grid.FIRST_NODE_LAYER_IN_PART2:  # The node is not on the first horizontal edge
+            if self._layer != self._grid.LAST_NODE_LAYER_IN_PART2:  # The node is not on the last horizontal edge
                 self._edge_node_layers[0] = self._layer
                 relative_layer = self._layer - self._grid.LAST_NODE_LAYER_IN_PART1
-                nn = n * self._grid.PARTITION
-                k = self._position_in_layer % self._grid.PARTITION
                 if k != 0 and k != relative_layer:  # The node is not the edge node
                     self._edges_number = 2
                     self._edge_node_layers[1] = self._layer
@@ -390,26 +412,40 @@ class NodeNeighbors:
                         self._edge_node_positions_in_layers[0] = nn + relative_layer
                         self._edge_node_positions_in_layers[1] = nn + self._grid.PARTITION
                     self._edge_indices[1] = self._edge_indices[0] + 1
+                    self._division_values[0] = self._position_in_layer - self._edge_node_positions_in_layers[0]
+                    self._division_values[1] = self._edge_node_positions_in_layers[1] - self._position_in_layer
                     if self._edge_node_positions_in_layers[1] >= self._grid.PARTITION_X5:  # Take into account cyclicity
                         self._edge_indices[1] = 10
                         self._edge_node_positions_in_layers[1] = 0
                 else:  # The node itself is the edge node
                     self._edges_number = 1
-                    if k == 0:  # The nose is on the edge '/'
+                    if k == 0:  # The node is on the edge '/'
                         self._edge_indices[0] = 10 + n * 2
                     else:  # The case: k == relative_layer.  The node is on the edge '\'
                         self._edge_indices[0] = 11 + n * 2
                     self._edge_node_positions_in_layers[0] = self._position_in_layer
-            else:  # The node is on the horizontal edge with self._grid.LAST_NODE_LAYER_IN_PART2
+                    self._division_values[0] = self._layer - self._grid.PARTITION
+                    self._division_values[1] = self._grid.PARTITION_X2 - self._layer
+            else:  # The node is on the last horizontal edge with self._grid.LAST_NODE_LAYER_IN_PART2
                 self._edges_number = 1
                 self._edge_indices[0] = 20 + n
                 self._edge_node_layers[0] = self._layer
                 self._edge_node_positions_in_layers[0] = self._position_in_layer
-        else:  # The node is on the horizontal edge with self._grid.FIRST_NODE_LAYER_IN_PART2
+                self._division_values[0] = self._position_in_layer - nn
+                self._division_values[1] = nn + self._grid.PARTITION - self._position_in_layer
+                if k == 0:  # Take into account the icosahedron nodes
+                    self._division_values[0] = 0
+                    self._division_values[1] = self._grid.PARTITION
+        else:  # The node is on the first horizontal edge with self._grid.FIRST_NODE_LAYER_IN_PART2
             self._edges_number = 1
             self._edge_indices[0] = 5 + n
             self._edge_node_layers[0] = self._layer
             self._edge_node_positions_in_layers[0] = self._position_in_layer
+            self._division_values[0] = self._position_in_layer - nn
+            self._division_values[1] = nn + self._grid.PARTITION - self._position_in_layer
+            if k == 0:  # Take into account the icosahedron nodes
+                self._division_values[0] = self._grid.PARTITION
+                self._division_values[1] = 0
 
     def _set_nearest_layer_edges_and_edge_nodes_in_part3(self):
         self._edge_node_layers[0] = self._layer
@@ -423,16 +459,22 @@ class NodeNeighbors:
                 self._edge_node_positions_in_layers[0] = n * reverse_layer
                 self._edge_indices[1] = self._edge_indices[0] + 1
                 self._edge_node_positions_in_layers[1] = self._edge_node_positions_in_layers[0] + reverse_layer
+                self._division_values[0] = self._position_in_layer - self._edge_node_positions_in_layers[0]
+                self._division_values[1] = self._edge_node_positions_in_layers[1] - self._position_in_layer
                 if self._edge_indices[1] >= 30:  # Take into account cyclicality
                     self._edge_indices[1] = 25
                     self._edge_node_positions_in_layers[1] = 0
             else:  # The node itself is the edge node
                 self._edges_number = 1
                 self._edge_node_positions_in_layers[0] = self._position_in_layer
+                self._division_values[0] = self._layer - self._grid.PARTITION_X2
+                self._division_values[1] = self._grid.PARTITION_X3 - self._layer
         else:  # The node is the south-pole node
             self._edges_number = 1
             self._edge_indices[0] = 25
             self._edge_node_positions_in_layers[0] = self._position_in_layer
+            self._division_values[0] = self._grid.PARTITION
+            self._division_values[1] = 0
 
     def _set_neighboring_nodes(self):
         if NodeLocation.is_layer_in_part2_excluding_borders(self._grid, self._layer):
