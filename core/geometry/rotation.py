@@ -20,7 +20,7 @@ def normalize_vertex(vertex: np.array) -> np.array:
 
 def get_rotation_matrix(axis, cos_t: float, sin_t: float) -> List:
     _1_minus_cos_t = 1. - cos_t
-    x, y, z = normalize_vertex(np_normal)
+    x, y, z = normalize_vertex(axis)
     xy = x * y
     xz = x * z
     yz = y * z
