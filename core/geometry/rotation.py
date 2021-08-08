@@ -9,7 +9,7 @@ def get_angle_between(vertex0: np.array, vertex1: np.array) -> float:
 
 
 def norm(vertex: np.array) -> float:
-    return math.sqrt(vertex[0] * vertex[0] + vertex[1] * vertex[1] + vertex[2] * vertex[2])
+    return math.sqrt(vertex[0]**2 + vertex[1]**2 + vertex[2]**2)
 
 
 def normalize(vertex: np.array) -> np.array:
