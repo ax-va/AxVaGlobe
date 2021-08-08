@@ -144,15 +144,6 @@ class NodeLocation(ElementLocation, NodeAttributes):
             if (grid.LAST_NODE_LAYER - layer) > 0 else 0
         return 0 <= position_in_layer <= last_position_in_layer_in_part3
 
-    @property
-    def relative_layer(self):
-        if NodeLocation.is_layer_in_part2(grid=self.GRID, layer=self.LAYER):
-            return self.LAYER - self.GRID.PARTITION
-        elif NodeLocation.is_layer_in_part1(grid=self.GRID, layer=self.LAYER):
-            return self.LAYER
-        else:
-            return self.LAYER - self.GRID.PARTITION_X2
-
     def _get_layer_index_increment_in_part1(self):
         return (5 * (self.LAYER - 1) * self.LAYER) // 2 + 1 if self.LAYER > 0 else 0
 
