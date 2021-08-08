@@ -24,12 +24,12 @@ class ModelView(OpenGLMatrix):
             'z': self._translate_along_z,
         }
 
-    def rotate(self, degrees, around):
+    def rotate(self, around, degrees):
         try:
-            for deg, ax in zip(degrees, around):
-                self._rotate(deg, ax)
+            for ax, deg in zip(around, degrees):
+                self._rotate(ax, deg)
         except TypeError:
-            self._rotate(degrees, around)
+            self._rotate(around, degrees)
 
     def scale(self, scaling, axes='xyz'):
         """
@@ -51,19 +51,21 @@ class ModelView(OpenGLMatrix):
         with A = T * A and v_new = A * v_old
         """
         try:
-            for trt, ax in zip(translation, along):
+            for ax, trt in zip(along, translation):
                 self._translate_funcs[ax](trt)
         except TypeError:
             self._translate_funcs[along](translation)
             
-    def _rotate(self, deg, ax):
-        rad = math.radians(deg)
-        if isinstance(ax, str):
-            self._rotate_funcs[ax](math.cos(rad), math.sin(rad))
+    def _rotate(self, axis, degrees):
+        radians = math.radians(degrees)
+        cos_t = math.cos(rad)
+        sin_t = math.sin(rad)
+        if isinstance(axis, str):
+            self._rotate_funcs[axis](cos_t, sin_t)
         else: 
-            self._rotate_around_axis(math.cos(rad), math.sin(rad), ax)
+            self._rotate_(axis, cos_t, sin_t)
 
-    def _rotate_around_axis(self, cos_t, sin_t, axis):
+    def _rotate_(self, axis, cos_t, sin_t):
         """
         R = [[math.cos(radians) + (1. - math.cos(radians)) * x**2,
               (1. - math.cos(radians)) * x * y - math.sin(radians) * z,
@@ -77,7 +79,7 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = R * A and v_new = A * v_old
         """
-        self.multiply(by_matrix=OpenGLMatrix(matrix=get_rotation_matrix(cos_t, sin_t, axis)))
+        self.multiply(by_matrix=OpenGLMatrix(matrix=get_rotation_matrix(axis, cos_t, sin_t)))
 
     def _rotate_around_x(self, cos_t, sin_t):
         """
