@@ -58,8 +58,11 @@ class Perspective(Projection):
             self._matrix[0][2] = (self._right + self._left) / self._right_minus_left
         except ZeroDivisionError:
             raise EqualClippingPlanesError('left', 'right')
-        self._matrix[1][1] = 2. * self._near / self._top_minus_bottom
-        self._matrix[1][2] = (self._top + self._bottom) / self._top_minus_bottom
+        try:
+            self._matrix[1][1] = 2. * self._near / self._top_minus_bottom
+            self._matrix[1][2] = (self._top + self._bottom) / self._top_minus_bottom
+        except ZeroDivisionError:
+            raise EqualClippingPlanesError('bottom', 'top')
         self._matrix[2][2] = (self._far + self._near)/ self._far_minus_near
         self._matrix[2][3] = -2. * self._far * self._near / self._far_minus_near
         self._matrix[3][2] = -1.
