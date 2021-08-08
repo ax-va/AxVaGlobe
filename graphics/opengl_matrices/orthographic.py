@@ -24,5 +24,8 @@ class Orthographic(Projection):
             self._matrix[1][3] = -(self._top + self._bottom) / self._top_minus_bottom
         except ZeroDivisionError:
             raise EqualClippingPlanesError('bottom', 'top')
-        self._matrix[2][2] = -2. / self._far_minus_near
-        self._matrix[2][3] = -(self._far + self._near) / self._far_minus_near
+        try:
+            self._matrix[2][2] = -2. / self._far_minus_near
+            self._matrix[2][3] = -(self._far + self._near) / self._far_minus_near
+        except ZeroDivisionError:
+            raise EqualClippingPlanesError('near', 'far')
