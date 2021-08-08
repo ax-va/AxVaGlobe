@@ -2,7 +2,7 @@ import math
 
 from pyglobe3d.core.geometry.rotation import get_norm, get_rotation_list_matrix
 from pyglobe3d.graphics.opengl_matrices.matrix import OpenGLMatrix
-from pyglobe3d.graphics.opengl_matrices.matrix_errs import ZeroVectorLengthError
+from pyglobe3d.graphics.opengl_matrices.matrix_errs import ZeroNormError
 
 
 class ModelView(OpenGLMatrix):
@@ -79,7 +79,7 @@ class ModelView(OpenGLMatrix):
         """
         norm = get_norm(axis)
         if norm == 0:
-            raise ZeroVectorLengthError(axis)
+            raise ZeroNormError(axis)
         x, y, z = (coord / norm for coord in axis)
         self.multiply(by_matrix=OpenGLMatrix(matrix=get_rotation_list_matrix(x, y, z, cos_t, sin_t)))
 
