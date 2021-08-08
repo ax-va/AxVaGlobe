@@ -40,11 +40,9 @@ class TriangleIndex(ElementIndex, TriangleAttributes):
         return layer, position_in_layer
 
     def _get_location_in_part2(self):
-        layer \
-            = (self.INDEX - self.GRID.FIRST_TRIANGLE_INDEX_IN_PART2) // self.GRID.PARTITION_X10 \
-            + self.GRID.FIRST_TRIANGLE_LAYER_IN_PART2
-        position_in_layer \
-            = (self.INDEX - self.GRID.FIRST_TRIANGLE_INDEX_IN_PART2) % self.GRID.PARTITION_X10
+        layer = ((self.INDEX - self.GRID.FIRST_TRIANGLE_INDEX_IN_PART2) // self.GRID.PARTITION_X10
+                 + self.GRID.FIRST_TRIANGLE_LAYER_IN_PART2)
+        position_in_layer = (self.INDEX - self.GRID.FIRST_TRIANGLE_INDEX_IN_PART2) % self.GRID.PARTITION_X10
         return layer, position_in_layer
 
     def _get_location_in_part3(self):
@@ -52,9 +50,7 @@ class TriangleIndex(ElementIndex, TriangleAttributes):
         remainder = (self.GRID.LAST_TRIANGLE_INDEX - self.INDEX) % 5
         reverse_layer = int(sqrt(int_part))
         layer = self.GRID.LAST_TRIANGLE_LAYER - reverse_layer
-        position_in_layer \
-            = ((reverse_layer + 1) * (reverse_layer + 1) - int_part) * 5 \
-            - 1 - remainder
+        position_in_layer = ((reverse_layer + 1) * (reverse_layer + 1) - int_part) * 5 - 1 - remainder
         return layer, position_in_layer
 
 
@@ -93,8 +89,7 @@ class TriangleLocation(ElementLocation, TriangleAttributes):
 
     @staticmethod
     def is_position_in_layer_in_part3_correct(grid, layer, position_in_layer):
-        last_position_in_layer_in_part3 \
-            = (grid.LAST_TRIANGLE_LAYER - layer) * 10 + 4
+        last_position_in_layer_in_part3 = (grid.LAST_TRIANGLE_LAYER - layer) * 10 + 4
         return 0 <= position_in_layer <= last_position_in_layer_in_part3
 
     @property
@@ -108,12 +103,12 @@ class TriangleLocation(ElementLocation, TriangleAttributes):
         return 5 * self.LAYER * self.LAYER
 
     def _get_layer_index_increment_in_part2(self):
-        return self.GRID.FIRST_TRIANGLE_INDEX_IN_PART2 \
-               + self.GRID.PARTITION_X10 * (self.LAYER - self.GRID.FIRST_TRIANGLE_LAYER_IN_PART2)
+        return (self.GRID.FIRST_TRIANGLE_INDEX_IN_PART2
+                + self.GRID.PARTITION_X10 * (self.LAYER - self.GRID.FIRST_TRIANGLE_LAYER_IN_PART2))
 
     def _get_layer_index_increment_in_part3(self):
-        return self.GRID.SQUARED_PARTITION_X20 \
-               - 5 * (self.GRID.PARTITION_X3 - self.LAYER) * (self.GRID.PARTITION_X3 - self.LAYER)
+        return (self.GRID.SQUARED_PARTITION_X20
+                - 5 * (self.GRID.PARTITION_X3 - self.LAYER) * (self.GRID.PARTITION_X3 - self.LAYER))
 
 
 ########################################################################################################################

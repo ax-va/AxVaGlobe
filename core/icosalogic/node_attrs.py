@@ -60,19 +60,17 @@ class NodeIndex(ElementIndex, NodeAttributes):
         sum_n = ((n + 1) * n) // 2
         if int_part != sum_n or remainder != 0:
             layer = self.GRID.LAST_NODE_LAYER - (n + 1)
-            position_in_layer = \
-                (self.GRID.LAST_NODE_LAYER - layer + sum_n) * 5 \
-                - self.GRID.LAST_NODE_INDEX \
-                + self.INDEX
+            position_in_layer = ((self.GRID.LAST_NODE_LAYER - layer + sum_n) * 5
+                                 - self.GRID.LAST_NODE_INDEX
+                                 + self.INDEX)
         elif n == 0:
             layer = self.GRID.LAST_NODE_LAYER
             position_in_layer = 0
         else:
             layer = self.GRID.LAST_NODE_LAYER - n
-            position_in_layer = \
-                (self.GRID.LAST_NODE_LAYER - layer + sum_n - n) * 5 \
-                - self.GRID.LAST_NODE_INDEX \
-                + self.INDEX
+            position_in_layer = ((self.GRID.LAST_NODE_LAYER - layer + sum_n - n) * 5
+                                 - self.GRID.LAST_NODE_INDEX
+                                 + self.INDEX)
         return layer, position_in_layer
 
 
@@ -139,9 +137,8 @@ class NodeLocation(ElementLocation, NodeAttributes):
 
     @staticmethod
     def is_position_in_layer_in_part3_correct(grid, layer, position_in_layer):
-        last_position_in_layer_in_part3 \
-            = (grid.LAST_NODE_LAYER - layer) * 5 - 1 \
-            if (grid.LAST_NODE_LAYER - layer) > 0 else 0
+        last_position_in_layer_in_part3 = ((grid.LAST_NODE_LAYER - layer) * 5 - 1
+                                           if (grid.LAST_NODE_LAYER - layer) > 0 else 0)
         return 0 <= position_in_layer <= last_position_in_layer_in_part3
 
     def _get_layer_index_increment_in_part1(self):
@@ -151,8 +148,8 @@ class NodeLocation(ElementLocation, NodeAttributes):
         return self.GRID.FIRST_NODE_INDEX_IN_PART2 + (self.LAYER - self.GRID.PARTITION)*self.GRID.PARTITION_X5
 
     def _get_layer_index_increment_in_part3(self):
-        return self.GRID.LAST_NODE_INDEX \
-               - (5 * (self.GRID.LAST_NODE_LAYER - self.LAYER + 1) * (self.GRID.LAST_NODE_LAYER - self.LAYER)) // 2
+        return (self.GRID.LAST_NODE_INDEX
+                - (5 * (self.GRID.LAST_NODE_LAYER - self.LAYER + 1) * (self.GRID.LAST_NODE_LAYER - self.LAYER)) // 2)
 
 
 ########################################################################################################################
