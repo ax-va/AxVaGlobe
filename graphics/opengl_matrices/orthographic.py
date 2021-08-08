@@ -14,8 +14,11 @@ class Orthographic(Projection):
                    [0., 0., -2. / (far - near), -(far + near) / (far - near)],
                    [0., 0., 0., 1.]]
         """
-        self._matrix[0][0] = 2. / self._right_minus_left
-        self._matrix[0][3] = -(self._right + self._left) / self._right_minus_left
+        try:
+            self._matrix[0][0] = 2. / self._right_minus_left
+            self._matrix[0][3] = -(self._right + self._left) / self._right_minus_left
+        except ZeroDivisionError:
+            raise EqualClippingPlanesError('left', 'right')
         self._matrix[1][1] = 2. / self._top_minus_bottom
         self._matrix[1][3] = -(self._top + self._bottom) / self._top_minus_bottom
         self._matrix[2][2] = -2. / self._far_minus_near
