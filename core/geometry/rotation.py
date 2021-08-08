@@ -9,12 +9,12 @@ def get_angle_between(vertex0, vertex1) -> float:
                      / (norm(vertex0) * norm(vertex1)))
 
 
-def norm(vertex) -> float:
+def get_norm(vertex) -> float:
     return math.sqrt(vertex[0]**2 + vertex[1]**2 + vertex[2]**2)
 
 
 def normalize_np_vertex(np_vertex: np.array) -> np.array:
-    return np_vertex / norm(np_vertex)
+    return np_vertex / get_norm(np_vertex)
 
 
 def get_rotation_list_matrix(x: float, y: float, z: float, cos_t: float, sin_t: float) -> List:
