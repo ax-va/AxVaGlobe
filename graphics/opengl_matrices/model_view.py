@@ -1,6 +1,6 @@
 import math
 
-from pyglobe3d.core.geometry.rotation import get_norm, get_rotation_list_matrix
+from pyglobe3d.core.geometry.rotation import get_rotation_matrix
 from pyglobe3d.graphics.opengl_matrices.matrix import OpenGLMatrix
 from pyglobe3d.graphics.opengl_matrices.matrix_errs import ZeroNormError
 
@@ -77,11 +77,7 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = R * A and v_new = A * v_old
         """
-        norm = get_norm(axis)
-        if norm == 0:
-            raise ZeroNormError(axis)
-        x, y, z = (coord / norm for coord in axis)
-        self.multiply(by_matrix=OpenGLMatrix(matrix=get_rotation_list_matrix(x, y, z, cos_t, sin_t)))
+        self.multiply(by_matrix=OpenGLMatrix(matrix=get_rotation_matrix(cos_t, sin_t, axis)))
 
     def _rotate_around_x(self, cos_t, sin_t):
         """
