@@ -23,16 +23,16 @@ class PartialMesh(AnyMesh):
                 if node.nearest_layer_edges == 2:  # otherwise the node is on an edge and was already added
                     self._add_non_edge_node(node)
 
-    def _add_edge_nodes(self, edges, nodes):
-        for edge, node in zip(edges, nodes):
-            if node.index not in self._vertex_cash:
-                self._add_edge_node(edge, node)
-
     def _add_edge_node(self, edge, node):
         vertex0 = self._vertex_cash[edge.icosahedron_nodes.node0.index]
         vertex1 = self._vertex_cash[edge.icosahedron_nodes.node1.index]
         radians = self._theta_factor * edge.icosahedron_nodes.node0.division_ratios.ratio0
         self._vertex_cash[node.index] = get_rotated_vertex(vertex0, vertex1, radians)
+
+    def _add_edge_nodes(self, edges, nodes):
+        for edge, node in zip(edges, nodes):
+            if node.index not in self._vertex_cash:
+                self._add_edge_node(edge, node)
 
     def _add_icosahedron_vertices(self):
         icosahedron_vertices = self.icosahedron.vertex_np_array
