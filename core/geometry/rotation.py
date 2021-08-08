@@ -13,12 +13,14 @@ def get_norm(vertex) -> float:
     return math.sqrt(vertex[0]**2 + vertex[1]**2 + vertex[2]**2)
 
 
-def normalize_np_vertex(np_vertex: np.array) -> np.array:
-    return np_vertex / get_norm(np_vertex)
+def normalize_vertex(vertex: np.array) -> np.array:
+    norm = get_norm(vertex)
+    return [vertex[0] / norm, vertex[1] / norm, vertex[2] / norm]
 
 
-def get_rotation_list_matrix(x: float, y: float, z: float, cos_t: float, sin_t: float) -> List:
+def get_rotation_matrix(axis, cos_t: float, sin_t: float) -> List:
     _1_minus_cos_t = 1. - cos_t
+    x, y, z = normalize_vertex(np_normal)
     xy = x * y
     xz = x * z
     yz = y * z
@@ -29,10 +31,9 @@ def get_rotation_list_matrix(x: float, y: float, z: float, cos_t: float, sin_t: 
 
 def get_rotated_np_vertex(np_vertex0: np.array, np_vertex1: np.array, radians: float) -> np.array:
     np_normal = np.cross(np_vertex0, np_vertex1)
-    x, y, z = normalize_np_vertex(np_normal)
     cos_t = math.cos(radians)
     sin_t = math.sin(radians)
-    rotation_np_matrix = np.array(get_rotation_list_matrix(x, y, z, cos_t, sin_t))
+    rotation_np_matrix = np.array(get_rotation_matrix(np_normal, cos_t, sin_t))
     return np.dot(rotation_np_matrix, np_vertex0)
 
 
