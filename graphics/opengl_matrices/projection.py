@@ -18,9 +18,3 @@ class Projection(OpenGLMatrix, metaclass=ABCMeta):
         self._right_minus_left = self._right - self._left
         self._top_minus_bottom = self._top - self._bottom
         self._far_minus_near = self._far - self._near
-        if self._right_minus_left == 0:
-            raise EqualClippingPlanesError('left', 'right')
-        if self._top_minus_bottom == 0:
-            raise EqualClippingPlanesError('bottom', 'top')
-        if self._far_minus_near == 0:
-            raise EqualClippingPlanesError('near', 'far')
