@@ -78,7 +78,11 @@ class ModelView(OpenGLMatrix):
              [0., 0., 0., 1.]]
         with A = R * A and v_new = A * v_old
         """
-        self.multiply(by_matrix=OpenGLMatrix(matrix=get_rotation_matrix(axis, cos_t, sin_t)))
+        try:
+            rotation_matrix = get_rotation_matrix(axis, cos_t, sin_t)
+        except ZeroDivisionError:
+            raise ZeroNormError()
+        self.multiply(by_matrix=OpenGLMatrix(matrix=rotation_matrix))
 
     def _rotate_around_x(self, cos_t, sin_t):
         """
