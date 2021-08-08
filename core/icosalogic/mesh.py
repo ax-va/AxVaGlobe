@@ -14,6 +14,10 @@ class Mesh(ConstantAttributes):
         # 12 icosahedron nodes:
         self.ICOSAHEDRON_NODES = Icosahedron(grid=self.GRID).icosahedron_nodes
 
+    @property
+    def partition(self):
+        return self.GRID.PARTITION
+
     def create_node(self, index=0):
         return Node.create_node(grid=self.GRID, index=index)
 

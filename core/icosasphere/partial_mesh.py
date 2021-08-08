@@ -7,7 +7,11 @@ from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 class PartialMesh(AnyMesh):
     def __init__(self, partition: int = 1, radius: float = 1.0):
         AnyMesh.__init__(self, partition, radius)
-        self._cash_icosahedron_vertices()
+        self._add_icosahedron_vertices()
+
+    @property
+    def vertex_cash(self):
+        return self._vertex_cash
 
     def add_nodes(self, nodes):
         for node in nodes:
@@ -23,16 +27,16 @@ class PartialMesh(AnyMesh):
             if node.index not in self._vertex_cash:
                 vertex0 = self._vertex_cash[edge.icosahedron_nodes.node0.index]
                 vertex1 = self._vertex_cash[edge.icosahedron_nodes.node1.index]
-                radians = self.icosahedron.theta / self.logic_mesh.GRID.PARTITION * ...
+                radians = self.icosahedron.theta / self.logic_mesh.partition * ...
                 self._vertex_cash[node.index] = get_rotated_vertex(vertex0, vertex1, radians)
     
-    def _cash_icosahedron_vertices(self):
+    def _add_icosahedron_vertices(self):
         icosahedron_vertices = self.icosahedron.vertex_np_array
         icosahedron_nodes_indices = (node.index for node in self.logic_mesh.ICOSAHEDRON_NODES)
         self._vertex_cash = dict(zip(icosahedron_nodes_indices, icosahedron_vertices))
 
 
 if __name__ == '__main__':
-    msh = PartialMesh(partition=4)
-    print(msh._vertex_cash)
+    p_msh = PartialMesh(partition=4)
+    print(p_msh.vertex_cash)
 
