@@ -52,25 +52,25 @@ class NodeNeighbors:
     @property
     def division_ratios(self):
         if not self._division_ratios:
-            self._set_nearest_layer_edges_and_edge_nodes()
+            self._set_nearest_layer_edges_and_edge_nodes_and_division_ratios()
         return self._division_ratios
 
     @property
     def nearest_edges_number(self):
         if not self._edges_number:
-            self._set_nearest_layer_edges_and_edge_nodes()
+            self._set_nearest_layer_edges_and_edge_nodes_and_division_ratios()
         return self._edges_number
 
     @property
     def nearest_layer_edges(self):
         if not self._nearest_layer_edges:
-            self._set_nearest_layer_edges_and_edge_nodes()
+            self._set_nearest_layer_edges_and_edge_nodes_and_division_ratios()
         return self._nearest_layer_edges
 
     @property
     def nearest_layer_edge_nodes(self):
         if not self._nearest_layer_edge_nodes:
-            self._set_nearest_layer_edges_and_edge_nodes()
+            self._set_nearest_layer_edges_and_edge_nodes_and_division_ratios()
         return self._nearest_layer_edge_nodes
 
     @property
@@ -333,13 +333,13 @@ class NodeNeighbors:
         self._triangle_layers[4] = self._grid.LAST_TRIANGLE_LAYER
         self._triangle_positions_in_layers[4] = 4
 
-    def _set_nearest_layer_edges_and_edge_nodes(self):
+    def _set_nearest_layer_edges_and_edge_nodes_and_division_ratios(self):
         if NodeLocation.is_layer_in_part2(self._grid, self._layer):
-            self._set_nearest_layer_edges_and_edge_nodes_in_part2()
+            self._set_nearest_layer_edges_and_edge_nodes_and_division_ratios_in_part2()
         elif NodeLocation.is_layer_in_part1(self._grid, self._layer):
-            self._set_nearest_layer_edges_and_edge_nodes_in_part1()
+            self._set_nearest_layer_edges_and_edge_nodes_and_division_ratios_in_part1()
         else:
-            self._set_nearest_layer_edges_and_edge_nodes_in_part3()
+            self._set_nearest_layer_edges_and_edge_nodes_and_division_ratios_in_part3()
 
         Result = namedtuple('Edges', [f'edge{i}' for i in range(0, self._edges_number)])
         self._nearest_layer_edges = Result._make(
@@ -365,7 +365,7 @@ class NodeNeighbors:
         Result = namedtuple('DivisionRatios', 'ratio0  ratio1')
         self._division_ratios = Result(self._division_values[0], self._division_values[1])
 
-    def _set_nearest_layer_edges_and_edge_nodes_in_part1(self):
+    def _set_nearest_layer_edges_and_edge_nodes_and_division_ratios_in_part1(self):
         self._edge_node_layers[0] = self._layer
         if self._layer != 0:  # This is not the north-pole case
             self._edge_indices[0] = self._position_in_layer // self._layer
@@ -392,7 +392,7 @@ class NodeNeighbors:
             self._division_values[0] = 0
             self._division_values[1] = self._grid.PARTITION
 
-    def _set_nearest_layer_edges_and_edge_nodes_in_part2(self):
+    def _set_nearest_layer_edges_and_edge_nodes_and_division_ratios_in_part2(self):
         n = self._position_in_layer // self._grid.PARTITION
         k = self._position_in_layer % self._grid.PARTITION
         nn = n * self._grid.PARTITION
@@ -447,7 +447,7 @@ class NodeNeighbors:
                 self._division_values[0] = self._grid.PARTITION
                 self._division_values[1] = 0
 
-    def _set_nearest_layer_edges_and_edge_nodes_in_part3(self):
+    def _set_nearest_layer_edges_and_edge_nodes_and_division_ratios_in_part3(self):
         self._edge_node_layers[0] = self._layer
         reverse_layer = self._grid.LAST_NODE_LAYER - self._layer
         if reverse_layer != 0:  # The node is not the south pole
