@@ -5,7 +5,8 @@ from typing import List
 
 
 def get_angle_between(vertex0: np.array, vertex1: np.array) -> float:
-    return math.acos((vertex0[0] * vertex1[0] + vertex0[1] * vertex1[1] + vertex0[2] * vertex1[2]) / (norm(vertex0) * norm(vertex1)))
+    return math.acos((vertex0[0] * vertex1[0] + vertex0[1] * vertex1[1] + vertex0[2] * vertex1[2]) 
+                     / (norm(vertex0) * norm(vertex1)))
 
 
 def norm(vertex: np.array) -> float:
