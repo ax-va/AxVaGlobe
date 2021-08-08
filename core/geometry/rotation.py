@@ -27,7 +27,7 @@ def get_rotation_list_matrix(x: float, y: float, z: float, cos_t: float, sin_t: 
             [_1_minus_cos_t * xz - sin_t * y, _1_minus_cos_t * yz + sin_t * x, cos_t + _1_minus_cos_t * z**2]]
 
 
-def get_rotated_np_vertex(np_vertex0: np.array, vertex1: np.array, radians: float) -> np.array:
+def get_rotated_np_vertex(np_vertex0: np.array, np_vertex1: np.array, radians: float) -> np.array:
     np_normal = np.cross(np_vertex0, np_vertex1)
     x, y, z = normalize_np_vertex(np_normal)
     cos_t = math.cos(radians)
