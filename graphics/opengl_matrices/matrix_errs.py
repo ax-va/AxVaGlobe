@@ -5,9 +5,9 @@ class OpenGLMatrixError(GraphicsError):
     pass
 
 
-class ZeroVectorLengthError(OpenGLMatrixError):
+class ZeroNormError(OpenGLMatrixError):
     def __init__(self, vector):
-        self.message = f'The vector {vector} must not have zero length'
+        self.message = f'The vector {vector} must not have zero lenght'
 
 
 class ProjectionError(OpenGLMatrixError):
