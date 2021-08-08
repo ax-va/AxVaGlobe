@@ -17,7 +17,7 @@ def normalize(vertex: np.array) -> np.array:
     return vertex / norm(vertex)
 
 
-def get_rotation_matrix(x: float, y: float, z: float, cos_t: float, sin_t: float) -> List:
+def get_rotation_matrix_as_list(x: float, y: float, z: float, cos_t: float, sin_t: float) -> List:
     _1_minus_cos_t = 1. - cos_t
     xy = x * y
     xz = x * z
