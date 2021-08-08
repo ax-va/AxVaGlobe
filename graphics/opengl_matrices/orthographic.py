@@ -19,4 +19,4 @@ class Orthographic(Projection):
         self._matrix[1][1] = 2. / self._top_minus_bottom
         self._matrix[1][3] = -(self._top + self._bottom) / self._top_minus_bottom
         self._matrix[2][2] = -2. / self._far_minus_near
-        self._matrix[2][3] = -(self._far + self._near) / self.far_minus_near
+        self._matrix[2][3] = -(self._far + self._near) / self._far_minus_near
