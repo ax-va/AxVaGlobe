@@ -20,7 +20,7 @@ class PartialMesh(AnyMesh):
         for node in nodes:
             if node.index not in self._vertex_cash:
                 self._add_edge_nodes(node.nearest_layer_edges, node.nearest_layer_edge_nodes)
-                if node.nearest_layer_edges == 2:  # otherwise the node is on an edge and was already cashed
+                if node.nearest_layer_edges == 2:  # otherwise the node is on an edge and was already added
                     vertex0 = self._vertex_cash[node.nearest_layer_edge_nodes.node0.index]
                     vertex1 = self._vertex_cash[node.nearest_layer_edge_nodes.node1.index]
                     radians = (get_angle_between(vertex0, vertex1)
