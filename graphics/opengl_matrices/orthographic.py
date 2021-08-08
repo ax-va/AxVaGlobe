@@ -17,12 +17,6 @@ class Orthographic(Projection):
         right_minus_left = self._right - self._left
         top_minus_bottom = self._top - self._bottom
         far_minus_near = self._far - self._near
-        if right_minus_left == 0:
-            raise EqualClippingPlanesError('left', 'right')
-        if top_minus_bottom == 0:
-            raise EqualClippingPlanesError('bottom', 'top')
-        if far_minus_near == 0:
-            raise EqualClippingPlanesError('near', 'far')
         self._matrix[0][0] = 2. / right_minus_left
         self._matrix[0][3] = -(self._right + self._left) / right_minus_left
         self._matrix[1][1] = 2. / top_minus_bottom
