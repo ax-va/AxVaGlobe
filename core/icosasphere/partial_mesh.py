@@ -8,7 +8,7 @@ class PartialMesh(AnyMesh):
     def __init__(self, partition: int = 1, radius: float = 1.0):
         AnyMesh.__init__(self, partition, radius)
         self._theta_factor = self.icosahedron.theta / self.logic_mesh.partition
-        self._triangles_offset = self.logic_mesh.GRID.NUMBER_OF_NODES
+        self._index_offset = self.logic_mesh.GRID.NUMBER_OF_NODES
         self._add_icosahedron_nodes()
 
     @property
@@ -23,7 +23,7 @@ class PartialMesh(AnyMesh):
                 if neighbor.index not in self._vertex_cash:
                     self._add_node(neighbor)
             for triangle in node.adjacent_triangles:
-                if (triangle.index + self._triangles_offset) not in self._vertex_cash:
+                if (triangle.index + self._index_offset) not in self._vertex_cash:
                     ...
 
     def _add_edge_node(self, edge, node):
