@@ -38,11 +38,11 @@ def get_dot_product_3x3_3(matrix, vertex) -> List:
 
 
 def get_rotation_matrix(axis: List, cos_t: float, sin_t: float) -> List:
-    _1_minus_cos_t = 1. - cos_t
     x, y, z = get_normalized_vertex(axis)
     xy = x * y
     xz = x * z
     yz = y * z
+    _1_minus_cos_t = 1. - cos_t
     return [[cos_t + _1_minus_cos_t * x**2, _1_minus_cos_t * xy - sin_t * z, _1_minus_cos_t * xz + sin_t * y],
             [_1_minus_cos_t * xy + sin_t * z, cos_t + _1_minus_cos_t * y**2, _1_minus_cos_t * yz - sin_t * x],
             [_1_minus_cos_t * xz - sin_t * y, _1_minus_cos_t * yz + sin_t * x, cos_t + _1_minus_cos_t * z**2]]
