@@ -1,6 +1,6 @@
 import math
 
-from pyglobe3d.core.geometry.rotation import get_angle_between, get_rotated_np_vertex
+from pyglobe3d.core.geometry.rotation import get_angle_between, get_rotated_vertex
 from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 
 
@@ -31,7 +31,7 @@ class PartialMesh(AnyMesh):
         np_vertex0 = self._vertex_cache[node0.index]
         np_vertex1 = self._vertex_cache[node1.index]
         radians = self._theta_factor * node0.division_ratios.ratio0
-        self._vertex_cache[node.index] = get_rotated_np_vertex(np_vertex0, np_vertex1, radians)
+        self._vertex_cache[node.index] = np.array(get_rotated_vertex(np_vertex0, np_vertex1, radians))
 
     def _add_edge_nodes(self, edges, nodes):
         for edge, node in zip(edges, nodes):
@@ -56,7 +56,7 @@ class PartialMesh(AnyMesh):
         np_vertex1 = self._vertex_cache[node1.index]
         ratio0, ratio1 = node.division_ratios
         radians = get_angle_between(np_vertex0, np_vertex1) * (ratio0 / (ratio0 + ratio1))
-        self._vertex_cache[node.index] = get_rotated_np_vertex(np_vertex0, np_vertex1, radians)
+        self._vertex_cache[node.index] = np.array(get_rotated_vertex(np_vertex0, np_vertex1, radians))
 
 
 if __name__ == '__main__':
