@@ -5,9 +5,6 @@ from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 class PartialMesh(AnyMesh):
     def __init__(self, partition: int = 1, radius: float = 1.0):
         AnyMesh.__init__(self, partition, radius)
-        self._radius = radius
-        self._theta_factor = self.icosahedron.theta / self.logic_mesh.partition
-        self._index_offset = self.logic_mesh.GRID.NUMBER_OF_NODES
         self._add_icosahedron_nodes()
 
     @property
