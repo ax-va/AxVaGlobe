@@ -62,7 +62,7 @@ class PartialMesh(AnyMesh):
         vertex1 = self._vertex_cache[node1.index]
         vertex2 = self._vertex_cache[node2.index]
         triangle_center = get_midpoint_3(vertex0, vertex1, vertex2)
-        change_radius(triangle_center, self._radius)
+        change_radius(triangle_center, self.radius)
         self._vertex_cache[triangle.index + self._index_offset] = triangle_center
 
 
