@@ -3,6 +3,13 @@ import math
 from typing import List
 
 
+def change_radius(vertex, radius: float) -> None:
+    alpha = radius / get_norm_3(vertex)
+    vertex[0] = alpha * vertex[0]
+    vertex[1] = alpha * vertex[1]
+    vertex[2] = alpha * vertex[2]
+
+
 def get_angle_between(vertex0, vertex1) -> float:
     return math.acos((vertex0[0] * vertex1[0] + vertex0[1] * vertex1[1] + vertex0[2] * vertex1[2])
                      / (get_norm_3(vertex0) * get_norm_3(vertex1)))
@@ -35,6 +42,12 @@ def get_dot_product_3x3_3(matrix, vertex) -> List:
     return [matrix[0][0] * vertex[0] + matrix[0][1] * vertex[1] + matrix[0][2] * vertex[2],
             matrix[1][0] * vertex[0] + matrix[1][1] * vertex[1] + matrix[1][2] * vertex[2],
             matrix[2][0] * vertex[0] + matrix[2][1] * vertex[1] + matrix[2][2] * vertex[2]]
+
+
+def get_midpoint(vertex0, vertex1, vertex2) -> List:
+    return [(vertex0[0] + vertex1[0] + vertex2[0]) / 3,
+            (vertex0[1] + vertex1[1] + vertex2[1]) / 3,
+            (vertex0[2] + vertex1[2] + vertex2[2]) / 3]
 
 
 def get_rotation_matrix(axis: List, cos_t: float, sin_t: float) -> List:

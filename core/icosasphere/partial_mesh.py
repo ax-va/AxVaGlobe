@@ -1,10 +1,11 @@
-from pyglobe3d.core.geometry.linear_algebra import get_angle_between, get_rotated_vertex
+from pyglobe3d.core.geometry.linear_algebra import get_angle_between, get_rotated_vertex, get_midpoint, change_radius
 from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 
 
 class PartialMesh(AnyMesh):
     def __init__(self, partition: int = 1, radius: float = 1.0):
         AnyMesh.__init__(self, partition, radius)
+        self._radius = radius
         self._theta_factor = self.icosahedron.theta / self.logic_mesh.partition
         self._index_offset = self.logic_mesh.GRID.NUMBER_OF_NODES
         self._add_icosahedron_nodes()
@@ -22,7 +23,13 @@ class PartialMesh(AnyMesh):
                     self._add_node(neighbor)
             for triangle in node.adjacent_triangles:
                 if (triangle.index + self._index_offset) not in self._vertex_cache:
-                    ...
+                    node0, node1, node2 = triangle.triangle_nodes
+                    vertex0 = self._vertex_cache[node0.index]
+                    vertex1 = self._vertex_cache[node1.index]
+                    vertex2 = self._vertex_cache[node2.index]
+                    midpoint = get_midpoint(vertex0, vertex1, vertex2)
+                    change_radius(midpoint, self._radius)
+                    self._vertex_cache[triangle.index + self._index_offset] = midpoint
 
     def _add_edge_node(self, edge, node):
         node0, node1 = edge.icosahedron_nodes
