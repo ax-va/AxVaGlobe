@@ -11,9 +11,10 @@ class PartialMesh(AnyMesh):
     def vertex_cache(self):
         return self._vertex_cache
 
-    def add_nodes(self, nodes):
-        for node in nodes:
-            if node.index not in self._vertex_cache:
+    def add_nodes_via_indices(self, node_indices):
+        for node_index in node_indices:
+            node = self.logic_mesh.create_node(index=node_index)
+            if node_index not in self._vertex_cache:
                 self._add_node(node)
             for neighbor in node.neighboring_nodes:
                 if neighbor.index not in self._vertex_cache:
