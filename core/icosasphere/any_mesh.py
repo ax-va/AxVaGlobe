@@ -7,7 +7,7 @@ class AnyMesh:
         self._logic_mesh = LogicMesh(partition=partition)
         self._icosahedron = Icosahedron(radius=radius)
         self._index_offset = self._logic_mesh.GRID.NUMBER_OF_NODES
-        self._theta_factor = self.icosahedron.theta / self.partition
+        self._theta_factor = self.icosahedron.theta / self._logic_mesh.partition
         
     @property
     def logic_mesh(self):
