@@ -4,11 +4,11 @@ from typing import List
 
 
 def get_angle_between(vertex0, vertex1) -> float:
-    return math.acos((vertex0[0] * vertex1[0] + vertex0[1] * vertex1[1] + vertex0[2] * vertex1[2]) 
-                     / (get_norm_3(vertex0) * get_norm_3(vertex1)))
+    return math.acos((vertex0[0] * vertex1[0] + vertex0[1] * vertex1[1] + vertex0[2] * vertex1[2])
+                     / (get_norm(vertex0) * get_norm(vertex1)))
 
 
-def get_norm_3(vertex) -> float:
+def get_norm(vertex) -> float:
     return math.sqrt(vertex[0]**2 + vertex[1]**2 + vertex[2]**2)
 
 
@@ -16,16 +16,16 @@ def get_norm_3(vertex) -> float:
 #     return np.sqrt(np.sum(vertex**2))
 
 
-def normalize_vertex(vertex):
-    norm = get_norm_3(vertex)
+def get_normalized_vertex(vertex):
+    norm = get_norm(vertex)
     return [vertex[0] / norm, vertex[1] / norm, vertex[2] / norm]
 
 
-# def normalize_np_vertex(vertex: np.array) -> np.array:
+# def get_normalized_np_vertex(vertex: np.array) -> np.array:
 #     return vertex / get_np_norm(vertex)
 
 
-def get_cross_product_3_3(vertex0, vertex1):
+def get_cross_product(vertex0, vertex1):
     return [vertex0[1] * vertex1[2] - vertex0[2] * vertex1[1],
             vertex0[2] * vertex1[0] - vertex0[0] * vertex1[2],
             vertex0[0] * vertex1[1] - vertex0[1] * vertex1[0]]
@@ -39,7 +39,7 @@ def get_dot_product_3x3_3(matrix, vertex):
 
 def get_rotation_matrix(axis: List, cos_t: float, sin_t: float) -> List:
     _1_minus_cos_t = 1. - cos_t
-    x, y, z = normalize_vertex(axis)
+    x, y, z = get_normalized_vertex(axis)
     xy = x * y
     xz = x * z
     yz = y * z
@@ -49,7 +49,7 @@ def get_rotation_matrix(axis: List, cos_t: float, sin_t: float) -> List:
 
 
 def get_rotated_vertex(vertex0, vertex1, radians) -> List:
-    normal = get_cross_product_3_3(vertex0, vertex1)
+    normal = get_cross_product(vertex0, vertex1)
     cos_t = math.cos(radians)
     sin_t = math.sin(radians)
     return get_dot_product_3x3_3(get_rotation_matrix(normal, cos_t, sin_t), vertex0)
@@ -71,9 +71,9 @@ def get_rotated_vertex(vertex0, vertex1, radians) -> List:
 # %timeit get_np_norm(v1)
 # 13.6 µs ± 185 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 
-# %timeit normalize_vertex(v1)
+# %timeit get_normalized_vertex(v1)
 # 4 µs ± 39.9 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
-# %timeit normalize_np_vertex(v1)
+# %timeit get_normalized_np_vertex(v1)
 # 5 µs ± 67.4 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 
 # %timeit get_rotated_vertex(v1, v2, 2.23)
