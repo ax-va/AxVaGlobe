@@ -5,10 +5,10 @@ from typing import List
 
 def get_angle_between(vertex0, vertex1) -> float:
     return math.acos((vertex0[0] * vertex1[0] + vertex0[1] * vertex1[1] + vertex0[2] * vertex1[2])
-                     / (get_norm(vertex0) * get_norm(vertex1)))
+                     / (get_norm_3(vertex0) * get_norm_3(vertex1)))
 
 
-def get_norm(vertex) -> float:
+def get_norm_3(vertex) -> float:
     return math.sqrt(vertex[0]**2 + vertex[1]**2 + vertex[2]**2)
 
 
@@ -16,8 +16,8 @@ def get_norm(vertex) -> float:
 #     return np.sqrt(np.sum(vertex**2))
 
 
-def get_normalized_vertex(vertex):
-    norm = get_norm(vertex)
+def get_normalized_vertex(vertex) -> List:
+    norm = get_norm_3(vertex)
     return [vertex[0] / norm, vertex[1] / norm, vertex[2] / norm]
 
 
@@ -25,13 +25,13 @@ def get_normalized_vertex(vertex):
 #     return vertex / get_np_norm(vertex)
 
 
-def get_cross_product(vertex0, vertex1):
+def get_cross_product_3_3(vertex0, vertex1) -> List:
     return [vertex0[1] * vertex1[2] - vertex0[2] * vertex1[1],
             vertex0[2] * vertex1[0] - vertex0[0] * vertex1[2],
             vertex0[0] * vertex1[1] - vertex0[1] * vertex1[0]]
 
 
-def get_dot_product_3x3_3(matrix, vertex):
+def get_dot_product_3x3_3(matrix, vertex) -> List:
     return [matrix[0][0] * vertex[0] + matrix[0][1] * vertex[1] + matrix[0][2] * vertex[2],
             matrix[1][0] * vertex[0] + matrix[1][1] * vertex[1] + matrix[1][2] * vertex[2],
             matrix[2][0] * vertex[0] + matrix[2][1] * vertex[1] + matrix[2][2] * vertex[2]]
@@ -49,7 +49,7 @@ def get_rotation_matrix(axis: List, cos_t: float, sin_t: float) -> List:
 
 
 def get_rotated_vertex(vertex0, vertex1, radians) -> List:
-    normal = get_cross_product(vertex0, vertex1)
+    normal = get_cross_product_3_3(vertex0, vertex1)
     cos_t = math.cos(radians)
     sin_t = math.sin(radians)
     return get_dot_product_3x3_3(get_rotation_matrix(normal, cos_t, sin_t), vertex0)
