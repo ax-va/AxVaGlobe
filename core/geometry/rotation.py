@@ -29,7 +29,7 @@ def get_rotation_matrix(axis, cos_t: float, sin_t: float) -> List:
             [_1_minus_cos_t * xz - sin_t * y, _1_minus_cos_t * yz + sin_t * x, cos_t + _1_minus_cos_t * z**2]]
 
 
-def get_rotated_np_vertex(np_vertex0: np.array, np_vertex1: np.array, radians: float) -> np.array:
+def get_rotated_vertex(np_vertex0: np.array, np_vertex1: np.array, radians: float) -> np.array:
     # normal = np.cross(np_vertex0, np_vertex1)
     normal = (np_vertex0[1] * np_vertex1[2] - np_vertex0[2] * np_vertex1[1],
               np_vertex0[2] * np_vertex1[0] - np_vertex0[0] * np_vertex1[2],
@@ -40,9 +40,9 @@ def get_rotated_np_vertex(np_vertex0: np.array, np_vertex1: np.array, radians: f
     # return np.dot(rotation_np_matrix, np_vertex0)
     mat = get_rotation_matrix(normal, cos_t, sin_t)
     vec = np_vertex0
-    return np.array([mat[0][0] * vec[0] + mat[0][1] * vec[1] + mat[0][2] * vec[2],
-                     mat[1][0] * vec[0] + mat[1][1] * vec[1] + mat[1][2] * vec[2],
-                     mat[2][0] * vec[0] + mat[2][1] * vec[1] + mat[2][2] * vec[2]])
+    return [mat[0][0] * vec[0] + mat[0][1] * vec[1] + mat[0][2] * vec[2],
+            mat[1][0] * vec[0] + mat[1][1] * vec[1] + mat[1][2] * vec[2],
+            mat[2][0] * vec[0] + mat[2][1] * vec[1] + mat[2][2] * vec[2]]
 
 
 
