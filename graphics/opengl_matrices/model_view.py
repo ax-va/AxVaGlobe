@@ -58,14 +58,14 @@ class ModelView(OpenGLMatrix):
             
     def _rotate(self, axis, degrees):
         radians = math.radians(degrees)
-        cos_t = math.cos(rad)
-        sin_t = math.sin(rad)
+        cos_t = math.cos(radians)
+        sin_t = math.sin(radians)
         if isinstance(axis, str):
             self._rotate_funcs[axis](cos_t, sin_t)
         else: 
-            self._rotate_(axis, cos_t, sin_t)
+            self._rotate_func(axis, cos_t, sin_t)
 
-    def _rotate_(self, axis, cos_t, sin_t):
+    def _rotate_func(self, axis, cos_t, sin_t):
         """
         R = [[math.cos(radians) + (1. - math.cos(radians)) * x**2,
               (1. - math.cos(radians)) * x * y - math.sin(radians) * z,
