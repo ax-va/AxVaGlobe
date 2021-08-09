@@ -1,4 +1,4 @@
-from pyglobe3d.core.geometry.rotation import get_angle_between, get_rotated_vertex
+from pyglobe3d.core.geometry.linear_algebra import get_angle_between, get_rotated_vertex
 from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 
 

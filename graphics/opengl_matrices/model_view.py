@@ -1,6 +1,6 @@
 import math
 
-from pyglobe3d.core.geometry.rotation import get_rotation_matrix
+from pyglobe3d.core.geometry.linear_algebra import get_rotation_matrix
 from pyglobe3d.graphics.opengl_matrices.matrix import OpenGLMatrix
 from pyglobe3d.graphics.opengl_matrices.matrix_errs import ZeroNormError
 
