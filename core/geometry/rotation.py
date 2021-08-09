@@ -30,10 +30,13 @@ def get_rotation_matrix(axis, cos_t: float, sin_t: float) -> List:
 
 
 def get_rotated_np_vertex(np_vertex0: np.array, np_vertex1: np.array, radians: float) -> np.array:
-    np_normal = np.cross(np_vertex0, np_vertex1)
+    # normal = np.cross(np_vertex0, np_vertex1)
+    normal = (np_vertex0[1] * np_vertex1[2] - np_vertex0[2] * np_vertex1[1],
+              np_vertex0[2] * np_vertex1[0] - np_vertex0[0] * np_vertex1[2],
+              np_vertex0[0] * np_vertex1[1] - np_vertex0[1] * np_vertex1[0])
     cos_t = math.cos(radians)
     sin_t = math.sin(radians)
-    rotation_np_matrix = np.array(get_rotation_matrix(np_normal, cos_t, sin_t))
+    rotation_np_matrix = np.array(get_rotation_matrix(normal, cos_t, sin_t))
     return np.dot(rotation_np_matrix, np_vertex0)
 
 
