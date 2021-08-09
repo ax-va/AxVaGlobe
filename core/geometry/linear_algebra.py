@@ -44,7 +44,7 @@ def get_dot_product_3x3_3(matrix, vertex) -> List:
             matrix[2][0] * vertex[0] + matrix[2][1] * vertex[1] + matrix[2][2] * vertex[2]]
 
 
-def get_midpoint(vertex0, vertex1, vertex2) -> List:
+def get_midpoint_3(vertex0, vertex1, vertex2) -> List:
     return [(vertex0[0] + vertex1[0] + vertex2[0]) / 3,
             (vertex0[1] + vertex1[1] + vertex2[1]) / 3,
             (vertex0[2] + vertex1[2] + vertex2[2]) / 3]

@@ -1,4 +1,4 @@
-from pyglobe3d.core.geometry.linear_algebra import get_angle_between, get_rotated_vertex, get_midpoint, change_radius
+from pyglobe3d.core.geometry.linear_algebra import get_angle_between, get_rotated_vertex, get_midpoint_3, change_radius
 from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 
 
@@ -23,13 +23,7 @@ class PartialMesh(AnyMesh):
                     self._add_node(neighbor)
             for triangle in node.adjacent_triangles:
                 if (triangle.index + self._index_offset) not in self._vertex_cache:
-                    node0, node1, node2 = triangle.triangle_nodes
-                    vertex0 = self._vertex_cache[node0.index]
-                    vertex1 = self._vertex_cache[node1.index]
-                    vertex2 = self._vertex_cache[node2.index]
-                    midpoint = get_midpoint(vertex0, vertex1, vertex2)
-                    change_radius(midpoint, self._radius)
-                    self._vertex_cache[triangle.index + self._index_offset] = midpoint
+                    self._add_triangle_center(triangle)
             ...
 
     def _add_edge_node(self, edge, node):
@@ -63,6 +57,15 @@ class PartialMesh(AnyMesh):
         ratio0, ratio1 = node.division_ratios
         radians = get_angle_between(vertex0, vertex1) * (ratio0 / (ratio0 + ratio1))
         self._vertex_cache[node.index] = get_rotated_vertex(vertex0, vertex1, radians)
+
+    def _add_triangle_center(self, triangle):
+        node0, node1, node2 = triangle.triangle_nodes
+        vertex0 = self._vertex_cache[node0.index]
+        vertex1 = self._vertex_cache[node1.index]
+        vertex2 = self._vertex_cache[node2.index]
+        triangle_center = get_midpoint_3(vertex0, vertex1, vertex2)
+        change_radius(triangle_center, self._radius)
+        self._vertex_cache[triangle.index + self._index_offset] = triangle_center
 
 
 if __name__ == '__main__':
