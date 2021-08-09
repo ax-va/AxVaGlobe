@@ -30,6 +30,7 @@ class PartialMesh(AnyMesh):
                     midpoint = get_midpoint(vertex0, vertex1, vertex2)
                     change_radius(midpoint, self._radius)
                     self._vertex_cache[triangle.index + self._index_offset] = midpoint
+            ...
 
     def _add_edge_node(self, edge, node):
         node0, node1 = edge.icosahedron_nodes
