@@ -33,6 +33,10 @@ class Icosahedron:
                 [10, 11, 6]]  # triangle 19
 
     @property
+    def radius(self):
+        return self._radius
+    
+    @property
     def theta(self):
         return self._theta
 
