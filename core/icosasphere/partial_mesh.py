@@ -1,4 +1,5 @@
-from pyglobe3d.core.geometry.linear_algebra import change_radius, get_angle_between, get_rotated_vertex, get_triangle_midpoint_vertex
+from pyglobe3d.core.geometry.linear_algebra import change_radius, get_angle_between, get_rotated_vertex, \
+    get_triangle_midpoint_vertex
 from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 
 
