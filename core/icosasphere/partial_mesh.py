@@ -22,7 +22,7 @@ class PartialMesh(AnyMesh):
                     self._add_node(neighbor)
             for triangle in node.adjacent_triangles:
                 if (triangle.index + self._index_offset) not in self._vertex_cache:
-                    self._add_triangle_center(triangle)
+                    self._add_triangle_midpoint(triangle)
             ...
 
     def _add_edge_node(self, edge, node):
@@ -57,7 +57,7 @@ class PartialMesh(AnyMesh):
         radians = get_angle_between(vertex0, vertex1) * (ratio0 / (ratio0 + ratio1))
         self._vertex_cache[node.index] = get_rotated_vertex(vertex0, vertex1, radians)
 
-    def _add_triangle_center(self, triangle):
+    def _add_triangle_midpoint(self, triangle):
         node0, node1, node2 = triangle.triangle_nodes
         vertex0 = self._vertex_cache[node0.index]
         vertex1 = self._vertex_cache[node1.index]
