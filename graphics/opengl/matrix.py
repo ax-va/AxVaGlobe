@@ -3,7 +3,7 @@ import itertools
 import math
 
 
-class OpenGLMatrix:    
+class Matrix:
     def __init__(self, matrix=None):
         self._matrix = [[1., 0., 0., 0.],
                         [0., 1., 0., 0.],
@@ -129,10 +129,10 @@ class OpenGLMatrix:
 
 
 if __name__ == '__main__':
-    mt = OpenGLMatrix()
+    mt = Matrix()
     print(mt.matrix)
     print(mt.float32_array)
-    mt2 = OpenGLMatrix(matrix=mt.matrix)
+    mt2 = Matrix(matrix=mt.matrix)
     print(mt2.float32_array)
     mt.set_zeros()
     print(mt.float32_array)

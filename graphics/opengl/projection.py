@@ -1,11 +1,11 @@
 from abc import ABCMeta
 
-from pyglobe3d.graphics.opengl_matrices.matrix import OpenGLMatrix
+from pyglobe3d.graphics.opengl.matrix import Matrix
 
 
-class Projection(OpenGLMatrix, metaclass=ABCMeta):
+class Projection(Matrix, metaclass=ABCMeta):
     def __init__(self, left, right, bottom, top, near, far):
-        OpenGLMatrix.__init__(self)
+        Matrix.__init__(self)
         self._set_attributes(left, right, bottom, top, near, far)
 
     def _set_attributes(self, left, right, bottom, top, near, far):

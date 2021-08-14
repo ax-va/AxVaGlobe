@@ -1,13 +1,13 @@
 import math
 
 from pyglobe3d.core.geometry.vertex import get_rotation_matrix
-from pyglobe3d.graphics.opengl_matrices.matrix import OpenGLMatrix
-from pyglobe3d.graphics.opengl_matrices.matrix_errs import ZeroNormError
+from pyglobe3d.graphics.opengl.matrix import Matrix
+from pyglobe3d.graphics.opengl.matrix_errs import ZeroNormError
 
 
-class ModelView(OpenGLMatrix):
+class ModelView(Matrix):
     def __init__(self):
-        OpenGLMatrix.__init__(self)
+        Matrix.__init__(self)
         self._rotate_funcs = {
             'x': self._rotate_around_x,
             'y': self._rotate_around_y,
@@ -83,7 +83,7 @@ class ModelView(OpenGLMatrix):
             rotation_matrix = get_rotation_matrix(axis, cos_t, sin_t)
         except ZeroDivisionError:
             raise ZeroNormError(axis)
-        self.multiply(by_matrix=OpenGLMatrix(matrix=rotation_matrix))
+        self.multiply(by_matrix=Matrix(matrix=rotation_matrix))
 
     def _rotate_around_x(self, cos_t, sin_t):
         """

@@ -1,4 +1,4 @@
-from pyglobe3d.core.geometry.vertex import change_vertex_norm, get_angle_between, get_rotated_vertex, \
+from pyglobe3d.core.geometry.vertex import change_vertex_radius, get_angle_between, get_rotated_vertex, \
     get_triangle_midpoint_vertex
 from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 
@@ -63,7 +63,7 @@ class PartialMesh(AnyMesh):
         vertex1 = self._vertex_cache[node1.index]
         vertex2 = self._vertex_cache[node2.index]
         triangle_midpoint_vertex = get_triangle_midpoint_vertex(vertex0, vertex1, vertex2)
-        change_vertex_norm(triangle_midpoint_vertex, self.radius)
+        change_vertex_radius(triangle_midpoint_vertex, self.radius)
         self._vertex_cache[triangle.index + self._index_offset] = triangle_midpoint_vertex
 
 

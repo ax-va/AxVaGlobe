@@ -1,7 +1,7 @@
 import math
 
-from pyglobe3d.graphics.opengl_matrices.matrix_errs import EqualClippingPlanesError
-from pyglobe3d.graphics.opengl_matrices.projection import Projection
+from pyglobe3d.graphics.opengl.matrix_errs import EqualClippingPlanesError
+from pyglobe3d.graphics.opengl.projection import Projection
 
 
 class Perspective(Projection):
