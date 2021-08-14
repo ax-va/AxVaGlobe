@@ -3,8 +3,8 @@ import math
 from typing import List
 
 
-def change_radius(vertex, radius: float) -> None:
-    alpha = radius / get_vertex_norm(vertex)
+def change_vertex_norm(vertex, norm: float) -> None:
+    alpha = norm / get_vertex_norm(vertex)
     vertex[0] = alpha * vertex[0]
     vertex[1] = alpha * vertex[1]
     vertex[2] = alpha * vertex[2]
