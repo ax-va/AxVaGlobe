@@ -65,7 +65,8 @@ class PartialMesh(AnyMesh):
         self._vertices[triangle.index + self._index_offset] = triangle_midpoint_vertex
 
     def _add_vertex_indices(self, node):
-        for i in range(node.adjacent_triangles_number - 1):
+        last = node.adjacent_triangles_number - 1
+        for i in range(last):
             self._vertex_indices.add(
                 (node.adjacent_triangles[i + 1].index + self._index_offset,
                  node.adjacent_triangles[i].index + self._index_offset,
@@ -73,7 +74,7 @@ class PartialMesh(AnyMesh):
             )
         self._vertex_indices.add(
             (node.adjacent_triangles[0].index + self._index_offset,
-             node.adjacent_triangles[node.adjacent_triangles_number - 1].index + self._index_offset,
+             node.adjacent_triangles[last].index + self._index_offset,
              node.index)
         )
 
