@@ -18,12 +18,8 @@ class PartialMesh(AnyMesh):
             node = self.logic_mesh.create_node(index=node_index)
             if node_index not in self._vertices:
                 self._add_node(node)
-            for neighbor in node.neighboring_nodes:
-                if neighbor.index not in self._vertices:
-                    self._add_node(neighbor)
-            for triangle in node.adjacent_triangles:
-                if (triangle.index + self._index_offset) not in self._vertices:
-                    self._add_triangle_midpoint(triangle)
+            self._add_node_neighbors(node)
+            self._add_triangle_midpoints(node)
             self._add_vertex_indices(node)
 
     def _add_edge_node(self, edge, node):
@@ -49,6 +45,11 @@ class PartialMesh(AnyMesh):
         else:  # The node is on an edge: node.nearest_layer_edges_number == 1
             self._add_edge_node(node.nearest_layer_edges.edge0, node)
 
+    def _add_node_neighbors(self, node):
+        for neighbor in node.neighboring_nodes:
+            if neighbor.index not in self._vertices:
+                self._add_node(neighbor)
+
     def _add_non_edge_node(self, node):
         vertex0 = self._vertices[node.nearest_layer_edge_nodes.node0.index]
         vertex1 = self._vertices[node.nearest_layer_edge_nodes.node1.index]
@@ -63,6 +64,11 @@ class PartialMesh(AnyMesh):
         triangle_midpoint_vertex = get_triangle_midpoint_vertex(vertex0, vertex1, vertex2)
         change_vertex_radius(triangle_midpoint_vertex, self.radius)
         self._vertices[triangle.index + self._index_offset] = triangle_midpoint_vertex
+
+    def _add_triangle_midpoints(self, node):
+        for triangle in node.adjacent_triangles:
+            if (triangle.index + self._index_offset) not in self._vertices:
+                self._add_triangle_midpoint(triangle)
 
     def _add_vertex_indices(self, node):
         last = node.adjacent_triangles_number - 1
