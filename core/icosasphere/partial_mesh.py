@@ -10,7 +10,11 @@ class PartialMesh(AnyMesh):
         self._vertex_indices = set()
 
     @property
-    def vertices(self):
+    def vertex_indices(self) -> set:
+        return self._vertex_indices
+
+    @property
+    def vertices(self) -> dict:
         return self._vertices
 
     def add_nodes_with_indices(self, node_indices):
