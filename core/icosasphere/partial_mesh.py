@@ -92,15 +92,15 @@ class PartialMesh(AnyMesh):
             if (triangle.index + self._index_offset) not in self._vertices:
                 self._add_triangle_midpoint(triangle)
 
-    def _change_polygon_vertex_indices(self, node, func=set.add):
+    def _change_polygon_vertex_indices(self, node, set_method=set.add):
         last = node.adjacent_triangles_number - 1
         for i in range(last):
-            func(self._polygon_vertex_indices,
+            set_method(self._polygon_vertex_indices,
                 (node.adjacent_triangles[i + 1].index + self._index_offset,
                  node.adjacent_triangles[i].index + self._index_offset,
                  node.index)
             )
-        func(self._polygon_vertex_indices,
+        set_method(self._polygon_vertex_indices,
             (node.adjacent_triangles[0].index + self._index_offset,
              node.adjacent_triangles[last].index + self._index_offset,
              node.index)
