@@ -36,11 +36,11 @@ class PartialMesh(AnyMesh):
             if node_index in self._vertices:
                 if node_index not in self._icosahedron_vertices:
                     del self._vertices[node_index]
-                    self._delete_node_neighbors(node)
-                    self._delete_triangle_midpoints(node)
-                    self._change_polygon_vertex_indices(node, set.remove)
                 else:
                     PyGlobe3DWarning(f'the node {node} cannot be deleted because it is a vertex of the icosahedron')
+                self._delete_node_neighbors(node)
+                self._delete_triangle_midpoints(node)
+                self._change_polygon_vertex_indices(node, set.remove)
             else:
                 PyGlobe3DWarning(f'the node {node} was originally not added')
 
