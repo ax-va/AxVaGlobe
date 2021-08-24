@@ -9,11 +9,11 @@ class PartialMesh(AnyMesh):
         AnyMesh.__init__(self, partition, radius)
         self._add_icosahedron_nodes()
         self._added_node_indices = set()
-        self._polygon_vertex_indices = set()
+        self._triangle_polygon_vertex_indices = set()
 
     @property
-    def polygon_vertex_indices(self) -> set:
-        return self._polygon_vertex_indices
+    def _triangle_polygon_vertex_indices(self) -> set:
+        return self._triangle_polygon_vertex_indices
 
     @property
     def vertices(self) -> dict:
@@ -95,12 +95,12 @@ class PartialMesh(AnyMesh):
     def _change_polygon_vertex_indices(self, node, set_method=set.add):
         last = node.adjacent_triangles_number - 1
         for i in range(last):
-            set_method(self._polygon_vertex_indices,
+            set_method(self._triangle_polygon_vertex_indices,
                 (node.adjacent_triangles[i + 1].index + self._index_offset,
                  node.adjacent_triangles[i].index + self._index_offset,
                  node.index)
             )
-        set_method(self._polygon_vertex_indices,
+        set_method(self._triangle_polygon_vertex_indices,
             (node.adjacent_triangles[0].index + self._index_offset,
              node.adjacent_triangles[last].index + self._index_offset,
              node.index)
