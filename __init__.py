@@ -21,4 +21,4 @@ __doc__ = \
     """
 __library_version__ = '0.0.1'
 __library_release_date__ = '2021-xx-xx'
-__python_versions__ = '3.8'
+__python_version__ = '3.8'
