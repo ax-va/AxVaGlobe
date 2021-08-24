@@ -3,10 +3,16 @@
 
 __authors__ = ['Alexander Vasiliev']
 __dependencies__ = {
-    'pytest': '6.2.4',
-    'pygame': '2.0.1',
-    'PyOpenGL': '3.1.5',
-    'PyOpenGL-accelerate': '3.1.5',
+    'necessary':
+        {
+            'pygame': '2.0.1',
+            'PyOpenGL': '3.1.5',
+            'PyOpenGL-accelerate': '3.1.5',
+        },
+    'not_necessary':
+        {
+            'pytest': '6.2.4',
+        },
     #  'numpy': {'version': '1.21.1'},
     #  'numba': {'version': '0.53.1'},
 }

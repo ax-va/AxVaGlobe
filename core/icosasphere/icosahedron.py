@@ -10,7 +10,7 @@ class Icosahedron:
         self._phi = 0.4 * math.pi  # 72 degrees in radians
 
     @property
-    def index_array(self):
+    def polygon_vertex_indices(self):
         return [[0, 1, 2],  # vertex indices [index0, index1, index2] of triangle 0
                 [0, 2, 3],  # triangle 1
                 [0, 3, 4],  # triangle 2
@@ -41,7 +41,7 @@ class Icosahedron:
         return self._theta
 
     @property
-    def vertex_array(self):
+    def vertices(self):
         """
         x = r * math.sin(theta) * math.cos(phi)
         y = r * math.sin(theta) * math.sin(phi)

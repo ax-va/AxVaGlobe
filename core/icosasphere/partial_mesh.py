@@ -56,7 +56,7 @@ class PartialMesh(AnyMesh):
                 self._add_edge_node(edge, edge_node)
 
     def _add_icosahedron_nodes(self):
-        self._icosahedron_vertices = self.icosahedron.vertex_array
+        self._icosahedron_vertices = self.icosahedron.vertices
         icosahedron_nodes_indices = (node.index for node in self.logic_mesh.ICOSAHEDRON_NODES)
         self._vertices = dict(zip(icosahedron_nodes_indices, self._icosahedron_vertices))
 
