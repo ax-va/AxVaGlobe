@@ -6,7 +6,7 @@ __dependencies__ = {
             'PyOpenGL': '3.1.5',
             'PyOpenGL-accelerate': '3.1.5',
         },
-    'not_necessary':
+    'not necessary':
         {
             'pytest': '6.2.4',
         },
