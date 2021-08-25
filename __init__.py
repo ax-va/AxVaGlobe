@@ -13,8 +13,7 @@ __dependencies__ = {
     #  'numpy': {'version': '1.21.1'},
     #  'numba': {'version': '0.53.1'},
 }
-__doc__ = \
-    """
+__doc__ = """
     PyGlobe3D is a free open-source logical-graphical Python library 
     for creating globes by hexagon-like polygons and working with them. 
     The library is designed for games, education, and simulation.
