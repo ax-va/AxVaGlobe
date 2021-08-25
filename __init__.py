@@ -10,8 +10,8 @@ __dependencies__ = {
         {
             'pytest': '6.2.4',
         },
-    #  'numpy': {'version': '1.21.1'},
-    #  'numba': {'version': '0.53.1'},
+    #  'numpy': '1.21.1',
+    #  'numba': '0.53.1',
 }
 __doc__ = """
     PyGlobe3D is a free open-source logical-graphical Python library 
