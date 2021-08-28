@@ -1,3 +1,4 @@
+from pyglobe3d.core.common.common_errs import InvalidArgumentValueError
 from pyglobe3d.warns import PyGlobe3DWarning
 from pyglobe3d.core.geometry.vertex import \
     change_vertex_radius, get_angle_between, get_rotated_vertex, get_triangle_midpoint_vertex
@@ -9,11 +10,15 @@ class PartialMesh(AnyMesh):
         AnyMesh.__init__(self, partition, radius)
         self._add_icosahedron_nodes()
         self._added_node_indices = set()
-        self._triangle_polygon_vertex_indices = set()
+        self._added_triangle_polygon_vertex_indices = {}
 
     @property
-    def _triangle_polygon_vertex_indices(self) -> set:
-        return self._triangle_polygon_vertex_indices
+    def added_node_indices(self) -> set:
+        return self._added_node_indices
+
+    @property
+    def added_triangle_polygon_vertex_indices(self) -> dict:
+        return self._added_triangle_polygon_vertex_indices
 
     @property
     def vertices(self) -> dict:
@@ -27,7 +32,7 @@ class PartialMesh(AnyMesh):
                 self._add_node(node)
             self._add_node_neighbors(node)
             self._add_triangle_midpoints(node)
-            self._change_polygon_vertex_indices(node, set.add)
+            self._add_triangle_polygon_vertex_indices(node)
 
     def delete_nodes_with_indices(self, node_indices):
         self._added_node_indices = set.difference(self._added_node_indices, set(node_indices))
@@ -40,7 +45,7 @@ class PartialMesh(AnyMesh):
                     PyGlobe3DWarning(f'the node {node} cannot be deleted because it is a vertex of the icosahedron')
                 self._delete_node_neighbors(node)
                 self._delete_triangle_midpoints(node)
-                self._change_polygon_vertex_indices(node, set.remove)
+                del self._added_triangle_polygon_vertex_indices[node_index]
             else:
                 PyGlobe3DWarning(f'the node {node} was originally not added')
 
@@ -92,18 +97,17 @@ class PartialMesh(AnyMesh):
             if (triangle.index + self._index_offset) not in self._vertices:
                 self._add_triangle_midpoint(triangle)
 
-    def _change_polygon_vertex_indices(self, node, set_method=set.add):
+    def _add_triangle_polygon_vertex_indices(self, node):
         last = node.adjacent_triangles_number - 1
-        for i in range(last):
-            set_method(self._triangle_polygon_vertex_indices,
-                (node.adjacent_triangles[i + 1].index + self._index_offset,
-                 node.adjacent_triangles[i].index + self._index_offset,
-                 node.index)
-            )
-        set_method(self._triangle_polygon_vertex_indices,
-            (node.adjacent_triangles[0].index + self._index_offset,
+        self._added_triangle_polygon_vertex_indices[node.index] = [
+            [node.adjacent_triangles[i + 1].index + self._index_offset,
+             node.adjacent_triangles[i].index + self._index_offset,
+             node.index] for i in range(last)
+        ]
+        self._added_triangle_polygon_vertex_indices[node.index].append(
+            [node.adjacent_triangles[0].index + self._index_offset,
              node.adjacent_triangles[last].index + self._index_offset,
-             node.index)
+             node.index]
         )
 
     def _delete_node_neighbors(self, node):
