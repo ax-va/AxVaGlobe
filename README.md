@@ -5,4 +5,4 @@ The surface units are mainly hexagon-like polygons consisting of six triangles a
 
 <img src="https://user-images.githubusercontent.com/85578981/127783633-d5dc5e1b-57e8-426b-ae48-cb57790e715e.png" data-canonical-src="https://user-images.githubusercontent.com/85578981/127783633-d5dc5e1b-57e8-426b-ae48-cb57790e715e.png" width="700"/>
 
-Changing the radius of the sphere for any surface unit can create arbitrary 3D surfaces on the sphere. The logical component is that each surface unit knows its nearest neighbors-units that is implemented algorithmically, not through storage. Due to this, movement on the surface can be realized.
+Changing the radius of the sphere for any surface unit can create arbitrary 3D surfaces on the sphere. The logical component is that each surface unit knows its nearest neighbors-units that is implemented algorithmically, not through storage. Due to this, discrete movement on the surface can be realized.
