@@ -1,8 +1,8 @@
 import math
 
 from pyglobe3d.core.geometry.vertex import get_rotation_matrix
-from pyglobe3d.graphics.opengl.matrix import Matrix
-from pyglobe3d.graphics.opengl.matrix_errs import ZeroNormError
+from pyglobe3d.graphics.opengl_mats.matrix import Matrix
+from pyglobe3d.graphics.opengl_mats.matrix_errs import ZeroNormError
 
 
 class ModelView(Matrix):
