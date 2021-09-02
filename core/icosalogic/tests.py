@@ -13,13 +13,28 @@ def test_grid():
     pass
 
 
-def test_edges():
-    pass
+def test_edges(mesh, icosahedron_nodes_indices, edge_nodes_indices):
+    print("Running the edge test:")
+    print("- icosahedron nodes of edges...")
+    for index in icosahedron_nodes_indices:
+        ed = mesh.EDGES[index]
+        ic_ns_indices1 = icosahedron_nodes_indices[index]
+        ic_ns_indices2 = tuple(x.index for x in ed.icosahedron_nodes)
+        assert ic_ns_indices1 == ic_ns_indices2, 'Calculated icosahedron nodes do not match test icosahedron nodes'
+    print("...are OK")
+
+    print("- edge nodes...")
+    for index in edge_nodes_indices:
+        ed = mesh.EDGES[index]
+        ed_ns_indices1 = edge_nodes_indices[index]
+        ed_ns_indices2 = tuple(x.index for x in ed.edge_nodes_generator())
+        assert ed_ns_indices1 == ed_ns_indices2, 'Calculated edge nodes do not match test edge nodes'
+    print("...are OK")
 
 
-def test_nodes(mesh, adjacent_triangles_data, neighboring_nodes_data):
+def test_nodes(mesh, adjacent_triangles_indices, neighboring_nodes_indices):
     print("Running the node test:")
-    print("transformation index -> layer and position -> index...")
+    print("- transformation index -> layer and position -> index...")
     for index in range(0, mesh.GRID.LAST_NODE_INDEX):
         nd1 = mesh.create_node(index=index)
         nd2 = Node(
@@ -43,7 +58,7 @@ def test_nodes(mesh, adjacent_triangles_data, neighboring_nodes_data):
         assert nd1 == nd2 == nd3
     print("...is OK")
 
-    print("node comparison...")
+    print("- node comparison...")
     for index1 in range(0, mesh.GRID.LAST_NODE_INDEX):
         for index2 in range(0, mesh.GRID.LAST_NODE_INDEX):
             nd1 = mesh.create_node(index=index1)
@@ -60,10 +75,10 @@ def test_nodes(mesh, adjacent_triangles_data, neighboring_nodes_data):
                 assert nd1 != nd2, 'node1 != node2 does not hold'
     print("...is OK")
 
-    print("adjacent triangles...")
-    for index in adjacent_triangles_data:
+    print("- adjacent triangles...")
+    for index in adjacent_triangles_indices:
         nd = mesh.create_node(index=index)
-        ad_tr_indices1 = adjacent_triangles_data[index]
+        ad_tr_indices1 = adjacent_triangles_indices[index]
         ad_tr_indices2 = tuple(x.index for x in nd.adjacent_triangles)
         # print(index)
         # print(ad_tr_indices1)
@@ -71,10 +86,10 @@ def test_nodes(mesh, adjacent_triangles_data, neighboring_nodes_data):
         assert ad_tr_indices1 == ad_tr_indices2, 'Calculated adjacent triangles do not match test adjacent triangles'
     print("...are OK")
 
-    print("neighboring nodes...")
-    for index in neighboring_nodes_data:
+    print("- neighboring nodes...")
+    for index in neighboring_nodes_indices:
         nd = mesh.create_node(index=index)
-        ne_ns_indices1 = neighboring_nodes_data[index]
+        ne_ns_indices1 = neighboring_nodes_indices[index]
         ne_ns_indices2 = tuple(x.index for x in nd.neighboring_nodes)
         # print(index)
         # print(ne_ns_indices1)
@@ -83,19 +98,21 @@ def test_nodes(mesh, adjacent_triangles_data, neighboring_nodes_data):
     print("...are OK")
 
 
-def test_triangles(mesh, triangle_nodes_data):
+def test_triangles(mesh, triangle_nodes_indices):
     print("Running the triangle test:")
 
-    print("triangle nodes...")
-    for index in triangle_nodes_data:
+    print("- triangle nodes...")
+    for index in triangle_nodes_indices:
         tr = mesh.create_triangle(index=index)
-        tr_ns_indices1 = triangle_nodes_data[index]
+        tr_ns_indices1 = triangle_nodes_indices[index]
         tr_ns_indices2 = tuple(x.index for x in tr.triangle_nodes)
         assert tr_ns_indices1 == tr_ns_indices2, 'Calculated triangle nodes do not match test triangle nodes'
     print("...are OK")
 
 
 mesh4 = Mesh(partition=4)
-test_nodes(mesh4, mesh4_data.adjacent_triangles_data, mesh4_data.neighboring_nodes_data)
+test_edges(mesh4, mesh4_data.icosahedron_nodes_indices, mesh4_data.edge_nodes_indices)
 print('-'*20)
-test_triangles(mesh4, mesh4_data.triangle_nodes_data)
+test_nodes(mesh4, mesh4_data.adjacent_triangles_indices, mesh4_data.neighboring_nodes_indices)
+print('-'*20)
+test_triangles(mesh4, mesh4_data.triangle_nodes_indices)

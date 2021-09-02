@@ -1,5 +1,7 @@
 from pyglobe3d.warns import PyGlobe3DWarning
-from pyglobe3d.core.geometry.vertex import (change_vertex_radius, get_angle_between, get_rotated_vertex,
+from pyglobe3d.core.geometry.vertex import (change_vertex_radius,
+                                            get_angle_between,
+                                            get_rotated_vertex,
                                             get_triangle_midpoint_vertex)
 from pyglobe3d.core.icosasphere.any_mesh import AnyMesh
 
