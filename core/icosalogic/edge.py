@@ -1,7 +1,7 @@
 import functools
 
 from collections import namedtuple
-from typing import Generator, NamedTuple
+from typing import Generator
 
 from pyglobe3d.core.icosalogic.grid_consts import Grid
 from pyglobe3d.core.icosalogic.element_errs import EdgeIndexValueError
