@@ -1,7 +1,7 @@
 # PyGlobe3D
 PyGlobe3D is a free open-source logical-graphical Python library for creating globes by hexagon-like polygons and working with them.
 
-A surface consists mainly of hexagon-like polygons that are six triangles and also of twelve additional pentagon-like polygons that are five triangles and are lying only in the vertices of a icosahedron. They approximate a sphere or any part of the sphere. 
+A surface consists mainly of hexagon-like polygons that are six triangles and also of twelve additional pentagon-like polygons that are five triangles and are lying only in the vertices of an icosahedron. They approximate a sphere or any part of the sphere. 
 
 <img src="https://user-images.githubusercontent.com/85578981/127783633-d5dc5e1b-57e8-426b-ae48-cb57790e715e.png" data-canonical-src="https://user-images.githubusercontent.com/85578981/127783633-d5dc5e1b-57e8-426b-ae48-cb57790e715e.png" width="700"/>
 
