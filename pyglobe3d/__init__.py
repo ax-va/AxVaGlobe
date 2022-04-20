@@ -15,8 +15,8 @@ __dependencies__ = {
 }
 __doc__ = """
     PyGlobe3D is a free open-source logical-graphical Python library 
-    for creating globes by hexagon-like polygons and working with them. 
-    The library is designed for games, education, and simulation.
+    for creating globes by hexagon-like.  The library is designed for 
+    games, education, and simulation.
     """
 __library_version__ = '0.0.1'
 __library_release_date__ = '2021-xx-xx'
