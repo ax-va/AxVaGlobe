@@ -26,17 +26,18 @@ class Partition:
         if partition < 1:
             raise PartitionValueError(partition)
 
+        # Set common constants
         self.PARTITION: int = partition
         self.NUMBER_OF_NODES: int = self.PARTITION * self.PARTITION * 10 + 2
 
-        # areas and node borders
+        # Create areas and node borders: A-AB-B-BC-C
         self.area_a = Area("A")
         self.node_border_ab = NodeBorder("AB")
         self.area_b = Area("B")
         self.node_border_bc = NodeBorder("BC")
         self.area_c = Area("C")
 
-        # node constants
+        # Set constants for nodes
         self.area_a.FIRST_NODE_INDEX = 0
         self.area_a.LAST_NODE_INDEX = ((self.PARTITION - 1) * self.PARTITION) * 5 // 2
         self.area_a.NUMBER_OF_NODES = self.area_a.LAST_NODE_INDEX + 1
