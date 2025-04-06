@@ -4,7 +4,7 @@ class PartitionValueError(Exception):
         Exception.__init__(self, self.message)
 
 
-class Area:
+class _Area:
     def __init__(self, name: str):
         self.name: str = name
         self.FIRST_NODE_INDEX: int | None = None
@@ -12,7 +12,7 @@ class Area:
         self.NUMBER_OF_NODES: int | None = None
 
 
-class NodeBorder:
+class _NodeBorder:
     def __init__(self, name: str):
         self.name: str = name
         self.FIRST_NODE_INDEX: int | None = None
@@ -32,11 +32,11 @@ class Partition:
         self.NUMBER_OF_NODES: int = self.PARTITION_SQUARE * 10 + 2
 
         # Create schematic *disjoint* areas and node borders: "A"-"AB"-"B"-"BC"-"C"
-        self.area_a = Area("A")
-        self.node_border_ab = NodeBorder("AB")
-        self.area_b = Area("B")
-        self.node_border_bc = NodeBorder("BC")
-        self.area_c = Area("C")
+        self.area_a = _Area("A")
+        self.node_border_ab = _NodeBorder("AB")
+        self.area_b = _Area("B")
+        self.node_border_bc = _NodeBorder("BC")
+        self.area_c = _Area("C")
 
         # Set constants for nodes
         self.area_a.FIRST_NODE_INDEX = 0
