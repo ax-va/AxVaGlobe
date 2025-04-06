@@ -41,7 +41,7 @@ class Partition:
         self.area_a.FIRST_NODE_INDEX = 0
         self.area_a.LAST_NODE_INDEX = ((self.PARTITION - 1) * self.PARTITION) * 5 // 2
         self.area_a.NUMBER_OF_NODES = self.area_a.LAST_NODE_INDEX + 1
-        self.node_border_ab.FIRST_NODE_INDEX = self.area_a.LAST_NODE_INDEX + 1
+        self.node_border_ab.FIRST_NODE_INDEX = self.area_a.NUMBER_OF_NODES
         self.node_border_ab.NUMBER_OF_NODES = self.PARTITION * 5
         self.area_b.FIRST_NODE_INDEX = self.node_border_ab.FIRST_NODE_INDEX + self.node_border_ab.NUMBER_OF_NODES
         self.node_border_ab.LAST_NODE_INDEX = self.area_b.FIRST_NODE_INDEX - 1
