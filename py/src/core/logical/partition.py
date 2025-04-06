@@ -22,7 +22,7 @@ class NodeBorder:
 
 class Partition:
     def __init__(self, partition=1):
-        # The partition's value of 1 corresponds to the icosahedron
+        # The `partition`'s value of 1 corresponds to the icosahedron
         if not isinstance(partition, int) or partition < 1:
             raise PartitionValueError(partition)
 
