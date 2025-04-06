@@ -1,5 +1,5 @@
 # AxVaGlobe
-AxVaGlobe is a free open-source logical-graphical Python library for creating globes by hexagon-or-pentagon-like polygons.
+AxVaGlobe is a Python library for creating globes by hexagon-or-pentagon-like polygons.
 
 Each *surface unit* is a hexagon-like polygon consisting of six triangles or a pentagon-like polygon consisting of five triangles that share one vertex of the icosahedron. The surface units approximate the sphere or some part of the sphere. 
 
