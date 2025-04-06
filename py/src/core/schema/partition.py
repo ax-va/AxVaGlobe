@@ -28,8 +28,8 @@ class Partition:
 
         # Set common constants
         self.PARTITION: int = partition
-        SELF.PARTITION_SQUARE: int = self.PARTITION * self.PARTITION
-        self.NUMBER_OF_NODES: int = SELF.PARTITION_SQUARE * 10 + 2
+        self.PARTITION_SQUARE: int = self.PARTITION * self.PARTITION
+        self.NUMBER_OF_NODES: int = self.PARTITION_SQUARE * 10 + 2
 
         # Create areas and node borders: "A"-"AB"-"B"-"BC"-"C"
         self.area_a = Area("A")
@@ -40,7 +40,7 @@ class Partition:
 
         # Set constants for nodes
         self.area_a.FIRST_NODE_INDEX = 0
-        self.area_a.LAST_NODE_INDEX = (SELF.PARTITION_SQUARE - self.PARTITION) * 5 // 2
+        self.area_a.LAST_NODE_INDEX = (self.PARTITION_SQUARE - self.PARTITION) * 5 // 2
         self.area_a.NUMBER_OF_NODES = self.area_a.LAST_NODE_INDEX + 1
         self.node_border_ab.FIRST_NODE_INDEX = self.area_a.NUMBER_OF_NODES
         self.node_border_ab.NUMBER_OF_NODES = self.PARTITION * 5
