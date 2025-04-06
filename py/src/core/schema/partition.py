@@ -30,7 +30,7 @@ class Partition:
         self.PARTITION: int = partition
         self.NUMBER_OF_NODES: int = self.PARTITION * self.PARTITION * 10 + 2
 
-        # Create areas and node borders: A-AB-B-BC-C
+        # Create areas and node borders: "A"-"AB"-"B"-"BC"-"C"
         self.area_a = Area("A")
         self.node_border_ab = NodeBorder("AB")
         self.area_b = Area("B")
