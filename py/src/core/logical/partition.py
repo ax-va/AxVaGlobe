@@ -112,7 +112,7 @@ class Partition:
     #     return f'{self.__class__.__name__}(partition={self.PARTITION})'
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     prt = Partition(4)
     print(prt.area_a.FIRST_NODE_INDEX)
     print(prt.area_a.LAST_NODE_INDEX)
