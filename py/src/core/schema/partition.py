@@ -31,7 +31,7 @@ class Partition:
         self.PARTITION_SQUARE: int = self.PARTITION * self.PARTITION
         self.NUMBER_OF_NODES: int = self.PARTITION_SQUARE * 10 + 2
 
-        # Create *disjoint* areas and node borders: "A"-"AB"-"B"-"BC"-"C"
+        # Create schematic *disjoint* areas and node borders: "A"-"AB"-"B"-"BC"-"C"
         self.area_a = Area("A")
         self.node_border_ab = NodeBorder("AB")
         self.area_b = Area("B")
