@@ -10,8 +10,6 @@ class Area:
         self.FIRST_NODE_INDEX = None
         self.LAST_NODE_INDEX = None
         self.NUMBER_OF_NODES = None
-        if name == "B":
-            self.NUMBER_OF_LAYER_NODES = None
 
 
 class NodeBorder:
@@ -19,6 +17,7 @@ class NodeBorder:
         self.name = name
         self.FIRST_NODE_INDEX = None
         self.LAST_NODE_INDEX = None
+        self.NUMBER_OF_NODES = None
 
 
 class Partition:
@@ -32,23 +31,24 @@ class Partition:
 
         # areas and node borders
         self.area_a = Area("A")
-        self.area_b = Area("B")
-        self.area_c = Area("C")
         self.node_border_ab = NodeBorder("AB")
+        self.area_b = Area("B")
         self.node_border_bc = NodeBorder("BC")
+        self.area_c = Area("C")
 
         # node constants
         self.area_a.FIRST_NODE_INDEX = 0
-        self.area_a.LAST_NODE_INDEX = ((self.PARTITION  -  1) * self.PARTITION) * 5 // 2
+        self.area_a.LAST_NODE_INDEX = ((self.PARTITION - 1) * self.PARTITION) * 5 // 2
         self.area_a.NUMBER_OF_NODES = self.area_a.LAST_NODE_INDEX + 1
         self.node_border_ab.FIRST_NODE_INDEX = self.area_a.LAST_NODE_INDEX + 1
-        self.area_b.NUMBER_OF_LAYER_NODES = self.PARTITION * 5
-        self.area_b.FIRST_NODE_INDEX = self.node_border_ab.FIRST_NODE_INDEX + self.area_b.NUMBER_OF_LAYER_NODES
+        self.node_border_ab.NUMBER_OF_NODES = self.PARTITION * 5
+        self.area_b.FIRST_NODE_INDEX = self.node_border_ab.FIRST_NODE_INDEX + self.node_border_ab.NUMBER_OF_NODES
         self.node_border_ab.LAST_NODE_INDEX = self.area_b.FIRST_NODE_INDEX - 1
-        self.area_b.NUMBER_OF_NODES = (self.PARTITION - 1) * self.area_b.NUMBER_OF_LAYER_NODES
+        self.area_b.NUMBER_OF_NODES = (self.PARTITION - 1) * self.node_border_ab.NUMBER_OF_NODES
         self.node_border_bc.FIRST_NODE_INDEX = self.area_b.FIRST_NODE_INDEX + self.area_b.NUMBER_OF_NODES
         self.area_b.LAST_NODE_INDEX = self.node_border_bc.FIRST_NODE_INDEX - 1
-        self.area_c.FIRST_NODE_INDEX = self.node_border_bc.FIRST_NODE_INDEX + self.area_b.NUMBER_OF_LAYER_NODES
+        self.node_border_bc.NUMBER_OF_NODES = self.node_border_ab.NUMBER_OF_NODES
+        self.area_c.FIRST_NODE_INDEX = self.node_border_bc.FIRST_NODE_INDEX + self.node_border_bc.NUMBER_OF_NODES
         self.node_border_bc.LAST_NODE_INDEX = self.area_c.FIRST_NODE_INDEX - 1
         self.area_c.LAST_NODE_INDEX = self.NUMBER_OF_NODES - 1
         self.area_c.NUMBER_OF_NODES = self.area_a.NUMBER_OF_NODES
