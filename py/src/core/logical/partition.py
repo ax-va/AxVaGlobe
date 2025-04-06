@@ -1,33 +1,33 @@
 class PartitionValueError(Exception):
-    def __init__(self, value):
-        self.message = f"The partition value is not a positive integer: {value}."
+    def __init__(self, value: int):
+        self.message = f"The `partition`'s value is not a positive integer: {value}."
         Exception.__init__(self, self.message)
 
 
 class Area:
-    def __init__(self, name):
-        self.name = name
-        self.FIRST_NODE_INDEX = None
-        self.LAST_NODE_INDEX = None
-        self.NUMBER_OF_NODES = None
+    def __init__(self, name: str):
+        self.name: str = name
+        self.FIRST_NODE_INDEX: int | None = None
+        self.LAST_NODE_INDEX: int | None = None
+        self.NUMBER_OF_NODES: int | None = None
 
 
 class NodeBorder:
-    def __init__(self, name):
-        self.name = name
-        self.FIRST_NODE_INDEX = None
-        self.LAST_NODE_INDEX = None
-        self.NUMBER_OF_NODES = None
+    def __init__(self, name: str):
+        self.name: str = name
+        self.FIRST_NODE_INDEX: int | None = None
+        self.LAST_NODE_INDEX: int | None = None
+        self.NUMBER_OF_NODES: int | None = None
 
 
 class Partition:
-    def __init__(self, partition=1):
-        # The partition's value of 1 corresponds to the icosahedron
-        if not isinstance(partition, int) or partition < 1:
+    def __init__(self, partition: int = 1):
+        # The `partition`'s value of 1 corresponds to the icosahedron
+        if partition < 1:
             raise PartitionValueError(partition)
 
-        self.PARTITION = partition
-        self.NUMBER_OF_NODES = self.PARTITION * self.PARTITION * 10 + 2
+        self.PARTITION: int = partition
+        self.NUMBER_OF_NODES: int = self.PARTITION * self.PARTITION * 10 + 2
 
         # areas and node borders
         self.area_a = Area("A")
@@ -112,15 +112,15 @@ class Partition:
     #     return f'{self.__class__.__name__}(partition={self.PARTITION})'
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     prt = Partition(4)
-    print(prt.area_a.FIRST_NODE_INDEX)
-    print(prt.area_a.LAST_NODE_INDEX)
-    print(prt.node_border_ab.FIRST_NODE_INDEX)
-    print(prt.node_border_ab.LAST_NODE_INDEX)
-    print(prt.area_b.FIRST_NODE_INDEX)
-    print(prt.area_b.LAST_NODE_INDEX)
-    print(prt.node_border_bc.FIRST_NODE_INDEX)
-    print(prt.node_border_bc.LAST_NODE_INDEX)
-    print(prt.area_c.FIRST_NODE_INDEX)
-    print(prt.area_c.LAST_NODE_INDEX)
+    print("prt.area_a.FIRST_NODE_INDEX:", prt.area_a.FIRST_NODE_INDEX)
+    print("prt.area_a.LAST_NODE_INDEX:", prt.area_a.LAST_NODE_INDEX)
+    print("prt.node_border_ab.FIRST_NODE_INDEX:", prt.node_border_ab.FIRST_NODE_INDEX)
+    print("prt.node_border_ab.LAST_NODE_INDEX:", prt.node_border_ab.LAST_NODE_INDEX)
+    print("prt.area_b.FIRST_NODE_INDEX:", prt.area_b.FIRST_NODE_INDEX)
+    print("prt.area_b.LAST_NODE_INDEX:", prt.area_b.LAST_NODE_INDEX)
+    print("prt.node_border_bc.FIRST_NODE_INDEX:", prt.node_border_bc.FIRST_NODE_INDEX)
+    print("prt.node_border_bc.LAST_NODE_INDEX:", prt.node_border_bc.LAST_NODE_INDEX)
+    print("prt.area_c.FIRST_NODE_INDEX:", prt.area_c.FIRST_NODE_INDEX)
+    print("prt.area_c.LAST_NODE_INDEX:", prt.area_c.LAST_NODE_INDEX)
