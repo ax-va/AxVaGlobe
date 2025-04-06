@@ -31,10 +31,10 @@ class Partition:
 
         # areas and node borders
         self.area_a = Area("A")
-        self.area_b = Area("B")
-        self.area_c = Area("C")
         self.node_border_ab = NodeBorder("AB")
+        self.area_b = Area("B")
         self.node_border_bc = NodeBorder("BC")
+        self.area_c = Area("C")
 
         # node constants
         self.area_a.FIRST_NODE_INDEX = 0
