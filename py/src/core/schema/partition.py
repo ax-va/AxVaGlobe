@@ -1,6 +1,6 @@
 class PartitionValueError(Exception):
     def __init__(self, value: int):
-        self.message = f"The `partition`'s value is not a positive integer: {value}."
+        self.message = f"The partition value is not a positive integer: {value}."
         Exception.__init__(self, self.message)
 
 
