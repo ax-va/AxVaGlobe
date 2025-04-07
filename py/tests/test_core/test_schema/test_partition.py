@@ -5,6 +5,7 @@ from core.schema.partition import Partition
 
 @pytest.mark.parametrize(
     "partition,"
+    # constants for node indices
     "area_a_first_node_index,"
     "area_a_last_node_index,"
     "area_a_number_of_nodes,"
