@@ -26,7 +26,7 @@ class Partition:
     """
     This class contains all necessary constants that depend on a partition value.
     The partition value determines how many parts an edge of the icosahedron must be divided into.
-    The partitiob of 1 corresponds to the icosahedron itself.
+    The partition of 1 corresponds to the icosahedron itself.
     """
     def __init__(self, partition: int = 1):
         if partition < 1:
