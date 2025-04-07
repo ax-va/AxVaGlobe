@@ -8,15 +8,21 @@ class _Area:
     """There are three areas: "A", "B", and "C"."""
     def __init__(self, name: str):
         self.name: str = name
+        # constants for node indices in area
         self.FIRST_NODE_INDEX: int | None = None
         self.LAST_NODE_INDEX: int | None = None
         self.NUMBER_OF_NODES: int | None = None
+        # constants for triangle indices in area
+        self.FIRST_TRIANGLE_INDEX: int | None = None
+        self.LAST_TRIANGLE_INDEX: int | None = None
+        self.NUMBER_OF_TRIANGLES: int | None = None
 
 
 class _NodeBorder:
     """There are two node borders between three areas: "AB" and "BC"."""
     def __init__(self, name: str):
         self.name: str = name
+        # constants for node indices in node border
         self.FIRST_NODE_INDEX: int | None = None
         self.LAST_NODE_INDEX: int | None = None
         self.NUMBER_OF_NODES: int | None = None
@@ -34,8 +40,11 @@ class Partition:
 
         # Set common constants
         self.PARTITION: int = partition
+        self.PARTITION_TIMES_FIVE: int = self.PARTITION * 5
         self.PARTITION_SQUARE: int = self.PARTITION * self.PARTITION
+        self.PARTITION_SQUARE_TIMES_FIVE: int = self.PARTITION_SQUARE * 5
         self.NUMBER_OF_NODES: int = self.PARTITION_SQUARE * 10 + 2
+        self.NUMBER_OF_TRIANGLES: int = self.PARTITION_SQUARE * 20
 
         # Create schematic *disjoint* areas and node borders: 
         # "A"-"AB"-"B"-"BC"-"C"
@@ -45,12 +54,12 @@ class Partition:
         self.node_border_bc = _NodeBorder("BC")
         self.area_c = _Area("C")
 
-        # Set constants for nodes
+        # Set constants for node indices
         self.area_a.FIRST_NODE_INDEX = 0
-        self.area_a.LAST_NODE_INDEX = (self.PARTITION_SQUARE - self.PARTITION) * 5 // 2
-        self.area_a.NUMBER_OF_NODES = self.area_a.LAST_NODE_INDEX + 1
-        self.node_border_ab.FIRST_NODE_INDEX = self.area_a.NUMBER_OF_NODES
-        self.node_border_ab.NUMBER_OF_NODES = self.PARTITION * 5
+        self.area_a.NUMBER_OF_NODES = (self.PARTITION_SQUARE_TIMES_FIVE - self.PARTITION_TIMES_FIVE) // 2 + 1
+        self.node_border_ab.FIRST_NODE_INDEX = self.area_a.FIRST_NODE_INDEX + self.area_a.NUMBER_OF_NODES
+        self.area_a.LAST_NODE_INDEX = self.node_border_ab.FIRST_NODE_INDEX - 1
+        self.node_border_ab.NUMBER_OF_NODES = self.PARTITION_TIMES_FIVE
         self.area_b.FIRST_NODE_INDEX = self.node_border_ab.FIRST_NODE_INDEX + self.node_border_ab.NUMBER_OF_NODES
         self.node_border_ab.LAST_NODE_INDEX = self.area_b.FIRST_NODE_INDEX - 1
         self.area_b.NUMBER_OF_NODES = (self.PARTITION - 1) * self.node_border_ab.NUMBER_OF_NODES
@@ -59,8 +68,19 @@ class Partition:
         self.node_border_bc.NUMBER_OF_NODES = self.node_border_ab.NUMBER_OF_NODES
         self.area_c.FIRST_NODE_INDEX = self.node_border_bc.FIRST_NODE_INDEX + self.node_border_bc.NUMBER_OF_NODES
         self.node_border_bc.LAST_NODE_INDEX = self.area_c.FIRST_NODE_INDEX - 1
-        self.area_c.LAST_NODE_INDEX = self.NUMBER_OF_NODES - 1
         self.area_c.NUMBER_OF_NODES = self.area_a.NUMBER_OF_NODES
+        self.area_c.LAST_NODE_INDEX = self.NUMBER_OF_NODES - 1
+
+        # Set constants for triangle indices
+        self.area_a.FIRST_TRIANGLE_INDEX = 0
+        self.area_a.NUMBER_OF_TRIANGLES = self.PARTITION_SQUARE_TIMES_FIVE
+        self.area_b.FIRST_TRIANGLE_INDEX = self.area_a.FIRST_TRIANGLE_INDEX + self.area_a.NUMBER_OF_TRIANGLES
+        self.area_a.LAST_TRIANGLE_INDEX = self.area_b.FIRST_TRIANGLE_INDEX - 1
+        self.area_b.NUMBER_OF_TRIANGLES = self.area_a.NUMBER_OF_TRIANGLES * 2
+        self.area_c.FIRST_TRIANGLE_INDEX = self.area_b.FIRST_TRIANGLE_INDEX + self.area_b.NUMBER_OF_TRIANGLES
+        self.area_b.LAST_TRIANGLE_INDEX = self.area_c.FIRST_TRIANGLE_INDEX - 1
+        self.area_c.NUMBER_OF_TRIANGLES = self.area_a.NUMBER_OF_TRIANGLES
+        self.area_c.LAST_TRIANGLE_INDEX = self.NUMBER_OF_TRIANGLES - 1
 
     #     # self.PARTITION_MINUS_1 = self.PARTITION - 1
     #     self.PARTITION_MINUS_ONE = self.PARTITION - 1
@@ -138,3 +158,12 @@ if __name__ == "__main__":
     print("prt.area_c.FIRST_NODE_INDEX:", prt.area_c.FIRST_NODE_INDEX)
     print("prt.area_c.LAST_NODE_INDEX:", prt.area_c.LAST_NODE_INDEX)
     print("prt.area_c.NUMBER_OF_NODES:", prt.area_c.NUMBER_OF_NODES)
+    print("prt.area_a.FIRST_TRIANGLE_INDEX:", prt.area_a.FIRST_TRIANGLE_INDEX)
+    print("prt.area_a.NUMBER_OF_TRIANGLES:", prt.area_a.NUMBER_OF_TRIANGLES)
+    print("prt.area_b.FIRST_TRIANGLE_INDEX:", prt.area_b.FIRST_TRIANGLE_INDEX)
+    print("prt.area_a.LAST_TRIANGLE_INDEX:", prt.area_a.LAST_TRIANGLE_INDEX)
+    print("prt.area_b.NUMBER_OF_TRIANGLES:", prt.area_b.NUMBER_OF_TRIANGLES)
+    print("prt.area_c.FIRST_TRIANGLE_INDEX:", prt.area_c.FIRST_TRIANGLE_INDEX)
+    print("prt.area_b.LAST_TRIANGLE_INDEX:", prt.area_b.LAST_TRIANGLE_INDEX)
+    print("prt.area_c.NUMBER_OF_TRIANGLES:", prt.area_c.NUMBER_OF_TRIANGLES)
+    print("prt.area_c.LAST_TRIANGLE_INDEX:", prt.area_c.LAST_TRIANGLE_INDEX)

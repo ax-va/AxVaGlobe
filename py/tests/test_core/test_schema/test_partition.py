@@ -43,6 +43,7 @@ def test_valid_partitions(
 		area_c_number_of_nodes,
 ):
 	prt = Partition(partition)
+	# Check constants for node indices
 	assert prt.area_a.FIRST_NODE_INDEX == area_a_first_node_index
 	assert prt.area_a.LAST_NODE_INDEX == area_a_last_node_index
 	assert prt.area_a.NUMBER_OF_NODES == area_a_number_of_nodes
