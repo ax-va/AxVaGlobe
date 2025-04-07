@@ -23,8 +23,12 @@ class _NodeBorder:
 
 
 class Partition:
+    """
+    This class contains all the needed constants depending on a partition value.
+    The partition value determines how many parts an edge of the icosahedron must be divided into.
+    The value of 1 corresponds to the icosahedron itself.
+    """
     def __init__(self, partition: int = 1):
-        # The `partition`'s value of 1 corresponds to the icosahedron
         if partition < 1:
             raise PartitionValueError(partition)
 
