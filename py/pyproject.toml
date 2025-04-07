@@ -1,0 +1,4 @@
+[tool.pytest.ini_options]
+addopts = "-ra"  # Show extra summary info for all except passed tests (e.g., reasons for skipped tests, XFAIL, etc.)
+pythonpath = ["src"]
+testpaths = ["tests"]
