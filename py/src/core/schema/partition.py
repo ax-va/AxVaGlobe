@@ -5,6 +5,7 @@ class PartitionValueError(Exception):
 
 
 class _Area:
+    """There are three areas: "A", "B", and "C"."""
     def __init__(self, name: str):
         self.name: str = name
         self.FIRST_NODE_INDEX: int | None = None
@@ -13,6 +14,7 @@ class _Area:
 
 
 class _NodeBorder:
+    """There are two node borders between three areas: "AB" and "BC"."""
     def __init__(self, name: str):
         self.name: str = name
         self.FIRST_NODE_INDEX: int | None = None
