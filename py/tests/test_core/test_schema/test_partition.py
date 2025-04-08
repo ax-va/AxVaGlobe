@@ -23,7 +23,17 @@ from core.schema.partition import Partition
     "node_border_bc_number_of_nodes,"
     "area_c_first_node_index,"
     "area_c_last_node_index,"
-    "area_c_number_of_nodes",
+    "area_c_number_of_nodes,"
+    # constant parameters for triangle indices
+    "area_a_first_triangle_index,"
+    "area_a_last_triangle_index,"
+    "area_a_number_of_triangles,"
+    "area_b_first_triangle_index,"
+    "area_b_last_triangle_index,"
+    "area_b_number_of_triangles,"
+    "area_c_first_triangle_index,"
+    "area_c_last_triangle_index,"
+    "area_c_number_of_triangles",
     [
         # partition: 4
         (
@@ -31,6 +41,8 @@ from core.schema.partition import Partition
             *(4, 162, 320),
             # constant values for node indices
             *(0, 30, 31, 31, 50, 20, 51, 110, 60, 111, 130, 20, 131, 161, 31),
+            # constant parameters for triangle indices
+            *(0, 79, 80, 80, 239, 160, 240, 319, 80)
         ),
     ],
 )
@@ -55,6 +67,16 @@ def test_valid_partitions(
         area_c_first_node_index,
         area_c_last_node_index,
         area_c_number_of_nodes,
+        # constant parameters for triangle indices
+        area_a_first_triangle_index,
+        area_a_last_triangle_index,
+        area_a_number_of_triangles,
+        area_b_first_triangle_index,
+        area_b_last_triangle_index,
+        area_b_number_of_triangles,
+        area_c_first_triangle_index,
+        area_c_last_triangle_index,
+        area_c_number_of_triangles,
 ):
     prt = Partition(partition)
     # Check common constants
@@ -77,3 +99,13 @@ def test_valid_partitions(
     assert prt.area_c.FIRST_NODE_INDEX == area_c_first_node_index
     assert prt.area_c.LAST_NODE_INDEX == area_c_last_node_index
     assert prt.area_c.NUMBER_OF_NODES == area_c_number_of_nodes
+    # Check constants for triangle indices
+    assert prt.area_a.FIRST_TRIANGLE_INDEX == area_a_first_triangle_index
+    assert prt.area_a.LAST_TRIANGLE_INDEX == area_a_last_triangle_index
+    assert prt.area_a.NUMBER_OF_TRIANGLES == area_a_number_of_triangles
+    assert prt.area_b.FIRST_TRIANGLE_INDEX == area_b_first_triangle_index
+    assert prt.area_b.LAST_TRIANGLE_INDEX == area_b_last_triangle_index
+    assert prt.area_b.NUMBER_OF_TRIANGLES == area_b_number_of_triangles
+    assert prt.area_c.FIRST_TRIANGLE_INDEX == area_c_first_triangle_index
+    assert prt.area_c.LAST_TRIANGLE_INDEX == area_c_last_triangle_index
+    assert prt.area_c.NUMBER_OF_TRIANGLES == area_c_number_of_triangles
