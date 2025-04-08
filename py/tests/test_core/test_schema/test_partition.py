@@ -26,7 +26,6 @@ from core.schema.partition import Partition
     "area_c_number_of_nodes",
     [
         # partition: 4
-
         (
             # common constant values
             *(4, 162, 320),
