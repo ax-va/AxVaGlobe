@@ -25,10 +25,10 @@ from core.schema.partition import Partition
     "area_c_last_node_index,"
     "area_c_number_of_nodes",
     [
-	# partition: 4
+		# partition: 4
         (
-	    # common constant values
-	    *(4, 162, 320),
+	        # common constant values
+	        *(4, 162, 320),
             # constant values for node indices
             *(0, 30, 31, 31, 50, 20, 51, 110, 60, 111, 130, 20, 131, 161, 31),
         ),
