@@ -4,8 +4,11 @@ from core.schema.partition import Partition
 
 
 @pytest.mark.parametrize(
+    # common constant parameters
     "partition,"
-    # constants for node indices
+    "number_of_nodes,"
+    "number_of_triangles,"
+    # constant parameters for node indices
     "area_a_first_node_index,"
     "area_a_last_node_index,"
     "area_a_number_of_nodes,"
@@ -22,11 +25,21 @@ from core.schema.partition import Partition
     "area_c_last_node_index,"
     "area_c_number_of_nodes",
     [
-        (4, 0, 30, 31, 31, 50, 20, 51, 110, 60, 111, 130, 20, 131, 161, 31),
+	    # partition: 4
+        (
+	        # common constant values
+			*(4, 162, 320),
+            # constant values for node indices
+            *(0, 30, 31, 31, 50, 20, 51, 110, 60, 111, 130, 20, 131, 161, 31),
+        ),
     ],
 )
 def test_valid_partitions(
+		# common constant parameters
 		partition,
+		number_of_nodes,
+		number_of_triangles,
+		# constant parameters for node indices
 		area_a_first_node_index,
 		area_a_last_node_index,
 		area_a_number_of_nodes,
@@ -44,6 +57,10 @@ def test_valid_partitions(
 		area_c_number_of_nodes,
 ):
 	prt = Partition(partition)
+	# Check common constants
+	assert prt.PARTITION == partition
+	assert prt.NUMBER_OF_NODES == number_of_nodes
+	assert prt.NUMBER_OF_TRIANGLES == number_of_triangles
 	# Check constants for node indices
 	assert prt.area_a.FIRST_NODE_INDEX == area_a_first_node_index
 	assert prt.area_a.LAST_NODE_INDEX == area_a_last_node_index
