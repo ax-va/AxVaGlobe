@@ -4,7 +4,7 @@
 
 **AxVaGlobe** is a project for creating globes by hexagon-or-pentagon-like polygons and for navigating on them.
 
-## Why graphical?
+## Graphical Component
 
 A *surface unit* is a hexagon-like polygon consisting of six triangles or a pentagon-like polygon consisting of five triangles that share one vertex of the icosahedron. The surface units approximate the sphere or some part of the sphere. 
 
@@ -12,7 +12,7 @@ A *surface unit* is a hexagon-like polygon consisting of six triangles or a pent
 
 Changing the radius of the sphere for the surface units can create arbitrary 3D surfaces on the sphere. 
 
-## Why logical?
+## Logical Component
 
 The logical component is that each surface unit knows its nearest neighbors that is implemented algorithmically, not by storage. Due to that, discrete movement on the surface is possible.
 
