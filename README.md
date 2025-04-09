@@ -1,4 +1,7 @@
 # NavGlobe
+
+## What is NavGlobe?
+
 **NavGlobe** is a logical-graphical library for creating globes by hexagon-or-pentagon-like polygons and for navigating on them.
 
 A *surface unit* is a hexagon-like polygon consisting of six triangles or a pentagon-like polygon consisting of five triangles that share one vertex of the icosahedron. The surface units approximate the sphere or some part of the sphere. 
