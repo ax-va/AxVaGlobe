@@ -45,6 +45,7 @@ class _AreaA(_Area):
 
 class _AreaB(_Area):
     def __init__(self):
+        # constant for all layers
         self.NUMBER_OF_LAYER_NODES: int | None = None
         super().__init__("B")
 
