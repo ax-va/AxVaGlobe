@@ -12,10 +12,18 @@ class _Area:
         self.FIRST_NODE_INDEX: int | None = None
         self.LAST_NODE_INDEX: int | None = None
         self.NUMBER_OF_NODES: int | None = None
+        # constants for node layer indices in area
+        self.FIRST_NODE_LAYER_INDEX: int | None = None
+        self.LAST_NODE_LAYER_INDEX: int | None = None
+        self.NUMBER_OF_NODE_LAYERS: int | None = None
         # constants for triangle indices in area
         self.FIRST_TRIANGLE_INDEX: int | None = None
         self.LAST_TRIANGLE_INDEX: int | None = None
         self.NUMBER_OF_TRIANGLES: int | None = None
+        # constants for triangle layer indices in layer in area
+        self.FIRST_TRIANGLE_LAYER_INDEX: int | None = None
+        self.LAST_TRIANGLE_LAYER_INDEX: int | None = None
+        self.NUMBER_OF_TRIANGLE_LAYERS: int | None = None
 
 
 class _NodeBorder:
@@ -26,6 +34,34 @@ class _NodeBorder:
         self.FIRST_NODE_INDEX: int | None = None
         self.LAST_NODE_INDEX: int | None = None
         self.NUMBER_OF_NODES: int | None = None
+        # constants for node layer indices in node border
+        self.NODE_LAYER_INDEX: int | None = None
+
+
+class _AreaA(_Area):
+    def __init__(self):
+        super().__init__("A")
+
+
+class _AreaB(_Area):
+    def __init__(self):
+        self.NUMBER_OF_LAYER_NODES: int | None = None
+        super().__init__("B")
+
+
+class _AreaC(_Area):
+    def __init__(self):
+        super().__init__("C")
+
+
+class _NodeBorderAB(_NodeBorder):
+    def __init__(self):
+        super().__init__("AB")
+
+
+class _NodeBorderBC(_NodeBorder):
+    def __init__(self):
+        super().__init__("BC")
 
 
 class Partition:
@@ -40,18 +76,22 @@ class Partition:
 
         # Set common constants
         self.PARTITION: int = partition
+        self.PARTITION_MINUS_ONE: int = self.PARTITION - 1
         self.PARTITION_TIMES_FIVE: int = self.PARTITION * 5
         self.PARTITION_SQUARE: int = self.PARTITION * self.PARTITION
         self.PARTITION_SQUARE_TIMES_FIVE: int = self.PARTITION_SQUARE * 5
-        self.NUMBER_OF_NODES: int = self.PARTITION_SQUARE * 10 + 2
+        self.NUMBER_OF_NODES: int = self.PARTITION_SQUARE_TIMES_FIVE * 2 + 2
+        self.NUMBER_OF_NODE_LAYERS: int = self.PARTITION * 3 + 1
         self.NUMBER_OF_TRIANGLES: int = self.PARTITION_SQUARE * 20
+        self.NUMBER_OF_TRIANGLE_LAYERS: int = self.NUMBER_OF_NODE_LAYERS - 1
+        self.NUMBER_OF_EDGE_NODES: int = self.PARTITION + 1
 
         # Create schematic areas and node borders: "A"-"AB"-"B"-"BC"-"C"
-        self.area_a = _Area("A")
-        self.node_border_ab = _NodeBorder("AB")
-        self.area_b = _Area("B")
-        self.node_border_bc = _NodeBorder("BC")
-        self.area_c = _Area("C")
+        self.area_a = _AreaA()
+        self.node_border_ab = _NodeBorderAB()
+        self.area_b = _AreaB()
+        self.node_border_bc = _NodeBorderBC()
+        self.area_c = _AreaC()
 
         # Set constants for node indices
         self.area_a.FIRST_NODE_INDEX = 0
@@ -61,7 +101,7 @@ class Partition:
         self.node_border_ab.NUMBER_OF_NODES = self.PARTITION_TIMES_FIVE
         self.area_b.FIRST_NODE_INDEX = self.node_border_ab.FIRST_NODE_INDEX + self.node_border_ab.NUMBER_OF_NODES
         self.node_border_ab.LAST_NODE_INDEX = self.area_b.FIRST_NODE_INDEX - 1
-        self.area_b.NUMBER_OF_NODES = (self.PARTITION - 1) * self.node_border_ab.NUMBER_OF_NODES
+        self.area_b.NUMBER_OF_NODES = self.PARTITION_MINUS_ONE * self.node_border_ab.NUMBER_OF_NODES
         self.node_border_bc.FIRST_NODE_INDEX = self.area_b.FIRST_NODE_INDEX + self.area_b.NUMBER_OF_NODES
         self.area_b.LAST_NODE_INDEX = self.node_border_bc.FIRST_NODE_INDEX - 1
         self.node_border_bc.NUMBER_OF_NODES = self.node_border_ab.NUMBER_OF_NODES
@@ -69,6 +109,20 @@ class Partition:
         self.node_border_bc.LAST_NODE_INDEX = self.area_c.FIRST_NODE_INDEX - 1
         self.area_c.NUMBER_OF_NODES = self.area_a.NUMBER_OF_NODES
         self.area_c.LAST_NODE_INDEX = self.NUMBER_OF_NODES - 1
+
+        # Set constants for node layer indices
+        self.area_a.FIRST_NODE_LAYER_INDEX = 0
+        self.area_a.NUMBER_OF_NODE_LAYERS = self.PARTITION
+        self.node_border_ab.NODE_LAYER_INDEX = self.area_a.FIRST_NODE_LAYER_INDEX + self.area_a.NUMBER_OF_NODE_LAYERS
+        self.area_a.LAST_NODE_LAYER_INDEX = self.node_border_ab.NODE_LAYER_INDEX - 1
+        self.area_b.FIRST_NODE_LAYER_INDEX = self.node_border_ab.NODE_LAYER_INDEX + 1
+        self.area_b.NUMBER_OF_NODE_LAYERS = self.PARTITION_MINUS_ONE
+        self.area_b.NUMBER_OF_LAYER_NODES = self.PARTITION_TIMES_FIVE
+        self.node_border_bc.NODE_LAYER_INDEX = self.area_b.FIRST_NODE_LAYER_INDEX + self.area_b.NUMBER_OF_NODE_LAYERS
+        self.area_b.LAST_NODE_LAYER_INDEX = self.node_border_bc.NODE_LAYER_INDEX - 1
+        self.area_c.FIRST_NODE_LAYER_INDEX = self.node_border_bc.NODE_LAYER_INDEX + 1
+        self.area_c.NUMBER_OF_NODE_LAYERS = self.area_a.NUMBER_OF_NODE_LAYERS
+        self.area_c.LAST_NODE_LAYER_INDEX = self.NUMBER_OF_NODE_LAYERS - 1
 
         # Set constants for triangle indices
         self.area_a.FIRST_TRIANGLE_INDEX = 0
@@ -81,63 +135,19 @@ class Partition:
         self.area_c.NUMBER_OF_TRIANGLES = self.area_a.NUMBER_OF_TRIANGLES
         self.area_c.LAST_TRIANGLE_INDEX = self.NUMBER_OF_TRIANGLES - 1
 
-    #     # self.PARTITION_MINUS_1 = self.PARTITION - 1
-    #     self.PARTITION_MINUS_ONE = self.PARTITION - 1
-    #     # self.PARTITION_PLUS_1 = self.PARTITION + 1
-    #     self.PARTITION_PLUS_ONE = self.PARTITION + 1
-    #
-    #     self.PARTITION_X2 = self.PARTITION + self.PARTITION
-    #     self.PARTITION_X2_MINUS_1 = self.PARTITION_X2 - 1
-    #     self.PARTITION_X3 = self.PARTITION_X2 + self.PARTITION
-    #     self.PARTITION_X4 = self.PARTITION_X2 + self.PARTITION_X2
-    #     self.PARTITION_X5 = self.PARTITION_X3 + self.PARTITION_X2
-    #     self.PARTITION_X10 = self.PARTITION_X5 + self.PARTITION_X5
-    #     self.PARTITION_X10_MINUS_1 = self.PARTITION_X10 - 1
-    #     self.SQUARED_PARTITION = self.PARTITION * self.PARTITION
-    #     self.SQUARED_PARTITION_MINUS_PARTITION = self.SQUARED_PARTITION - self.PARTITION
-    #     self.SQUARED_PARTITION_MINUS_PARTITION_X2_5 = self.SQUARED_PARTITION_MINUS_PARTITION * 5 // 2
-    #     self.SQUARED_PARTITION_X5 = self.SQUARED_PARTITION * 5
-    #     self.SQUARED_PARTITION_MINUS_PARTITION_X2_5_PLUS_SQUARED_PARTITION_X5_PLUS_PARTITION_X5 \
-    #         = self.SQUARED_PARTITION_MINUS_PARTITION_X2_5 \
-    #           + self.SQUARED_PARTITION_X5 \
-    #           + self.PARTITION_X5
-    #     self.SQUARED_PARTITION_X10 = self.SQUARED_PARTITION_X5 + self.SQUARED_PARTITION_X5
-    #     self.SQUARED_PARTITION_X15 = self.SQUARED_PARTITION_X5 * 3
-    #     self.SQUARED_PARTITION_X15_MINUS_1 = self.SQUARED_PARTITION_X15 - 1
-    #     self.SQUARED_PARTITION_X20 = self.SQUARED_PARTITION_X10 + self.SQUARED_PARTITION_X10
-    #
-    #     self.FIRST_NODE_INDEX_IN_PART2 = self.SQUARED_PARTITION_MINUS_PARTITION_X2_5 + 1
-    #     self.FIRST_NODE_INDEX_IN_PART3 \
-    #         = self.SQUARED_PARTITION_MINUS_PARTITION_X2_5_PLUS_SQUARED_PARTITION_X5_PLUS_PARTITION_X5 + 1
-    #     self.FIRST_NODE_LAYER_IN_PART2 = self.PARTITION
-    #     self.FIRST_NODE_LAYER_IN_PART3 = self.PARTITION_X2
-    #     self.FIRST_TRIANGLE_INDEX_IN_PART2 = self.SQUARED_PARTITION_X5
-    #     self.FIRST_TRIANGLE_INDEX_IN_PART3 = self.SQUARED_PARTITION_X15
-    #     self.FIRST_TRIANGLE_LAYER_IN_PART2 = self.PARTITION
-    #     self.FIRST_TRIANGLE_LAYER_IN_PART3 = self.PARTITION_X2
-    #     self.LAST_NODE_INDEX  self.SQUARED_PARTITION_X10 + 1
-    #     self.LAST_NODE_INDEX_IN_PART1 = self.SQUARED_PARTITION_MINUS_PARTITION_X2_5
-    #     self.LAST_NODE_INDEX_IN_PART2 \
-    #         = self.SQUARED_PARTITION_MINUS_PARTITION_X2_5_PLUS_SQUARED_PARTITION_X5_PLUS_PARTITION_X5
-    #     self.LAST_NODE_LAYER = self.PARTITION_X3
-    #     self.LAST_NODE_LAYER_IN_PART1 = self.PARTITION
-    #     self.LAST_NODE_LAYER_IN_PART2 = self.PARTITION_X2
-    #     self.LAST_NODE_POSITION_IN_LAYER_IN_PART2 = self.PARTITION_X5 - 1
-    #     self.LAST_TRIANGLE_INDEX = self.SQUARED_PARTITION_X20 - 1
-    #     self.LAST_TRIANGLE_INDEX_IN_PART1 = self.SQUARED_PARTITION_X5 - 1
-    #     self.LAST_TRIANGLE_INDEX_IN_PART2 = self.SQUARED_PARTITION_X15_MINUS_1
-    #     self.LAST_TRIANGLE_LAYER = self.PARTITION_X3 - 1
-    #     self.LAST_TRIANGLE_LAYER_IN_PART1 = self.PARTITION_MINUS_1
-    #     self.LAST_TRIANGLE_LAYER_IN_PART2 = self.PARTITION_X2_MINUS_1
-    #     self.LAST_TRIANGLE_POSITION_IN_LAYER_IN_PART2 = self.PARTITION_X10_MINUS_1
-    #
-    #     self.NUMBER_OF_EDGES = 30
-    #     self.NUMBER_OF_NODES = self.SQUARED_PARTITION_X10 + 2
-    #     self.NUMBER_OF_NODES_IN_EDGE = self.PARTITION_PLUS_1
-    #     self.NUMBER_OF_TRIANGLES = self.SQUARED_PARTITION_X20
-    #
-    # def __repr__(self):
-    #     return f'{self.__class__.__name__}(partition={self.PARTITION})'
+        # Set constants for triangle layer indices
+        self.area_a.FIRST_TRIANGLE_LAYER_INDEX = 0
+        self.area_a.NUMBER_OF_TRIANGLE_LAYERS = self.PARTITION
+        self.area_b.FIRST_TRIANGLE_LAYER_INDEX = self.area_a.FIRST_TRIANGLE_LAYER_INDEX + self.area_a.NUMBER_OF_TRIANGLE_LAYERS
+        self.area_a.LAST_TRIANGLE_LAYER_INDEX = self.area_b.FIRST_TRIANGLE_LAYER_INDEX - 1
+        self.area_b.NUMBER_OF_TRIANGLE_LAYERS = self.area_a.NUMBER_OF_TRIANGLE_LAYERS
+        self.area_c.FIRST_TRIANGLE_LAYER_INDEX = self.area_b.FIRST_TRIANGLE_LAYER_INDEX + self.area_b.NUMBER_OF_TRIANGLE_LAYERS
+        self.area_c.NUMBER_OF_TRIANGLE_LAYERS = self.area_b.NUMBER_OF_TRIANGLE_LAYERS
+        self.area_c.LAST_TRIANGLE_LAYER_INDEX = self.NUMBER_OF_TRIANGLE_LAYERS - 1
+
+
+    def __repr__(self):
+        return f"Partition({self.PARTITION})"
 
 
 if __name__ == "__main__":
