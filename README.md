@@ -1,7 +1,3 @@
-# AxVaGlobe
-
-## About the Project
-
 **AxVaGlobe** is a project for creating globes by hexagon-or-pentagon-like polygons and for navigating on them.
 
 ## Graphical Component
