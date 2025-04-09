@@ -2,7 +2,7 @@
 
 ## What is it?
 
-**NavGlobe** is a graphical-logical library for creating globes by hexagon-or-pentagon-like polygons and for navigating on them.
+**NavGlobe** is a project for creating globes by hexagon-or-pentagon-like polygons and for navigating on them.
 
 ## Why graphical?
 
