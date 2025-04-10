@@ -143,6 +143,7 @@ class Partition:
         self.area_a.LAST_TRIANGLE_LAYER_INDEX = self.area_b.FIRST_TRIANGLE_LAYER_INDEX - 1
         self.area_b.NUMBER_OF_TRIANGLE_LAYERS = self.area_a.NUMBER_OF_TRIANGLE_LAYERS
         self.area_c.FIRST_TRIANGLE_LAYER_INDEX = self.area_b.FIRST_TRIANGLE_LAYER_INDEX + self.area_b.NUMBER_OF_TRIANGLE_LAYERS
+        self.area_b.LAST_TRIANGLE_LAYER_INDEX = self.area_c.FIRST_TRIANGLE_LAYER_INDEX - 1
         self.area_c.NUMBER_OF_TRIANGLE_LAYERS = self.area_b.NUMBER_OF_TRIANGLE_LAYERS
         self.area_c.LAST_TRIANGLE_LAYER_INDEX = self.NUMBER_OF_TRIANGLE_LAYERS - 1
 

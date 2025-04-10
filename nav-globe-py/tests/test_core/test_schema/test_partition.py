@@ -183,3 +183,45 @@ def test_constants_for_triangle_indices(
     assert prt.area_c.FIRST_TRIANGLE_INDEX == area_c_first_triangle_index
     assert prt.area_c.LAST_TRIANGLE_INDEX == area_c_last_triangle_index
     assert prt.area_c.NUMBER_OF_TRIANGLES == area_c_number_of_triangles
+
+
+@pytest.mark.parametrize(
+    "partition,"
+    # constants for triangle layer indices
+    "area_a_first_triangle_layer_index,"
+    "area_a_last_triangle_layer_index,"
+    "area_a_number_of_triangle_layers,"
+    "area_b_first_triangle_layer_index,"
+    "area_b_last_triangle_layer_index,"
+    "area_b_number_of_triangle_layers,"
+    "area_c_first_triangle_layer_index,"
+    "area_c_last_triangle_layer_index,"
+    "area_c_number_of_triangle_layers",
+    [
+        (4, 0, 3, 4, 4, 7, 4, 8, 11, 4),  # partition: 4
+    ],
+)
+def test_constants_for_triangle_layer_indices(
+        partition,
+        # constants for triangle layer indices
+        area_a_first_triangle_layer_index,
+        area_a_last_triangle_layer_index,
+        area_a_number_of_triangle_layers,
+        area_b_first_triangle_layer_index,
+        area_b_last_triangle_layer_index,
+        area_b_number_of_triangle_layers,
+        area_c_first_triangle_layer_index,
+        area_c_last_triangle_layer_index,
+        area_c_number_of_triangle_layers,
+):
+    prt = Partition(partition)
+    # Check constants for triangle layer indices
+    assert prt.area_a.FIRST_TRIANGLE_LAYER_INDEX == area_a_first_triangle_layer_index
+    assert prt.area_a.LAST_TRIANGLE_LAYER_INDEX == area_a_last_triangle_layer_index
+    assert prt.area_a.NUMBER_OF_TRIANGLE_LAYERS == area_a_number_of_triangle_layers
+    assert prt.area_b.FIRST_TRIANGLE_LAYER_INDEX == area_b_first_triangle_layer_index
+    assert prt.area_b.LAST_TRIANGLE_LAYER_INDEX == area_b_last_triangle_layer_index
+    assert prt.area_b.NUMBER_OF_TRIANGLE_LAYERS == area_b_number_of_triangle_layers
+    assert prt.area_c.FIRST_TRIANGLE_LAYER_INDEX == area_c_first_triangle_layer_index
+    assert prt.area_c.LAST_TRIANGLE_LAYER_INDEX == area_c_last_triangle_layer_index
+    assert prt.area_c.NUMBER_OF_TRIANGLE_LAYERS == area_c_number_of_triangle_layers
