@@ -11,6 +11,8 @@ from core.schema.partition import Partition
     "number_of_triangle_layers,"
     "number_of_node_edges",
     [
+        (2, 42, 80, 7, 6, 3),  # partition: 2
+        (3, 92, 180, 10, 9, 4),  # partition: 3
         (4, 162, 320, 13, 12, 5),  # partition: 4
     ],
 )
@@ -51,6 +53,8 @@ def test_common_constants(
     "area_c_last_node_index,"
     "area_c_number_of_nodes",
     [
+        (2, 0, 5, 6, 6, 15, 10, 16, 25, 10, 26, 35, 10, 36, 41, 6),  # partition: 2
+        (3, 0, 15, 16, 16, 30, 15, 31, 60, 30, 61, 75, 15, 76, 91, 16),  # partition: 3
         (4, 0, 30, 31, 31, 50, 20, 51, 110, 60, 111, 130, 20, 131, 161, 31),  # partition: 4
     ],
 )
