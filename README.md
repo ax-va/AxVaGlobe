@@ -2,7 +2,7 @@
 
 ## Project
 
-**AxVaGlobe** is a project for creating globes by hexagon-or-pentagon-like polygons and for navigating on them.
+**AxVaGlobe** is a project for creating globes by hexagon-or-pentagon-like polygons and for navigating on them. The project targets many programming languages, including Python, Rust, and JavaScript.
 
 ## Graphical Component
 
