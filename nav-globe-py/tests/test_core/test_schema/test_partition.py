@@ -102,7 +102,7 @@ def test_constants_for_node_indices(
     "area_b_first_node_layer_index,"
     "area_b_last_node_layer_index,"
     "area_b_number_of_node_layers,"
-    "area_b_number_of_layer_nodes,"
+    "area_b_number_of_node_layer_nodes,"
     "node_border_bc_node_layer_index,"
     "area_c_first_node_layer_index,"
     "area_c_last_node_layer_index,"
@@ -121,7 +121,7 @@ def test_constants_for_node_layer_indices(
         area_b_first_node_layer_index,
         area_b_last_node_layer_index,
         area_b_number_of_node_layers,
-        area_b_number_of_layer_nodes,
+        area_b_number_of_node_layer_nodes,
         node_border_bc_node_layer_index,
         area_c_first_node_layer_index,
         area_c_last_node_layer_index,
@@ -136,7 +136,7 @@ def test_constants_for_node_layer_indices(
     assert prt.area_b.FIRST_NODE_LAYER_INDEX == area_b_first_node_layer_index
     assert prt.area_b.LAST_NODE_LAYER_INDEX == area_b_last_node_layer_index
     assert prt.area_b.NUMBER_OF_NODE_LAYERS == area_b_number_of_node_layers
-    assert prt.area_b.NUMBER_OF_LAYER_NODES == area_b_number_of_layer_nodes
+    assert prt.area_b.NUMBER_OF_NODE_LAYER_NODES == area_b_number_of_node_layer_nodes
     assert prt.node_border_bc.NODE_LAYER_INDEX == node_border_bc_node_layer_index
     assert prt.area_c.FIRST_NODE_LAYER_INDEX == area_c_first_node_layer_index
     assert prt.area_c.LAST_NODE_LAYER_INDEX == area_c_last_node_layer_index

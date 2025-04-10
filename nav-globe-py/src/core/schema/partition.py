@@ -45,8 +45,8 @@ class _AreaA(_Area):
 
 class _AreaB(_Area):
     def __init__(self):
-        # constant for all layers
-        self.NUMBER_OF_LAYER_NODES: int | None = None
+        # constant for all node layers
+        self.NUMBER_OF_NODE_LAYER_NODES: int | None = None
         super().__init__("B")
 
 
@@ -118,7 +118,7 @@ class Partition:
         self.area_a.LAST_NODE_LAYER_INDEX = self.node_border_ab.NODE_LAYER_INDEX - 1
         self.area_b.FIRST_NODE_LAYER_INDEX = self.node_border_ab.NODE_LAYER_INDEX + 1
         self.area_b.NUMBER_OF_NODE_LAYERS = self.PARTITION_MINUS_ONE
-        self.area_b.NUMBER_OF_LAYER_NODES = self.PARTITION_TIMES_FIVE
+        self.area_b.NUMBER_OF_NODE_LAYER_NODES = self.PARTITION_TIMES_FIVE
         self.node_border_bc.NODE_LAYER_INDEX = self.area_b.FIRST_NODE_LAYER_INDEX + self.area_b.NUMBER_OF_NODE_LAYERS
         self.area_b.LAST_NODE_LAYER_INDEX = self.node_border_bc.NODE_LAYER_INDEX - 1
         self.area_c.FIRST_NODE_LAYER_INDEX = self.node_border_bc.NODE_LAYER_INDEX + 1
