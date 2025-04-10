@@ -82,9 +82,9 @@ class Partition:
         self.PARTITION_SQUARE: int = self.PARTITION * self.PARTITION
         self.PARTITION_SQUARE_TIMES_FIVE: int = self.PARTITION_SQUARE * 5
         self.NUMBER_OF_NODES: int = self.PARTITION_SQUARE_TIMES_FIVE * 2 + 2
-        self.NUMBER_OF_NODE_LAYERS: int = self.PARTITION * 3 + 1
         self.NUMBER_OF_TRIANGLES: int = self.PARTITION_SQUARE * 20
-        self.NUMBER_OF_TRIANGLE_LAYERS: int = self.NUMBER_OF_NODE_LAYERS - 1
+        self.NUMBER_OF_TRIANGLE_LAYERS: int = self.PARTITION * 3
+        self.NUMBER_OF_NODE_LAYERS: int = self.NUMBER_OF_TRIANGLE_LAYERS + 1
         self.NUMBER_OF_EDGE_NODES: int = self.PARTITION + 1
 
         # Create schematic areas and node borders: "A"-"AB"-"B"-"BC"-"C"
