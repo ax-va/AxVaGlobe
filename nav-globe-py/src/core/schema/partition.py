@@ -75,12 +75,12 @@ class Partition:
         if partition < 1:
             raise PartitionValueError(partition)
 
-        # Set common constants
         self.PARTITION: int = partition
         self.PARTITION_MINUS_ONE: int = self.PARTITION - 1
         self.PARTITION_TIMES_FIVE: int = self.PARTITION * 5
         self.PARTITION_SQUARE: int = self.PARTITION * self.PARTITION
         self.PARTITION_SQUARE_TIMES_FIVE: int = self.PARTITION_SQUARE * 5
+        # Set common constants
         self.NUMBER_OF_NODES: int = self.PARTITION_SQUARE_TIMES_FIVE * 2 + 2
         self.NUMBER_OF_TRIANGLES: int = self.PARTITION_SQUARE * 20
         self.NUMBER_OF_TRIANGLE_LAYERS: int = self.PARTITION * 3
