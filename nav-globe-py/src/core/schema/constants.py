@@ -8,19 +8,19 @@ class _Indices:
         self.NUMBER: int | None = None
 
 
-class _AreaNodeLayers(_Indices):
-    pass
-
-
 class _AreaNodes(_Indices):
     pass
 
 
-class _AreaTriangleLayers(_Indices):
+class _AreaTriangles(_Indices):
     pass
 
 
-class _AreaTriangles(_Indices):
+class _AreaNodeLayers(_Indices):
+    pass
+
+
+class _AreaTriangleLayers(_Indices):
     pass
 
 
@@ -34,13 +34,13 @@ class _Area:
         self.triangle_layers = _AreaTriangleLayers()
 
 
+class _BorderNodes(_Indices):
+    pass
+
+
 class _BorderNodeLayer:
     def __init__(self):
         self.INDEX: int | None = None
-
-
-class _BorderNodes(_Indices):
-    pass
 
 
 class _Border:
