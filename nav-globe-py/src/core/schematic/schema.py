@@ -164,4 +164,4 @@ class Schema:
 
 
     def __repr__(self):
-        return f"Partition({self.PARTITION})"
+        return f"Schema({self.PARTITION})"
