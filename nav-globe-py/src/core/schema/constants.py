@@ -1,4 +1,4 @@
-from core.schematic.errors import PartitionValueError
+from core.schema.errors import PartitionValueError
 
 
 class _Indices:
@@ -78,7 +78,7 @@ class _BorderBC(_Border):
         super().__init__("BC")
 
 
-class Schema:
+class Constants:
     """
     This class contains all necessary constants that depend on a partition value.
     - The partition value determines how many parts an edge of the icosahedron must be divided into.
@@ -164,4 +164,4 @@ class Schema:
 
 
     def __repr__(self):
-        return f"Schema({self.PARTITION})"
+        return f"Constants({self.PARTITION})"
