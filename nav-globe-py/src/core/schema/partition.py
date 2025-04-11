@@ -1,6 +1,6 @@
 class PartitionValueError(Exception):
     def __init__(self, value: int):
-        self.message = f"The partition value is not a positive integer: {value}."
+        self.message = f"The partition's value is not a positive integer greater than one: {value}."
         Exception.__init__(self, self.message)
 
 
@@ -67,12 +67,12 @@ class _NodeBorderBC(_NodeBorder):
 
 class Partition:
     """
-    This class contains all necessary constants that depend on a partition value.
-    The partition value determines how many parts an edge of the icosahedron must be divided into.
-    The partition of 1 corresponds to the icosahedron itself.
+    This class contains all necessary constants that depend on a partition's value.
+    - The partition's value determines how many parts an edge of the icosahedron must be divided into.
+    - The partition's must be greater than one.
     """
     def __init__(self, partition: int = 1):
-        if partition < 1:
+        if not (isinstance(partition, int) and partition > 1):
             raise PartitionValueError(partition)
 
         # Set auxiliary constants
