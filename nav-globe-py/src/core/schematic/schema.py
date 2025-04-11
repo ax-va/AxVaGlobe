@@ -80,9 +80,9 @@ class _BorderBC(_Border):
 
 class Schema:
     """
-    This class contains all necessary constants that depend on a partition's value.
-    - The partition's value determines how many parts an edge of the icosahedron must be divided into.
-    - The partition's must be greater than one.
+    This class contains all necessary constants that depend on a partition value.
+    - The partition value determines how many parts an edge of the icosahedron must be divided into.
+    - The partition must be greater than one.
     """
     def __init__(self, partition: int = 1):
         if not isinstance(partition, int) or partition < 2:
