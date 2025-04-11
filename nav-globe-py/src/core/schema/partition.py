@@ -72,7 +72,7 @@ class Partition:
     - The partition's must be greater than one.
     """
     def __init__(self, partition: int = 1):
-        if not (isinstance(partition, int) and partition > 1):
+        if not isinstance(partition, int) or partition < 2:
             raise PartitionValueError(partition)
 
         # Set auxiliary constants
