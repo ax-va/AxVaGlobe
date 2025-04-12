@@ -98,6 +98,50 @@ def test_constants_for_node_indices(
 
 @pytest.mark.parametrize(
     "partition,"
+    # constants for triangle indices
+    "area_a_triangles_start,"
+    "area_a_triangles_end,"
+    "area_a_triangles_number,"
+    "area_b_triangles_start,"
+    "area_b_triangles_end,"
+    "area_b_triangles_number,"
+    "area_c_triangles_start,"
+    "area_c_triangles_end,"
+    "area_c_triangles_number",
+    [
+        (2, 0, 19, 20, 20, 59, 40, 60, 79, 20),  # partition: 2
+        (3, 0, 44, 45, 45, 134, 90, 135, 179, 45),  # partition: 3
+        (4, 0, 79, 80, 80, 239, 160, 240, 319, 80),  # partition: 4
+    ],
+)
+def test_constants_for_triangle_indices(
+        partition,
+        # constants for triangle indices
+        area_a_triangles_start,
+        area_a_triangles_end,
+        area_a_triangles_number,
+        area_b_triangles_start,
+        area_b_triangles_end,
+        area_b_triangles_number,
+        area_c_triangles_start,
+        area_c_triangles_end,
+        area_c_triangles_number,
+):
+    constants = Constants(partition)
+    # Check constants for triangle indices
+    assert constants.area_a.triangles.START == area_a_triangles_start
+    assert constants.area_a.triangles.END == area_a_triangles_end
+    assert constants.area_a.triangles.NUMBER == area_a_triangles_number
+    assert constants.area_b.triangles.START == area_b_triangles_start
+    assert constants.area_b.triangles.END == area_b_triangles_end
+    assert constants.area_b.triangles.NUMBER == area_b_triangles_number
+    assert constants.area_c.triangles.START == area_c_triangles_start
+    assert constants.area_c.triangles.END == area_c_triangles_end
+    assert constants.area_c.triangles.NUMBER == area_c_triangles_number
+
+
+@pytest.mark.parametrize(
+    "partition,"
     # constants for node layer indices
     "area_a_node_layers_start,"
     "area_a_node_layers_end,"
@@ -112,6 +156,8 @@ def test_constants_for_node_indices(
     "area_c_node_layers_end,"
     "area_c_node_layers_number",
     [
+        (2, 0, 1, 2, 2, 3, 3, 1, 10, 4, 5, 6, 2),  # partition: 2
+        (3, 0, 2, 3, 3, 4, 5, 2, 15, 6, 7, 9, 3),  # partition: 3
         (4, 0, 3, 4, 4, 5, 7, 3, 20, 8, 9, 12, 4),  # partition: 4
     ],
 )
@@ -146,47 +192,6 @@ def test_constants_for_node_layer_indices(
     assert constants.area_c.node_layers.END == area_c_node_layers_end
     assert constants.area_c.node_layers.NUMBER == area_c_node_layers_number
 
-@pytest.mark.parametrize(
-    "partition,"
-    # constants for triangle indices
-    "area_a_triangles_start,"
-    "area_a_triangles_end,"
-    "area_a_triangles_number,"
-    "area_b_triangles_start,"
-    "area_b_triangles_end,"
-    "area_b_triangles_number,"
-    "area_c_triangles_start,"
-    "area_c_triangles_end,"
-    "area_c_triangles_number",
-    [
-        (4, 0, 79, 80, 80, 239, 160, 240, 319, 80),  # partition: 4
-    ],
-)
-def test_constants_for_triangle_indices(
-        partition,
-        # constants for triangle indices
-        area_a_triangles_start,
-        area_a_triangles_end,
-        area_a_triangles_number,
-        area_b_triangles_start,
-        area_b_triangles_end,
-        area_b_triangles_number,
-        area_c_triangles_start,
-        area_c_triangles_end,
-        area_c_triangles_number,
-):
-    constants = Constants(partition)
-    # Check constants for triangle indices
-    assert constants.area_a.triangles.START == area_a_triangles_start
-    assert constants.area_a.triangles.END == area_a_triangles_end
-    assert constants.area_a.triangles.NUMBER == area_a_triangles_number
-    assert constants.area_b.triangles.START == area_b_triangles_start
-    assert constants.area_b.triangles.END == area_b_triangles_end
-    assert constants.area_b.triangles.NUMBER == area_b_triangles_number
-    assert constants.area_c.triangles.START == area_c_triangles_start
-    assert constants.area_c.triangles.END == area_c_triangles_end
-    assert constants.area_c.triangles.NUMBER == area_c_triangles_number
-
 
 @pytest.mark.parametrize(
     "partition,"
@@ -201,6 +206,8 @@ def test_constants_for_triangle_indices(
     "area_c_triangle_layers_end,"
     "area_c_triangle_layers_number",
     [
+        (2, 0, 1, 2, 2, 3, 2, 4, 5, 2),  # partition: 2
+        (3, 0, 2, 3, 3, 5, 3, 6, 8, 3),  # partition: 3
         (4, 0, 3, 4, 4, 7, 4, 8, 11, 4),  # partition: 4
     ],
 )
