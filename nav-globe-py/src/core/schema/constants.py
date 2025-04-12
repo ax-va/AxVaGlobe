@@ -8,6 +8,11 @@ class _Indices:
         self.NUMBER: int | None = None
 
 
+class _Index:
+    def __init__(self):
+        self.INDEX: int | None = None
+
+
 class _AreaNodes(_Indices):
     pass
 
@@ -38,9 +43,8 @@ class _BorderNodes(_Indices):
     pass
 
 
-class _BorderNodeLayer:
-    def __init__(self):
-        self.INDEX: int | None = None
+class _BorderNodeLayer(_Index):
+    pass
 
 
 class _Border:
@@ -49,6 +53,22 @@ class _Border:
         self.name: str = name
         self.nodes = _BorderNodes()
         self.node_layer = _BorderNodeLayer()
+
+
+class _PoleNode(_Index):
+    pass
+
+
+class _PoleNodeLayer(_Index):
+    pass
+
+
+class _Pole:
+    """There are two poles: "NP" and "SP"."""
+    def __init__(self, name: str):
+        self.name = name
+        self.node = _PoleNode()
+        self.node_layer = _PoleNodeLayer()
 
 
 class _AreaA(_Area):
@@ -78,6 +98,16 @@ class _BorderBC(_Border):
         super().__init__("BC")
 
 
+class _NorthPole(_Pole):
+    def __init__(self):
+        super().__init__("NP")
+
+
+class _SouthPole(_Pole):
+    def __init__(self):
+        super().__init__("SP")
+
+
 class Constants:
     """
     This class contains all necessary constants that depend on a partition value.
@@ -102,16 +132,20 @@ class Constants:
         self.NUMBER_OF_NODE_LAYERS: int = self.NUMBER_OF_TRIANGLE_LAYERS + 1
         self.NUMBER_OF_EDGE_NODES: int = self.PARTITION + 1
 
-        # Create schematic areas and borders between them: "A"-"AB"-"B"-"BC"-"C"
+        # for nodes: "NP"-"A"-"AB"-"B"-"BC"-"C"-"SP"
+        # for triangles: "A"-"B"-"C"
+        self.north_pole = _NorthPole()
         self.area_a = _AreaA()
         self.border_ab = _BorderAB()
         self.area_b = _AreaB()
         self.border_bc = _BorderBC()
         self.area_c = _AreaC()
+        self.south_pole = _SouthPole()
 
         # Set constants for node indices
-        self.area_a.nodes.START = 0
-        self.area_a.nodes.NUMBER = (self.PARTITION_SQUARE_TIMES_FIVE - self.PARTITION_TIMES_FIVE) // 2 + 1
+        self.north_pole.node.INDEX = 0
+        self.area_a.nodes.START = self.north_pole.node.INDEX + 1
+        self.area_a.nodes.NUMBER = (self.PARTITION_SQUARE_TIMES_FIVE - self.PARTITION_TIMES_FIVE) // 2
         self.border_ab.nodes.START = self.area_a.nodes.START + self.area_a.nodes.NUMBER
         self.area_a.nodes.END = self.border_ab.nodes.START - 1
         self.border_ab.nodes.NUMBER = self.PARTITION_TIMES_FIVE
@@ -124,11 +158,13 @@ class Constants:
         self.area_c.nodes.START = self.border_bc.nodes.START + self.border_bc.nodes.NUMBER
         self.border_bc.nodes.END = self.area_c.nodes.START - 1
         self.area_c.nodes.NUMBER = self.area_a.nodes.NUMBER
-        self.area_c.nodes.END = self.NUMBER_OF_NODES - 1
+        self.south_pole.node.INDEX = self.NUMBER_OF_NODES - 1
+        self.area_c.nodes.END = self.south_pole.node.INDEX - 1
 
         # Set constants for node layer indices
-        self.area_a.node_layers.START = 0
-        self.area_a.node_layers.NUMBER = self.PARTITION
+        self.north_pole.node_layer.INDEX = 0
+        self.area_a.node_layers.START = self.north_pole.node_layer.INDEX + 1
+        self.area_a.node_layers.NUMBER = self.PARTITION_MINUS_ONE
         self.border_ab.node_layer.INDEX = self.area_a.node_layers.START + self.area_a.node_layers.NUMBER
         self.area_a.node_layers.END = self.border_ab.node_layer.INDEX - 1
         self.area_b.node_layers.START = self.border_ab.node_layer.INDEX + 1
@@ -138,7 +174,8 @@ class Constants:
         self.area_b.node_layers.END = self.border_bc.node_layer.INDEX - 1
         self.area_c.node_layers.START = self.border_bc.node_layer.INDEX + 1
         self.area_c.node_layers.NUMBER = self.area_a.node_layers.NUMBER
-        self.area_c.node_layers.END = self.NUMBER_OF_NODE_LAYERS - 1
+        self.south_pole.node_layer.INDEX = self.NUMBER_OF_NODE_LAYERS - 1
+        self.area_c.node_layers.END = self.south_pole.node_layer.INDEX - 1
 
         # Set constants for triangle indices
         self.area_a.triangles.START = 0

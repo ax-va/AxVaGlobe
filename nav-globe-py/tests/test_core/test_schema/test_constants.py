@@ -37,6 +37,7 @@ def test_common_constants(
 @pytest.mark.parametrize(
     "partition,"
     # constants for node indices
+    "north_pole_node_index,"
     "area_a_nodes_start,"
     "area_a_nodes_end,"
     "area_a_nodes_number,"
@@ -51,16 +52,18 @@ def test_common_constants(
     "border_bc_nodes_number,"
     "area_c_nodes_start,"
     "area_c_nodes_end,"
-    "area_c_nodes_number",
+    "area_c_nodes_number,"
+    "south_pole_node_index",
     [
-        (2, 0, 5, 6, 6, 15, 10, 16, 25, 10, 26, 35, 10, 36, 41, 6),  # partition: 2
-        (3, 0, 15, 16, 16, 30, 15, 31, 60, 30, 61, 75, 15, 76, 91, 16),  # partition: 3
-        (4, 0, 30, 31, 31, 50, 20, 51, 110, 60, 111, 130, 20, 131, 161, 31),  # partition: 4
+        (2, 0, 1, 5, 5, 6, 15, 10, 16, 25, 10, 26, 35, 10, 36, 40, 5, 41),  # partition: 2
+        (3, 0, 1, 15, 15, 16, 30, 15, 31, 60, 30, 61, 75, 15, 76, 90, 15, 91),  # partition: 3
+        (4, 0, 1, 30, 30, 31, 50, 20, 51, 110, 60, 111, 130, 20, 131, 160, 30, 161),  # partition: 4
     ],
 )
 def test_constants_for_node_indices(
         partition,
         # constants for node indices
+        north_pole_node_index,
         area_a_nodes_start,
         area_a_nodes_end,
         area_a_nodes_number,
@@ -76,9 +79,11 @@ def test_constants_for_node_indices(
         area_c_nodes_start,
         area_c_nodes_end,
         area_c_nodes_number,
+        south_pole_node_index,
 ):
     constants = Constants(partition)
     # Check constants for node indices
+    assert constants.north_pole.node.INDEX == north_pole_node_index
     assert constants.area_a.nodes.START == area_a_nodes_start
     assert constants.area_a.nodes.END == area_a_nodes_end
     assert constants.area_a.nodes.NUMBER == area_a_nodes_number
@@ -94,6 +99,7 @@ def test_constants_for_node_indices(
     assert constants.area_c.nodes.START == area_c_nodes_start
     assert constants.area_c.nodes.END == area_c_nodes_end
     assert constants.area_c.nodes.NUMBER == area_c_nodes_number
+    assert constants.south_pole.node.INDEX == south_pole_node_index
 
 
 @pytest.mark.parametrize(
@@ -143,6 +149,7 @@ def test_constants_for_triangle_indices(
 @pytest.mark.parametrize(
     "partition,"
     # constants for node layer indices
+    "north_pole_node_layer_index,"
     "area_a_node_layers_start,"
     "area_a_node_layers_end,"
     "area_a_node_layers_number,"
@@ -154,16 +161,18 @@ def test_constants_for_triangle_indices(
     "border_bc_node_layer_index,"
     "area_c_node_layers_start,"
     "area_c_node_layers_end,"
-    "area_c_node_layers_number",
+    "area_c_node_layers_number,"
+    "south_pole_node_layer_index",
     [
-        (2, 0, 1, 2, 2, 3, 3, 1, 10, 4, 5, 6, 2),  # partition: 2
-        (3, 0, 2, 3, 3, 4, 5, 2, 15, 6, 7, 9, 3),  # partition: 3
-        (4, 0, 3, 4, 4, 5, 7, 3, 20, 8, 9, 12, 4),  # partition: 4
+        (2, 0, 1, 1, 1, 2, 3, 3, 1, 10, 4, 5, 5, 1, 6),  # partition: 2
+        (3, 0, 1, 2, 2, 3, 4, 5, 2, 15, 6, 7, 8, 2, 9),  # partition: 3
+        (4, 0, 1, 3, 3, 4, 5, 7, 3, 20, 8, 9, 11, 3, 12),  # partition: 4
     ],
 )
 def test_constants_for_node_layer_indices(
         partition,
         # constants for node layer indices
+        north_pole_node_layer_index,
         area_a_node_layers_start,
         area_a_node_layers_end,
         area_a_node_layers_number,
@@ -176,9 +185,11 @@ def test_constants_for_node_layer_indices(
         area_c_node_layers_start,
         area_c_node_layers_end,
         area_c_node_layers_number,
+        south_pole_node_layer_index,
 ):
     constants = Constants(partition)
     # Check constants for node layer indices
+    assert constants.north_pole.node_layer.INDEX == north_pole_node_layer_index
     assert constants.area_a.node_layers.START == area_a_node_layers_start
     assert constants.area_a.node_layers.END == area_a_node_layers_end
     assert constants.area_a.node_layers.NUMBER == area_a_node_layers_number
@@ -191,6 +202,7 @@ def test_constants_for_node_layer_indices(
     assert constants.area_c.node_layers.START == area_c_node_layers_start
     assert constants.area_c.node_layers.END == area_c_node_layers_end
     assert constants.area_c.node_layers.NUMBER == area_c_node_layers_number
+    assert constants.south_pole.node_layer.INDEX == south_pole_node_layer_index
 
 
 @pytest.mark.parametrize(
