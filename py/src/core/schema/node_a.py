@@ -22,12 +22,12 @@ class NodeA:
         num: int = int(to_layer)
         sum_up_to_num: int = ((num + 1) * num) // 2
         if integer_part != sum_up_to_num or remainder != 0:
-            # non-penultimate node in layer
+            # case 1: a non-penultimate node in layer
             layer_index: int = num + 1
             # sum_up_to_num * 5 is the offset relative to previous layers
             in_layer_index: int = self.INDEX - sum_up_to_num * 5 - 1
         else:
-            # penultimate node in layer
+            # case 2: the penultimate node in layer
             layer_index: int = num
             in_layer_index: int = self.INDEX - (sum_up_to_num - num) * 5 - 1
         return layer_index, in_layer_index
