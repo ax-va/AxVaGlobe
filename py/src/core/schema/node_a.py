@@ -5,15 +5,19 @@ from typing import Tuple
 class NodeA:
     def __init__(self, index: int):
         self.INDEX: int = index
-        layer_and_in_layer_indices: Tuple[int, int] = self._get_layer_and_in_layer_indices()
-        self.LAYER_INDEX: int = layer_and_in_layer_indices[0]
-        self.IN_LAYER_INDEX: int = layer_and_in_layer_indices[1]
+        self.LAYER_INDEX: int | None = None
+        self.IN_LAYER_INDEX: int | None = None
+        self._set_layer_and_in_layer_indices()
 
     @property
-    def number_of_nodes_in_layer(self) -> int:
+    def NUMBER_OF_NODES_IN_LAYER(self) -> int:
         return self.LAYER_INDEX * 5
 
-    def _get_layer_and_in_layer_indices(self) -> Tuple[int, int]:
+    @property
+    def INDEX_OFFSET_FOR_LAYER(self) -> int:
+        return ((self.LAYER_INDEX - 1) * self.LAYER_INDEX) // 2 * 5 + 1
+
+    def _set_layer_and_in_layer_indices(self) -> None:
         integer_part: int = self.INDEX // 5
         remainder: int = self.INDEX % 5
         # This lies between layer_index - 1 and layer_index
@@ -23,11 +27,10 @@ class NodeA:
         sum_up_to_num: int = ((num + 1) * num) // 2
         if integer_part != sum_up_to_num or remainder != 0:
             # case 1: a non-penultimate node in layer
-            layer_index: int = num + 1
+            self.LAYER_INDEX: int = num + 1
             # sum_up_to_num * 5 is the offset relative to previous layers
-            in_layer_index: int = self.INDEX - sum_up_to_num * 5 - 1
+            self.IN_LAYER_INDEX: int = self.INDEX - sum_up_to_num * 5 - 1
         else:
             # case 2: the penultimate node in layer
-            layer_index: int = num
-            in_layer_index: int = self.INDEX - (sum_up_to_num - num) * 5 - 1
-        return layer_index, in_layer_index
+            self.LAYER_INDEX: int = num
+            self.IN_LAYER_INDEX: int = self.INDEX - (sum_up_to_num - num) * 5 - 1
