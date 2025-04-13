@@ -169,16 +169,15 @@ def test_constants_for_triangle_indices(
     "area_b_node_layers_start,"
     "area_b_node_layers_end,"
     "area_b_node_layers_number,"
-    "area_b_number_of_nodes_in_node_layer,"
     "border_bc_node_layer_index,"
     "area_c_node_layers_start,"
     "area_c_node_layers_end,"
     "area_c_node_layers_number,"
     "south_pole_node_layer_index",
     [
-        (2, 0, 1, 1, 1, 2, 3, 3, 1, 10, 4, 5, 5, 1, 6),  # partition: 2
-        (3, 0, 1, 2, 2, 3, 4, 5, 2, 15, 6, 7, 8, 2, 9),  # partition: 3
-        (4, 0, 1, 3, 3, 4, 5, 7, 3, 20, 8, 9, 11, 3, 12),  # partition: 4
+        (2, 0, 1, 1, 1, 2, 3, 3, 1, 4, 5, 5, 1, 6),  # partition: 2
+        (3, 0, 1, 2, 2, 3, 4, 5, 2, 6, 7, 8, 2, 9),  # partition: 3
+        (4, 0, 1, 3, 3, 4, 5, 7, 3, 8, 9, 11, 3, 12),  # partition: 4
     ],
 )
 def test_constants_for_node_layer_indices(
@@ -192,7 +191,6 @@ def test_constants_for_node_layer_indices(
         area_b_node_layers_start,
         area_b_node_layers_end,
         area_b_node_layers_number,
-        area_b_number_of_nodes_in_node_layer,
         border_bc_node_layer_index,
         area_c_node_layers_start,
         area_c_node_layers_end,
@@ -209,7 +207,6 @@ def test_constants_for_node_layer_indices(
     assert constants.area_b.node_layers.START == area_b_node_layers_start
     assert constants.area_b.node_layers.END == area_b_node_layers_end
     assert constants.area_b.node_layers.NUMBER == area_b_node_layers_number
-    assert constants.area_b.NUMBER_OF_NODES_IN_NODE_LAYER == area_b_number_of_nodes_in_node_layer
     assert constants.border_bc.node_layer.INDEX == border_bc_node_layer_index
     assert constants.area_c.node_layers.START == area_c_node_layers_start
     assert constants.area_c.node_layers.END == area_c_node_layers_end

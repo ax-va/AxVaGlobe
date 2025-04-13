@@ -78,8 +78,6 @@ class _AreaA(_Area):
 
 class _AreaB(_Area):
     def __init__(self):
-        # constant for all node layers
-        self.NUMBER_OF_NODES_IN_NODE_LAYER: int | None = None
         super().__init__("B")
 
 
@@ -169,7 +167,6 @@ class Constants:
         self.area_a.node_layers.END = self.border_ab.node_layer.INDEX - 1
         self.area_b.node_layers.START = self.border_ab.node_layer.INDEX + 1
         self.area_b.node_layers.NUMBER = self.PARTITION_MINUS_ONE
-        self.area_b.NUMBER_OF_NODES_IN_NODE_LAYER = self.PARTITION_TIMES_FIVE
         self.border_bc.node_layer.INDEX = self.area_b.node_layers.START + self.area_b.node_layers.NUMBER
         self.area_b.node_layers.END = self.border_bc.node_layer.INDEX - 1
         self.area_c.node_layers.START = self.border_bc.node_layer.INDEX + 1
