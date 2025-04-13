@@ -19,7 +19,7 @@ class NodeA:
     def _set_layer_and_in_layer_indices(self) -> None:
         integer_part: int = self.INDEX // 5
         remainder: int = self.INDEX % 5
-        # This lies between layer_index - 1 and layer_index
+        # This is in the interval (layer_index - 1, layer_index]
         # and is exactly equal to layer_index of the penultimate node in layer.
         to_layer: float = (sqrt(integer_part * 8 + 1) - 1) / 2
         num: int = int(to_layer)
