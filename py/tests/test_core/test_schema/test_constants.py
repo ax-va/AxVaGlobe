@@ -5,6 +5,7 @@ from core.schema.constants import Constants
 
 @pytest.mark.parametrize(
     "partition,"
+    # common constants
     "number_of_nodes,"
     "number_of_triangles,"
     "number_of_node_layers,"
