@@ -27,9 +27,10 @@ class NodeA:
         if integer_part != sum_up_to_num or remainder != 0:
             # case 1: a non-penultimate node in layer
             self.LAYER_INDEX: int = num + 1
-            # sum_up_to_num * 5 is the offset relative to previous layers
+            # sum_up_to_num * 5 + 1 is the index offset for this layer
             self.IN_LAYER_INDEX: int = self.INDEX - sum_up_to_num * 5 - 1
         else:
             # case 2: the penultimate node in layer
             self.LAYER_INDEX: int = num
+            # (sum_up_to_num - num) * 5 + 1 is the index offset for this layer
             self.IN_LAYER_INDEX: int = self.INDEX - (sum_up_to_num - num) * 5 - 1
