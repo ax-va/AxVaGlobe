@@ -6,7 +6,7 @@ class NodeA:
         self.INDEX: int = index
         self.LAYER_INDEX: int | None = None
         self.IN_LAYER_INDEX: int | None = None
-        self._set_layer_and_in_layer_indices()
+        self._set_layer_index_and_in_layer_index()
 
     @property
     def NUMBER_OF_NODES_IN_LAYER(self) -> int:
@@ -16,7 +16,7 @@ class NodeA:
     def INDEX_OFFSET_FOR_LAYER(self) -> int:
         return ((self.LAYER_INDEX - 1) * self.LAYER_INDEX) // 2 * 5 + 1
 
-    def _set_layer_and_in_layer_indices(self) -> None:
+    def _set_layer_index_and_in_layer_index(self) -> None:
         integer_part: int = self.INDEX // 5
         remainder: int = self.INDEX % 5
         # This is in the interval (layer_index - 1, layer_index]
