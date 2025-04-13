@@ -21,8 +21,8 @@ class NodeA:
         remainder: int = self.INDEX % 5
         # This is in the interval (layer_index - 1, layer_index]
         # and is exactly equal to layer_index of the penultimate node in layer.
-        to_layer: float = (sqrt(integer_part * 8 + 1) - 1) / 2
-        num: int = int(to_layer)
+        in_interval: float = (sqrt(integer_part * 8 + 1) - 1) / 2
+        num: int = int(in_interval)
         sum_up_to_num: int = ((num + 1) * num) // 2
         if integer_part != sum_up_to_num or remainder != 0:
             # case 1: a non-penultimate node in layer
