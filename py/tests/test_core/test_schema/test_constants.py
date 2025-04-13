@@ -3,6 +3,17 @@ import pytest
 from core.schema.constants import Constants
 
 
+@pytest.mark.parametrize("partition", [2, 3, 4])
+def test_auxiliary_constants(partition):
+    constants = Constants(partition)
+    # Check auxiliary constants
+    assert constants.PARTITION == partition
+    assert constants.PARTITION_MINUS_ONE == partition - 1
+    assert constants.PARTITION_TIMES_FIVE == partition * 5
+    assert constants.PARTITION_SQUARE == partition * partition
+    assert constants.PARTITION_SQUARE_TIMES_FIVE == partition * partition * 5
+
+
 @pytest.mark.parametrize(
     "partition,"
     "number_of_nodes,"
