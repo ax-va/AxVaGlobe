@@ -70,4 +70,4 @@ def test_indices(
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
-    assert node_a.INDEX == node_a.INDEX_OFFSET_OF_LAYER + node_a.IN_LAYER_INDEX
+    assert node_a.INDEX == node_a.INDEX_OFFSET_FOR_LAYER + node_a.IN_LAYER_INDEX
