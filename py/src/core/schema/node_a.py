@@ -13,7 +13,7 @@ class NodeA:
         return self.LAYER_INDEX * 5
 
     @property
-    def INDEX_OFFSET_OF_LAYER(self) -> int:
+    def INDEX_OFFSET_FOR_LAYER(self) -> int:
         return ((self.LAYER_INDEX - 1) * self.LAYER_INDEX) // 2 * 5 + 1
 
     def _set_layer_index_and_in_layer_index(self) -> None:
