@@ -20,17 +20,17 @@ class NodeA:
         integer_part: int = self.INDEX // 5
         remainder: int = self.INDEX % 5
         # This value is in the interval (layer_index - 1, layer_index]
-        # and is exactly equal to layer_index of the penultimate node in layer.
+        # and is exactly equal to layer_index of the last node in layer.
         num_: float = (sqrt(integer_part * 8 + 1) - 1) / 2
         num: int = int(num_)
         sum_up_to_num: int = ((num + 1) * num) // 2
         if integer_part != sum_up_to_num or remainder != 0:
-            # case 1: a non-penultimate node in layer
+            # case 1: not the last node in layer
             self.LAYER_INDEX: int = num + 1
             # sum_up_to_num * 5 + 1 is the index offset for this layer
             self.IN_LAYER_INDEX: int = self.INDEX - sum_up_to_num * 5 - 1
         else:
-            # case 2: the penultimate node in layer
+            # case 2: the last node in layer
             self.LAYER_INDEX: int = num
             # (sum_up_to_num - num) * 5 + 1 is the index offset for this layer
             self.IN_LAYER_INDEX: int = self.INDEX - (sum_up_to_num - num) * 5 - 1
