@@ -31,16 +31,14 @@ class NodeAB:
         index: int,
         schema,  # type: "Schema"
     ):
-        layer_index, index_offset_for_layer = cls._get_layer_index_and_index_offset_for_layer(schema)
+        layer_index: int = schema.constants.border_ab.node_layer.INDEX
+        index_offset_for_layer: int = cls._get_index_offset_for_layer(layer_index)
         in_layer_index = index - index_offset_for_layer
         return cls(in_layer_index, schema, index)
 
     @staticmethod
-    def _get_layer_index_and_index_offset_for_layer(
-        schema,  # type: "Schema"
-    ) -> Tuple[int, int]:
+    def _get_index_offset_for_layer(layer_index: int) -> int:
         index_offset_for_area_a = 1
-        layer_index: int = schema.constants.border_ab.node_layer.INDEX
         sum_of_previous_layer_indices: int = (layer_index * (layer_index - 1)) // 2
         index_offset_for_layer = sum_of_previous_layer_indices * 5 + index_offset_for_area_a
-        return layer_index, index_offset_for_layer
+        return index_offset_for_layer
