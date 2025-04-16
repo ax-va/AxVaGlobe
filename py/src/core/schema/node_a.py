@@ -34,7 +34,7 @@ class NodeA:
             schema,  # type: "Schema"
     ):
         layer_index, index_offset_for_layer = cls._get_layer_index_and_index_offset_for_layer(index)
-        in_layer_index = index - index_offset_for_layer
+        in_layer_index: int = index - index_offset_for_layer
         return cls(layer_index, in_layer_index, schema, index, index_offset_for_layer)
 
     @staticmethod
@@ -44,5 +44,5 @@ class NodeA:
         layer_index_minus_one: int = int((sqrt(integer_part * 8 + 1) - 1) / 2)
         layer_index: int = layer_index_minus_one + 1
         sum_of_previous_layer_indices: int = ((layer_index_minus_one + 1) * layer_index_minus_one) // 2
-        index_offset_for_layer = sum_of_previous_layer_indices * 5 + index_offset_for_area_a
+        index_offset_for_layer: int = sum_of_previous_layer_indices * 5 + index_offset_for_area_a
         return layer_index, index_offset_for_layer
