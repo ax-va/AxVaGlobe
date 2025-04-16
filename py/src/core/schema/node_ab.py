@@ -27,9 +27,9 @@ class NodeAB:
 
     @classmethod
     def create_node_by_index(
-        cls,
-        index: int,
-        schema,  # type: "Schema"
+            cls,
+            index: int,
+            schema,  # type: "Schema"
     ):
         layer_index: int = schema.constants.border_ab.node_layer.INDEX
         index_offset_for_layer: int = cls._get_index_offset_for_layer(layer_index)
