@@ -2,7 +2,7 @@ from core.schema.constants import Constants
 from core.schema.node_layer_a import NodeLayerA
 
 
-class BaseSchema:
+class Schema:
     def __init__(self, partition: int):
         self.constants = Constants(partition)
         self._registry = {

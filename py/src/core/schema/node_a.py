@@ -7,14 +7,14 @@ class NodeA:
             self,
             layer_index: int,
             in_layer_index: int,
-            base_schema,  # type: "BaseSchema"
+            schema,  # type: "Schema"
             # optional
             index: int = None,
             index_offset_for_layer: int = None,
     ):
         self.IN_LAYER_INDEX: int = in_layer_index
-        self._base_schema = base_schema  # type: "BaseSchema"
-        self._layer = self._base_schema.get_node_layer_from_registry(layer_index, index_offset_for_layer)  # type: "NodeLayerA"
+        self._schema = schema  # type: "Schema"
+        self._layer = self._schema.get_node_layer_from_registry(layer_index, index_offset_for_layer)  # type: "NodeLayerA"
         self._index: int | None = index
 
     @property
@@ -31,11 +31,11 @@ class NodeA:
     def create_node_by_index(
             cls,
             index: int,
-            base_schema,  # type: "BaseSchema"
+            schema,  # type: "Schema"
     ):
         layer_index, index_offset_for_layer = cls._get_layer_index_and_index_offset_for_layer_by_index(index)
         in_layer_index = index - index_offset_for_layer
-        return cls(layer_index, in_layer_index, base_schema, index, index_offset_for_layer)
+        return cls(layer_index, in_layer_index, schema, index, index_offset_for_layer)
 
     @staticmethod
     def _get_layer_index_and_index_offset_for_layer_by_index(index: int) -> Tuple[int, int]:

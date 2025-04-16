@@ -1,6 +1,6 @@
 import pytest
 
-from core.schema.base_schema import BaseSchema
+from core.schema.schema import Schema
 from core.schema.node_a import NodeA
 
 
@@ -66,13 +66,13 @@ def test_node_a_for_partition_5(
     layer_index,
     in_layer_index,
 ):
-    base_schema = BaseSchema(5)
-    node_a_1 = NodeA(layer_index, in_layer_index, base_schema)
+    schema = Schema(5)
+    node_a_1 = NodeA(layer_index, in_layer_index, schema)
     assert node_a_1.LAYER_INDEX == layer_index
     assert node_a_1.IN_LAYER_INDEX == in_layer_index
     assert node_a_1.INDEX == index
 
-    node_a_2 = NodeA.create_node_by_index(index, base_schema)
+    node_a_2 = NodeA.create_node_by_index(index, schema)
     assert node_a_2.LAYER_INDEX == layer_index
     assert node_a_2.IN_LAYER_INDEX == in_layer_index
     assert node_a_2.INDEX == index
