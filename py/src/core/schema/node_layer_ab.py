@@ -15,4 +15,3 @@ class NodeLayerAB:
             sum_of_previous_layer_indices = self.INDEX * (self.INDEX - 1) // 2
             self._node_index_offset_for_layer = sum_of_previous_layer_indices * 5 + index_offset_for_area_a
         return self._node_index_offset_for_layer
-
