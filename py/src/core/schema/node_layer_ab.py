@@ -1,7 +1,7 @@
 class NodeLayerAB:
     def __init__(
-        self,
-        constants,  # type: "Constants"
+            self,
+            constants,  # type: "Constants"
     ):
         self.INDEX = constants.border_ab.node_layer.INDEX
         # lazy
