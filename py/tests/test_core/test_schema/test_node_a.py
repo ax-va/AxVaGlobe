@@ -61,7 +61,7 @@ from core.schema.node_a import NodeA
         (50, 4, 19),
     ]
 )
-def test_node_a_for_partition_5(
+def test_node_a_creation_for_partition_five(
     index,
     layer_index,
     in_layer_index,

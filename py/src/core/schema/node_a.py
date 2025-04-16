@@ -39,10 +39,10 @@ class NodeA:
 
     @staticmethod
     def _get_layer_index_and_index_offset_for_layer_by_index(index: int) -> Tuple[int, int]:
-        integer_part_of_relative_index: int = (index - 1) // 5
-        num_: float = (sqrt(integer_part_of_relative_index * 8 + 1) - 1) / 2
-        num: int = int(num_)
-        layer_index: int = num + 1
-        sum_up_to_num: int = ((num + 1) * num) // 2
-        index_offset_for_layer = sum_up_to_num * 5 + 1
+        index_offset_for_area_a = 1
+        integer_part: int = (index - index_offset_for_area_a) // 5
+        layer_index_minus_one: int = int((sqrt(integer_part * 8 + 1) - 1) / 2)
+        layer_index: int = layer_index_minus_one + 1
+        sum_of_previous_layer_indices: int = ((layer_index_minus_one + 1) * layer_index_minus_one) // 2
+        index_offset_for_layer = sum_of_previous_layer_indices * 5 + index_offset_for_area_a
         return layer_index, index_offset_for_layer
