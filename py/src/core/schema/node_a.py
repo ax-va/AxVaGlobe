@@ -33,12 +33,12 @@ class NodeA:
             index: int,
             schema,  # type: "Schema"
     ):
-        layer_index, index_offset_for_layer = cls._get_layer_index_and_index_offset_for_layer_by_index(index)
+        layer_index, index_offset_for_layer = cls._get_layer_index_and_index_offset_for_layer(index)
         in_layer_index = index - index_offset_for_layer
         return cls(layer_index, in_layer_index, schema, index, index_offset_for_layer)
 
     @staticmethod
-    def _get_layer_index_and_index_offset_for_layer_by_index(index: int) -> Tuple[int, int]:
+    def _get_layer_index_and_index_offset_for_layer(index: int) -> Tuple[int, int]:
         index_offset_for_area_a = 1
         integer_part: int = (index - index_offset_for_area_a) // 5
         layer_index_minus_one: int = int((sqrt(integer_part * 8 + 1) - 1) / 2)
