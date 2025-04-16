@@ -16,7 +16,7 @@ class Schema:
             node_index_offset_for_layer: int = None,
     ) -> NodeLayerA:
         if node_layer_index in self._registry["node_layers"]:
-            node_layer = self._registry["node_layers"][node_layer_index]
+            node_layer: NodeLayerA = self._registry["node_layers"][node_layer_index]
         else:
             if self.constants.area_a.node_layers.START <= node_layer_index <= self.constants.area_a.node_layers.END:
                 node_layer = NodeLayerA(node_layer_index, node_index_offset_for_layer)
