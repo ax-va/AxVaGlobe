@@ -1,4 +1,5 @@
 from core.schema.constants import Constants
+from core.schema.node_layer import NodeLayer
 from core.schema.node_layer_a import NodeLayerA
 from core.schema.node_layer_ab import NodeLayerAB
 
@@ -13,22 +14,21 @@ class Schema:
     def get_node_layer_from_registry(
             self,
             node_layer_index: int,
-            # optional
-            node_index_offset_for_layer: int = None,
-    ) -> NodeLayerA | NodeLayerAB:
+    ) -> NodeLayer:
 
         if node_layer_index in self._registry["node_layers"]:
-            node_layer: NodeLayerA | NodeLayerAB = self._registry["node_layers"][node_layer_index]
+            node_layer: NodeLayer = self._registry["node_layers"][node_layer_index]
         else:
             if self.constants.area_a.node_layers.START <= node_layer_index <= self.constants.area_a.node_layers.END:
-                node_layer = NodeLayerA(node_layer_index, node_index_offset_for_layer)
+                node_layer = NodeLayerA(node_layer_index)
 
             elif node_layer_index == self.constants.border_ab.node_layer.INDEX:
-                node_layer = NodeLayerAB(self.constants)
+                node_layer = NodeLayerAB(node_layer_index)
 
             else:
                 raise NotImplemented()
 
+            # Add the new item to the registry
             self._registry["node_layers"][node_layer_index] = node_layer
 
         return node_layer

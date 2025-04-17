@@ -1,30 +1,7 @@
-from typing import Tuple
+from core.schema.node import Node
 
 
-class NodeAB:
-    def __init__(
-            self,
-            in_layer_index: int,
-            schema,  # type: "Schema"
-            # optional
-            index: int = None,
-    ):
-        self.IN_LAYER_INDEX: int = in_layer_index
-        self._schema = schema  # type: "Schema"
-        layer_index = self._schema.constants.border_ab.node_layer.INDEX
-        self._layer = self._schema.get_node_layer_from_registry(layer_index)  # type: "NodeLayerAB"
-        self._index: int | None = index
-
-    @property
-    def LAYER_INDEX(self) -> int:
-        return self._layer.INDEX
-
-    @property
-    def INDEX(self) -> int:
-        if self._index is None:
-            self._index = self._layer.NODE_INDEX_OFFSET_FOR_LAYER + self.IN_LAYER_INDEX
-        return self._index
-
+class NodeAB(Node):
     @classmethod
     def create_node_by_index(
             cls,
@@ -34,7 +11,7 @@ class NodeAB:
         layer_index: int = schema.constants.border_ab.node_layer.INDEX
         index_offset_for_layer: int = cls._get_index_offset_for_layer(layer_index)
         in_layer_index: int = index - index_offset_for_layer
-        return cls(in_layer_index, schema, index)
+        return cls(layer_index, in_layer_index, schema)
 
     @staticmethod
     def _get_index_offset_for_layer(layer_index: int) -> int:

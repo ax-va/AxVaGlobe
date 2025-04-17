@@ -37,7 +37,7 @@ def test_node_ab_creation_for_partition_four(
     in_layer_index,
 ):
     schema = Schema(4)
-    node_a_1 = NodeAB(in_layer_index, schema)
+    node_a_1 = NodeAB(layer_index, in_layer_index, schema)
     assert node_a_1.LAYER_INDEX == layer_index
     assert node_a_1.IN_LAYER_INDEX == in_layer_index
     assert node_a_1.INDEX == index

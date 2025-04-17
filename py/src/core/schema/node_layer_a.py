@@ -1,25 +1,14 @@
-class NodeLayerA:
-    def __init__(
-            self,
-            index: int,
-            # optional
-            node_index_offset_for_layer: int = None,
-    ):
-        self.INDEX = index  # layer index
-        self._node_index_offset_for_layer: int | None = node_index_offset_for_layer
-        # lazy
-        self._number_of_nodes: int | None = None
+from core.schema.node_layer import NodeLayer
 
+
+class NodeLayerA(NodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
-        if self._node_index_offset_for_layer is None:
-            index_offset_for_area_a = 1
-            sum_of_previous_layer_indices = self.INDEX * (self.INDEX - 1) // 2
-            self._node_index_offset_for_layer =  sum_of_previous_layer_indices * 5 + index_offset_for_area_a
-        return self._node_index_offset_for_layer
+        index_offset_for_area_a = 1
+        sum_of_previous_layer_indices = self.INDEX * (self.INDEX - 1) // 2
+        node_index_offset_for_layer = sum_of_previous_layer_indices * 5 + index_offset_for_area_a
+        return node_index_offset_for_layer
 
     @property
     def NUMBER_OF_NODES(self) -> int:
-        if self._number_of_nodes is None:
-            self._number_of_nodes = self.INDEX * 5
-        return self._number_of_nodes
+        return self.INDEX * 5
