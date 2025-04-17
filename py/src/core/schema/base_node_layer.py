@@ -6,7 +6,9 @@ class BaseNodeLayer(ABC):
             self,
             index: int,
     ):
-        self._index = index  # layer index
+        self._index: int = index  # layer index
+        self._node_offset_for_layer: int | None = None
+        self._number_of_nodes: int | None = None
 
     @property
     def INDEX(self) -> int:

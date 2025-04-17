@@ -11,6 +11,7 @@ class BaseNode(ABC):
         self._in_layer_index: int = in_layer_index
         self._schema = schema  # type: "Schema"
         self._layer = self._schema.get_node_layer_from_registry(layer_index)  # type: "NodeLayerA"
+        self._index: int | None = None
 
     @property
     def LAYER_INDEX(self) -> int:
@@ -22,7 +23,9 @@ class BaseNode(ABC):
 
     @property
     def INDEX(self) -> int:
-        return self._layer.NODE_INDEX_OFFSET_FOR_LAYER + self.IN_LAYER_INDEX
+        if self._index is None:
+            self._index = self._layer.NODE_INDEX_OFFSET_FOR_LAYER + self.IN_LAYER_INDEX
+        return self._index
 
     @classmethod
     @abstractmethod
