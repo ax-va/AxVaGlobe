@@ -1,7 +1,7 @@
-from core.schema.node_layer import NodeLayer
+from core.schema.base_node_layer import BaseNodeLayer
 
 
-class NodeLayerA(NodeLayer):
+class NodeLayerA(BaseNodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
         index_offset_for_area_a = 1

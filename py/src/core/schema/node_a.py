@@ -1,10 +1,10 @@
 from math import sqrt
 from typing import Tuple
 
-from core.schema.node import Node
+from core.schema.base_node import BaseNode
 
 
-class NodeA(Node):
+class NodeA(BaseNode):
     @classmethod
     def create_node_by_index(
             cls,

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class Node(ABC):
+class BaseNode(ABC):
     def __init__(
             self,
             layer_index: int,
