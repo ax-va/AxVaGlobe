@@ -23,3 +23,6 @@ class BaseNodeLayer(ABC):
     @abstractmethod
     def NUMBER_OF_NODES(self) -> int:
         pass
+
+    def __repr__(self):
+        return f"{self.__class__.__bases__[0].__name__}({self.INDEX})"

@@ -32,3 +32,6 @@ class Schema:
             self._registry["node_layers"][node_layer_index] = node_layer
 
         return node_layer
+
+    def __repr__(self):
+        return f"Schema({self.constants.PARTITION})"
