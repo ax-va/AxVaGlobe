@@ -18,6 +18,7 @@ class Schema:
         if node_layer_index in self._registry["node_layers"]:
             # Get the stored item from the registry
             node_layer: NodeLayerA | NodeLayerAB = self._registry["node_layers"][node_layer_index]
+        
         else:
             if self.constants.area_a.node_layers.START <= node_layer_index <= self.constants.area_a.node_layers.END:
                 node_layer = NodeLayerA(node_layer_index, self)
