@@ -22,25 +22,35 @@ class Schema:
         
         else:
             # The node layer instance is not available in the registry.
-            # Select the correct node layer class.
-            if self.constants.area_b.node_layers.START <= node_layer_index <= self.constants.area_b.node_layers.END:
-                node_layer_cls = NodeLayerB
-
-            elif self.constants.area_a.node_layers.START <= node_layer_index <= self.constants.area_a.node_layers.END:
-                node_layer_cls = NodeLayerA
-
-            elif node_layer_index == self.constants.border_ab.node_layer.INDEX:
-                node_layer_cls = NodeLayerAB
-
-            else:
-                raise NotImplementedError()
-
-            # Create a new node layer instance
-            node_layer = node_layer_cls(node_layer_index, self)
+            # Create a new node layer instance.
+            node_layer = self._create_node_layer(node_layer_index)
             # Add the new node layer instance to the registry
             self._registry["node_layers"][node_layer_index] = node_layer
 
         return node_layer
+
+
+    def _create_node_layer(
+            self,
+            node_layer_index: int,
+    ) -> NodeLayerA | NodeLayerAB | NodeLayerB:
+        # Select the correct node layer class.
+        if self.constants.area_b.node_layers.START <= node_layer_index <= self.constants.area_b.node_layers.END:
+            node_layer_cls = NodeLayerB
+
+        elif self.constants.area_a.node_layers.START <= node_layer_index <= self.constants.area_a.node_layers.END:
+            node_layer_cls = NodeLayerA
+
+        elif node_layer_index == self.constants.border_ab.node_layer.INDEX:
+            node_layer_cls = NodeLayerAB
+
+        else:
+            raise NotImplementedError()
+
+        # Create a new node layer instance by using a selected class
+        node_layer = node_layer_cls(node_layer_index, self)
+        return node_layer
+
 
     def __repr__(self):
         return f"Schema({self.constants.PARTITION})"
