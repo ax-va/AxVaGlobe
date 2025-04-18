@@ -11,7 +11,7 @@ class Schema:
             "node_layers": {},
         }
 
-    def get_node_layer_from_registry(
+    def get_node_layer(
             self,
             node_layer_index: int,
     ) -> NodeLayerA | NodeLayerAB | NodeLayerB:
