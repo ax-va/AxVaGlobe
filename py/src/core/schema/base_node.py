@@ -8,9 +8,9 @@ class BaseNode(ABC):
             in_layer_index: int,
             schema,  # type: "Schema"
     ):
-        self._in_layer_index: int = in_layer_index
         self._schema = schema  # type: "Schema"
         self._layer = self._schema.get_node_layer(layer_index)  # type: "node layer class"
+        self._in_layer_index: int = in_layer_index
         # lazy
         self._index: int | None = None
 
