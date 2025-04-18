@@ -20,10 +20,10 @@ class Schema:
             node_layer: NodeLayerA | NodeLayerAB = self._registry["node_layers"][node_layer_index]
         else:
             if self.constants.area_a.node_layers.START <= node_layer_index <= self.constants.area_a.node_layers.END:
-                node_layer = NodeLayerA(node_layer_index)
+                node_layer = NodeLayerA(node_layer_index, self)
 
             elif node_layer_index == self.constants.border_ab.node_layer.INDEX:
-                node_layer = NodeLayerAB(node_layer_index)
+                node_layer = NodeLayerAB(node_layer_index, self)
 
             else:
                 raise NotImplemented()
