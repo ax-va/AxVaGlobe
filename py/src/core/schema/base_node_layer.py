@@ -9,7 +9,7 @@ class BaseNodeLayer(ABC):
     ):
         self._index: int = index  # layer index
         self._schema = schema
-        self._node_offset_for_layer: int | None = None
+        self._node_index_offset_for_layer: int | None = None
         self._number_of_nodes: int | None = None
 
     @property

@@ -61,18 +61,18 @@ from core.schema.node_a import NodeA
         (50, 4, 19),
     ]
 )
-def test_node_a_creation_for_partition_five(
+def test_node_a_creation_for_schema_five(
     index,
     layer_index,
     in_layer_index,
 ):
     schema = Schema(5)
-    node_a_1 = NodeA(layer_index, in_layer_index, schema)
-    assert node_a_1.LAYER_INDEX == layer_index
-    assert node_a_1.IN_LAYER_INDEX == in_layer_index
-    assert node_a_1.INDEX == index
+    node_a = NodeA(layer_index, in_layer_index, schema)
+    assert node_a.LAYER_INDEX == layer_index
+    assert node_a.IN_LAYER_INDEX == in_layer_index
+    assert node_a.INDEX == index
 
-    node_a_2 = NodeA.create_node_by_index(index, schema)
-    assert node_a_2.LAYER_INDEX == layer_index
-    assert node_a_2.IN_LAYER_INDEX == in_layer_index
-    assert node_a_2.INDEX == index
+    node_a = NodeA.create_node_by_index(index, schema)
+    assert node_a.LAYER_INDEX == layer_index
+    assert node_a.IN_LAYER_INDEX == in_layer_index
+    assert node_a.INDEX == index

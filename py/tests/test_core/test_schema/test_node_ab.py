@@ -9,6 +9,78 @@ from core.schema.node_ab import NodeAB
     "layer_index,"
     "in_layer_index",
     [
+        (6, 2, 0),
+        (7, 2, 1),
+        (8, 2, 2),
+        (9, 2, 3),
+        (10, 2, 4),
+        (11, 2, 5),
+        (12, 2, 6),
+        (13, 2, 7),
+        (14, 2, 8),
+        (15, 2, 9),
+    ]
+)
+def test_node_ab_creation_for_schema_two(
+    index,
+    layer_index,
+    in_layer_index,
+):
+    schema = Schema(2)
+    node_ab = NodeAB(layer_index, in_layer_index, schema)
+    assert node_ab.LAYER_INDEX == layer_index
+    assert node_ab.IN_LAYER_INDEX == in_layer_index
+    assert node_ab.INDEX == index
+
+    node_ab = NodeAB.create_node_by_index(index, schema)
+    assert node_ab.LAYER_INDEX == layer_index
+    assert node_ab.IN_LAYER_INDEX == in_layer_index
+    assert node_ab.INDEX == index
+
+
+@pytest.mark.parametrize(
+    "index,"
+    "layer_index,"
+    "in_layer_index",
+    [
+        (16, 3, 0),
+        (17, 3, 1),
+        (18, 3, 2),
+        (19, 3, 3),
+        (20, 3, 4),
+        (21, 3, 5),
+        (22, 3, 6),
+        (23, 3, 7),
+        (24, 3, 8),
+        (25, 3, 9),
+        (26, 3, 10),
+        (27, 3, 11),
+        (28, 3, 12),
+        (29, 3, 13),
+        (30, 3, 14),
+    ]
+)
+def test_node_ab_creation_for_schema_three(
+    index,
+    layer_index,
+    in_layer_index,
+):
+    schema = Schema(3)
+    node_ab = NodeAB(layer_index, in_layer_index, schema)
+    assert node_ab.LAYER_INDEX == layer_index
+    assert node_ab.IN_LAYER_INDEX == in_layer_index
+    assert node_ab.INDEX == index
+
+    node_ab = NodeAB.create_node_by_index(index, schema)
+    assert node_ab.LAYER_INDEX == layer_index
+    assert node_ab.IN_LAYER_INDEX == in_layer_index
+    assert node_ab.INDEX == index
+
+@pytest.mark.parametrize(
+    "index,"
+    "layer_index,"
+    "in_layer_index",
+    [
         (31, 4, 0),
         (32, 4, 1),
         (33, 4, 2),
@@ -31,18 +103,18 @@ from core.schema.node_ab import NodeAB
         (50, 4, 19),
     ]
 )
-def test_node_ab_creation_for_partition_four(
+def test_node_ab_creation_for_schema_four(
     index,
     layer_index,
     in_layer_index,
 ):
     schema = Schema(4)
-    node_a_1 = NodeAB(layer_index, in_layer_index, schema)
-    assert node_a_1.LAYER_INDEX == layer_index
-    assert node_a_1.IN_LAYER_INDEX == in_layer_index
-    assert node_a_1.INDEX == index
+    node_ab = NodeAB(layer_index, in_layer_index, schema)
+    assert node_ab.LAYER_INDEX == layer_index
+    assert node_ab.IN_LAYER_INDEX == in_layer_index
+    assert node_ab.INDEX == index
 
-    node_a_2 = NodeAB.create_node_by_index(index, schema)
-    assert node_a_2.LAYER_INDEX == layer_index
-    assert node_a_2.IN_LAYER_INDEX == in_layer_index
-    assert node_a_2.INDEX == index
+    node_ab = NodeAB.create_node_by_index(index, schema)
+    assert node_ab.LAYER_INDEX == layer_index
+    assert node_ab.IN_LAYER_INDEX == in_layer_index
+    assert node_ab.INDEX == index
