@@ -18,8 +18,8 @@ class NodeA(BaseNode):
     @staticmethod
     def _get_layer_index_and_index_offset_for_layer(index: int) -> Tuple[int, int]:
         index_offset_for_area_a = 1
-        integer_part: int = (index - index_offset_for_area_a) // 5
-        layer_index_minus_one: int = int((sqrt(integer_part * 8 + 1) - 1) / 2)
+        num: int = (index - index_offset_for_area_a) // 5
+        layer_index_minus_one: int = int((sqrt(num * 8 + 1) - 1) / 2)
         layer_index: int = layer_index_minus_one + 1
         sum_of_previous_layer_indices: int = ((layer_index_minus_one + 1) * layer_index_minus_one) // 2
         index_offset_for_layer: int = sum_of_previous_layer_indices * 5 + index_offset_for_area_a
