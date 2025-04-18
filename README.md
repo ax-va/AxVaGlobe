@@ -14,4 +14,4 @@ Changing the radius of the sphere for the surface units can create arbitrary 3D 
 
 ## Logical Component
 
-The logical component is that each surface unit knows at the logical level its nearest neighbors that is implemented algorithmically, not by storage. Due to that, discrete movement on the surface is possible.
+The logical component is that each surface unit at the logical level knows its nearest neighbors that is implemented algorithmically, not by storage. Due to that, discrete movement on the surface is possible.
