@@ -17,10 +17,11 @@ class Schema:
     ) -> NodeLayerA | NodeLayerAB | NodeLayerB:
 
         if node_layer_index in self._registry["node_layers"]:
-            # Get the stored item from the registry
+            # Get the node layer instance from the registry
             node_layer: NodeLayerA | NodeLayerAB | NodeLayerB = self._registry["node_layers"][node_layer_index]
         
         else:
+            # The node layer instance is not available in the registry
             if self.constants.area_b.node_layers.START <= node_layer_index <= self.constants.area_b.node_layers.END:
                 node_layer = NodeLayerB(node_layer_index, self)
 
@@ -33,7 +34,7 @@ class Schema:
             else:
                 raise NotImplementedError()
 
-            # Add the new item to the registry
+            # Add the new node layer instance to the registry
             self._registry["node_layers"][node_layer_index] = node_layer
 
         return node_layer
