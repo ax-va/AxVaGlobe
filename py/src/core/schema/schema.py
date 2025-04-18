@@ -18,7 +18,7 @@ class Schema:
 
         if node_layer_index in self._registry["node_layers"]:
             # Get the node layer instance from the registry
-            node_layer: NodeLayerA | NodeLayerAB | NodeLayerB = self._registry["node_layers"][node_layer_index]
+            node_layer = self._registry["node_layers"][node_layer_index]
         
         else:
             # The node layer instance is not available in the registry.
