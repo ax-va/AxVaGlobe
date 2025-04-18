@@ -11,6 +11,7 @@ class BaseNode(ABC):
         self._in_layer_index: int = in_layer_index
         self._schema = schema  # type: "Schema"
         self._layer = self._schema.get_node_layer(layer_index)  # type: "node layer class"
+        # lazy
         self._index: int | None = None
 
     @property
