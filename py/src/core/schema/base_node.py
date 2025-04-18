@@ -10,7 +10,7 @@ class BaseNode(ABC):
     ):
         self._in_layer_index: int = in_layer_index
         self._schema = schema  # type: "Schema"
-        self._layer = self._schema.get_node_layer_from_registry(layer_index)  # type: "NodeLayerX"
+        self._layer = self._schema.get_node_layer_from_registry(layer_index)  # type: "node layer class"
         self._index: int | None = None
 
     @property
