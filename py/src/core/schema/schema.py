@@ -21,7 +21,8 @@ class Schema:
             node_layer: NodeLayerA | NodeLayerAB | NodeLayerB = self._registry["node_layers"][node_layer_index]
         
         else:
-            # The node layer instance is not available in the registry
+            # The node layer instance is not available in the registry.
+            # Select the correct node layer class.
             if self.constants.area_b.node_layers.START <= node_layer_index <= self.constants.area_b.node_layers.END:
                 node_layer_cls = NodeLayerB
 
