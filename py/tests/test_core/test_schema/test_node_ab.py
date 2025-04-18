@@ -28,14 +28,14 @@ def test_node_ab_creation_for_schema_two(
 ):
     schema = Schema(2)
     node_ab = NodeAB(layer_index, in_layer_index, schema)
+    assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
-    assert node_ab.INDEX == index
 
     node_ab = NodeAB.create_node_by_index(index, schema)
+    assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
-    assert node_ab.INDEX == index
 
 
 @pytest.mark.parametrize(
@@ -67,14 +67,15 @@ def test_node_ab_creation_for_schema_three(
 ):
     schema = Schema(3)
     node_ab = NodeAB(layer_index, in_layer_index, schema)
+    assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
-    assert node_ab.INDEX == index
 
     node_ab = NodeAB.create_node_by_index(index, schema)
+    assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
-    assert node_ab.INDEX == index
+
 
 @pytest.mark.parametrize(
     "index,"
@@ -110,11 +111,11 @@ def test_node_ab_creation_for_schema_four(
 ):
     schema = Schema(4)
     node_ab = NodeAB(layer_index, in_layer_index, schema)
+    assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
-    assert node_ab.INDEX == index
 
     node_ab = NodeAB.create_node_by_index(index, schema)
+    assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
-    assert node_ab.INDEX == index

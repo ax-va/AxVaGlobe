@@ -68,11 +68,12 @@ def test_node_a_creation_for_schema_five(
 ):
     schema = Schema(5)
     node_a = NodeA(layer_index, in_layer_index, schema)
+    assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
-    assert node_a.INDEX == index
 
     node_a = NodeA.create_node_by_index(index, schema)
+    assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
-    assert node_a.INDEX == index
+
