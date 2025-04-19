@@ -23,7 +23,7 @@ class NodeC(BaseNode):
         end_index: int = schema.constants.south_pole.node.INDEX
         end_index_for_area_c: int = schema.constants.area_c.nodes.END
         inverse_index_offset_for_area_c: int = end_index - end_index_for_area_c
-        inverse_index = end_index - index
+        inverse_index: int = end_index - index
         inverse_num: int = (inverse_index - inverse_index_offset_for_area_c) // 5
         inverse_layer_index_minus_one: int = int((sqrt(inverse_num * 8 + 1) - 1) / 2)
         inverse_layer_index: int = inverse_layer_index_minus_one + 1
