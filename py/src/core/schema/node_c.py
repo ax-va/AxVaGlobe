@@ -34,7 +34,3 @@ class NodeC(BaseNode):
         layer = schema.get_node_layer(layer_index)  # type: "node layer class"
         index_offset_for_layer: int = end_index - inverse_index_offset_for_layer - (layer.NUMBER_OF_NODES - 1)
         return layer_index, index_offset_for_layer
-
-from core.schema.schema import Schema
-node = NodeC(5, 0, Schema(2))
-print(node.INDEX)
