@@ -3,6 +3,7 @@ from core.schema.node_layer_a import NodeLayerA
 from core.schema.node_layer_ab import NodeLayerAB
 from core.schema.node_layer_b import NodeLayerB
 from core.schema.node_layer_bc import NodeLayerBC
+from core.schema.node_layer_c import NodeLayerC
 
 
 class Schema:
@@ -41,6 +42,9 @@ class Schema:
 
         elif self.constants.area_a.node_layers.START <= node_layer_index <= self.constants.area_a.node_layers.END:
             node_layer_cls = NodeLayerA
+
+        elif self.constants.area_c.node_layers.START <= node_layer_index <= self.constants.area_c.node_layers.END:
+            node_layer_cls = NodeLayerC
 
         elif node_layer_index == self.constants.border_ab.node_layer.INDEX:
             node_layer_cls = NodeLayerAB

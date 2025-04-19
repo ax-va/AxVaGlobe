@@ -62,9 +62,9 @@ from core.schema.node_a import NodeA
     ]
 )
 def test_creation_of_node_a_for_schema_five(
-    index,
-    layer_index,
-    in_layer_index,
+        index,
+        layer_index,
+        in_layer_index,
 ):
     schema = Schema(5)
     node_a = NodeA(layer_index, in_layer_index, schema)

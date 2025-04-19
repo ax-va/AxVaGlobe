@@ -22,9 +22,9 @@ from core.schema.node_ab import NodeAB
     ]
 )
 def test_creation_of_node_ab_for_schema_two(
-    index,
-    layer_index,
-    in_layer_index,
+        index,
+        layer_index,
+        in_layer_index,
 ):
     schema = Schema(2)
     node_ab = NodeAB(layer_index, in_layer_index, schema)
@@ -61,9 +61,9 @@ def test_creation_of_node_ab_for_schema_two(
     ]
 )
 def test_creation_of_node_ab_for_schema_three(
-    index,
-    layer_index,
-    in_layer_index,
+        index,
+        layer_index,
+        in_layer_index,
 ):
     schema = Schema(3)
     node_ab = NodeAB(layer_index, in_layer_index, schema)
@@ -105,9 +105,9 @@ def test_creation_of_node_ab_for_schema_three(
     ]
 )
 def test_creation_of_node_ab_for_schema_four(
-    index,
-    layer_index,
-    in_layer_index,
+        index,
+        layer_index,
+        in_layer_index,
 ):
     schema = Schema(4)
     node_ab = NodeAB(layer_index, in_layer_index, schema)
