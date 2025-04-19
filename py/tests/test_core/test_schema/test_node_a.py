@@ -61,7 +61,7 @@ from core.schema.node_a import NodeA
         (50, 4, 19),
     ]
 )
-def test_node_a_creation_for_schema_five(
+def test_creation_of_node_a_for_schema_five(
     index,
     layer_index,
     in_layer_index,
@@ -76,4 +76,3 @@ def test_node_a_creation_for_schema_five(
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
-
