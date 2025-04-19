@@ -21,7 +21,7 @@ from core.schema.node_b import NodeB
         (25, 3, 9),
     ]
 )
-def test_node_b_creation_for_schema_two(
+def test_creation_of_node_b_for_schema_two(
     index,
     layer_index,
     in_layer_index,
@@ -75,7 +75,7 @@ def test_node_b_creation_for_schema_two(
         (60, 5, 14),
     ]
 )
-def test_node_b_creation_for_schema_three(
+def test_creation_of_node_b_for_schema_three(
     index,
     layer_index,
     in_layer_index,
@@ -159,7 +159,7 @@ def test_node_b_creation_for_schema_three(
         (110, 7, 19),
     ]
 )
-def test_node_b_creation_for_schema_four(
+def test_creation_of_node_b_for_schema_four(
     index,
     layer_index,
     in_layer_index,
