@@ -2,6 +2,7 @@ from core.schema.constants import Constants
 from core.schema.node_layer_a import NodeLayerA
 from core.schema.node_layer_ab import NodeLayerAB
 from core.schema.node_layer_b import NodeLayerB
+from core.schema.node_layer_bc import NodeLayerBC
 
 
 class Schema:
@@ -14,7 +15,7 @@ class Schema:
     def get_node_layer(
             self,
             node_layer_index: int,
-    ) -> NodeLayerA | NodeLayerAB | NodeLayerB:
+    ) -> NodeLayerA | NodeLayerAB | NodeLayerB | NodeLayerBC:
 
         if node_layer_index in self._registry["node_layers"]:
             # Get the node layer instance from the registry
@@ -33,7 +34,7 @@ class Schema:
     def _create_node_layer(
             self,
             node_layer_index: int,
-    ) -> NodeLayerA | NodeLayerAB | NodeLayerB:
+    ) -> NodeLayerA | NodeLayerAB | NodeLayerB | NodeLayerBC:
         # Select the correct node layer class.
         if self.constants.area_b.node_layers.START <= node_layer_index <= self.constants.area_b.node_layers.END:
             node_layer_cls = NodeLayerB
@@ -43,6 +44,9 @@ class Schema:
 
         elif node_layer_index == self.constants.border_ab.node_layer.INDEX:
             node_layer_cls = NodeLayerAB
+
+        elif node_layer_index == self.constants.border_bc.node_layer.INDEX:
+            node_layer_cls = NodeLayerBC
 
         else:
             raise NotImplementedError()
