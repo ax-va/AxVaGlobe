@@ -1,7 +1,7 @@
 from core.schema.base_node_layer import BaseNodeLayer
 
 
-class NodeLayerC(BaseNodeLayer):
+class _NodeLayerC(BaseNodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
         if self._node_index_offset_for_layer is None:

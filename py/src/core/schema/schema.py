@@ -1,9 +1,9 @@
 from core.schema.constants import Constants
-from core.schema.node_layer_a import NodeLayerA
-from core.schema.node_layer_ab import NodeLayerAB
-from core.schema.node_layer_b import NodeLayerB
-from core.schema.node_layer_bc import NodeLayerBC
-from core.schema.node_layer_c import NodeLayerC
+from core.schema.node_layer_a import _NodeLayerA
+from core.schema.node_layer_ab import _NodeLayerAB
+from core.schema.node_layer_b import _NodeLayerB
+from core.schema.node_layer_bc import _NodeLayerBC
+from core.schema.node_layer_c import _NodeLayerC
 
 
 class Schema:
@@ -16,7 +16,7 @@ class Schema:
     def get_node_layer(
             self,
             node_layer_index: int,
-    ) -> NodeLayerA | NodeLayerAB | NodeLayerB | NodeLayerBC | NodeLayerC:
+    ) -> _NodeLayerA | _NodeLayerAB | _NodeLayerB | _NodeLayerBC | _NodeLayerC:
 
         if node_layer_index in self._registry["node_layers"]:
             # Get the node layer instance from the registry
@@ -35,22 +35,22 @@ class Schema:
     def _create_node_layer(
             self,
             node_layer_index: int,
-    ) -> NodeLayerA | NodeLayerAB | NodeLayerB | NodeLayerBC | NodeLayerC:
+    ) -> _NodeLayerA | _NodeLayerAB | _NodeLayerB | _NodeLayerBC | _NodeLayerC:
         # Select the correct node layer class.
         if self.constants.area_b.node_layers.START <= node_layer_index <= self.constants.area_b.node_layers.END:
-            node_layer_cls = NodeLayerB
+            node_layer_cls = _NodeLayerB
 
         elif self.constants.area_a.node_layers.START <= node_layer_index <= self.constants.area_a.node_layers.END:
-            node_layer_cls = NodeLayerA
+            node_layer_cls = _NodeLayerA
 
         elif self.constants.area_c.node_layers.START <= node_layer_index <= self.constants.area_c.node_layers.END:
-            node_layer_cls = NodeLayerC
+            node_layer_cls = _NodeLayerC
 
         elif node_layer_index == self.constants.border_ab.node_layer.INDEX:
-            node_layer_cls = NodeLayerAB
+            node_layer_cls = _NodeLayerAB
 
         elif node_layer_index == self.constants.border_bc.node_layer.INDEX:
-            node_layer_cls = NodeLayerBC
+            node_layer_cls = _NodeLayerBC
 
         else:
             raise NotImplementedError()
