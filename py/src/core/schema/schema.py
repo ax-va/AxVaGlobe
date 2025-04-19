@@ -16,7 +16,7 @@ class Schema:
     def get_node_layer(
             self,
             node_layer_index: int,
-    ) -> NodeLayerA | NodeLayerAB | NodeLayerB | NodeLayerBC:
+    ) -> NodeLayerA | NodeLayerAB | NodeLayerB | NodeLayerBC | NodeLayerC:
 
         if node_layer_index in self._registry["node_layers"]:
             # Get the node layer instance from the registry
@@ -35,7 +35,7 @@ class Schema:
     def _create_node_layer(
             self,
             node_layer_index: int,
-    ) -> NodeLayerA | NodeLayerAB | NodeLayerB | NodeLayerBC:
+    ) -> NodeLayerA | NodeLayerAB | NodeLayerB | NodeLayerBC | NodeLayerC:
         # Select the correct node layer class.
         if self.constants.area_b.node_layers.START <= node_layer_index <= self.constants.area_b.node_layers.END:
             node_layer_cls = NodeLayerB
