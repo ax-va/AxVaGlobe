@@ -1,9 +1,12 @@
 from core.schema.constants import Constants
+from core.schema.errors import NodeLayerIndexError
 from core.schema.node_layer_a import _NodeLayerA
 from core.schema.node_layer_ab import _NodeLayerAB
 from core.schema.node_layer_b import _NodeLayerB
 from core.schema.node_layer_bc import _NodeLayerBC
 from core.schema.node_layer_c import _NodeLayerC
+from core.schema.node_layer_np import _NodeLayerNP
+from core.schema.node_layer_sp import _NodeLayerSP
 
 
 class Schema:
@@ -52,8 +55,14 @@ class Schema:
         elif node_layer_index == self.constants.border_bc.node_layer.INDEX:
             node_layer_cls = _NodeLayerBC
 
+        elif node_layer_index == self.constants.north_pole.node_layer.INDEX:
+            node_layer_cls = _NodeLayerNP
+
+        elif node_layer_index == self.constants.south_pole.node_layer.INDEX:
+            node_layer_cls = _NodeLayerSP
+
         else:
-            raise NotImplementedError()
+            raise NodeLayerIndexError(node_layer_index, self)
 
         # Create a new node layer instance by using a selected class
         node_layer = node_layer_cls(node_layer_index, self)
