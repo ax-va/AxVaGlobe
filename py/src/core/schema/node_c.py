@@ -4,7 +4,7 @@ from typing import Tuple
 from core.schema.base_node import BaseNode
 
 
-class NodeC(BaseNode):
+class _NodeC(BaseNode):
     @classmethod
     def create_node_by_index(
             cls,

@@ -1,7 +1,7 @@
 from core.schema.base_node import BaseNode
 
 
-class NodeB(BaseNode):
+class _NodeB(BaseNode):
     @classmethod
     def create_node_by_index(
             cls,

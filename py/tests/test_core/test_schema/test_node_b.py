@@ -1,7 +1,7 @@
 import pytest
 
 from core.schema.schema import Schema
-from core.schema.node_b import NodeB
+from core.schema.node_b import _NodeB
 
 
 @pytest.mark.parametrize(
@@ -27,12 +27,12 @@ def test_creation_of_node_b_for_schema_two(
     in_layer_index,
 ):
     schema = Schema(2)
-    node_b = NodeB(layer_index, in_layer_index, schema)
+    node_b = _NodeB(layer_index, in_layer_index, schema)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
 
-    node_b = NodeB.create_node_by_index(index, schema)
+    node_b = _NodeB.create_node_by_index(index, schema)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
@@ -81,12 +81,12 @@ def test_creation_of_node_b_for_schema_three(
     in_layer_index,
 ):
     schema = Schema(3)
-    node_b = NodeB(layer_index, in_layer_index, schema)
+    node_b = _NodeB(layer_index, in_layer_index, schema)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
 
-    node_b = NodeB.create_node_by_index(index, schema)
+    node_b = _NodeB.create_node_by_index(index, schema)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
@@ -165,12 +165,12 @@ def test_creation_of_node_b_for_schema_four(
     in_layer_index,
 ):
     schema = Schema(4)
-    node_b = NodeB(layer_index, in_layer_index, schema)
+    node_b = _NodeB(layer_index, in_layer_index, schema)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
 
-    node_b = NodeB.create_node_by_index(index, schema)
+    node_b = _NodeB.create_node_by_index(index, schema)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index

@@ -1,7 +1,7 @@
 import pytest
 
 from core.schema.schema import Schema
-from core.schema.node_a import NodeA
+from core.schema.node_a import _NodeA
 
 
 @pytest.mark.parametrize(
@@ -67,12 +67,12 @@ def test_creation_of_node_a_for_schema_five(
         in_layer_index,
 ):
     schema = Schema(5)
-    node_a = NodeA(layer_index, in_layer_index, schema)
+    node_a = _NodeA(layer_index, in_layer_index, schema)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = NodeA.create_node_by_index(index, schema)
+    node_a = _NodeA.create_node_by_index(index, schema)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
