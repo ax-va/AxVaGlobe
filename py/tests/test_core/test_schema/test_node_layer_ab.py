@@ -12,7 +12,7 @@ from core.schema.node_layer_ab import _NodeLayerAB
         (2, 6, 10),
     ]
 )
-def test_node_layer_a_for_schema_two(
+def test_node_layer_ab_for_schema_two(
         index,
         node_index_offset_for_layer,
         number_of_nodes,
@@ -32,7 +32,7 @@ def test_node_layer_a_for_schema_two(
         (3, 16, 15),
     ]
 )
-def test_node_layer_a_for_schema_three(
+def test_node_layer_ab_for_schema_three(
         index,
         node_index_offset_for_layer,
         number_of_nodes,
@@ -52,7 +52,7 @@ def test_node_layer_a_for_schema_three(
         (4, 31, 20),
     ]
 )
-def test_node_layer_a_for_schema_four(
+def test_node_layer_ab_for_schema_four(
         index,
         node_index_offset_for_layer,
         number_of_nodes,
