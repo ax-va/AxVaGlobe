@@ -60,7 +60,7 @@ def test_creation_of_node_bc_for_schema_two(
         (75, 6, 14),
     ]
 )
-def test_node_bc_creation_for_schema_three(
+def test_creation_of_node_bc_for_schema_three(
     index,
     layer_index,
     in_layer_index,
@@ -104,7 +104,7 @@ def test_node_bc_creation_for_schema_three(
         (130, 8, 19),
     ]
 )
-def test_node_bc_creation_for_schema_four(
+def test_creation_of_node_bc_for_schema_four(
     index,
     layer_index,
     in_layer_index,
