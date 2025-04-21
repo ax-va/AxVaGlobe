@@ -22,7 +22,7 @@ class _NodeB(BaseNode):
             self,
     ) -> Tuple[
             # 6 neighboring nodes indices
-            Tuple[int, int],  # layer_index, in_layer_index
+            Tuple[int, int],  # (layer_index, in_layer_index)
             Tuple[int, int],
             Tuple[int, int],
             Tuple[int, int],
