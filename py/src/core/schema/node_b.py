@@ -64,6 +64,7 @@ class _NodeB(BaseNode):
 
 if __name__ == "__main__":
     from core.schema.schema import Schema
+    
     schema = Schema(4)
     for index in range(schema.constants.area_b.nodes.START, schema.constants.area_b.nodes.END + 1):
         node = _NodeB.create_node_by_index(index, schema)
