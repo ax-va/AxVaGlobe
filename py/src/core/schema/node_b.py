@@ -28,37 +28,37 @@ class _NodeB(BaseNode):
             Tuple[int, int]
     ]:
 
-        layer_index0 = self.LAYER_INDEX - 1  # up
-        layer_index1 = layer_index0  # up
-        layer_index2 = self.LAYER_INDEX
-        layer_index3 = self.LAYER_INDEX + 1  # down
-        layer_index4 = layer_index3  # down
-        layer_index5 = self.LAYER_INDEX
+        layer_index_0 = self.LAYER_INDEX - 1  # up
+        layer_index_1 = layer_index_0  # up
+        layer_index_2 = self.LAYER_INDEX
+        layer_index_3 = self.LAYER_INDEX + 1  # down
+        layer_index_4 = layer_index_3  # down
+        layer_index_5 = self.LAYER_INDEX
 
         end_node_in_layer_index = self._layer.END_NODE_IN_LAYER_INDEX
         if self.IN_LAYER_INDEX != 0:
-            in_layer_index0 = self.IN_LAYER_INDEX - 1  # left
-            in_layer_index1 = self.IN_LAYER_INDEX
-            in_layer_index2 = self.IN_LAYER_INDEX + 1 if self.IN_LAYER_INDEX != end_node_in_layer_index else 0
-            in_layer_index3 = in_layer_index2
-            in_layer_index4 = self.IN_LAYER_INDEX
-            in_layer_index5 = in_layer_index0  # left
+            in_layer_index_0 = self.IN_LAYER_INDEX - 1  # left
+            in_layer_index_1 = self.IN_LAYER_INDEX
+            in_layer_index_2 = self.IN_LAYER_INDEX + 1 if self.IN_LAYER_INDEX != end_node_in_layer_index else 0
+            in_layer_index_3 = in_layer_index_2
+            in_layer_index_4 = self.IN_LAYER_INDEX
+            in_layer_index_5 = in_layer_index_0  # left
 
         else:
-            in_layer_index0 = end_node_in_layer_index
-            in_layer_index1 = 0
-            in_layer_index2 = 1
-            in_layer_index3 = 1
-            in_layer_index4 = 0
-            in_layer_index5 = end_node_in_layer_index
+            in_layer_index_0 = end_node_in_layer_index
+            in_layer_index_1 = 0
+            in_layer_index_2 = 1
+            in_layer_index_3 = 1
+            in_layer_index_4 = 0
+            in_layer_index_5 = end_node_in_layer_index
 
         return (
-            (layer_index0, in_layer_index0),
-            (layer_index1, in_layer_index1),
-            (layer_index2, in_layer_index2),
-            (layer_index3, in_layer_index3),
-            (layer_index4, in_layer_index4),
-            (layer_index5, in_layer_index5),
+            (layer_index_0, in_layer_index_0),
+            (layer_index_1, in_layer_index_1),
+            (layer_index_2, in_layer_index_2),
+            (layer_index_3, in_layer_index_3),
+            (layer_index_4, in_layer_index_4),
+            (layer_index_5, in_layer_index_5),
         )
 
 
