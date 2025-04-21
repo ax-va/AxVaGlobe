@@ -11,10 +11,10 @@ class _NodeB(BaseNode):
             schema,  # type: "Schema"
     ) -> Self:
         """Creates a node instance by a node index."""
-        number_of_nodes_in_layer = schema.constants.border_ab.nodes.NUMBER
-        relative_layer_index = (index - schema.constants.area_b.nodes.START) // number_of_nodes_in_layer
-        layer_index = schema.constants.area_b.node_layers.START + relative_layer_index
-        index_offset_for_layer = schema.constants.area_b.nodes.START + relative_layer_index * number_of_nodes_in_layer
+        number_of_nodes_in_layer: int = schema.constants.border_ab.nodes.NUMBER
+        relative_layer_index: int = (index - schema.constants.area_b.nodes.START) // number_of_nodes_in_layer
+        layer_index: int = schema.constants.area_b.node_layers.START + relative_layer_index
+        index_offset_for_layer: int = schema.constants.area_b.nodes.START + relative_layer_index * number_of_nodes_in_layer
         in_layer_index: int = index - index_offset_for_layer
         return cls(layer_index, in_layer_index, schema)
 
