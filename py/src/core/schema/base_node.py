@@ -1,3 +1,5 @@
+from typing import Self
+
 from abc import ABC, abstractmethod
 
 
@@ -39,7 +41,7 @@ class BaseNode(ABC):
             cls,
             index: int,
             schema,  # type: "Schema"
-    ):
+    ) -> Self:
         pass
 
     # @abstractmethod

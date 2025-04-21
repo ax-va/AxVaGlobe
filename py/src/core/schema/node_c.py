@@ -1,5 +1,5 @@
 from math import sqrt
-from typing import Tuple
+from typing import Tuple, Self
 
 from core.schema.base_node import BaseNode
 
@@ -10,7 +10,7 @@ class _NodeC(BaseNode):
             cls,
             index: int,
             schema,  # type: "Schema"
-    ):
+    ) -> Self:
         layer_index, index_offset_for_layer = cls._get_layer_index_and_index_offset_for_layer(index, schema)
         in_layer_index: int = index - index_offset_for_layer
         return cls(layer_index, in_layer_index, schema)
