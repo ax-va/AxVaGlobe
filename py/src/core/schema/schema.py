@@ -1,3 +1,5 @@
+from typing import Dict
+
 from core.schema.constants import Constants
 from core.schema.errors import NodeLayerIndexError, NodeIndexError
 from core.schema.node_a import _NodeA
@@ -25,7 +27,7 @@ class Schema:
         }
 
     @property
-    def registry(self) -> dict[str, dict]:
+    def registry(self) -> Dict[str, Dict]:
         return self._registry
 
     def get_node_layer(
