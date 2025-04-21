@@ -18,8 +18,15 @@ class _NodeB(BaseNode):
         return cls(layer_index, in_layer_index, schema)
 
     def get_layer_and_in_layer_indices_of_neighboring_nodes(
-        self,
-    ) -> Tuple[Tuple[int, int], Tuple[int, int], Tuple[int, int], Tuple[int, int], Tuple[int, int], Tuple[int, int]]:
+            self,
+    ) -> Tuple[
+            Tuple[int, int],
+            Tuple[int, int],
+            Tuple[int, int],
+            Tuple[int, int],
+            Tuple[int, int],
+            Tuple[int, int]
+    ]:
 
         layer_index0 = self.LAYER_INDEX - 1  # index up
         layer_index1 = self.LAYER_INDEX - 1  # index up
