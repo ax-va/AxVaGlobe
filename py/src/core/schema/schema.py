@@ -101,7 +101,7 @@ class Schema:
         node_layer = node_layer_cls(node_layer_index, self)
         return node_layer
 
-    def _create_node(
+    def _create_node_by_index(
             self,
             node_index: int,
     ) -> _NodeNP | _NodeA | _NodeAB | _NodeB | _NodeBC | _NodeC | _NodeSP:
