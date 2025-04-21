@@ -28,6 +28,11 @@ class BaseNode(ABC):
             self._index = self._layer.NODE_INDEX_OFFSET_FOR_LAYER + self.IN_LAYER_INDEX
         return self._index
 
+    @property
+    def layer(self):
+        """Returns the node layer from the schema's repository linked to the node."""
+        return self._layer  # type: "node layer class"
+
     @classmethod
     @abstractmethod
     def create_node_by_index(
@@ -39,6 +44,3 @@ class BaseNode(ABC):
 
     def __repr__(self):
         return f"{self.__class__.__bases__[0].__name__}({self.LAYER_INDEX}, {self.IN_LAYER_INDEX}, {self._schema})"
-
-    def get_layer(self):
-        return self._layer  # type: "node layer class"
