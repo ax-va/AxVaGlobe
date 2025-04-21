@@ -39,10 +39,10 @@ class _NodeB(BaseNode):
         if self.IN_LAYER_INDEX != 0:
             in_layer_index0 = self.IN_LAYER_INDEX - 1
             in_layer_index1 = self.IN_LAYER_INDEX
-            in_layer_index4 = self.IN_LAYER_INDEX
-            in_layer_index5 = in_layer_index0
             in_layer_index2 = self.IN_LAYER_INDEX + 1 if self.IN_LAYER_INDEX != end_node_in_layer_index else 0
             in_layer_index3 = in_layer_index2
+            in_layer_index4 = self.IN_LAYER_INDEX
+            in_layer_index5 = in_layer_index0
 
         else:
             in_layer_index0 = end_node_in_layer_index
