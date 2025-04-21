@@ -28,7 +28,7 @@ class _NodeB(BaseNode):
             Tuple[int, int],
             Tuple[int, int]
     ]:
-
+        """Returns 6 neighboring nodes, each as (layer_index, in_layer_index), all in a tuple."""
         layer_index_0 = self.LAYER_INDEX - 1  # up
         layer_index_1 = layer_index_0  # up
         layer_index_2 = self.LAYER_INDEX
