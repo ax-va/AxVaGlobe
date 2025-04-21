@@ -21,7 +21,7 @@ class _NodeB(BaseNode):
     def get_layer_and_in_layer_indices_of_neighboring_nodes(
             self,
     ) -> Tuple[
-            # 6 neighboring nodes
+            # 6 neighboring nodes indices
             Tuple[int, int],  # layer_index, in_layer_index
             Tuple[int, int],
             Tuple[int, int],
