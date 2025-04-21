@@ -29,10 +29,10 @@ class _NodeB(BaseNode):
     ]:
 
         layer_index0 = self.LAYER_INDEX - 1  # layer index up
-        layer_index1 = self.LAYER_INDEX - 1  # layer index up
+        layer_index1 = layer_index0  # layer index up
         layer_index2 = self.LAYER_INDEX
         layer_index3 = self.LAYER_INDEX + 1  # layer index down
-        layer_index4 = self.LAYER_INDEX + 1  # layer index down
+        layer_index4 = layer_index3  # layer index down
         layer_index5 = self.LAYER_INDEX
 
         end_node_in_layer_index = self._layer.END_NODE_IN_LAYER_INDEX
