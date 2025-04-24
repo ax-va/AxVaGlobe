@@ -45,7 +45,7 @@ class BaseNode(ABC):
         pass
 
     # @abstractmethod
-    # def get_neighboring_nodes_layer_index_and_in_layer_index_tuple(self):
+    # def get_layer_and_in_layer_indices_of_neighboring_nodes(self):
     #     pass
 
     def __repr__(self):
