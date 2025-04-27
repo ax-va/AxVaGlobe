@@ -174,3 +174,28 @@ def test_creation_of_node_b_for_schema_four(
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
+
+
+@pytest.mark.parametrize(
+    "index,"
+    "layer_and_in_layer_indices",
+    [
+        (16, ((2, 9), (2, 0), (3, 1), (4, 1), (4, 0), (3, 9))),
+        (17, ((2, 0), (2, 1), (3, 2), (4, 2), (4, 1), (3, 0))),
+        (18, ((2, 1), (2, 2), (3, 3), (4, 3), (4, 2), (3, 1))),
+        (19, ((2, 2), (2, 3), (3, 4), (4, 4), (4, 3), (3, 2))),
+        (20, ((2, 3), (2, 4), (3, 5), (4, 5), (4, 4), (3, 3))),
+        (21, ((2, 4), (2, 5), (3, 6), (4, 6), (4, 5), (3, 4))),
+        (22, ((2, 5), (2, 6), (3, 7), (4, 7), (4, 6), (3, 5))),
+        (23, ((2, 6), (2, 7), (3, 8), (4, 8), (4, 7), (3, 6))),
+        (24, ((2, 7), (2, 8), (3, 9), (4, 9), (4, 8), (3, 7))),
+        (25, ((2, 8), (2, 9), (3, 0), (4, 0), (4, 9), (3, 8))),
+    ]
+)
+def test_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
+    index,
+    layer_and_in_layer_indices,
+):
+    schema = Schema(2)
+    node = _NodeB.create_node_by_index(index, schema)
+    assert node.get_layer_and_in_layer_indices_of_neighboring_nodes() == layer_and_in_layer_indices

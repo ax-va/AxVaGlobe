@@ -62,17 +62,3 @@ class _NodeB(BaseNode):
             (layer_index_4, in_layer_index_4),
             (layer_index_5, in_layer_index_5),
         )
-
-
-if __name__ == "__main__":
-    from core.schema.schema import Schema
-    
-    schema = Schema(4)
-    for index in range(schema.constants.area_b.nodes.START, schema.constants.area_b.nodes.END + 1):
-        node = _NodeB.create_node_by_index(index, schema)
-        print("-" * 20)
-        print(node.INDEX)
-        print("neighbors:")
-        for layer_index, in_layer_index in node.get_layer_and_in_layer_indices_of_neighboring_nodes():
-            nn = _NodeB(layer_index, in_layer_index, schema)
-            print(nn.INDEX)
