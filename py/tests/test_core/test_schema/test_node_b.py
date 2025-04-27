@@ -192,7 +192,7 @@ def test_creation_of_node_b_for_schema_four(
         (25, ((2, 8), (2, 9), (3, 0), (4, 0), (4, 9), (3, 8))),
     ]
 )
-def test_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
+def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
     index,
     layer_and_in_layer_indices,
 ):
