@@ -75,7 +75,7 @@ class _NodeA(BaseNode):
                 in_layer_index_4: int = in_layer_index_3 - 1
                 in_layer_index_0: int = self.IN_LAYER_INDEX - num
 
-                if self.LAYER_INDEX != 1 or self.IN_LAYER_INDEX != 4:
+                if not (self.LAYER_INDEX == 1 and self.IN_LAYER_INDEX == 4):
                     in_layer_index_1: int = self.IN_LAYER_INDEX + 1
 
                 else:
