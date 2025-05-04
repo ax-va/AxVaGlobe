@@ -39,7 +39,7 @@ class _NodeA(BaseNode):
             Tuple[int, int],
             Tuple[int, int]
     ]:
-
+        """Returns 6 neighboring nodes indices (layer_index, in_layer_index)."""
         num: int = self.IN_LAYER_INDEX // self.LAYER_INDEX
         rem: int = self.IN_LAYER_INDEX % self.LAYER_INDEX
 
