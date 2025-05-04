@@ -30,21 +30,26 @@ class _NodeB(BaseNode):
             Tuple[int, int]
     ]:
         """Returns 6 neighboring nodes indices (layer_index, in_layer_index)."""
-        layer_index_0: int = self.LAYER_INDEX - 1  # up
-        layer_index_1: int = layer_index_0  # up
+        layer_index_up: int = self.LAYER_INDEX - 1
+        layer_index_down: int = self.LAYER_INDEX + 1
+        in_layer_index_left: int = self.IN_LAYER_INDEX - 1
+        in_layer_index_right: int = self.IN_LAYER_INDEX + 1
+
+        layer_index_0: int = layer_index_up  # up
+        layer_index_1: int = layer_index_up  # up
         layer_index_2: int = self.LAYER_INDEX
-        layer_index_3: int = self.LAYER_INDEX + 1  # down
-        layer_index_4: int = layer_index_3  # down
+        layer_index_3: int = layer_index_down  # down
+        layer_index_4: int = layer_index_down  # down
         layer_index_5: int = self.LAYER_INDEX
 
         end_node_in_layer_index = self._layer.END_NODE_IN_LAYER_INDEX
         if self.IN_LAYER_INDEX != 0:
-            in_layer_index_0: int = self.IN_LAYER_INDEX - 1  # left
+            in_layer_index_0: int = in_layer_index_left  # left
             in_layer_index_1: int = self.IN_LAYER_INDEX
-            in_layer_index_2: int = self.IN_LAYER_INDEX + 1 if self.IN_LAYER_INDEX != end_node_in_layer_index else 0
+            in_layer_index_2: int = in_layer_index_right if self.IN_LAYER_INDEX != end_node_in_layer_index else 0
             in_layer_index_3: int = in_layer_index_2
             in_layer_index_4: int = self.IN_LAYER_INDEX
-            in_layer_index_5: int = in_layer_index_0  # left
+            in_layer_index_5: int = in_layer_index_left  # left
 
         else:
             in_layer_index_0: int = end_node_in_layer_index
