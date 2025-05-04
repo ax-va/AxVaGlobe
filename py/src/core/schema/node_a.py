@@ -63,11 +63,11 @@ class _NodeA(BaseNode):
             in_layer_index_0: int = in_layer_index_left - num
             in_layer_index_3: int = in_layer_index_4 + 1
 
-            if self.IN_LAYER_INDEX < end_node_in_layer_index:
+            if self.IN_LAYER_INDEX < end_node_in_layer_index:  # This node is not the last node in the layer
                 in_layer_index_1: int = self.IN_LAYER_INDEX - num
                 in_layer_index_2: int = in_layer_index_right
 
-            else:
+            else:  # This node is the last node in the layer
                 in_layer_index_1: int = 0
                 in_layer_index_2: int = 0
 
@@ -75,7 +75,7 @@ class _NodeA(BaseNode):
             layer_index_1: int = self.LAYER_INDEX
             layer_index_2: int = layer_index_down  # down
 
-            if self.IN_LAYER_INDEX != 0:
+            if self.IN_LAYER_INDEX != 0:  # This node is not the first node in the layer
                 in_layer_index_3: int = self.IN_LAYER_INDEX + num
                 in_layer_index_2: int = in_layer_index_3 + 1
                 in_layer_index_4: int = in_layer_index_3 - 1
@@ -83,7 +83,7 @@ class _NodeA(BaseNode):
                 in_layer_index_1: int = in_layer_index_right if self.IN_LAYER_INDEX != end_node_in_layer_index else 0
                 in_layer_index_5: int = in_layer_index_left
 
-            else:
+            else:  # This node is the first node in the layer
                 in_layer_index_0: int = 0
                 in_layer_index_1: int = 1
                 in_layer_index_2: int = 1
