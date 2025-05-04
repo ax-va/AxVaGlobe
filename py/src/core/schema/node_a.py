@@ -29,7 +29,7 @@ class _NodeA(BaseNode):
         return layer_index, index_offset_for_layer
 
     def get_layer_and_in_layer_indices_of_neighboring_nodes(
-        self,
+            self,
     ) -> Tuple[
             # 6 neighboring nodes indices
             Tuple[int, int],  # (layer_index, in_layer_index)
