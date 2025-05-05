@@ -197,8 +197,8 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
     layer_and_in_layer_indices,
 ):
     schema = Schema(2)
-    node = _NodeB.create_node_by_index(index, schema)
-    assert node.get_layer_and_in_layer_indices_of_neighboring_nodes() == layer_and_in_layer_indices
+    node_b = _NodeB.create_node_by_index(index, schema)
+    assert node_b.get_layer_and_in_layer_indices_of_neighboring_nodes() == layer_and_in_layer_indices
 
 
 @pytest.mark.parametrize(
@@ -242,8 +242,8 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_thre
     layer_and_in_layer_indices,
 ):
     schema = Schema(3)
-    node = _NodeB.create_node_by_index(index, schema)
-    assert node.get_layer_and_in_layer_indices_of_neighboring_nodes() == layer_and_in_layer_indices
+    node_b = _NodeB.create_node_by_index(index, schema)
+    assert node_b.get_layer_and_in_layer_indices_of_neighboring_nodes() == layer_and_in_layer_indices
 
 
 @pytest.mark.parametrize(
@@ -317,5 +317,5 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_four
     layer_and_in_layer_indices,
 ):
     schema = Schema(4)
-    node = _NodeB.create_node_by_index(index, schema)
-    assert node.get_layer_and_in_layer_indices_of_neighboring_nodes() == layer_and_in_layer_indices
+    node_b = _NodeB.create_node_by_index(index, schema)
+    assert node_b.get_layer_and_in_layer_indices_of_neighboring_nodes() == layer_and_in_layer_indices

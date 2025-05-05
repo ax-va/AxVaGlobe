@@ -15,19 +15,6 @@ class _NodeA(BaseNode):
         in_layer_index: int = index - index_offset_for_layer
         return cls(layer_index, in_layer_index, schema)
 
-    @staticmethod
-    def _get_layer_index_and_index_offset_for_layer(
-            index: int,
-            schema,  # type: "Schema"
-    ) -> Tuple[int, int]:
-        index_offset_for_area_a: int = schema.constants.area_a.nodes.START
-        num: int = (index - index_offset_for_area_a) // 5
-        layer_index_minus_one: int = int((sqrt(num * 8 + 1) - 1) / 2)
-        layer_index: int = layer_index_minus_one + 1
-        sum_of_previous_layer_indices: int = (layer_index * layer_index_minus_one) // 2
-        index_offset_for_layer: int = sum_of_previous_layer_indices * 5 + index_offset_for_area_a
-        return layer_index, index_offset_for_layer
-
     def get_layer_and_in_layer_indices_of_neighboring_nodes(
             self,
     ) -> Tuple[
@@ -99,3 +86,16 @@ class _NodeA(BaseNode):
             (layer_index_4, in_layer_index_4),
             (layer_index_5, in_layer_index_5),
         )
+
+    @staticmethod
+    def _get_layer_index_and_index_offset_for_layer(
+            index: int,
+            schema,  # type: "Schema"
+    ) -> Tuple[int, int]:
+        index_offset_for_area_a: int = schema.constants.area_a.nodes.START
+        num: int = (index - index_offset_for_area_a) // 5
+        layer_index_minus_one: int = int((sqrt(num * 8 + 1) - 1) / 2)
+        layer_index: int = layer_index_minus_one + 1
+        sum_of_previous_layer_indices: int = (layer_index * layer_index_minus_one) // 2
+        index_offset_for_layer: int = sum_of_previous_layer_indices * 5 + index_offset_for_area_a
+        return layer_index, index_offset_for_layer
