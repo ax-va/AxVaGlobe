@@ -200,44 +200,46 @@ def test_creation_of_node_a_for_schema_five(
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
 @pytest.mark.parametrize(
-    "index,"
-    "layer_and_in_layer_indices",
+    "node_params,"
+    "neighboring_nodes_params",
     [
-        (1, ((0, 0), (1, 1), (2, 1), (2, 0), (2, 9), (1, 4))),
-        (2, ((0, 0), (1, 2), (2, 3), (2, 2), (2, 1), (1, 0))),
-        (3, ((0, 0), (1, 3), (2, 5), (2, 4), (2, 3), (1, 1))),
-        (4, ((0, 0), (1, 4), (2, 7), (2, 6), (2, 5), (1, 2))),
-        (5, ((0, 0), (1, 0), (2, 9), (2, 8), (2, 7), (1, 3))),
+        ((1, 0), ((0, 0), (1, 1), (2, 1), (2, 0), (2, 9), (1, 4))),
+        ((1, 1), ((0, 0), (1, 2), (2, 3), (2, 2), (2, 1), (1, 0))),
+        ((1, 2), ((0, 0), (1, 3), (2, 5), (2, 4), (2, 3), (1, 1))),
+        ((1, 3), ((0, 0), (1, 4), (2, 7), (2, 6), (2, 5), (1, 2))),
+        ((1, 4), ((0, 0), (1, 0), (2, 9), (2, 8), (2, 7), (1, 3))),
     ]
 )
 def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
-    index,
-    layer_and_in_layer_indices,
+    node_params,
+    neighboring_nodes_params,
 ):
     schema = Schema(2)
-    node_a = _NodeA.create_node_by_index(index, schema)
-    assert node_a.get_layer_and_in_layer_indices_of_neighboring_nodes() == layer_and_in_layer_indices
+    layer_index, in_layer_index = node_params
+    node_a = _NodeA(layer_index, in_layer_index, schema)
+    assert node_a.get_layer_and_in_layer_indices_of_neighboring_nodes() == neighboring_nodes_params
 
 @pytest.mark.parametrize(
-    "index,"
-    "layer_and_in_layer_indices",
+    "node_params,"
+    "neighboring_nodes_params",
     [
-        (1, ((0, 0), (1, 1), (2, 1), (2, 0), (2, 9), (1, 4))),
-        (2, ((0, 0), (1, 2), (2, 3), (2, 2), (2, 1), (1, 0))),
-        (3, ((0, 0), (1, 3), (2, 5), (2, 4), (2, 3), (1, 1))),
-        (4, ((0, 0), (1, 4), (2, 7), (2, 6), (2, 5), (1, 2))),
-        (5, ((0, 0), (1, 0), (2, 9), (2, 8), (2, 7), (1, 3))),
-        (6, ((1, 0), (2, 1), (3, 1), (3, 0), (3, 14), (2, 9))),
-        (7, ((1, 0), (1, 1), (2, 2), (3, 2), (3, 1), (2, 0))),
-        (8, ((1, 1), (2, 3), (3, 4), (3, 3), (3, 2), (2, 1))),
-        (9, ((1, 1), (1, 2), (2, 4), (3, 5), (3, 4), (2, 2))),
-        (10, ((1, 2), (2, 5), (3, 7), (3, 6), (3, 5), (2, 3))),
+        ((1, 0), ((0, 0), (1, 1), (2, 1), (2, 0), (2, 9), (1, 4))),
+        ((1, 1), ((0, 0), (1, 2), (2, 3), (2, 2), (2, 1), (1, 0))),
+        ((1, 2), ((0, 0), (1, 3), (2, 5), (2, 4), (2, 3), (1, 1))),
+        ((1, 3), ((0, 0), (1, 4), (2, 7), (2, 6), (2, 5), (1, 2))),
+        ((1, 4), ((0, 0), (1, 0), (2, 9), (2, 8), (2, 7), (1, 3))),
+        ((2, 0), ((1, 0), (2, 1), (3, 1), (3, 0), (3, 14), (2, 9))),
+        ((2, 1), ((1, 0), (1, 1), (2, 2), (3, 2), (3, 1), (2, 0))),
+        ((2, 2), ((1, 1), (2, 3), (3, 4), (3, 3), (3, 2), (2, 1))),
+        ((2, 3), ((1, 1), (1, 2), (2, 4), (3, 5), (3, 4), (2, 2))),
+        ((2, 4), ((1, 2), (2, 5), (3, 7), (3, 6), (3, 5), (2, 3))),
     ]
 )
 def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_three(
-    index,
-    layer_and_in_layer_indices,
+    node_params,
+    neighboring_nodes_params,
 ):
     schema = Schema(3)
-    node_a = _NodeA.create_node_by_index(index, schema)
-    assert node_a.get_layer_and_in_layer_indices_of_neighboring_nodes() == layer_and_in_layer_indices
+    layer_index, in_layer_index = node_params
+    node_a = _NodeA(layer_index, in_layer_index, schema)
+    assert node_a.get_layer_and_in_layer_indices_of_neighboring_nodes() == neighboring_nodes_params
