@@ -1,6 +1,5 @@
 import pytest
 
-from core.schema.schema import Schema
 from core.schema.node_layer_bc import _NodeLayerBC
 
 
@@ -18,9 +17,9 @@ def test_node_layer_bc_for_schema_two(
         node_index_offset_for_layer,
         number_of_nodes,
         end_node_in_layer_index,
+        schema_two,  # session fixture
 ):
-    schema = Schema(2)
-    node_layer_bc = _NodeLayerBC(index, schema)
+    node_layer_bc = _NodeLayerBC(index, schema_two)
     assert node_layer_bc.INDEX == index
     assert node_layer_bc.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_bc.NUMBER_OF_NODES == number_of_nodes
@@ -41,9 +40,9 @@ def test_node_layer_bc_for_schema_three(
         node_index_offset_for_layer,
         number_of_nodes,
         end_node_in_layer_index,
+        schema_three,  # session fixture
 ):
-    schema = Schema(3)
-    node_layer_bc = _NodeLayerBC(index, schema)
+    node_layer_bc = _NodeLayerBC(index, schema_three)
     assert node_layer_bc.INDEX == index
     assert node_layer_bc.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_bc.NUMBER_OF_NODES == number_of_nodes
@@ -64,9 +63,9 @@ def test_node_layer_bc_for_schema_four(
         node_index_offset_for_layer,
         number_of_nodes,
         end_node_in_layer_index,
+        schema_four,  # session fixture
 ):
-    schema = Schema(4)
-    node_layer_bc = _NodeLayerBC(index, schema)
+    node_layer_bc = _NodeLayerBC(index, schema_four)
     assert node_layer_bc.INDEX == index
     assert node_layer_bc.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_bc.NUMBER_OF_NODES == number_of_nodes

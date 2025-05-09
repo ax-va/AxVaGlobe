@@ -1,6 +1,5 @@
 import pytest
 
-from core.schema.schema import Schema
 from core.schema.node_c import _NodeC
 
 
@@ -17,17 +16,17 @@ from core.schema.node_c import _NodeC
     ]
 )
 def test_creation_of_node_c_for_schema_two(
-    index,
-    layer_index,
-    in_layer_index,
+        index,
+        layer_index,
+        in_layer_index,
+        schema_two,  # session fixture
 ):
-    schema = Schema(2)
-    node_c = _NodeC(layer_index, in_layer_index, schema)
+    node_c = _NodeC(layer_index, in_layer_index, schema_two)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
 
-    node_c = _NodeC.create_node_by_index(index, schema)
+    node_c = _NodeC.create_node_by_index(index, schema_two)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
@@ -56,17 +55,17 @@ def test_creation_of_node_c_for_schema_two(
     ]
 )
 def test_creation_of_node_c_for_schema_three(
-    index,
-    layer_index,
-    in_layer_index,
+        index,
+        layer_index,
+        in_layer_index,
+        schema_three,  # session fixture
 ):
-    schema = Schema(3)
-    node_c = _NodeC(layer_index, in_layer_index, schema)
+    node_c = _NodeC(layer_index, in_layer_index, schema_three)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
 
-    node_c = _NodeC.create_node_by_index(index, schema)
+    node_c = _NodeC.create_node_by_index(index, schema_three)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
@@ -110,17 +109,17 @@ def test_creation_of_node_c_for_schema_three(
     ]
 )
 def test_creation_of_node_c_for_schema_four(
-    index,
-    layer_index,
-    in_layer_index,
+        index,
+        layer_index,
+        in_layer_index,
+        schema_four,  # session fixture
 ):
-    schema = Schema(4)
-    node_c = _NodeC(layer_index, in_layer_index, schema)
+    node_c = _NodeC(layer_index, in_layer_index, schema_four)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
 
-    node_c = _NodeC.create_node_by_index(index, schema)
+    node_c = _NodeC.create_node_by_index(index, schema_four)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
