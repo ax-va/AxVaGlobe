@@ -10,7 +10,7 @@ A *surface unit* is a hexagon-like polygon consisting of six triangles or a pent
 
 <img src="https://user-images.githubusercontent.com/85578981/127783633-d5dc5e1b-57e8-426b-ae48-cb57790e715e.png" data-canonical-src="https://user-images.githubusercontent.com/85578981/127783633-d5dc5e1b-57e8-426b-ae48-cb57790e715e.png" width="700"/>
 
-Changing the radius of the sphere for the surface units can create arbitrary 3D surfaces on the sphere. 
+When changing the radius of the sphere for the surface units you can create arbitrary 3D surfaces on the sphere. 
 
 ## Logical Component
 
