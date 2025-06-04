@@ -24,7 +24,7 @@ def test_creation_of_node_b_for_schema_two(
         index,
         layer_index,
         in_layer_index,
-        schema_two,  # session fixture
+        schema_two,  # function fixture
 ):
     node_b = _NodeB(layer_index, in_layer_index, schema_two)
     assert node_b.INDEX == index
@@ -78,7 +78,7 @@ def test_creation_of_node_b_for_schema_three(
         index,
         layer_index,
         in_layer_index,
-        schema_three,  # session fixture
+        schema_three,  # function fixture
 ):
     node_b = _NodeB(layer_index, in_layer_index, schema_three)
     assert node_b.INDEX == index
@@ -162,7 +162,7 @@ def test_creation_of_node_b_for_schema_four(
         index,
         layer_index,
         in_layer_index,
-        schema_four,  # session fixture
+        schema_four,  # function fixture
 ):
     node_b = _NodeB(layer_index, in_layer_index, schema_four)
     assert node_b.INDEX == index
@@ -194,7 +194,7 @@ def test_creation_of_node_b_for_schema_four(
 def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
         node_params,
         neighboring_nodes_params,
-        schema_two,  # session fixture
+        schema_two,  # function fixture
 ):
     layer_index, in_layer_index = node_params
     node_b = _NodeB(layer_index, in_layer_index, schema_two)
@@ -240,7 +240,7 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
 def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_three(
     node_params,
     neighboring_nodes_params,
-    schema_three,  # session fixture
+    schema_three,  # function fixture
 ):
     layer_index, in_layer_index = node_params
     node_b = _NodeB(layer_index, in_layer_index, schema_three)
@@ -316,7 +316,7 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_thre
 def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_four(
         node_params,
         neighboring_nodes_params,
-        schema_four,  # session fixture
+        schema_four,  # function fixture
 ):
     schema = schema_four
     layer_index, in_layer_index = node_params

@@ -19,7 +19,7 @@ def test_creation_of_node_c_for_schema_two(
         index,
         layer_index,
         in_layer_index,
-        schema_two,  # session fixture
+        schema_two,  # function fixture
 ):
     node_c = _NodeC(layer_index, in_layer_index, schema_two)
     assert node_c.INDEX == index
@@ -58,7 +58,7 @@ def test_creation_of_node_c_for_schema_three(
         index,
         layer_index,
         in_layer_index,
-        schema_three,  # session fixture
+        schema_three,  # function fixture
 ):
     node_c = _NodeC(layer_index, in_layer_index, schema_three)
     assert node_c.INDEX == index
@@ -112,7 +112,7 @@ def test_creation_of_node_c_for_schema_four(
         index,
         layer_index,
         in_layer_index,
-        schema_four,  # session fixture
+        schema_four,  # function fixture
 ):
     node_c = _NodeC(layer_index, in_layer_index, schema_four)
     assert node_c.INDEX == index

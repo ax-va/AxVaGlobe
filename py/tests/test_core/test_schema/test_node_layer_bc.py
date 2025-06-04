@@ -17,7 +17,7 @@ def test_node_layer_bc_for_schema_two(
         node_index_offset_for_layer,
         number_of_nodes,
         end_node_in_layer_index,
-        schema_two,  # session fixture
+        schema_two,  # function fixture
 ):
     node_layer_bc = _NodeLayerBC(index, schema_two)
     assert node_layer_bc.INDEX == index
@@ -40,7 +40,7 @@ def test_node_layer_bc_for_schema_three(
         node_index_offset_for_layer,
         number_of_nodes,
         end_node_in_layer_index,
-        schema_three,  # session fixture
+        schema_three,  # function fixture
 ):
     node_layer_bc = _NodeLayerBC(index, schema_three)
     assert node_layer_bc.INDEX == index
@@ -63,7 +63,7 @@ def test_node_layer_bc_for_schema_four(
         node_index_offset_for_layer,
         number_of_nodes,
         end_node_in_layer_index,
-        schema_four,  # session fixture
+        schema_four,  # function fixture
 ):
     node_layer_bc = _NodeLayerBC(index, schema_four)
     assert node_layer_bc.INDEX == index
