@@ -1,6 +1,5 @@
 import pytest
 
-from core.schema.schema import Schema
 from core.schema.node_np import _NodeNP
 
 

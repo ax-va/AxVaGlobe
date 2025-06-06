@@ -198,6 +198,7 @@ def test_creation_of_node_a_for_schema_five(
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
+
 @pytest.mark.parametrize(
     "node_params,"
     "neighboring_nodes_params",
@@ -217,6 +218,7 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
     layer_index, in_layer_index = node_params
     node_a = _NodeA(layer_index, in_layer_index, schema_two)
     assert node_a.get_layer_and_in_layer_indices_of_neighboring_nodes() == neighboring_nodes_params
+
 
 @pytest.mark.parametrize(
     "node_params,"

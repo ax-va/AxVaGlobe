@@ -1,4 +1,9 @@
 [tool.pytest.ini_options]
-addopts = "-ra"  # Show extra summary info for all except passed tests (e.g., reasons for skipped tests, XFAIL, etc.)
 pythonpath = ["src"]
-testpaths = ["tests"]
+testpaths = ["tests/unit", "test/integration"]
+python_files = "test_*.py"
+addopts = "-ra"  # Show extra summary info for all except passed tests (e.g., reasons for skipped tests, XFAIL, etc.)
+markers = [
+    "unit: unit tests",
+    "integration: integration tests"
+]
