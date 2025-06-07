@@ -1,6 +1,6 @@
 # AxVaGlobe
 
-## About the Project
+## Project
 
 **AxVaGlobe** is a project for creating globes using hexagon- and pentagon-like polygons, with support for navigation on them. The project targets multiple programming languages.
 
