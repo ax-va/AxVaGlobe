@@ -34,7 +34,6 @@ class BaseNode(ABC):
 
     @property
     def layer(self) -> NodeLayer:
-        """Returns the node layer from the schema's repository linked to the node."""
         return self._layer
 
     @classmethod
