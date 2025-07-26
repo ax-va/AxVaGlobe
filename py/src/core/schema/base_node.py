@@ -49,4 +49,4 @@ class BaseNode(ABC):
     #     pass
 
     def __repr__(self):
-        return f"{self.__class__.__bases__[0].__name__}({self.LAYER_INDEX}, {self.IN_LAYER_INDEX}, {self._schema})"
+        return f"{type(self).__name__}({self.LAYER_INDEX}, {self.IN_LAYER_INDEX}, {self._schema})"
