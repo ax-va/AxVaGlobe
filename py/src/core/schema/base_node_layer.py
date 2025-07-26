@@ -35,4 +35,4 @@ class BaseNodeLayer(ABC):
         return self._end_node_in_layer_index
 
     def __repr__(self):
-        return f"{self.__class__.__bases__[0].__name__}({self.INDEX})"
+        return f"{type(self).__name__}({self.INDEX})"
