@@ -10,25 +10,29 @@ class PartitionValueError(SchemaError):
 
 class NodeLayerIndexError(SchemaError):
     def __init__(
-            self,
-            node_layer_index: int,
-            schema,  # type: "Schema"
+        self,
+        node_layer_index: int,
+        start_index: int,
+        end_index: int,
+        partition: int,
     ):
-        start_index: int = schema.constants.north_pole.node_layer.INDEX
-        end_index: int = schema.constants.south_pole.node_layer.INDEX
         self.message = (
-            f"The node layer index is out the range [{start_index}, {end_index}] for `{schema}`: {node_layer_index}."
+            f"The node layer index is out the range [{start_index}, {end_index}] "
+            f"for partition {partition}: {node_layer_index}."
         )
         SchemaError.__init__(self, self.message)
 
 
 class NodeIndexError(SchemaError):
     def __init__(
-            self,
-            node_index: int,
-            schema,  # type: "Schema"
+        self,
+        node_index: int,
+        start_index: int,
+        end_index: int,
+        partition: int,
     ):
-        start_index: int = schema.constants.north_pole.node.INDEX
-        end_index: int = schema.constants.south_pole.node.INDEX
-        self.message = f"The node index is out the range [{start_index}, {end_index}] for `{schema}`: {node_index}."
+        self.message = (
+            f"The node index is out the range [{start_index}, {end_index}] "
+            f"for partition '{partition}': {node_index}."
+        )
         SchemaError.__init__(self, self.message)

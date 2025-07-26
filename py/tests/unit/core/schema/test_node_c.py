@@ -1,6 +1,6 @@
 import pytest
 
-from core.schema.node_c import _NodeC
+from core.schema.node_c import NodeC
 
 
 @pytest.mark.parametrize(
@@ -21,12 +21,12 @@ def test_creation_of_node_c_for_schema_two(
         in_layer_index,
         schema_two,  # function fixture
 ):
-    node_c = _NodeC(layer_index, in_layer_index, schema_two)
+    node_c = NodeC(layer_index, in_layer_index, schema_two.constants)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
 
-    node_c = _NodeC.create_node_by_index(index, schema_two)
+    node_c = NodeC.create_node_by_index(index, schema_two.constants)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
@@ -60,12 +60,12 @@ def test_creation_of_node_c_for_schema_three(
         in_layer_index,
         schema_three,  # function fixture
 ):
-    node_c = _NodeC(layer_index, in_layer_index, schema_three)
+    node_c = NodeC(layer_index, in_layer_index, schema_three.constants)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
 
-    node_c = _NodeC.create_node_by_index(index, schema_three)
+    node_c = NodeC.create_node_by_index(index, schema_three.constants)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
@@ -114,12 +114,12 @@ def test_creation_of_node_c_for_schema_four(
         in_layer_index,
         schema_four,  # function fixture
 ):
-    node_c = _NodeC(layer_index, in_layer_index, schema_four)
+    node_c = NodeC(layer_index, in_layer_index, schema_four.constants)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
 
-    node_c = _NodeC.create_node_by_index(index, schema_four)
+    node_c = NodeC.create_node_by_index(index, schema_four.constants)
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
