@@ -14,7 +14,7 @@ class Schema:
         return node_layer
 
     def get_node_by_index(self, node_index: int) -> Node:
-        node: Node = NodeRegistry.get_node(node_index, self.constants)
+        node: Node = NodeRegistry.get_node_by_index(node_index, self.constants)
         return node
 
     def __repr__(self):

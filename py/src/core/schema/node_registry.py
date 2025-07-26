@@ -16,7 +16,7 @@ class NodeRegistry:
     _registry: Dict[int, Dict[int, Node]] = {}
 
     @classmethod
-    def get_node(
+    def get_node_by_index(
         cls,
         node_index: int,
         constants: Constants,
