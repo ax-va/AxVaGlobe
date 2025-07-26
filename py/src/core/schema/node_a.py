@@ -2,18 +2,19 @@ from math import sqrt
 from typing import Tuple, Self
 
 from core.schema.base_node import BaseNode
+from core.schema.constants import Constants
 
 
-class _NodeA(BaseNode):
+class NodeA(BaseNode):
     @classmethod
     def create_node_by_index(
-            cls,
-            index: int,
-            schema,  # type: "Schema"
+        cls,
+        index: int,
+        constants: Constants,
     ) -> Self:
-        layer_index, index_offset_for_layer = cls._get_layer_index_and_index_offset_for_layer(index, schema)
+        layer_index, index_offset_for_layer = cls._get_layer_index_and_index_offset_for_layer(index, constants)
         in_layer_index: int = index - index_offset_for_layer
-        return cls(layer_index, in_layer_index, schema)
+        return cls(layer_index, in_layer_index, constants)
 
     def get_layer_and_in_layer_indices_of_neighboring_nodes(
             self,
@@ -89,10 +90,10 @@ class _NodeA(BaseNode):
 
     @staticmethod
     def _get_layer_index_and_index_offset_for_layer(
-            index: int,
-            schema,  # type: "Schema"
+        index: int,
+        constants: Constants,
     ) -> Tuple[int, int]:
-        index_offset_for_area_a: int = schema.constants.area_a.nodes.START
+        index_offset_for_area_a: int = constants.area_a.nodes.START
         num: int = (index - index_offset_for_area_a) // 5
         layer_index_minus_one: int = int((sqrt(num * 8 + 1) - 1) / 2)
         layer_index: int = layer_index_minus_one + 1

@@ -112,6 +112,7 @@ class Constants:
     - The partition value determines how many parts an edge of the icosahedron must be divided into.
     - The partition must be greater than one.
     """
+
     def __init__(self, partition: int = 1):
         if not isinstance(partition, int) or partition < 2:
             raise PartitionValueError(partition)
@@ -198,4 +199,4 @@ class Constants:
 
 
     def __repr__(self):
-        return f"{type(self)}({self.PARTITION})"
+        return f"{type(self).__name__}({self.PARTITION})"

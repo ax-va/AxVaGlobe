@@ -1,14 +1,16 @@
 from abc import ABC, abstractmethod
 
+from core.schema.constants import Constants
+
 
 class BaseNodeLayer(ABC):
     def __init__(
-            self,
-            index: int,
-            schema,  # type: "Schema"
+        self,
+        index: int,
+        constants: Constants,
     ):
         self._index: int = index  # layer index
-        self._schema = schema
+        self._constants: Constants = constants
         # lazy
         self._node_index_offset_for_layer: int | None = None
         self._number_of_nodes: int | None = None

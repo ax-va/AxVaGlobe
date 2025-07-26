@@ -1,6 +1,6 @@
 import pytest
 
-from core.schema.node_np import _NodeNP
+from core.schema.node_np import NodeNP
 
 
 @pytest.mark.parametrize(
@@ -17,12 +17,12 @@ def test_creation_of_node_np_for_schema_two(
         in_layer_index,
         schema_two,  # function fixture
 ):
-    node_np = _NodeNP(layer_index, in_layer_index, schema_two)
+    node_np = NodeNP(layer_index, in_layer_index, schema_two.constants)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
 
-    node_np = _NodeNP.create_node_by_index(index, schema_two)
+    node_np = NodeNP.create_node_by_index(index, schema_two.constants)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
@@ -42,12 +42,12 @@ def test_creation_of_node_np_for_schema_three(
         in_layer_index,
         schema_three,  # function fixture
 ):
-    node_np = _NodeNP(layer_index, in_layer_index, schema_three)
+    node_np = NodeNP(layer_index, in_layer_index, schema_three.constants)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
 
-    node_np = _NodeNP.create_node_by_index(index, schema_three)
+    node_np = NodeNP.create_node_by_index(index, schema_three.constants)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
@@ -67,12 +67,12 @@ def test_creation_of_node_np_for_schema_four(
         in_layer_index,
         schema_four,  # function fixture
 ):
-    node_np = _NodeNP(layer_index, in_layer_index, schema_four)
+    node_np = NodeNP(layer_index, in_layer_index, schema_four.constants)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
 
-    node_np = _NodeNP.create_node_by_index(index, schema_four)
+    node_np = NodeNP.create_node_by_index(index, schema_four.constants)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
@@ -92,12 +92,12 @@ def test_creation_of_node_np_for_schema_five(
         in_layer_index,
         schema_five,  # function fixture
 ):
-    node_np = _NodeNP(layer_index, in_layer_index, schema_five)
+    node_np = NodeNP(layer_index, in_layer_index, schema_five.constants)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
 
-    node_np = _NodeNP.create_node_by_index(index, schema_five)
+    node_np = NodeNP.create_node_by_index(index, schema_five.constants)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index

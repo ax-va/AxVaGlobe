@@ -1,22 +1,23 @@
 from typing import Tuple, Self
 
 from core.schema.base_node import BaseNode
+from core.schema.constants import Constants
 
 
-class _NodeB(BaseNode):
+class NodeB(BaseNode):
     @classmethod
     def create_node_by_index(
-            cls,
-            index: int,
-            schema,  # type: "Schema"
+        cls,
+        index: int,
+        constants: Constants,
     ) -> Self:
         """Creates a node instance by a node index."""
-        number_of_nodes_in_layer: int = schema.constants.border_ab.nodes.NUMBER
-        relative_layer_index: int = (index - schema.constants.area_b.nodes.START) // number_of_nodes_in_layer
-        layer_index: int = schema.constants.area_b.node_layers.START + relative_layer_index
-        index_offset_for_layer: int = schema.constants.area_b.nodes.START + relative_layer_index * number_of_nodes_in_layer
+        number_of_nodes_in_layer: int = constants.border_ab.nodes.NUMBER
+        relative_layer_index: int = (index - constants.area_b.nodes.START) // number_of_nodes_in_layer
+        layer_index: int = constants.area_b.node_layers.START + relative_layer_index
+        index_offset_for_layer: int = constants.area_b.nodes.START + relative_layer_index * number_of_nodes_in_layer
         in_layer_index: int = index - index_offset_for_layer
-        return cls(layer_index, in_layer_index, schema)
+        return cls(layer_index, in_layer_index, constants)
 
     def get_layer_and_in_layer_indices_of_neighboring_nodes(
             self,

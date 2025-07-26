@@ -1,6 +1,6 @@
 import pytest
 
-from core.schema.node_ab import _NodeAB
+from core.schema.node_ab import NodeAB
 
 
 @pytest.mark.parametrize(
@@ -26,12 +26,12 @@ def test_creation_of_node_ab_for_schema_two(
         in_layer_index,
         schema_two,  # function fixture
 ):
-    node_ab = _NodeAB(layer_index, in_layer_index, schema_two)
+    node_ab = NodeAB(layer_index, in_layer_index, schema_two.constants)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
 
-    node_ab = _NodeAB.create_node_by_index(index, schema_two)
+    node_ab = NodeAB.create_node_by_index(index, schema_two.constants)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
@@ -65,12 +65,12 @@ def test_creation_of_node_ab_for_schema_three(
         in_layer_index,
         schema_three,  # function fixture
 ):
-    node_ab = _NodeAB(layer_index, in_layer_index, schema_three)
+    node_ab = NodeAB(layer_index, in_layer_index, schema_three.constants)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
 
-    node_ab = _NodeAB.create_node_by_index(index, schema_three)
+    node_ab = NodeAB.create_node_by_index(index, schema_three.constants)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
@@ -109,12 +109,12 @@ def test_creation_of_node_ab_for_schema_four(
         in_layer_index,
         schema_four,  # function fixture
 ):
-    node_ab = _NodeAB(layer_index, in_layer_index, schema_four)
+    node_ab = NodeAB(layer_index, in_layer_index, schema_four.constants)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
 
-    node_ab = _NodeAB.create_node_by_index(index, schema_four)
+    node_ab = NodeAB.create_node_by_index(index, schema_four.constants)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index

@@ -1,11 +1,11 @@
 from core.schema.base_node_layer import BaseNodeLayer
 
 
-class _NodeLayerNP(BaseNodeLayer):
+class NodeLayerNP(BaseNodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
         if self._node_index_offset_for_layer is None:
-            self._node_index_offset_for_layer: int = self._schema.constants.north_pole.node.INDEX
+            self._node_index_offset_for_layer: int = self._constants.north_pole.node.INDEX
         return self._node_index_offset_for_layer
 
     @property

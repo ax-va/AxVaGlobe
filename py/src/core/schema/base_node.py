@@ -1,17 +1,19 @@
+from abc import ABC, abstractmethod
 from typing import Self
 
-from abc import ABC, abstractmethod
-
+from core.schema.constants import Constants
+from core.schema.node_layer import NodeLayer
+from core.schema.node_layer_registry import NodeLayerRegistry
 
 class BaseNode(ABC):
     def __init__(
-            self,
-            layer_index: int,
-            in_layer_index: int,
-            schema,  # type: "Schema"
+        self,
+        layer_index: int,
+        in_layer_index: int,
+        constants: Constants,
     ):
-        self._schema = schema  # type: "Schema"
-        self._layer = self._schema.get_node_layer(layer_index)  # type: "node layer class"
+        self._constants: Constants = constants
+        self._layer: NodeLayer = NodeLayerRegistry.get_node_layer(layer_index, constants)
         self._in_layer_index: int = in_layer_index
         # lazy
         self._index: int | None = None
@@ -31,16 +33,16 @@ class BaseNode(ABC):
         return self._index
 
     @property
-    def layer(self):
+    def layer(self) -> NodeLayer:
         """Returns the node layer from the schema's repository linked to the node."""
-        return self._layer  # type: "node layer class"
+        return self._layer
 
     @classmethod
     @abstractmethod
     def create_node_by_index(
-            cls,
-            index: int,
-            schema,  # type: "Schema"
+        cls,
+        index: int,
+        constants: Constants,
     ) -> Self:
         pass
 
@@ -49,4 +51,4 @@ class BaseNode(ABC):
     #     pass
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.LAYER_INDEX}, {self.IN_LAYER_INDEX}, {self._schema})"
+        return f"{type(self).__name__}({self.LAYER_INDEX}, {self.IN_LAYER_INDEX}, {self._constants})"
