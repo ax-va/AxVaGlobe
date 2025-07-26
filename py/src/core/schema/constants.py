@@ -198,4 +198,4 @@ class Constants:
 
 
     def __repr__(self):
-        return f"Constants({self.PARTITION})"
+        return f"{type(self)}({self.PARTITION})"
