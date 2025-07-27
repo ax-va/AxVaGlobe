@@ -1,6 +1,6 @@
 import pytest
 
-from core.schema.node_layer_ab import NodeLayerAB
+from core.schema.node_layers.node_layer_ab import _NodeLayerAB
 
 
 @pytest.mark.parametrize(
@@ -17,7 +17,7 @@ def test_node_layer_ab_for_schema_two(
         number_of_nodes,
         schema_two,  # function fixture
 ):
-    node_layer_ab = NodeLayerAB(index, schema_two.constants)
+    node_layer_ab = _NodeLayerAB(index, schema_two.constants)
     assert node_layer_ab.INDEX == index
     assert node_layer_ab.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_ab.NUMBER_OF_NODES == number_of_nodes
@@ -39,7 +39,7 @@ def test_node_layer_ab_for_schema_three(
         end_node_in_layer_index,
         schema_three,  # function fixture
 ):
-    node_layer_ab = NodeLayerAB(index, schema_three.constants)
+    node_layer_ab = _NodeLayerAB(index, schema_three.constants)
     assert node_layer_ab.INDEX == index
     assert node_layer_ab.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_ab.NUMBER_OF_NODES == number_of_nodes
@@ -62,7 +62,7 @@ def test_node_layer_ab_for_schema_four(
         end_node_in_layer_index,
         schema_four,  # function fixture
 ):
-    node_layer_ab = NodeLayerAB(index, schema_four.constants)
+    node_layer_ab = _NodeLayerAB(index, schema_four.constants)
     assert node_layer_ab.INDEX == index
     assert node_layer_ab.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_ab.NUMBER_OF_NODES == number_of_nodes

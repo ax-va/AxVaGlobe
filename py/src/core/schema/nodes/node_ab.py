@@ -1,10 +1,10 @@
 from typing import Self
 
-from core.schema.base_node import BaseNode
+from core.schema.nodes.base_node import _BaseNode
 from core.schema.constants import Constants
 
 
-class NodeAB(BaseNode):
+class _NodeAB(_BaseNode):
     @classmethod
     def create_node_by_index(
         cls,

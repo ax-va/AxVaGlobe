@@ -1,6 +1,6 @@
 import pytest
 
-from core.schema.node_a import NodeA
+from core.schema.nodes.node_a import _NodeA
 
 
 @pytest.mark.parametrize(
@@ -21,12 +21,12 @@ def test_creation_of_node_a_for_schema_two(
         in_layer_index,
         schema_two,  # function fixture
 ):
-    node_a = NodeA(layer_index, in_layer_index, schema_two.constants)
+    node_a = _NodeA(layer_index, in_layer_index, schema_two.constants)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = NodeA.create_node_by_index(index, schema_two.constants)
+    node_a = _NodeA.create_node_by_index(index, schema_two.constants)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -60,12 +60,12 @@ def test_creation_of_node_a_for_schema_three(
         in_layer_index,
         schema_three,  # function fixture
 ):
-    node_a = NodeA(layer_index, in_layer_index, schema_three.constants)
+    node_a = _NodeA(layer_index, in_layer_index, schema_three.constants)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = NodeA.create_node_by_index(index, schema_three.constants)
+    node_a = _NodeA.create_node_by_index(index, schema_three.constants)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -114,12 +114,12 @@ def test_creation_of_node_a_for_schema_four(
         in_layer_index,
         schema_four,  # function fixture
 ):
-    node_a = NodeA(layer_index, in_layer_index, schema_four.constants)
+    node_a = _NodeA(layer_index, in_layer_index, schema_four.constants)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = NodeA.create_node_by_index(index, schema_four.constants)
+    node_a = _NodeA.create_node_by_index(index, schema_four.constants)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -188,12 +188,12 @@ def test_creation_of_node_a_for_schema_five(
         in_layer_index,
         schema_five,  # function fixture
 ):
-    node_a = NodeA(layer_index, in_layer_index, schema_five.constants)
+    node_a = _NodeA(layer_index, in_layer_index, schema_five.constants)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = NodeA.create_node_by_index(index, schema_five.constants)
+    node_a = _NodeA.create_node_by_index(index, schema_five.constants)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -216,7 +216,7 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
     schema_two,  # function fixture
 ):
     layer_index, in_layer_index = node_params
-    node_a = NodeA(layer_index, in_layer_index, schema_two.constants)
+    node_a = _NodeA(layer_index, in_layer_index, schema_two.constants)
     assert node_a.get_layer_and_in_layer_indices_of_neighboring_nodes() == neighboring_nodes_params
 
 
@@ -247,7 +247,7 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_thre
     schema_three,  # function fixture
 ):
     layer_index, in_layer_index = node_params
-    node_a = NodeA(layer_index, in_layer_index, schema_three.constants)
+    node_a = _NodeA(layer_index, in_layer_index, schema_three.constants)
     assert node_a.get_layer_and_in_layer_indices_of_neighboring_nodes() == neighboring_nodes_params
 
 
@@ -293,5 +293,5 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_four
     schema_four,  # function fixture
 ):
     layer_index, in_layer_index = node_params
-    node_a = NodeA(layer_index, in_layer_index, schema_four.constants)
+    node_a = _NodeA(layer_index, in_layer_index, schema_four.constants)
     assert node_a.get_layer_and_in_layer_indices_of_neighboring_nodes() == neighboring_nodes_params

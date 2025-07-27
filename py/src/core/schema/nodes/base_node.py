@@ -2,10 +2,13 @@ from abc import ABC, abstractmethod
 from typing import Self
 
 from core.schema.constants import Constants
-from core.schema.node_layer import NodeLayer
+from core.schema.node_layers.node_layer import NodeLayer
 from core.schema.node_layer_registry import NodeLayerRegistry
 
-class BaseNode(ABC):
+class _BaseNode(ABC):
+    """
+    The class is private because the constructor parameters are not validated.
+    """
     def __init__(
         self,
         layer_index: int,

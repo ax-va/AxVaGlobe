@@ -1,12 +1,12 @@
 from math import sqrt
 from typing import Tuple, Self
 
-from core.schema.base_node import BaseNode
+from core.schema.nodes.base_node import _BaseNode
 from core.schema.constants import Constants
-from core.schema.node_layer_c import NodeLayerC
+from core.schema.node_layers.node_layer_c import _NodeLayerC
 
 
-class NodeC(BaseNode):
+class _NodeC(_BaseNode):
     @classmethod
     def create_node_by_index(
         cls,
@@ -35,6 +35,6 @@ class NodeC(BaseNode):
         inverse_index_offset_for_layer: int = (
             inverse_sum_of_previous_layer_indices * 5 + inverse_index_offset_for_area_c
         )
-        node_layer_c: NodeLayerC = NodeLayerC(layer_index, constants)
+        node_layer_c: _NodeLayerC = _NodeLayerC(layer_index, constants)
         index_offset_for_layer: int = end_index - inverse_index_offset_for_layer - (node_layer_c.NUMBER_OF_NODES - 1)
         return layer_index, index_offset_for_layer

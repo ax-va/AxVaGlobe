@@ -14,7 +14,7 @@ print(schema_four_node_25.IN_LAYER_INDEX)
 
 schema_four_node_100 = schema_four.get_node_by_index(100)
 print(schema_four_node_100)
-# NodeB(7, 9, Constants(4))
+# _NodeB(7, 9, Constants(4))
 print(schema_four_node_100.INDEX)
 # 100
 print(schema_four_node_100.LAYER_INDEX)

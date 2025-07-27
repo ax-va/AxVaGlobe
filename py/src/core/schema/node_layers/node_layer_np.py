@@ -1,7 +1,7 @@
-from core.schema.base_node_layer import BaseNodeLayer
+from core.schema.node_layers.base_node_layer import _BaseNodeLayer
 
 
-class NodeLayerNP(BaseNodeLayer):
+class _NodeLayerNP(_BaseNodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
         if self._node_index_offset_for_layer is None:

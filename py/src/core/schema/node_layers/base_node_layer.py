@@ -3,7 +3,10 @@ from abc import ABC, abstractmethod
 from core.schema.constants import Constants
 
 
-class BaseNodeLayer(ABC):
+class _BaseNodeLayer(ABC):
+    """
+    The class is private because the constructor parameters are not validated.
+    """
     def __init__(
         self,
         index: int,

@@ -1,11 +1,14 @@
 from math import sqrt
 from typing import Tuple, Self
 
-from core.schema.base_node import BaseNode
+from core.schema.nodes.base_node import _BaseNode
 from core.schema.constants import Constants
 
 
-class NodeA(BaseNode):
+class _NodeA(_BaseNode):
+    """
+    The class is private because the constructor parameters are not validated.
+    """
     @classmethod
     def create_node_by_index(
         cls,

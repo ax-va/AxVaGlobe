@@ -1,6 +1,6 @@
 import pytest
 
-from core.schema.node_bc import NodeBC
+from core.schema.nodes.node_bc import _NodeBC
 
 
 @pytest.mark.parametrize(
@@ -26,12 +26,12 @@ def test_creation_of_node_bc_for_schema_two(
         in_layer_index,
         schema_two,  # function fixture
 ):
-    node_bc = NodeBC(layer_index, in_layer_index, schema_two.constants)
+    node_bc = _NodeBC(layer_index, in_layer_index, schema_two.constants)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
 
-    node_bc = NodeBC.create_node_by_index(index, schema_two.constants)
+    node_bc = _NodeBC.create_node_by_index(index, schema_two.constants)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
@@ -65,12 +65,12 @@ def test_creation_of_node_bc_for_schema_three(
         in_layer_index,
         schema_three,  # function fixture
 ):
-    node_bc = NodeBC(layer_index, in_layer_index, schema_three.constants)
+    node_bc = _NodeBC(layer_index, in_layer_index, schema_three.constants)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
 
-    node_bc = NodeBC.create_node_by_index(index, schema_three.constants)
+    node_bc = _NodeBC.create_node_by_index(index, schema_three.constants)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
@@ -109,12 +109,12 @@ def test_creation_of_node_bc_for_schema_four(
         in_layer_index,
         schema_four,  # function fixture
 ):
-    node_bc = NodeBC(layer_index, in_layer_index, schema_four.constants)
+    node_bc = _NodeBC(layer_index, in_layer_index, schema_four.constants)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
 
-    node_bc = NodeBC.create_node_by_index(index, schema_four.constants)
+    node_bc = _NodeBC.create_node_by_index(index, schema_four.constants)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
