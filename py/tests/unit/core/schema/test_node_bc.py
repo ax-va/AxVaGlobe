@@ -1,12 +1,10 @@
 import pytest
 
-from core.schema.nodes.node_bc import _NodeBC
+from axvaglobe.core.schema.nodes.node_bc import _NodeBC
 
 
 @pytest.mark.parametrize(
-    "index,"
-    "layer_index,"
-    "in_layer_index",
+    "index,layer_index,in_layer_index",
     [
         (26, 4, 0),
         (27, 4, 1),
@@ -18,13 +16,13 @@ from core.schema.nodes.node_bc import _NodeBC
         (33, 4, 7),
         (34, 4, 8),
         (35, 4, 9),
-    ]
+    ],
 )
 def test_creation_of_node_bc_for_schema_two(
-        index,
-        layer_index,
-        in_layer_index,
-        schema_two,  # function fixture
+    index,
+    layer_index,
+    in_layer_index,
+    schema_two,  # function fixture
 ):
     node_bc = _NodeBC(layer_index, in_layer_index, schema_two.constants)
     assert node_bc.INDEX == index
@@ -38,9 +36,7 @@ def test_creation_of_node_bc_for_schema_two(
 
 
 @pytest.mark.parametrize(
-    "index,"
-    "layer_index,"
-    "in_layer_index",
+    "index,layer_index,in_layer_index",
     [
         (61, 6, 0),
         (62, 6, 1),
@@ -57,13 +53,13 @@ def test_creation_of_node_bc_for_schema_two(
         (73, 6, 12),
         (74, 6, 13),
         (75, 6, 14),
-    ]
+    ],
 )
 def test_creation_of_node_bc_for_schema_three(
-        index,
-        layer_index,
-        in_layer_index,
-        schema_three,  # function fixture
+    index,
+    layer_index,
+    in_layer_index,
+    schema_three,  # function fixture
 ):
     node_bc = _NodeBC(layer_index, in_layer_index, schema_three.constants)
     assert node_bc.INDEX == index
@@ -77,9 +73,7 @@ def test_creation_of_node_bc_for_schema_three(
 
 
 @pytest.mark.parametrize(
-    "index,"
-    "layer_index,"
-    "in_layer_index",
+    "index,layer_index,in_layer_index",
     [
         (111, 8, 0),
         (112, 8, 1),
@@ -101,13 +95,13 @@ def test_creation_of_node_bc_for_schema_three(
         (128, 8, 17),
         (129, 8, 18),
         (130, 8, 19),
-    ]
+    ],
 )
 def test_creation_of_node_bc_for_schema_four(
-        index,
-        layer_index,
-        in_layer_index,
-        schema_four,  # function fixture
+    index,
+    layer_index,
+    in_layer_index,
+    schema_four,  # function fixture
 ):
     node_bc = _NodeBC(layer_index, in_layer_index, schema_four.constants)
     assert node_bc.INDEX == index

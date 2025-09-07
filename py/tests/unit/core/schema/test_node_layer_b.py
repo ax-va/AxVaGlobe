@@ -1,23 +1,20 @@
 import pytest
 
-from core.schema.node_layers.node_layer_b import _NodeLayerB
+from axvaglobe.core.schema.node_layers.node_layer_b import _NodeLayerB
 
 
 @pytest.mark.parametrize(
-    "index,"
-    "node_index_offset_for_layer,"
-    "number_of_nodes,"
-    "end_node_in_layer_index",
+    "index,node_index_offset_for_layer,number_of_nodes,end_node_in_layer_index",
     [
         (3, 16, 10, 9),
-    ]
+    ],
 )
 def test_node_layer_b_for_schema_two(
-        index,
-        node_index_offset_for_layer,
-        number_of_nodes,
-        end_node_in_layer_index,
-        schema_two,  # function fixture
+    index,
+    node_index_offset_for_layer,
+    number_of_nodes,
+    end_node_in_layer_index,
+    schema_two,  # function fixture
 ):
     node_layer_b = _NodeLayerB(index, schema_two.constants)
     assert node_layer_b.INDEX == index
@@ -27,21 +24,18 @@ def test_node_layer_b_for_schema_two(
 
 
 @pytest.mark.parametrize(
-    "index,"
-    "node_index_offset_for_layer,"
-    "number_of_nodes,"
-    "end_node_in_layer_index",
+    "index,node_index_offset_for_layer,number_of_nodes,end_node_in_layer_index",
     [
         (4, 31, 15, 14),
         (5, 46, 15, 14),
-    ]
+    ],
 )
 def test_node_layer_b_for_schema_three(
-        index,
-        node_index_offset_for_layer,
-        number_of_nodes,
-        end_node_in_layer_index,
-        schema_three,  # function fixture
+    index,
+    node_index_offset_for_layer,
+    number_of_nodes,
+    end_node_in_layer_index,
+    schema_three,  # function fixture
 ):
     node_layer_b = _NodeLayerB(index, schema_three.constants)
     assert node_layer_b.INDEX == index
@@ -51,22 +45,19 @@ def test_node_layer_b_for_schema_three(
 
 
 @pytest.mark.parametrize(
-    "index,"
-    "node_index_offset_for_layer,"
-    "number_of_nodes,"
-    "end_node_in_layer_index",
+    "index,node_index_offset_for_layer,number_of_nodes,end_node_in_layer_index",
     [
         (5, 51, 20, 19),
         (6, 71, 20, 19),
         (7, 91, 20, 19),
-    ]
+    ],
 )
 def test_node_layer_b_for_schema_four(
-        index,
-        node_index_offset_for_layer,
-        number_of_nodes,
-        end_node_in_layer_index,
-        schema_four,  # function fixture
+    index,
+    node_index_offset_for_layer,
+    number_of_nodes,
+    end_node_in_layer_index,
+    schema_four,  # function fixture
 ):
     node_layer_b = _NodeLayerB(index, schema_four.constants)
     assert node_layer_b.INDEX == index

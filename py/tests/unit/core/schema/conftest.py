@@ -1,6 +1,6 @@
 import pytest
 
-from core.schema.schema import Schema
+from axvaglobe.core.schema.schema import Schema
 
 
 @pytest.fixture(scope="function")

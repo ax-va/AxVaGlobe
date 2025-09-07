@@ -1,6 +1,6 @@
 import pytest
 
-from core.schema.constants import Constants
+from axvaglobe.core.schema.constants import Constants
 
 
 @pytest.mark.parametrize("partition", [2, 3, 4])
@@ -29,13 +29,13 @@ def test_auxiliary_constants(partition):
     ],
 )
 def test_common_constants(
-        partition,
-        # common constants
-        number_of_nodes,
-        number_of_triangles,
-        number_of_node_layers,
-        number_of_triangle_layers,
-        number_of_node_edges,
+    partition,
+    # common constants
+    number_of_nodes,
+    number_of_triangles,
+    number_of_node_layers,
+    number_of_triangle_layers,
+    number_of_node_edges,
 ):
     constants = Constants(partition)
     # Check common constants
@@ -67,31 +67,88 @@ def test_common_constants(
     "area_c_nodes_number,"
     "south_pole_node_index",
     [
-        (2, 0, 1, 5, 5, 6, 15, 10, 16, 25, 10, 26, 35, 10, 36, 40, 5, 41),  # partition: 2
-        (3, 0, 1, 15, 15, 16, 30, 15, 31, 60, 30, 61, 75, 15, 76, 90, 15, 91),  # partition: 3
-        (4, 0, 1, 30, 30, 31, 50, 20, 51, 110, 60, 111, 130, 20, 131, 160, 30, 161),  # partition: 4
+        (
+            2,
+            0,
+            1,
+            5,
+            5,
+            6,
+            15,
+            10,
+            16,
+            25,
+            10,
+            26,
+            35,
+            10,
+            36,
+            40,
+            5,
+            41,
+        ),  # partition: 2
+        (
+            3,
+            0,
+            1,
+            15,
+            15,
+            16,
+            30,
+            15,
+            31,
+            60,
+            30,
+            61,
+            75,
+            15,
+            76,
+            90,
+            15,
+            91,
+        ),  # partition: 3
+        (
+            4,
+            0,
+            1,
+            30,
+            30,
+            31,
+            50,
+            20,
+            51,
+            110,
+            60,
+            111,
+            130,
+            20,
+            131,
+            160,
+            30,
+            161,
+        ),  # partition: 4
     ],
 )
 def test_constants_for_node_indices(
-        partition,
-        # constants for node indices
-        north_pole_node_index,
-        area_a_nodes_start,
-        area_a_nodes_end,
-        area_a_nodes_number,
-        border_ab_nodes_start,
-        border_ab_nodes_end,
-        border_ab_nodes_number,
-        area_b_nodes_start,
-        area_b_nodes_end,
-        area_b_nodes_number,
-        border_bc_nodes_start,
-        border_bc_nodes_end,
-        border_bc_nodes_number,
-        area_c_nodes_start,
-        area_c_nodes_end,
-        area_c_nodes_number,
-        south_pole_node_index,
+    partition,
+    # constants for node indices
+    north_pole_node_index,
+    area_a_nodes_start,
+    area_a_nodes_end,
+    area_a_nodes_number,
+    border_ab_nodes_start,
+    border_ab_nodes_end,
+    border_ab_nodes_number,
+    area_b_nodes_start,
+    area_b_nodes_end,
+    area_b_nodes_number,
+    border_bc_nodes_start,
+    border_bc_nodes_end,
+    border_bc_nodes_number,
+    area_c_nodes_start,
+    area_c_nodes_end,
+    area_c_nodes_number,
+    south_pole_node_index,
 ):
     constants = Constants(partition)
     # Check constants for node indices
@@ -133,17 +190,17 @@ def test_constants_for_node_indices(
     ],
 )
 def test_constants_for_triangle_indices(
-        partition,
-        # constants for triangle indices
-        area_a_triangles_start,
-        area_a_triangles_end,
-        area_a_triangles_number,
-        area_b_triangles_start,
-        area_b_triangles_end,
-        area_b_triangles_number,
-        area_c_triangles_start,
-        area_c_triangles_end,
-        area_c_triangles_number,
+    partition,
+    # constants for triangle indices
+    area_a_triangles_start,
+    area_a_triangles_end,
+    area_a_triangles_number,
+    area_b_triangles_start,
+    area_b_triangles_end,
+    area_b_triangles_number,
+    area_c_triangles_start,
+    area_c_triangles_end,
+    area_c_triangles_number,
 ):
     constants = Constants(partition)
     # Check constants for triangle indices
@@ -181,21 +238,21 @@ def test_constants_for_triangle_indices(
     ],
 )
 def test_constants_for_node_layer_indices(
-        partition,
-        # constants for node layer indices
-        north_pole_node_layer_index,
-        area_a_node_layers_start,
-        area_a_node_layers_end,
-        area_a_node_layers_number,
-        border_ab_node_layer_index,
-        area_b_node_layers_start,
-        area_b_node_layers_end,
-        area_b_node_layers_number,
-        border_bc_node_layer_index,
-        area_c_node_layers_start,
-        area_c_node_layers_end,
-        area_c_node_layers_number,
-        south_pole_node_layer_index,
+    partition,
+    # constants for node layer indices
+    north_pole_node_layer_index,
+    area_a_node_layers_start,
+    area_a_node_layers_end,
+    area_a_node_layers_number,
+    border_ab_node_layer_index,
+    area_b_node_layers_start,
+    area_b_node_layers_end,
+    area_b_node_layers_number,
+    border_bc_node_layer_index,
+    area_c_node_layers_start,
+    area_c_node_layers_end,
+    area_c_node_layers_number,
+    south_pole_node_layer_index,
 ):
     constants = Constants(partition)
     # Check constants for node layer indices
@@ -233,17 +290,17 @@ def test_constants_for_node_layer_indices(
     ],
 )
 def test_constants_for_triangle_layer_indices(
-        partition,
-        # constants for triangle layer indices
-        area_a_triangle_layers_start,
-        area_a_triangle_layers_end,
-        area_a_triangle_layers_number,
-        area_b_triangle_layers_start,
-        area_b_triangle_layers_end,
-        area_b_triangle_layers_number,
-        area_c_triangle_layers_start,
-        area_c_triangle_layers_end,
-        area_c_triangle_layers_number,
+    partition,
+    # constants for triangle layer indices
+    area_a_triangle_layers_start,
+    area_a_triangle_layers_end,
+    area_a_triangle_layers_number,
+    area_b_triangle_layers_start,
+    area_b_triangle_layers_end,
+    area_b_triangle_layers_number,
+    area_c_triangle_layers_start,
+    area_c_triangle_layers_end,
+    area_c_triangle_layers_number,
 ):
     constants = Constants(partition)
     # Check constants for triangle layer indices
