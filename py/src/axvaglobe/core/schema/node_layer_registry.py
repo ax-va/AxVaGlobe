@@ -8,7 +8,7 @@ class NodeLayerRegistry:
     _registry: dict[int, dict[int, NodeLayer]] = {}
 
     @classmethod
-    def get_node_layer(
+    def get_node_layer_by_layer_index(
         cls,
         node_layer_index: int,
         constants: Constants,
