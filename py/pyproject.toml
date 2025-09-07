@@ -7,3 +7,34 @@ markers = [
     "unit: unit tests",
     "integration: integration tests"
 ]
+
+[tool.ruff]
+# Apply formatting + linting to these paths
+src = ["src", "tests"]
+
+# Formatting options
+line-length = 88  # black-compatible
+indent-width = 4
+target-version = "py312"  # Python version
+
+[tool.ruff.format]
+quote-style = "double"  # Enforce double quotes
+indent-style = "space"  # Use spaces over tabs
+skip-magic-trailing-comma = false  # Enable the Black-style magic trailing comma behavior (each arg on its own line when a trailing comma exists)
+line-ending = "lf"  # line feed `\n` - the standard on Linux/macOS and most modern tooling
+
+[tool.ruff.lint]
+# Enable common linting rule sets
+select = [
+  "E",  # pycodestyle errors like whitespace, indentation, spacing around operators.
+  "F",  # pyflakes catches things like unused imports, undefined variables.
+  "I",  # isort (import sorting) enforces consistent import sorting.
+  "B",  # bugbear warns about common pitfalls and bad practices (e.g. mutable defaults).
+  "UP", # pyupgrade suggests modern Python syntax (e.g. using `|` for union types instead of `Union[]`, f-strings instead of `.format`).
+]
+ignore = [
+  "E501",  # Ingnore "line too long" (handled by formatter) to avoid double-reporting the same thing
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]  # Ignore F401 "imported but unused" (from Pyflakes) only in `__init__.py` files
