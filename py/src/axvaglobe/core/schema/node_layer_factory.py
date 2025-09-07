@@ -14,7 +14,7 @@ from axvaglobe.core.schema.node_layers import (
 
 class NodeLayerFactory:
     @classmethod
-    def create_node_layer_by_index(
+    def create_node_layer_by_layer_index(
         cls,
         node_layer_index: int,
         constants: Constants,

@@ -20,7 +20,7 @@ class NodeLayerRegistry:
         if node_layer_index not in partition_registry:
             # The node layer instance is not available in the registry.
             # Create a new node layer instance.
-            node_layer: NodeLayer = NodeLayerFactory.create_node_layer_by_index(
+            node_layer: NodeLayer = NodeLayerFactory.create_node_layer_by_layer_index(
                 node_layer_index, constants
             )
             # Add the new node layer instance to the registry
