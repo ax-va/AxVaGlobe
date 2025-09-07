@@ -1,3 +1,28 @@
+[tool.poetry]
+name = "AxVaGlobe"
+version = "0.1.0"
+description = "AxVaGlobe is a project for creating globes using hexagon- and pentagon-like polygons, with support for navigation on them."
+authors = [
+    {name = "ax-va"}
+]
+license = {text = "BSD 3-Clause OR MIT OR APACHE-2.0"}
+readme = "README.md"
+requires-python = "^3.12"
+dependencies = [
+]
+
+[tool.poetry.urls]
+Homepage = "https://github.com/ax-va/AxVaGlobe"
+Repository = "https://github.com/ax-va/AxVaGlobe/tree/main/py"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+ruff = "^0.12.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests/unit", "test/integration"]
@@ -10,7 +35,10 @@ markers = [
 
 [tool.ruff]
 # Apply formatting + linting to these paths
-src = ["src", "tests"]
+src = [
+    "src",
+    "tests"
+]
 
 # Formatting options
 line-length = 88  # black-compatible
