@@ -18,7 +18,7 @@ class _BaseNode(ABC):
         constants: Constants,
     ):
         self._constants: Constants = constants
-        self._layer: NodeLayer = NodeLayerRegistry.get_node_layer_by_layer_index(
+        self._layer: NodeLayer = NodeLayerRegistry.get_node_layer_by_its_index(
             layer_index, constants
         )
         self._in_layer_index: int = in_layer_index

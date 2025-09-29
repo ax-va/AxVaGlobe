@@ -1,4 +1,3 @@
-
 from axvaglobe.core.schema.constants import Constants
 from axvaglobe.core.schema.node_factory import NodeFactory
 from axvaglobe.core.schema.nodes import Node
@@ -8,7 +7,7 @@ class NodeRegistry:
     _registry: dict[int, dict[int, Node]] = {}
 
     @classmethod
-    def get_node_by_index(
+    def get_node_by_its_index(
         cls,
         node_index: int,
         constants: Constants,

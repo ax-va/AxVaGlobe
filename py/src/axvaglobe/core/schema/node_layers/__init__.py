@@ -7,4 +7,12 @@ from axvaglobe.core.schema.node_layers.node_layer_np import _NodeLayerNP
 from axvaglobe.core.schema.node_layers.node_layer_sp import _NodeLayerSP
 
 # union alias
-NodeLayer = _NodeLayerNP | _NodeLayerA | _NodeLayerAB | _NodeLayerB | _NodeLayerBC | _NodeLayerC | _NodeLayerSP
+NodeLayer = (
+    _NodeLayerNP
+    | _NodeLayerA
+    | _NodeLayerAB
+    | _NodeLayerB
+    | _NodeLayerBC
+    | _NodeLayerC
+    | _NodeLayerSP
+)

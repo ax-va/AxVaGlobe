@@ -1,4 +1,3 @@
-
 from axvaglobe.core.schema.constants import Constants
 from axvaglobe.core.schema.node_layer_factory import NodeLayerFactory
 from axvaglobe.core.schema.node_layers import NodeLayer
@@ -8,7 +7,7 @@ class NodeLayerRegistry:
     _registry: dict[int, dict[int, NodeLayer]] = {}
 
     @classmethod
-    def get_node_layer_by_layer_index(
+    def get_node_layer_by_its_index(
         cls,
         node_layer_index: int,
         constants: Constants,
