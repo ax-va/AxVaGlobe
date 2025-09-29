@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Self
 
 from axvaglobe.core.schema.constants import Constants
-from axvaglobe.core.schema.node_layer_registry import NodeLayerRegistry
+from axvaglobe.core.schema.node_layers.node_layer_registry import NodeLayerRegistry
 from axvaglobe.core.schema.node_layers import NodeLayer
 
 

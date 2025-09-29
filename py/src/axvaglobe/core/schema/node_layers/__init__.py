@@ -5,6 +5,7 @@ from axvaglobe.core.schema.node_layers.node_layer_bc import _NodeLayerBC
 from axvaglobe.core.schema.node_layers.node_layer_c import _NodeLayerC
 from axvaglobe.core.schema.node_layers.node_layer_np import _NodeLayerNP
 from axvaglobe.core.schema.node_layers.node_layer_sp import _NodeLayerSP
+from axvaglobe.core.schema.nodes.node_errors import NodeIndexError
 
 # union alias
 NodeLayer = (

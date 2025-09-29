@@ -1,5 +1,4 @@
 from axvaglobe.core.schema.constants import Constants
-from axvaglobe.core.schema.errors import NodeIndexError
 from axvaglobe.core.schema.nodes import (
     Node,
     _NodeA,
@@ -10,6 +9,7 @@ from axvaglobe.core.schema.nodes import (
     _NodeNP,
     _NodeSP,
 )
+from axvaglobe.core.schema.nodes.node_errors import NodeIndexError
 
 
 class NodeFactory:

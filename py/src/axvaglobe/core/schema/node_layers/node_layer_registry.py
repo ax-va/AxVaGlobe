@@ -1,5 +1,5 @@
 from axvaglobe.core.schema.constants import Constants
-from axvaglobe.core.schema.node_layer_factory import NodeLayerFactory
+from axvaglobe.core.schema.node_layers.node_layer_factory import NodeLayerFactory
 from axvaglobe.core.schema.node_layers import NodeLayer
 
 
