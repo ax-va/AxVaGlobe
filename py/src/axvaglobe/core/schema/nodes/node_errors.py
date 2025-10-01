@@ -1,7 +1,11 @@
 from axvaglobe.core.schema.errors import SchemaError
 
 
-class NodeIndexError(SchemaError):
+class NodeError(SchemaError):
+    pass
+
+
+class NodeIndexError(NodeError):
     def __init__(
         self,
         node_index: int,

@@ -2,11 +2,16 @@ from math import sqrt
 from typing import Self
 
 from axvaglobe.core.schema.constants import Constants
-from axvaglobe.core.schema.node_layers.node_layer_c import _NodeLayerC
-from axvaglobe.core.schema.nodes.base_node import _BaseNode
+from axvaglobe.core.schema.node_layers._node_layer_c import _NodeLayerC
+from axvaglobe.core.schema.nodes._base_node import _BaseNode
 
 
 class _NodeC(_BaseNode):
+    """
+    The class is private because the constructor parameters are not validated.
+    Instances of the class must only be created through the factory method, which performs validation.
+    """
+
     @classmethod
     def create_node_by_index(
         cls,

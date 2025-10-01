@@ -1,6 +1,6 @@
 import pytest
 
-from axvaglobe.core.schema.nodes.node_c import _NodeC
+from axvaglobe.core.schema.nodes._node_c import _NodeC
 
 
 @pytest.mark.parametrize(

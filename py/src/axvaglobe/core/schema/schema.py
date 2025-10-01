@@ -1,6 +1,6 @@
 from axvaglobe.core.schema.constants import Constants
-from axvaglobe.core.schema.nodes.node_registry import NodeRegistry
 from axvaglobe.core.schema.nodes import Node
+from axvaglobe.core.schema.nodes.node_registry import NodeRegistry
 
 
 class Schema:

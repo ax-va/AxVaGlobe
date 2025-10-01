@@ -1,7 +1,11 @@
 from axvaglobe.core.schema.errors import SchemaError
 
 
-class NodeLayerIndexError(SchemaError):
+class NodeLayerError(SchemaError):
+    pass
+
+
+class NodeLayerIndexError(NodeLayerError):
     def __init__(
         self,
         node_layer_index: int,
