@@ -9,14 +9,13 @@ from axvaglobe.core.schema.node_layers._node_layer_c import _NodeLayerC
         (5, 36, 5, 4),
     ],
 )
-def test_node_layer_c_for_schema_two(
+def test_node_layer_c_for_partition_two(
     index,
     node_index_offset_for_layer,
     number_of_nodes,
     end_node_in_layer_index,
-    schema_two,  # function fixture
 ):
-    node_layer_c = _NodeLayerC(index, schema_two.constants)
+    node_layer_c = _NodeLayerC(2, index)
     assert node_layer_c.INDEX == index
     assert node_layer_c.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_c.NUMBER_OF_NODES == number_of_nodes
@@ -30,14 +29,13 @@ def test_node_layer_c_for_schema_two(
         (8, 86, 5, 4),
     ],
 )
-def test_node_layer_c_for_schema_three(
+def test_node_layer_c_for_partition_three(
     index,
     node_index_offset_for_layer,
     number_of_nodes,
     end_node_in_layer_index,
-    schema_three,  # function fixture
 ):
-    node_layer_c = _NodeLayerC(index, schema_three.constants)
+    node_layer_c = _NodeLayerC(3, index)
     assert node_layer_c.INDEX == index
     assert node_layer_c.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_c.NUMBER_OF_NODES == number_of_nodes
@@ -52,14 +50,13 @@ def test_node_layer_c_for_schema_three(
         (11, 156, 5, 4),
     ],
 )
-def test_node_layer_c_for_schema_four(
+def test_node_layer_c_for_partition_four(
     index,
     node_index_offset_for_layer,
     number_of_nodes,
     end_node_in_layer_index,
-    schema_four,  # function fixture
 ):
-    node_layer_c = _NodeLayerC(index, schema_four.constants)
+    node_layer_c = _NodeLayerC(4, index)
     assert node_layer_c.INDEX == index
     assert node_layer_c.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_c.NUMBER_OF_NODES == number_of_nodes

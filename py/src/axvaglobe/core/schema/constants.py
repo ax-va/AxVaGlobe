@@ -1,3 +1,6 @@
+from functools import lru_cache
+from typing import Self, Protocol
+
 from axvaglobe.core.schema.errors import PartitionValueError
 
 
@@ -222,3 +225,9 @@ class Constants:
 
     def __repr__(self):
         return f"{type(self).__name__}({self.PARTITION})"
+
+
+    @classmethod
+    @lru_cache(maxsize=None)
+    def get_constants(cls, partition: int = 1) -> Self:
+        return cls(partition=partition)

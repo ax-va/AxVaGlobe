@@ -10,15 +10,19 @@ class _BaseNodeLayer(ABC):
 
     def __init__(
         self,
+        partition: int,
         index: int,
-        constants: Constants,
     ):
+        self._partition: int = partition
         self._index: int = index  # layer index
-        self._constants: Constants = constants
         # lazy
         self._node_index_offset_for_layer: int | None = None
         self._number_of_nodes: int | None = None
         self._end_node_in_layer_index: int | None = None
+
+    @property
+    def PARTITION(self) -> int:
+        return self._partition
 
     @property
     def INDEX(self) -> int:
@@ -40,5 +44,10 @@ class _BaseNodeLayer(ABC):
             self._end_node_in_layer_index = self.NUMBER_OF_NODES - 1
         return self._end_node_in_layer_index
 
+    @property
+    def constants(self) -> Constants:
+        # cached constants
+        return Constants.get_constants(partition=self._partition)
+
     def __repr__(self):
-        return f"{type(self).__name__}({self.INDEX})"
+        return f"{type(self).__name__}({self.PARTITION}, {self.INDEX})"

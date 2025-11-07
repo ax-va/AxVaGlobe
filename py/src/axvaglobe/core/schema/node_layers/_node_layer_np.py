@@ -1,3 +1,4 @@
+from axvaglobe.core.schema.constants import Constants
 from axvaglobe.core.schema.node_layers._base_node_layer import _BaseNodeLayer
 
 
@@ -10,9 +11,7 @@ class _NodeLayerNP(_BaseNodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
         if self._node_index_offset_for_layer is None:
-            self._node_index_offset_for_layer: int = (
-                self._constants.north_pole.node.INDEX
-            )
+            self._node_index_offset_for_layer: int = self.constants.north_pole.node.INDEX
         return self._node_index_offset_for_layer
 
     @property

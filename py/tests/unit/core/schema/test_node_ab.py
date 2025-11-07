@@ -18,18 +18,17 @@ from axvaglobe.core.schema.nodes._node_ab import _NodeAB
         (15, 2, 9),
     ],
 )
-def test_creation_of_node_ab_for_schema_two(
+def test_creation_of_node_ab_for_partition_two(
     index,
     layer_index,
     in_layer_index,
-    schema_two,  # function fixture
 ):
-    node_ab = _NodeAB(layer_index, in_layer_index, schema_two.constants)
+    node_ab = _NodeAB(2, layer_index, in_layer_index)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
 
-    node_ab = _NodeAB.create_node_by_index(index, schema_two.constants)
+    node_ab = _NodeAB.create_node_by_index(2, index)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
@@ -55,18 +54,17 @@ def test_creation_of_node_ab_for_schema_two(
         (30, 3, 14),
     ],
 )
-def test_creation_of_node_ab_for_schema_three(
+def test_creation_of_node_ab_for_partition_three(
     index,
     layer_index,
     in_layer_index,
-    schema_three,  # function fixture
 ):
-    node_ab = _NodeAB(layer_index, in_layer_index, schema_three.constants)
+    node_ab = _NodeAB(3, layer_index, in_layer_index)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
 
-    node_ab = _NodeAB.create_node_by_index(index, schema_three.constants)
+    node_ab = _NodeAB.create_node_by_index(3, index)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
@@ -97,18 +95,17 @@ def test_creation_of_node_ab_for_schema_three(
         (50, 4, 19),
     ],
 )
-def test_creation_of_node_ab_for_schema_four(
+def test_creation_of_node_ab_for_partition_four(
     index,
     layer_index,
     in_layer_index,
-    schema_four,  # function fixture
 ):
-    node_ab = _NodeAB(layer_index, in_layer_index, schema_four.constants)
+    node_ab = _NodeAB(4, layer_index, in_layer_index)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index
 
-    node_ab = _NodeAB.create_node_by_index(index, schema_four.constants)
+    node_ab = _NodeAB.create_node_by_index(4, index)
     assert node_ab.INDEX == index
     assert node_ab.LAYER_INDEX == layer_index
     assert node_ab.IN_LAYER_INDEX == in_layer_index

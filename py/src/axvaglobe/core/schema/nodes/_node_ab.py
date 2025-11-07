@@ -13,10 +13,19 @@ class _NodeAB(_BaseNode):
     @classmethod
     def create_node_by_index(
         cls,
+        partition: int,
         index: int,
-        constants: Constants,
     ) -> Self:
+        # cached constants
+        constants: Constants = Constants.get_constants(partition=partition)
         layer_index: int = constants.border_ab.node_layer.INDEX
         index_offset_for_layer: int = constants.border_ab.nodes.START
         in_layer_index: int = index - index_offset_for_layer
-        return cls(layer_index, in_layer_index, constants)
+
+        node = cls(
+            partition=partition,
+            layer_index=layer_index,
+            in_layer_index=in_layer_index,
+        )
+
+        return node

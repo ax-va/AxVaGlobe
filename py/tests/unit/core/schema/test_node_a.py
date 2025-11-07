@@ -13,18 +13,17 @@ from axvaglobe.core.schema.nodes._node_a import _NodeA
         (5, 1, 4),
     ],
 )
-def test_creation_of_node_a_for_schema_two(
+def test_creation_of_node_a_for_partition_two(
     index,
     layer_index,
     in_layer_index,
-    schema_two,  # function fixture
 ):
-    node_a = _NodeA(layer_index, in_layer_index, schema_two.constants)
+    node_a = _NodeA(2, layer_index, in_layer_index)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = _NodeA.create_node_by_index(index, schema_two.constants)
+    node_a = _NodeA.create_node_by_index(2, index)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -50,18 +49,17 @@ def test_creation_of_node_a_for_schema_two(
         (15, 2, 9),
     ],
 )
-def test_creation_of_node_a_for_schema_three(
+def test_creation_of_node_a_for_partition_three(
     index,
     layer_index,
     in_layer_index,
-    schema_three,  # function fixture
 ):
-    node_a = _NodeA(layer_index, in_layer_index, schema_three.constants)
+    node_a = _NodeA(3, layer_index, in_layer_index)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = _NodeA.create_node_by_index(index, schema_three.constants)
+    node_a = _NodeA.create_node_by_index(3, index)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -102,18 +100,17 @@ def test_creation_of_node_a_for_schema_three(
         (30, 3, 14),
     ],
 )
-def test_creation_of_node_a_for_schema_four(
+def test_creation_of_node_a_for_partition_four(
     index,
     layer_index,
     in_layer_index,
-    schema_four,  # function fixture
 ):
-    node_a = _NodeA(layer_index, in_layer_index, schema_four.constants)
+    node_a = _NodeA(4, layer_index, in_layer_index)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = _NodeA.create_node_by_index(index, schema_four.constants)
+    node_a = _NodeA.create_node_by_index(4, index)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -174,18 +171,17 @@ def test_creation_of_node_a_for_schema_four(
         (50, 4, 19),
     ],
 )
-def test_creation_of_node_a_for_schema_five(
+def test_creation_of_node_a_for_partition_five(
     index,
     layer_index,
     in_layer_index,
-    schema_five,  # function fixture
 ):
-    node_a = _NodeA(layer_index, in_layer_index, schema_five.constants)
+    node_a = _NodeA(5, layer_index, in_layer_index)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = _NodeA.create_node_by_index(index, schema_five.constants)
+    node_a = _NodeA.create_node_by_index(5, index)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -201,13 +197,12 @@ def test_creation_of_node_a_for_schema_five(
         ((1, 4), ((0, 0), (1, 0), (2, 9), (2, 8), (2, 7), (1, 3))),  # for node index 5
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
+def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_two(
     node_params,
     neighboring_nodes_params,
-    schema_two,  # function fixture
 ):
     layer_index, in_layer_index = node_params
-    node_a = _NodeA(layer_index, in_layer_index, schema_two.constants)
+    node_a = _NodeA(2, layer_index, in_layer_index)
     assert (
         node_a.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params
@@ -246,13 +241,12 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
         ),  # for node index 15
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_three(
+def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_three(
     node_params,
     neighboring_nodes_params,
-    schema_three,  # function fixture
 ):
     layer_index, in_layer_index = node_params
-    node_a = _NodeA(layer_index, in_layer_index, schema_three.constants)
+    node_a = _NodeA(3, layer_index, in_layer_index)
     assert (
         node_a.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params
@@ -333,13 +327,12 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_thre
         ),  # for node index 30
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_four(
+def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_four(
     node_params,
     neighboring_nodes_params,
-    schema_four,  # function fixture
 ):
     layer_index, in_layer_index = node_params
-    node_a = _NodeA(layer_index, in_layer_index, schema_four.constants)
+    node_a = _NodeA(4, layer_index, in_layer_index)
     assert (
         node_a.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params

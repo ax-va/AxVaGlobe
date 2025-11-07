@@ -1,3 +1,4 @@
+from axvaglobe.core.schema.constants import Constants
 from axvaglobe.core.schema.node_layers._base_node_layer import _BaseNodeLayer
 
 
@@ -10,7 +11,7 @@ class _NodeLayerA(_BaseNodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
         if self._node_index_offset_for_layer is None:
-            index_offset_for_area_a: int = self._constants.area_a.node_layers.START
+            index_offset_for_area_a: int = self.constants.area_a.node_layers.START
             sum_of_previous_layer_indices: int = self.INDEX * (self.INDEX - 1) // 2
             self._node_index_offset_for_layer: int = (
                 sum_of_previous_layer_indices * 5 + index_offset_for_area_a

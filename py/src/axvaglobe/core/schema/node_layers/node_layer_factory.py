@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from axvaglobe.core.schema.constants import Constants
 from axvaglobe.core.schema.node_layers import (
     NodeLayer,
@@ -14,11 +16,16 @@ from axvaglobe.core.schema.node_layers.node_layer_errors import NodeLayerIndexEr
 
 class NodeLayerFactory:
     @classmethod
+    @lru_cache(maxsize=None)
     def create_node_layer_by_layer_index(
         cls,
+        partition: int,
         node_layer_index: int,
-        constants: Constants,
     ) -> NodeLayer:
+
+        # cached constants
+        constants: Constants = Constants.get_constants(partition=partition)
+
         # Select the correct node layer class
         if (
             constants.area_b.node_layers.START
@@ -62,6 +69,9 @@ class NodeLayerFactory:
             )
 
         # Create a new node layer instance by using a selected class
-        node_layer: NodeLayer = node_layer_cls(node_layer_index, constants)
+        node_layer: NodeLayer = node_layer_cls(
+            partition=partition,
+            index=node_layer_index,
+        )
 
         return node_layer

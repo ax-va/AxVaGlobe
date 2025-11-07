@@ -3,7 +3,7 @@ from typing import Self
 
 from axvaglobe.core.schema.constants import Constants
 from axvaglobe.core.schema.node_layers import NodeLayer
-from axvaglobe.core.schema.node_layers.node_layer_registry import NodeLayerRegistry
+from axvaglobe.core.schema.node_layers.node_layer_factory import NodeLayerFactory
 
 
 class _BaseNode(ABC):
@@ -13,17 +13,23 @@ class _BaseNode(ABC):
 
     def __init__(
         self,
+        partition: int,
         layer_index: int,
         in_layer_index: int,
-        constants: Constants,
     ):
-        self._constants: Constants = constants
-        self._layer: NodeLayer = NodeLayerRegistry.get_node_layer_by_its_index(
-            layer_index, constants
+        self._partition: int = partition
+        # cached creation
+        self._layer: NodeLayer = NodeLayerFactory.create_node_layer_by_layer_index(
+            partition=self._partition,
+            node_layer_index=layer_index,
         )
         self._in_layer_index: int = in_layer_index
         # lazy
         self._index: int | None = None
+
+    @property
+    def PARTITION(self) -> int:
+        return self._partition
 
     @property
     def LAYER_INDEX(self) -> int:
@@ -43,6 +49,11 @@ class _BaseNode(ABC):
     def layer(self) -> NodeLayer:
         return self._layer
 
+    @property
+    def constants(self) -> Constants:
+        # cached constants
+        return Constants.get_constants(partition=self._partition)
+
     @classmethod
     @abstractmethod
     def create_node_by_index(
@@ -57,4 +68,4 @@ class _BaseNode(ABC):
     #     pass
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.LAYER_INDEX}, {self.IN_LAYER_INDEX}, {self._constants})"
+        return f"{type(self).__name__}({self.PARTITION}, {self.LAYER_INDEX}, {self.IN_LAYER_INDEX})"

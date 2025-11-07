@@ -14,9 +14,17 @@ class _NodeSP(_BaseNode):
     @classmethod
     def create_node_by_index(
         cls,
+        partition: int,
         index: int,
-        constants: Constants,
     ) -> Self:
+        constants: Constants = Constants.get_constants(partition=partition)
         layer_index: int = constants.south_pole.node_layer.INDEX
         in_layer_index = 0
-        return cls(layer_index, in_layer_index, constants)
+
+        node = cls(
+            partition=partition,
+            layer_index=layer_index,
+            in_layer_index=in_layer_index,
+        )
+
+        return node

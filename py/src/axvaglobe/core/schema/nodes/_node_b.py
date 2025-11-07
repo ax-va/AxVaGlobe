@@ -13,10 +13,11 @@ class _NodeB(_BaseNode):
     @classmethod
     def create_node_by_index(
         cls,
+        partition: int,
         index: int,
-        constants: Constants,
     ) -> Self:
         """Creates a node instance by a node index."""
+        constants: Constants = Constants.get_constants(partition=partition)
         number_of_nodes_in_layer: int = constants.border_ab.nodes.NUMBER
         relative_layer_index: int = (
             index - constants.area_b.nodes.START
@@ -27,7 +28,14 @@ class _NodeB(_BaseNode):
             + relative_layer_index * number_of_nodes_in_layer
         )
         in_layer_index: int = index - index_offset_for_layer
-        return cls(layer_index, in_layer_index, constants)
+
+        node = cls(
+            partition=partition,
+            layer_index=layer_index,
+            in_layer_index=in_layer_index,
+        )
+
+        return node
 
     def get_layer_and_in_layer_indices_of_neighboring_nodes(
         self,

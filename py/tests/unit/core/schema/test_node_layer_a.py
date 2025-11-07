@@ -9,14 +9,13 @@ from axvaglobe.core.schema.node_layers._node_layer_a import _NodeLayerA
         (1, 1, 5, 4),
     ],
 )
-def test_node_layer_a_for_schema_two(
+def test_node_layer_a_for_partition_two(
     index,
     node_index_offset_for_layer,
     number_of_nodes,
     end_node_in_layer_index,
-    schema_two,  # function fixture
 ):
-    node_layer_a = _NodeLayerA(index, schema_two.constants)
+    node_layer_a = _NodeLayerA(2, index)
     assert node_layer_a.INDEX == index
     assert node_layer_a.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_a.NUMBER_OF_NODES == number_of_nodes
@@ -30,14 +29,13 @@ def test_node_layer_a_for_schema_two(
         (2, 6, 10, 9),
     ],
 )
-def test_node_layer_a_for_schema_three(
+def test_node_layer_a_for_partition_three(
     index,
     node_index_offset_for_layer,
     number_of_nodes,
     end_node_in_layer_index,
-    schema_three,  # function fixture
 ):
-    node_layer_a = _NodeLayerA(index, schema_three.constants)
+    node_layer_a = _NodeLayerA(3, index)
     assert node_layer_a.INDEX == index
     assert node_layer_a.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_a.NUMBER_OF_NODES == number_of_nodes
@@ -52,14 +50,13 @@ def test_node_layer_a_for_schema_three(
         (3, 16, 15, 14),
     ],
 )
-def test_node_layer_a_for_schema_four(
+def test_node_layer_a_for_partition_four(
     index,
     node_index_offset_for_layer,
     number_of_nodes,
     end_node_in_layer_index,
-    schema_four,  # function fixture
 ):
-    node_layer_a = _NodeLayerA(index, schema_four.constants)
+    node_layer_a = _NodeLayerA(4, index)
     assert node_layer_a.INDEX == index
     assert node_layer_a.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_a.NUMBER_OF_NODES == number_of_nodes
@@ -75,14 +72,13 @@ def test_node_layer_a_for_schema_four(
         (4, 31, 20, 19),
     ],
 )
-def test_node_layer_a_for_schema_five(
+def test_node_layer_a_for_partition_five(
     index,
     node_index_offset_for_layer,
     number_of_nodes,
     end_node_in_layer_index,
-    schema_five,  # function fixture
 ):
-    node_layer_a = _NodeLayerA(index, schema_five.constants)
+    node_layer_a = _NodeLayerA(5, index)
     assert node_layer_a.INDEX == index
     assert node_layer_a.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_a.NUMBER_OF_NODES == number_of_nodes

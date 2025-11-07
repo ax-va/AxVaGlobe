@@ -18,18 +18,17 @@ from axvaglobe.core.schema.nodes._node_b import _NodeB
         (25, 3, 9),
     ],
 )
-def test_creation_of_node_b_for_schema_two(
+def test_creation_of_node_b_for_partition_two(
     index,
     layer_index,
     in_layer_index,
-    schema_two,  # function fixture
 ):
-    node_b = _NodeB(layer_index, in_layer_index, schema_two.constants)
+    node_b = _NodeB(2, layer_index, in_layer_index)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
 
-    node_b = _NodeB.create_node_by_index(index, schema_two.constants)
+    node_b = _NodeB.create_node_by_index(2, index)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
@@ -70,18 +69,17 @@ def test_creation_of_node_b_for_schema_two(
         (60, 5, 14),
     ],
 )
-def test_creation_of_node_b_for_schema_three(
+def test_creation_of_node_b_for_partition_three(
     index,
     layer_index,
     in_layer_index,
-    schema_three,  # function fixture
 ):
-    node_b = _NodeB(layer_index, in_layer_index, schema_three.constants)
+    node_b = _NodeB(3, layer_index, in_layer_index)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
 
-    node_b = _NodeB.create_node_by_index(index, schema_three.constants)
+    node_b = _NodeB.create_node_by_index(3, index)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
@@ -152,18 +150,17 @@ def test_creation_of_node_b_for_schema_three(
         (110, 7, 19),
     ],
 )
-def test_creation_of_node_b_for_schema_four(
+def test_creation_of_node_b_for_partition_four(
     index,
     layer_index,
     in_layer_index,
-    schema_four,  # function fixture
 ):
-    node_b = _NodeB(layer_index, in_layer_index, schema_four.constants)
+    node_b = _NodeB(4, layer_index, in_layer_index)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
 
-    node_b = _NodeB.create_node_by_index(index, schema_four.constants)
+    node_b = _NodeB.create_node_by_index(4, index)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
@@ -184,13 +181,12 @@ def test_creation_of_node_b_for_schema_four(
         ((3, 9), ((2, 8), (2, 9), (3, 0), (4, 0), (4, 9), (3, 8))),  # for node index 25
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
+def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_two(
     node_params,
     neighboring_nodes_params,
-    schema_two,  # function fixture
 ):
     layer_index, in_layer_index = node_params
-    node_b = _NodeB(layer_index, in_layer_index, schema_two.constants)
+    node_b = _NodeB(2, layer_index, in_layer_index)
     assert (
         node_b.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params
@@ -274,13 +270,12 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_two(
         ),  # for node index 60
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_three(
+def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_three(
     node_params,
     neighboring_nodes_params,
-    schema_three,  # function fixture
 ):
     layer_index, in_layer_index = node_params
-    node_b = _NodeB(layer_index, in_layer_index, schema_three.constants)
+    node_b = _NodeB(3, layer_index, in_layer_index)
     assert (
         node_b.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params
@@ -454,14 +449,12 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_thre
         ),  # node_index 110
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_schema_four(
+def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_four(
     node_params,
     neighboring_nodes_params,
-    schema_four,  # function fixture
 ):
-    schema = schema_four
     layer_index, in_layer_index = node_params
-    node_b = _NodeB(layer_index, in_layer_index, schema.constants)
+    node_b = _NodeB(4, layer_index, in_layer_index)
     assert (
         node_b.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params

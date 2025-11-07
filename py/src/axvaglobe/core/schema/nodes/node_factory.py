@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from axvaglobe.core.schema.constants import Constants
 from axvaglobe.core.schema.nodes import (
     Node,
@@ -14,11 +16,16 @@ from axvaglobe.core.schema.nodes.node_errors import NodeIndexError
 
 class NodeFactory:
     @classmethod
+    @lru_cache(maxsize=None)
     def create_node_by_index(
         cls,
+        partition: int,
         node_index: int,
-        constants: Constants,
     ) -> Node:
+
+        # cached constants
+        constants: Constants = Constants.get_constants(partition=partition)
+
         # Select the correct node class
         if constants.area_b.nodes.START <= node_index <= constants.area_b.nodes.END:
             node_cls = _NodeB
@@ -56,6 +63,9 @@ class NodeFactory:
             raise NodeIndexError(node_index, start_index, end_index, partition)
 
         # Create a new node instance by using a selected class
-        node = node_cls.create_node_by_index(node_index, constants)
+        node = node_cls.create_node_by_index(
+            partition=partition,
+            index=node_index,
+        )
 
         return node

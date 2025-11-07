@@ -14,14 +14,24 @@ class _NodeA(_BaseNode):
     @classmethod
     def create_node_by_index(
         cls,
+        partition: int,
         index: int,
-        constants: Constants,
     ) -> Self:
         layer_index, index_offset_for_layer = (
-            cls._get_layer_index_and_index_offset_for_layer(index, constants)
+            cls._get_layer_index_and_index_offset_for_layer(
+                partition=partition,
+                index=index,
+            )
         )
         in_layer_index: int = index - index_offset_for_layer
-        return cls(layer_index, in_layer_index, constants)
+
+        node = cls(
+            partition=partition,
+            layer_index=layer_index,
+            in_layer_index=in_layer_index,
+        )
+
+        return node
 
     def get_layer_and_in_layer_indices_of_neighboring_nodes(
         self,
@@ -103,9 +113,11 @@ class _NodeA(_BaseNode):
 
     @staticmethod
     def _get_layer_index_and_index_offset_for_layer(
+        partition: int,
         index: int,
-        constants: Constants,
     ) -> tuple[int, int]:
+        # cached constants
+        constants: Constants = Constants.get_constants(partition=partition)
         index_offset_for_area_a: int = constants.area_a.nodes.START
         num: int = (index - index_offset_for_area_a) // 5
         layer_index_minus_one: int = int((sqrt(num * 8 + 1) - 1) / 2)
@@ -114,4 +126,5 @@ class _NodeA(_BaseNode):
         index_offset_for_layer: int = (
             sum_of_previous_layer_indices * 5 + index_offset_for_area_a
         )
+
         return layer_index, index_offset_for_layer
