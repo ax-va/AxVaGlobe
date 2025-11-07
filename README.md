@@ -2,11 +2,11 @@
 
 ## Project
 
-**AxVaGlobe** is a project for creating globes using hexagon- and pentagon-like polygons, with support for navigation on them. The project targets multiple programming languages.
+**AxVaGlobe** is a project for creating globes using hexagon- and pentagon-like polygons, with support for navigation on them. The project targets multiple programming languages, prioritizing Python and Rust.
 
 ## Geometrу
 
-A *surface unit* is a hexagon-like polygon built from six triangles or a pentagon-like polygon built from five triangles, all sharing one vertex of the icosahedron in the second case. The surface units approximate the sphere or a portion of it. 
+A ***surface unit*** is a hexagon-like polygon built from six triangles or a pentagon-like polygon built from five triangles, all sharing one vertex of the icosahedron in the second case. The surface units approximate the sphere or a portion of it. 
 
 <img src="https://user-images.githubusercontent.com/85578981/127783633-d5dc5e1b-57e8-426b-ae48-cb57790e715e.png" data-canonical-src="https://user-images.githubusercontent.com/85578981/127783633-d5dc5e1b-57e8-426b-ae48-cb57790e715e.png" width="700"/>
 
