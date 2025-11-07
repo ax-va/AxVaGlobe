@@ -14,7 +14,7 @@ class Schema:
     def partition(self) -> int:
         return self._partition
 
-    def get_node_by_its_index(self, node_index: int) -> Node:
+    def get_node_by_index(self, node_index: int) -> Node:
         # cached creation
         node: Node = NodeFactory.create_node_by_index(
             partition=self._partition,

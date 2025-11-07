@@ -21,7 +21,7 @@ class _BaseNode(ABC):
         # cached creation
         self._layer: NodeLayer = NodeLayerFactory.create_node_layer_by_layer_index(
             partition=self._partition,
-            node_layer_index=layer_index,
+            layer_index=layer_index,
         )
         self._in_layer_index: int = in_layer_index
         # lazy
