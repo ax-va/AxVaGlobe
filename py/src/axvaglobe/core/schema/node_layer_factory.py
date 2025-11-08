@@ -1,17 +1,25 @@
 from functools import lru_cache
 
 from axvaglobe.core.schema.constants import Constants
-from axvaglobe.core.schema.node_layers import (
-    NodeLayer,
-    _NodeLayerA,
-    _NodeLayerAB,
-    _NodeLayerB,
-    _NodeLayerBC,
-    _NodeLayerC,
-    _NodeLayerNP,
-    _NodeLayerSP,
+from axvaglobe.core.schema._node_layer_a import _NodeLayerA
+from axvaglobe.core.schema._node_layer_ab import _NodeLayerAB
+from axvaglobe.core.schema._node_layer_b import _NodeLayerB
+from axvaglobe.core.schema._node_layer_bc import _NodeLayerBC
+from axvaglobe.core.schema._node_layer_c import _NodeLayerC
+from axvaglobe.core.schema._node_layer_np import _NodeLayerNP
+from axvaglobe.core.schema._node_layer_sp import _NodeLayerSP
+from axvaglobe.core.schema.node_layer_errors import NodeLayerIndexError
+
+# union alias
+NodeLayer = (
+    _NodeLayerNP
+    | _NodeLayerA
+    | _NodeLayerAB
+    | _NodeLayerB
+    | _NodeLayerBC
+    | _NodeLayerC
+    | _NodeLayerSP
 )
-from axvaglobe.core.schema.node_layers.node_layer_errors import NodeLayerIndexError
 
 
 class NodeLayerFactory:

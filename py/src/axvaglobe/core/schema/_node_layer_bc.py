@@ -1,5 +1,4 @@
-from axvaglobe.core.schema.constants import Constants
-from axvaglobe.core.schema.node_layers._base_node_layer import _BaseNodeLayer
+from axvaglobe.core.schema._base_node_layer import _BaseNodeLayer
 
 
 class _NodeLayerBC(_BaseNodeLayer):

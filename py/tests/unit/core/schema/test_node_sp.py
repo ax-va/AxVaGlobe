@@ -1,6 +1,6 @@
 import pytest
 
-from axvaglobe.core.schema.nodes._node_sp import _NodeSP
+from axvaglobe.core.schema._node_sp import _NodeSP
 
 
 @pytest.mark.parametrize("index,layer_index,in_layer_index", ([41, 6, 0],))

@@ -1,17 +1,17 @@
 from functools import lru_cache
 
 from axvaglobe.core.schema.constants import Constants
-from axvaglobe.core.schema.nodes import (
-    Node,
-    _NodeA,
-    _NodeAB,
-    _NodeB,
-    _NodeBC,
-    _NodeC,
-    _NodeNP,
-    _NodeSP,
-)
-from axvaglobe.core.schema.nodes.node_errors import NodeIndexError
+from axvaglobe.core.schema._node_a import _NodeA
+from axvaglobe.core.schema._node_ab import _NodeAB
+from axvaglobe.core.schema._node_b import _NodeB
+from axvaglobe.core.schema._node_bc import _NodeBC
+from axvaglobe.core.schema._node_c import _NodeC
+from axvaglobe.core.schema._node_np import _NodeNP
+from axvaglobe.core.schema._node_sp import _NodeSP
+from axvaglobe.core.schema.node_errors import NodeIndexError
+
+# union alias
+Node = _NodeNP | _NodeA | _NodeAB | _NodeB | _NodeBC | _NodeC | _NodeSP
 
 
 class NodeFactory:
