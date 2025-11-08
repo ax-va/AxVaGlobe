@@ -58,8 +58,8 @@ class _BaseNode(ABC):
     @abstractmethod
     def create_node_by_index(
         cls,
+        partition: int,
         index: int,
-        constants: Constants,
     ) -> Self:
         pass
 

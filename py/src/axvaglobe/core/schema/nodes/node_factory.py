@@ -20,52 +20,52 @@ class NodeFactory:
     def create_node_by_index(
         cls,
         partition: int,
-        node_index: int,
+        index: int,
     ) -> Node:
 
         # cached constants
         constants: Constants = Constants.get_constants(partition=partition)
 
         # Select the correct node class
-        if constants.area_b.nodes.START <= node_index <= constants.area_b.nodes.END:
+        if constants.area_b.nodes.START <= index <= constants.area_b.nodes.END:
             node_cls = _NodeB
 
-        elif constants.area_a.nodes.START <= node_index <= constants.area_a.nodes.END:
+        elif constants.area_a.nodes.START <= index <= constants.area_a.nodes.END:
             node_cls = _NodeA
 
-        elif constants.area_c.nodes.START <= node_index <= constants.area_c.nodes.END:
+        elif constants.area_c.nodes.START <= index <= constants.area_c.nodes.END:
             node_cls = _NodeC
 
         elif (
             constants.border_ab.nodes.START
-            <= node_index
+            <= index
             <= constants.border_ab.nodes.END
         ):
             node_cls = _NodeAB
 
         elif (
             constants.border_bc.nodes.START
-            <= node_index
+            <= index
             <= constants.border_bc.nodes.END
         ):
             node_cls = _NodeBC
 
-        elif node_index == constants.north_pole.node.INDEX:
+        elif index == constants.north_pole.node.INDEX:
             node_cls = _NodeNP
 
-        elif node_index == constants.south_pole.node.INDEX:
+        elif index == constants.south_pole.node.INDEX:
             node_cls = _NodeSP
 
         else:
             start_index: int = constants.north_pole.node.INDEX
             end_index: int = constants.south_pole.node.INDEX
             partition: int = constants.PARTITION
-            raise NodeIndexError(node_index, start_index, end_index, partition)
+            raise NodeIndexError(index, start_index, end_index, partition)
 
         # Create a new node instance by using a selected class
         node = node_cls.create_node_by_index(
             partition=partition,
-            index=node_index,
+            index=index,
         )
 
         return node
