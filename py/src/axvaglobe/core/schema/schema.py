@@ -8,6 +8,7 @@ class Schema:
         if not isinstance(partition, int) or partition < 2:
             raise PartitionValueError(partition)
 
+        # cached object
         self._partition_obj: Partition = Partition.get_partition_obj(partition=partition)
 
     @property
@@ -15,7 +16,7 @@ class Schema:
         return self._partition_obj.PARTITION
 
     def get_node_by_index(self, index: int) -> Node:
-        # cached creation
+        # cached object
         node: Node = NodeFactory.create_node(
             index=index,
             partition_obj=self._partition_obj,
