@@ -1,3 +1,4 @@
+from axvaglobe.core.schema.partition import Partition
 from axvaglobe.core.schema.errors import PartitionValueError
 from axvaglobe.core.schema.node_factory import NodeFactory, Node
 
@@ -7,19 +8,19 @@ class Schema:
         if not isinstance(partition, int) or partition < 2:
             raise PartitionValueError(partition)
 
-        self._partition = partition
+        self._partition_obj: Partition = Partition.get_partition_obj(partition=partition)
 
     @property
     def partition(self) -> int:
-        return self._partition
+        return self._partition_obj.PARTITION
 
     def get_node_by_index(self, index: int) -> Node:
         # cached creation
-        node: Node = NodeFactory.create_node_by_index(
-            partition=self._partition,
+        node: Node = NodeFactory.create_node(
             index=index,
+            partition_obj=self._partition_obj,
         )
         return node
 
     def __repr__(self):
-        return f"Schema({self._partition})"
+        return f"{type(self).__name__}({self._partition_obj.PARTITION})"

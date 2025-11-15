@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from axvaglobe.core.schema.constants import Constants
+from axvaglobe.core.schema.partition import Partition
 
 
 class _BaseNodeLayer(ABC):
@@ -10,19 +10,15 @@ class _BaseNodeLayer(ABC):
 
     def __init__(
         self,
-        partition: int,
         index: int,
+        partition_obj: Partition,
     ):
-        self._partition: int = partition
+        self._partition_obj: Partition = partition_obj
         self._index: int = index  # layer index
         # lazy
         self._node_index_offset_for_layer: int | None = None
         self._number_of_nodes: int | None = None
         self._end_node_in_layer_index: int | None = None
-
-    @property
-    def PARTITION(self) -> int:
-        return self._partition
 
     @property
     def INDEX(self) -> int:
@@ -44,10 +40,5 @@ class _BaseNodeLayer(ABC):
             self._end_node_in_layer_index = self.NUMBER_OF_NODES - 1
         return self._end_node_in_layer_index
 
-    @property
-    def constants(self) -> Constants:
-        # cached constants
-        return Constants.get_constants(partition=self._partition)
-
     def __repr__(self):
-        return f"{type(self).__name__}({self.PARTITION}, {self.INDEX})"
+        return f"{type(self).__name__}({self.INDEX}, {self._partition_obj})"

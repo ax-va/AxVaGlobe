@@ -1,6 +1,7 @@
 import pytest
 
 from axvaglobe.core.schema._node_b import _NodeB
+from axvaglobe.core.schema.partition import Partition
 
 
 @pytest.mark.parametrize(
@@ -23,12 +24,13 @@ def test_creation_of_node_b_for_partition_two(
     layer_index,
     in_layer_index,
 ):
-    node_b = _NodeB(2, layer_index, in_layer_index)
+    partition_obj = Partition(2)
+    node_b = _NodeB(layer_index, in_layer_index, partition_obj)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
 
-    node_b = _NodeB.create_node_by_index(2, index)
+    node_b = _NodeB.create_node(index, partition_obj)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
@@ -74,12 +76,13 @@ def test_creation_of_node_b_for_partition_three(
     layer_index,
     in_layer_index,
 ):
-    node_b = _NodeB(3, layer_index, in_layer_index)
+    partition_obj = Partition(3)
+    node_b = _NodeB(layer_index, in_layer_index, partition_obj)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
 
-    node_b = _NodeB.create_node_by_index(3, index)
+    node_b = _NodeB.create_node(index, partition_obj)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
@@ -155,12 +158,13 @@ def test_creation_of_node_b_for_partition_four(
     layer_index,
     in_layer_index,
 ):
-    node_b = _NodeB(4, layer_index, in_layer_index)
+    partition_obj = Partition(4)
+    node_b = _NodeB(layer_index, in_layer_index, partition_obj)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
 
-    node_b = _NodeB.create_node_by_index(4, index)
+    node_b = _NodeB.create_node(index, partition_obj)
     assert node_b.INDEX == index
     assert node_b.LAYER_INDEX == layer_index
     assert node_b.IN_LAYER_INDEX == in_layer_index
@@ -185,8 +189,9 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_t
     node_params,
     neighboring_nodes_params,
 ):
+    partition_obj = Partition(2)
     layer_index, in_layer_index = node_params
-    node_b = _NodeB(2, layer_index, in_layer_index)
+    node_b = _NodeB(layer_index, in_layer_index, partition_obj)
     assert (
         node_b.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params
@@ -274,8 +279,9 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_t
     node_params,
     neighboring_nodes_params,
 ):
+    partition_obj = Partition(3)
     layer_index, in_layer_index = node_params
-    node_b = _NodeB(3, layer_index, in_layer_index)
+    node_b = _NodeB(layer_index, in_layer_index, partition_obj)
     assert (
         node_b.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params
@@ -453,8 +459,9 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_f
     node_params,
     neighboring_nodes_params,
 ):
+    partition_obj = Partition(4)
     layer_index, in_layer_index = node_params
-    node_b = _NodeB(4, layer_index, in_layer_index)
+    node_b = _NodeB(layer_index, in_layer_index, partition_obj)
     assert (
         node_b.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params

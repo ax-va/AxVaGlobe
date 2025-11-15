@@ -10,7 +10,7 @@ class _NodeLayerSP(_BaseNodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
         if self._node_index_offset_for_layer is None:
-            self._node_index_offset_for_layer: int = self.constants.south_pole.node.INDEX
+            self._node_index_offset_for_layer: int = self._partition_obj.south_pole.node.INDEX
         return self._node_index_offset_for_layer
 
     @property

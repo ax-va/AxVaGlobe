@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Self
 
-from axvaglobe.core.schema.constants import Constants
+from axvaglobe.core.schema.partition import Partition
 from axvaglobe.core.schema.node_layer_factory import NodeLayerFactory, NodeLayer
 
 
@@ -12,27 +12,23 @@ class _BaseNode(ABC):
 
     def __init__(
         self,
-        partition: int,
         layer_index: int,
         in_layer_index: int,
+        partition_obj: Partition,
     ):
-        self._partition: int = partition
+        self._partition_obj = partition_obj
         # cached creation
-        self._layer: NodeLayer = NodeLayerFactory.create_node_layer_by_layer_index(
-            partition=self._partition,
+        self._layer_obj: NodeLayer = NodeLayerFactory.create_node_layer(
             layer_index=layer_index,
+            partition_obj=self._partition_obj,
         )
         self._in_layer_index: int = in_layer_index
         # lazy
         self._index: int | None = None
 
     @property
-    def PARTITION(self) -> int:
-        return self._partition
-
-    @property
     def LAYER_INDEX(self) -> int:
-        return self._layer.INDEX
+        return self._layer_obj.INDEX
 
     @property
     def IN_LAYER_INDEX(self) -> int:
@@ -41,30 +37,16 @@ class _BaseNode(ABC):
     @property
     def INDEX(self) -> int:
         if self._index is None:
-            self._index = self._layer.NODE_INDEX_OFFSET_FOR_LAYER + self.IN_LAYER_INDEX
+            self._index = self._layer_obj.NODE_INDEX_OFFSET_FOR_LAYER + self.IN_LAYER_INDEX
         return self._index
 
     @property
-    def layer(self) -> NodeLayer:
-        return self._layer
-
-    @property
-    def constants(self) -> Constants:
-        # cached constants
-        return Constants.get_constants(partition=self._partition)
-
-    @classmethod
-    @abstractmethod
-    def create_node_by_index(
-        cls,
-        partition: int,
-        index: int,
-    ) -> Self:
-        pass
+    def layer_obj(self) -> NodeLayer:
+        return self._layer_obj
 
     # @abstractmethod
     # def get_layer_and_in_layer_indices_of_neighboring_nodes(self):
     #     pass
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.PARTITION}, {self.LAYER_INDEX}, {self.IN_LAYER_INDEX})"
+        return f"{type(self).__name__}({self.LAYER_INDEX}, {self.IN_LAYER_INDEX}, {self._partition_obj})"

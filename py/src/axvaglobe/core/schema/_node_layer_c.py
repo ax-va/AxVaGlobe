@@ -10,8 +10,8 @@ class _NodeLayerC(_BaseNodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
         if self._node_index_offset_for_layer is None:
-            end_index: int = self.constants.south_pole.node_layer.INDEX
-            end_index_for_area_c: int = self.constants.area_c.node_layers.END
+            end_index: int = self._partition_obj.south_pole.node_layer.INDEX
+            end_index_for_area_c: int = self._partition_obj.area_c.node_layers.END
             inverse_index_offset_for_area_c = end_index - end_index_for_area_c
             inverse_index = end_index - self.INDEX
             inverse_sum_of_previous_layer_indices = (
@@ -21,7 +21,7 @@ class _NodeLayerC(_BaseNodeLayer):
                 inverse_sum_of_previous_layer_indices * 5
                 + inverse_index_offset_for_area_c
             )
-            end_node_index: int = self.constants.south_pole.node.INDEX
+            end_node_index: int = self._partition_obj.south_pole.node.INDEX
             self._node_index_offset_for_layer = (
                 end_node_index
                 - inverse_node_index_offset_for_layer
@@ -33,7 +33,7 @@ class _NodeLayerC(_BaseNodeLayer):
     @property
     def NUMBER_OF_NODES(self) -> int:
         if self._number_of_nodes is None:
-            end_index: int = self.constants.south_pole.node_layer.INDEX
+            end_index: int = self._partition_obj.south_pole.node_layer.INDEX
             inverse_index = end_index - self.INDEX
             self._number_of_nodes = inverse_index * 5
         return self._number_of_nodes

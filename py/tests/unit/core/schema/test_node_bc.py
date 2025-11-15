@@ -1,6 +1,7 @@
 import pytest
 
 from axvaglobe.core.schema._node_bc import _NodeBC
+from axvaglobe.core.schema.partition import Partition
 
 
 @pytest.mark.parametrize(
@@ -23,12 +24,13 @@ def test_creation_of_node_bc_for_partition_two(
     layer_index,
     in_layer_index,
 ):
-    node_bc = _NodeBC(2, layer_index, in_layer_index)
+    partition_obj = Partition(2)
+    node_bc = _NodeBC(layer_index, in_layer_index, partition_obj)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
 
-    node_bc = _NodeBC.create_node_by_index(2, index)
+    node_bc = _NodeBC.create_node(index, partition_obj)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
@@ -59,12 +61,13 @@ def test_creation_of_node_bc_for_partition_three(
     layer_index,
     in_layer_index,
 ):
-    node_bc = _NodeBC(3, layer_index, in_layer_index)
+    partition_obj = Partition(3)
+    node_bc = _NodeBC(layer_index, in_layer_index, partition_obj)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
 
-    node_bc = _NodeBC.create_node_by_index(3, index)
+    node_bc = _NodeBC.create_node(index, partition_obj)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
@@ -100,12 +103,13 @@ def test_creation_of_node_bc_for_partition_four(
     layer_index,
     in_layer_index,
 ):
-    node_bc = _NodeBC(4, layer_index, in_layer_index)
+    partition_obj = Partition(4)
+    node_bc = _NodeBC(layer_index, in_layer_index, partition_obj)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index
 
-    node_bc = _NodeBC.create_node_by_index(4, index)
+    node_bc = _NodeBC.create_node(index, partition_obj)
     assert node_bc.INDEX == index
     assert node_bc.LAYER_INDEX == layer_index
     assert node_bc.IN_LAYER_INDEX == in_layer_index

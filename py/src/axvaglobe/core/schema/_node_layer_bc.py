@@ -10,11 +10,11 @@ class _NodeLayerBC(_BaseNodeLayer):
     @property
     def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
         if self._node_index_offset_for_layer is None:
-            self._node_index_offset_for_layer: int = self.constants.border_bc.nodes.START
+            self._node_index_offset_for_layer: int = self._partition_obj.border_bc.nodes.START
         return self._node_index_offset_for_layer
 
     @property
     def NUMBER_OF_NODES(self) -> int:
         if self._number_of_nodes is None:
-            self._number_of_nodes: int = self.constants.border_bc.nodes.NUMBER
+            self._number_of_nodes: int = self._partition_obj.border_bc.nodes.NUMBER
         return self._number_of_nodes

@@ -1,7 +1,7 @@
 from math import sqrt
 from typing import Self
 
-from axvaglobe.core.schema.constants import Constants
+from axvaglobe.core.schema.partition import Partition
 from axvaglobe.core.schema._base_node import _BaseNode
 
 
@@ -12,23 +12,23 @@ class _NodeA(_BaseNode):
     """
 
     @classmethod
-    def create_node_by_index(
+    def create_node(
         cls,
-        partition: int,
         index: int,
+        partition_obj: Partition,
     ) -> Self:
         layer_index, index_offset_for_layer = (
             cls._get_layer_index_and_index_offset_for_layer(
-                partition=partition,
                 index=index,
+                partition_obj=partition_obj,
             )
         )
         in_layer_index: int = index - index_offset_for_layer
 
         node = cls(
-            partition=partition,
             layer_index=layer_index,
             in_layer_index=in_layer_index,
+            partition_obj=partition_obj,
         )
 
         return node
@@ -58,7 +58,7 @@ class _NodeA(_BaseNode):
         layer_index_4: int = layer_index_down  # down
         layer_index_5: int = self.LAYER_INDEX
 
-        end_node_in_layer_index = self._layer.END_NODE_IN_LAYER_INDEX
+        end_node_in_layer_index = self._layer_obj.END_NODE_IN_LAYER_INDEX
         if rem != 0:  # This node is not on the edge of the icosahedron
             layer_index_1: int = layer_index_up  # up
             layer_index_2: int = self.LAYER_INDEX
@@ -100,7 +100,7 @@ class _NodeA(_BaseNode):
                 in_layer_index_2: int = 1
                 in_layer_index_3: int = 0
                 in_layer_index_4: int = layer_index_down * 5 - 1
-                in_layer_index_5: int = self._layer.END_NODE_IN_LAYER_INDEX
+                in_layer_index_5: int = self._layer_obj.END_NODE_IN_LAYER_INDEX
 
         return (
             (layer_index_0, in_layer_index_0),
@@ -113,12 +113,10 @@ class _NodeA(_BaseNode):
 
     @staticmethod
     def _get_layer_index_and_index_offset_for_layer(
-        partition: int,
         index: int,
+        partition_obj: Partition,
     ) -> tuple[int, int]:
-        # cached constants
-        constants: Constants = Constants.get_constants(partition=partition)
-        index_offset_for_area_a: int = constants.area_a.nodes.START
+        index_offset_for_area_a: int = partition_obj.area_a.nodes.START
         num: int = (index - index_offset_for_area_a) // 5
         layer_index_minus_one: int = int((sqrt(num * 8 + 1) - 1) / 2)
         layer_index: int = layer_index_minus_one + 1

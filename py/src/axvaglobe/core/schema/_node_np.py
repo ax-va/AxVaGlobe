@@ -1,6 +1,6 @@
 from typing import Self
 
-from axvaglobe.core.schema.constants import Constants
+from axvaglobe.core.schema.partition import Partition
 from axvaglobe.core.schema._base_node import _BaseNode
 
 
@@ -12,19 +12,15 @@ class _NodeNP(_BaseNode):
     """
 
     @classmethod
-    def create_node_by_index(
+    def create_node_np(
         cls,
-        partition: int,
-        index: int,
+        partition_obj: Partition,
     ) -> Self:
-        constants: Constants = Constants.get_constants(partition=partition)
-        layer_index: int = constants.north_pole.node_layer.INDEX
-        in_layer_index = 0
-
+        layer_index: int = partition_obj.north_pole.node_layer.INDEX
         node = cls(
-            partition=partition,
             layer_index=layer_index,
-            in_layer_index=in_layer_index,
+            in_layer_index=0,
+            partition_obj=partition_obj,
         )
 
         return node

@@ -1,6 +1,7 @@
 import pytest
 
 from axvaglobe.core.schema._node_a import _NodeA
+from axvaglobe.core.schema.partition import Partition
 
 
 @pytest.mark.parametrize(
@@ -18,12 +19,13 @@ def test_creation_of_node_a_for_partition_two(
     layer_index,
     in_layer_index,
 ):
-    node_a = _NodeA(2, layer_index, in_layer_index)
+    partition_obj = Partition(2)
+    node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = _NodeA.create_node_by_index(2, index)
+    node_a = _NodeA.create_node(index, partition_obj)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -54,12 +56,13 @@ def test_creation_of_node_a_for_partition_three(
     layer_index,
     in_layer_index,
 ):
-    node_a = _NodeA(3, layer_index, in_layer_index)
+    partition_obj = Partition(3)
+    node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = _NodeA.create_node_by_index(3, index)
+    node_a = _NodeA.create_node(index, partition_obj)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -105,12 +108,13 @@ def test_creation_of_node_a_for_partition_four(
     layer_index,
     in_layer_index,
 ):
-    node_a = _NodeA(4, layer_index, in_layer_index)
+    partition_obj = Partition(4)
+    node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = _NodeA.create_node_by_index(4, index)
+    node_a = _NodeA.create_node(index, partition_obj)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -176,12 +180,13 @@ def test_creation_of_node_a_for_partition_five(
     layer_index,
     in_layer_index,
 ):
-    node_a = _NodeA(5, layer_index, in_layer_index)
+    partition_obj = Partition(5)
+    node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
 
-    node_a = _NodeA.create_node_by_index(5, index)
+    node_a = _NodeA.create_node(index, partition_obj)
     assert node_a.INDEX == index
     assert node_a.LAYER_INDEX == layer_index
     assert node_a.IN_LAYER_INDEX == in_layer_index
@@ -201,8 +206,9 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_t
     node_params,
     neighboring_nodes_params,
 ):
+    partition_obj = Partition(2)
     layer_index, in_layer_index = node_params
-    node_a = _NodeA(2, layer_index, in_layer_index)
+    node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert (
         node_a.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params
@@ -245,8 +251,9 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_t
     node_params,
     neighboring_nodes_params,
 ):
+    partition_obj = Partition(3)
     layer_index, in_layer_index = node_params
-    node_a = _NodeA(3, layer_index, in_layer_index)
+    node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert (
         node_a.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params
@@ -331,8 +338,9 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_f
     node_params,
     neighboring_nodes_params,
 ):
+    partition_obj = Partition(4)
     layer_index, in_layer_index = node_params
-    node_a = _NodeA(4, layer_index, in_layer_index)
+    node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert (
         node_a.get_layer_and_in_layer_indices_of_neighboring_nodes()
         == neighboring_nodes_params

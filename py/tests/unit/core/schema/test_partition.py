@@ -1,17 +1,17 @@
 import pytest
 
-from axvaglobe.core.schema.constants import Constants
+from axvaglobe.core.schema.partition import Partition
 
 
 @pytest.mark.parametrize("partition", [2, 3, 4])
 def test_auxiliary_constants(partition):
-    constants = Constants(partition)
+    partition_obj = Partition(partition)
     # Check auxiliary constants
-    assert constants.PARTITION == partition
-    assert constants.PARTITION_MINUS_ONE == partition - 1
-    assert constants.PARTITION_TIMES_FIVE == partition * 5
-    assert constants.PARTITION_SQUARE == partition * partition
-    assert constants.PARTITION_SQUARE_TIMES_FIVE == partition * partition * 5
+    assert partition_obj.PARTITION == partition
+    assert partition_obj.PARTITION_MINUS_ONE == partition - 1
+    assert partition_obj.PARTITION_TIMES_FIVE == partition * 5
+    assert partition_obj.PARTITION_SQUARE == partition * partition
+    assert partition_obj.PARTITION_SQUARE_TIMES_FIVE == partition * partition * 5
 
 
 @pytest.mark.parametrize(
@@ -37,13 +37,13 @@ def test_common_constants(
     number_of_triangle_layers,
     number_of_node_edges,
 ):
-    constants = Constants(partition)
+    partition_obj = Partition(partition)
     # Check common constants
-    assert constants.NUMBER_OF_NODES == number_of_nodes
-    assert constants.NUMBER_OF_TRIANGLES == number_of_triangles
-    assert constants.NUMBER_OF_NODE_LAYERS == number_of_node_layers
-    assert constants.NUMBER_OF_TRIANGLE_LAYERS == number_of_triangle_layers
-    assert constants.NUMBER_OF_EDGE_NODES == number_of_node_edges
+    assert partition_obj.NUMBER_OF_NODES == number_of_nodes
+    assert partition_obj.NUMBER_OF_TRIANGLES == number_of_triangles
+    assert partition_obj.NUMBER_OF_NODE_LAYERS == number_of_node_layers
+    assert partition_obj.NUMBER_OF_TRIANGLE_LAYERS == number_of_triangle_layers
+    assert partition_obj.NUMBER_OF_EDGE_NODES == number_of_node_edges
 
 
 @pytest.mark.parametrize(
@@ -150,25 +150,25 @@ def test_constants_for_node_indices(
     area_c_nodes_number,
     south_pole_node_index,
 ):
-    constants = Constants(partition)
+    partition_obj = Partition(partition)
     # Check constants for node indices
-    assert constants.north_pole.node.INDEX == north_pole_node_index
-    assert constants.area_a.nodes.START == area_a_nodes_start
-    assert constants.area_a.nodes.END == area_a_nodes_end
-    assert constants.area_a.nodes.NUMBER == area_a_nodes_number
-    assert constants.border_ab.nodes.START == border_ab_nodes_start
-    assert constants.border_ab.nodes.END == border_ab_nodes_end
-    assert constants.border_ab.nodes.NUMBER == border_ab_nodes_number
-    assert constants.area_b.nodes.START == area_b_nodes_start
-    assert constants.area_b.nodes.END == area_b_nodes_end
-    assert constants.area_b.nodes.NUMBER == area_b_nodes_number
-    assert constants.border_bc.nodes.START == border_bc_nodes_start
-    assert constants.border_bc.nodes.END == border_bc_nodes_end
-    assert constants.border_bc.nodes.NUMBER == border_bc_nodes_number
-    assert constants.area_c.nodes.START == area_c_nodes_start
-    assert constants.area_c.nodes.END == area_c_nodes_end
-    assert constants.area_c.nodes.NUMBER == area_c_nodes_number
-    assert constants.south_pole.node.INDEX == south_pole_node_index
+    assert partition_obj.north_pole.node.INDEX == north_pole_node_index
+    assert partition_obj.area_a.nodes.START == area_a_nodes_start
+    assert partition_obj.area_a.nodes.END == area_a_nodes_end
+    assert partition_obj.area_a.nodes.NUMBER == area_a_nodes_number
+    assert partition_obj.border_ab.nodes.START == border_ab_nodes_start
+    assert partition_obj.border_ab.nodes.END == border_ab_nodes_end
+    assert partition_obj.border_ab.nodes.NUMBER == border_ab_nodes_number
+    assert partition_obj.area_b.nodes.START == area_b_nodes_start
+    assert partition_obj.area_b.nodes.END == area_b_nodes_end
+    assert partition_obj.area_b.nodes.NUMBER == area_b_nodes_number
+    assert partition_obj.border_bc.nodes.START == border_bc_nodes_start
+    assert partition_obj.border_bc.nodes.END == border_bc_nodes_end
+    assert partition_obj.border_bc.nodes.NUMBER == border_bc_nodes_number
+    assert partition_obj.area_c.nodes.START == area_c_nodes_start
+    assert partition_obj.area_c.nodes.END == area_c_nodes_end
+    assert partition_obj.area_c.nodes.NUMBER == area_c_nodes_number
+    assert partition_obj.south_pole.node.INDEX == south_pole_node_index
 
 
 @pytest.mark.parametrize(
@@ -202,17 +202,17 @@ def test_constants_for_triangle_indices(
     area_c_triangles_end,
     area_c_triangles_number,
 ):
-    constants = Constants(partition)
+    partition_obj = Partition(partition)
     # Check constants for triangle indices
-    assert constants.area_a.triangles.START == area_a_triangles_start
-    assert constants.area_a.triangles.END == area_a_triangles_end
-    assert constants.area_a.triangles.NUMBER == area_a_triangles_number
-    assert constants.area_b.triangles.START == area_b_triangles_start
-    assert constants.area_b.triangles.END == area_b_triangles_end
-    assert constants.area_b.triangles.NUMBER == area_b_triangles_number
-    assert constants.area_c.triangles.START == area_c_triangles_start
-    assert constants.area_c.triangles.END == area_c_triangles_end
-    assert constants.area_c.triangles.NUMBER == area_c_triangles_number
+    assert partition_obj.area_a.triangles.START == area_a_triangles_start
+    assert partition_obj.area_a.triangles.END == area_a_triangles_end
+    assert partition_obj.area_a.triangles.NUMBER == area_a_triangles_number
+    assert partition_obj.area_b.triangles.START == area_b_triangles_start
+    assert partition_obj.area_b.triangles.END == area_b_triangles_end
+    assert partition_obj.area_b.triangles.NUMBER == area_b_triangles_number
+    assert partition_obj.area_c.triangles.START == area_c_triangles_start
+    assert partition_obj.area_c.triangles.END == area_c_triangles_end
+    assert partition_obj.area_c.triangles.NUMBER == area_c_triangles_number
 
 
 @pytest.mark.parametrize(
@@ -254,21 +254,21 @@ def test_constants_for_node_layer_indices(
     area_c_node_layers_number,
     south_pole_node_layer_index,
 ):
-    constants = Constants(partition)
+    partition_obj = Partition(partition)
     # Check constants for node layer indices
-    assert constants.north_pole.node_layer.INDEX == north_pole_node_layer_index
-    assert constants.area_a.node_layers.START == area_a_node_layers_start
-    assert constants.area_a.node_layers.END == area_a_node_layers_end
-    assert constants.area_a.node_layers.NUMBER == area_a_node_layers_number
-    assert constants.border_ab.node_layer.INDEX == border_ab_node_layer_index
-    assert constants.area_b.node_layers.START == area_b_node_layers_start
-    assert constants.area_b.node_layers.END == area_b_node_layers_end
-    assert constants.area_b.node_layers.NUMBER == area_b_node_layers_number
-    assert constants.border_bc.node_layer.INDEX == border_bc_node_layer_index
-    assert constants.area_c.node_layers.START == area_c_node_layers_start
-    assert constants.area_c.node_layers.END == area_c_node_layers_end
-    assert constants.area_c.node_layers.NUMBER == area_c_node_layers_number
-    assert constants.south_pole.node_layer.INDEX == south_pole_node_layer_index
+    assert partition_obj.north_pole.node_layer.INDEX == north_pole_node_layer_index
+    assert partition_obj.area_a.node_layers.START == area_a_node_layers_start
+    assert partition_obj.area_a.node_layers.END == area_a_node_layers_end
+    assert partition_obj.area_a.node_layers.NUMBER == area_a_node_layers_number
+    assert partition_obj.border_ab.node_layer.INDEX == border_ab_node_layer_index
+    assert partition_obj.area_b.node_layers.START == area_b_node_layers_start
+    assert partition_obj.area_b.node_layers.END == area_b_node_layers_end
+    assert partition_obj.area_b.node_layers.NUMBER == area_b_node_layers_number
+    assert partition_obj.border_bc.node_layer.INDEX == border_bc_node_layer_index
+    assert partition_obj.area_c.node_layers.START == area_c_node_layers_start
+    assert partition_obj.area_c.node_layers.END == area_c_node_layers_end
+    assert partition_obj.area_c.node_layers.NUMBER == area_c_node_layers_number
+    assert partition_obj.south_pole.node_layer.INDEX == south_pole_node_layer_index
 
 
 @pytest.mark.parametrize(
@@ -302,14 +302,14 @@ def test_constants_for_triangle_layer_indices(
     area_c_triangle_layers_end,
     area_c_triangle_layers_number,
 ):
-    constants = Constants(partition)
+    partition_obj = Partition(partition)
     # Check constants for triangle layer indices
-    assert constants.area_a.triangle_layers.START == area_a_triangle_layers_start
-    assert constants.area_a.triangle_layers.END == area_a_triangle_layers_end
-    assert constants.area_a.triangle_layers.NUMBER == area_a_triangle_layers_number
-    assert constants.area_b.triangle_layers.START == area_b_triangle_layers_start
-    assert constants.area_b.triangle_layers.END == area_b_triangle_layers_end
-    assert constants.area_b.triangle_layers.NUMBER == area_b_triangle_layers_number
-    assert constants.area_c.triangle_layers.START == area_c_triangle_layers_start
-    assert constants.area_c.triangle_layers.END == area_c_triangle_layers_end
-    assert constants.area_c.triangle_layers.NUMBER == area_c_triangle_layers_number
+    assert partition_obj.area_a.triangle_layers.START == area_a_triangle_layers_start
+    assert partition_obj.area_a.triangle_layers.END == area_a_triangle_layers_end
+    assert partition_obj.area_a.triangle_layers.NUMBER == area_a_triangle_layers_number
+    assert partition_obj.area_b.triangle_layers.START == area_b_triangle_layers_start
+    assert partition_obj.area_b.triangle_layers.END == area_b_triangle_layers_end
+    assert partition_obj.area_b.triangle_layers.NUMBER == area_b_triangle_layers_number
+    assert partition_obj.area_c.triangle_layers.START == area_c_triangle_layers_start
+    assert partition_obj.area_c.triangle_layers.END == area_c_triangle_layers_end
+    assert partition_obj.area_c.triangle_layers.NUMBER == area_c_triangle_layers_number

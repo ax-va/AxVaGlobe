@@ -112,7 +112,7 @@ class _SouthPole(_Pole):
         super().__init__("SP")
 
 
-class Constants:
+class Partition:
     """
     This class contains all necessary constants that depend on a partition value.
     - The partition value determines how many parts an edge of the icosahedron must be divided into.
@@ -229,5 +229,5 @@ class Constants:
 
     @classmethod
     @lru_cache(maxsize=None)
-    def get_constants(cls, partition: int = 1) -> Self:
+    def get_partition_obj(cls, partition: int = 1) -> Self:
         return cls(partition=partition)

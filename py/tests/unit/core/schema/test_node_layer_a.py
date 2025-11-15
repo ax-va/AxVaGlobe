@@ -1,6 +1,7 @@
 import pytest
 
 from axvaglobe.core.schema._node_layer_a import _NodeLayerA
+from axvaglobe.core.schema.partition import Partition
 
 
 @pytest.mark.parametrize(
@@ -15,7 +16,8 @@ def test_node_layer_a_for_partition_two(
     number_of_nodes,
     end_node_in_layer_index,
 ):
-    node_layer_a = _NodeLayerA(2, index)
+    partition_obj = Partition(2)
+    node_layer_a = _NodeLayerA(index, partition_obj)
     assert node_layer_a.INDEX == index
     assert node_layer_a.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_a.NUMBER_OF_NODES == number_of_nodes
@@ -35,7 +37,8 @@ def test_node_layer_a_for_partition_three(
     number_of_nodes,
     end_node_in_layer_index,
 ):
-    node_layer_a = _NodeLayerA(3, index)
+    partition_obj = Partition(3)
+    node_layer_a = _NodeLayerA(index, partition_obj)
     assert node_layer_a.INDEX == index
     assert node_layer_a.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_a.NUMBER_OF_NODES == number_of_nodes
@@ -56,7 +59,8 @@ def test_node_layer_a_for_partition_four(
     number_of_nodes,
     end_node_in_layer_index,
 ):
-    node_layer_a = _NodeLayerA(4, index)
+    partition_obj = Partition(4)
+    node_layer_a = _NodeLayerA(index, partition_obj)
     assert node_layer_a.INDEX == index
     assert node_layer_a.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_a.NUMBER_OF_NODES == number_of_nodes
@@ -78,7 +82,8 @@ def test_node_layer_a_for_partition_five(
     number_of_nodes,
     end_node_in_layer_index,
 ):
-    node_layer_a = _NodeLayerA(5, index)
+    partition_obj = Partition(5)
+    node_layer_a = _NodeLayerA(index, partition_obj)
     assert node_layer_a.INDEX == index
     assert node_layer_a.NODE_INDEX_OFFSET_FOR_LAYER == node_index_offset_for_layer
     assert node_layer_a.NUMBER_OF_NODES == number_of_nodes

@@ -1,6 +1,6 @@
 from typing import Self
 
-from axvaglobe.core.schema.constants import Constants
+from axvaglobe.core.schema.partition import Partition
 from axvaglobe.core.schema._base_node import _BaseNode
 
 
@@ -11,28 +11,27 @@ class _NodeB(_BaseNode):
     """
 
     @classmethod
-    def create_node_by_index(
+    def create_node(
         cls,
-        partition: int,
         index: int,
+        partition_obj: Partition,
     ) -> Self:
         """Creates a node instance by a node index."""
-        constants: Constants = Constants.get_constants(partition=partition)
-        number_of_nodes_in_layer: int = constants.border_ab.nodes.NUMBER
+        number_of_nodes_in_layer: int = partition_obj.border_ab.nodes.NUMBER
         relative_layer_index: int = (
-            index - constants.area_b.nodes.START
+            index - partition_obj.area_b.nodes.START
         ) // number_of_nodes_in_layer
-        layer_index: int = constants.area_b.node_layers.START + relative_layer_index
+        layer_index: int = partition_obj.area_b.node_layers.START + relative_layer_index
         index_offset_for_layer: int = (
-            constants.area_b.nodes.START
+            partition_obj.area_b.nodes.START
             + relative_layer_index * number_of_nodes_in_layer
         )
         in_layer_index: int = index - index_offset_for_layer
 
         node = cls(
-            partition=partition,
             layer_index=layer_index,
             in_layer_index=in_layer_index,
+            partition_obj=partition_obj,
         )
 
         return node
@@ -61,7 +60,7 @@ class _NodeB(_BaseNode):
         layer_index_4: int = layer_index_down  # down
         layer_index_5: int = self.LAYER_INDEX
 
-        end_node_in_layer_index = self._layer.END_NODE_IN_LAYER_INDEX
+        end_node_in_layer_index = self._layer_obj.END_NODE_IN_LAYER_INDEX
         if self.IN_LAYER_INDEX != 0:
             in_layer_index_0: int = in_layer_index_left  # left
             in_layer_index_1: int = self.IN_LAYER_INDEX
