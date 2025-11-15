@@ -14,7 +14,7 @@ class NodeLayerIndexError(NodeLayerError):
         partition: int,
     ):
         self.message = (
-            f"The node layer index is out the range [{start_index}, {end_index}] "
-            f"for partition {partition}: {node_layer_index}."
+            f"The node layer index {node_layer_index} is out the range [{start_index}, "
+            f"{end_index}] for partition value {partition}."
         )
         SchemaError.__init__(self, self.message)
