@@ -12,7 +12,7 @@ class _NodeSP(_BaseNode):
     """
 
     @classmethod
-    def create_node_sp(
+    def create_node(
         cls,
         partition_obj: Partition,
     ) -> Self:

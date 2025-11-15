@@ -23,12 +23,13 @@ class NodeFactory:
         partition_obj: Partition,
     ) -> Node:
 
-        # Select the correct node class
+        # nodes between poles
         if (
             partition_obj.north_pole.node.INDEX
             < index
             < partition_obj.south_pole.node.INDEX
         ):
+            # Select the correct node class
             if (
                 partition_obj.area_b.nodes.START
                 <= index
@@ -66,23 +67,22 @@ class NodeFactory:
                 partition_obj=partition_obj,
             )
 
+        # poles
         else:
             if index == partition_obj.north_pole.node.INDEX:
                 node_cls = _NodeNP
-                node = node_cls.create_node_np(
-                    partition_obj=partition_obj,
-                )
 
             elif index == partition_obj.south_pole.node.INDEX:
                 node_cls = _NodeSP
-                node = node_cls.create_node_sp(
-                    partition_obj=partition_obj,
-                )
 
             else:
                 start_index: int = partition_obj.north_pole.node.INDEX
                 end_index: int = partition_obj.south_pole.node.INDEX
                 partition: int = partition_obj.PARTITION
                 raise NodeIndexError(index, start_index, end_index, partition)
+
+            node = node_cls.create_node(
+                partition_obj=partition_obj,
+            )
 
         return node

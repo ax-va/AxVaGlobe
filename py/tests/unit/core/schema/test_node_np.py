@@ -16,7 +16,7 @@ def test_creation_of_node_np_for_partition_two(
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
 
-    node_np = _NodeNP.create_node_np(partition_obj)
+    node_np = _NodeNP.create_node(partition_obj)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
@@ -34,7 +34,7 @@ def test_creation_of_node_np_for_partition_three(
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
 
-    node_np = _NodeNP.create_node_np(partition_obj)
+    node_np = _NodeNP.create_node(partition_obj)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
@@ -52,7 +52,7 @@ def test_creation_of_node_np_for_partition_four(
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
 
-    node_np = _NodeNP.create_node_np(partition_obj)
+    node_np = _NodeNP.create_node(partition_obj)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
@@ -70,7 +70,7 @@ def test_creation_of_node_np_for_partition_five(
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index
 
-    node_np = _NodeNP.create_node_np(partition_obj)
+    node_np = _NodeNP.create_node(partition_obj)
     assert node_np.INDEX == index
     assert node_np.LAYER_INDEX == layer_index
     assert node_np.IN_LAYER_INDEX == in_layer_index

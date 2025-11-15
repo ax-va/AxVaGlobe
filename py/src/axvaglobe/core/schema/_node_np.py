@@ -12,7 +12,7 @@ class _NodeNP(_BaseNode):
     """
 
     @classmethod
-    def create_node_np(
+    def create_node(
         cls,
         partition_obj: Partition,
     ) -> Self:
