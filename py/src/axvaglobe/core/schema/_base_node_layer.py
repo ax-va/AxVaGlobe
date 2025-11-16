@@ -41,4 +41,4 @@ class _BaseNodeLayer(ABC):
         return self._end_node_in_layer_index
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.INDEX}, {self._partition_obj})"
+        return f"{type(self).__name__}(index={self.INDEX}, partition_obj={self._partition_obj})"

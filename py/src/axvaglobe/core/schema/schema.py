@@ -24,4 +24,4 @@ class Schema:
         return node
 
     def __repr__(self):
-        return f"{type(self).__name__}({self._partition_obj.PARTITION})"
+        return f"{type(self).__name__}(partition={self._partition_obj.PARTITION})"

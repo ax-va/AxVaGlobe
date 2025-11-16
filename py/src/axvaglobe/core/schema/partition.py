@@ -224,7 +224,7 @@ class Partition:
         self.area_c.triangle_layers.END = self.NUMBER_OF_TRIANGLE_LAYERS - 1
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.PARTITION})"
+        return f"{type(self).__name__}(partition={self.PARTITION})"
 
 
     @classmethod
