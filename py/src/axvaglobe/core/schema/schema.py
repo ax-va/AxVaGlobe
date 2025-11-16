@@ -17,7 +17,7 @@ class Schema:
 
     def get_node_by_index(self, index: int) -> Node:
         # cached object
-        node: Node = NodeFactory.create_node(
+        node: Node = NodeFactory.get_node(
             index=index,
             partition_obj=self._partition_obj,
         )

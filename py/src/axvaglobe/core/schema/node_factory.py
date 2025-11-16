@@ -17,6 +17,14 @@ Node = _NodeNP | _NodeA | _NodeAB | _NodeB | _NodeBC | _NodeC | _NodeSP
 class NodeFactory:
     @classmethod
     @lru_cache(maxsize=None)
+    def get_node(
+        cls,
+        index: int,
+        partition_obj: Partition,
+    ) -> Node:
+        return cls.create_node(index=index, partition_obj=partition_obj)
+
+    @classmethod
     def create_node(
         cls,
         index: int,

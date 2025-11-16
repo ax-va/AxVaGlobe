@@ -18,7 +18,7 @@ class _BaseNode(ABC):
     ):
         self._partition_obj = partition_obj
         # cached creation
-        self._layer_obj: NodeLayer = NodeLayerFactory.create_node_layer(
+        self._layer_obj: NodeLayer = NodeLayerFactory.get_node_layer(
             layer_index=layer_index,
             partition_obj=self._partition_obj,
         )
