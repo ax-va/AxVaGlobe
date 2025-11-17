@@ -1,3 +1,6 @@
+from functools import lru_cache
+from typing import Self
+
 from axvaglobe.core.schema.partition import Partition
 from axvaglobe.core.schema.errors import PartitionValueError
 from axvaglobe.core.schema.node_factory import NodeFactory, Node
@@ -15,7 +18,15 @@ class Schema:
     def partition(self) -> int:
         return self._partition_obj.PARTITION
 
-    def get_node_by_index(self, index: int) -> Node:
+    @classmethod
+    @lru_cache(maxsize=None)
+    def get_schema(
+        cls,
+        partition: int,
+    ) -> Self:
+        return Schema(partition=partition)
+
+    def get_node(self, index: int) -> Node:
         # cached object
         node: Node = NodeFactory.get_node(
             index=index,

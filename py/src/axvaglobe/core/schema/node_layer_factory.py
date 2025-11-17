@@ -30,7 +30,7 @@ class NodeLayerFactory:
         layer_index: int,
         partition_obj: Partition,
     ) -> NodeLayer:
-        return cls.get_node_layer(layer_index=layer_index, partition_obj=partition_obj)
+        return cls.create_node_layer(layer_index=layer_index, partition_obj=partition_obj)
 
     @classmethod
     def create_node_layer(
