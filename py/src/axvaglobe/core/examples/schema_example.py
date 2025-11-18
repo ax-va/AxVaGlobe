@@ -1,10 +1,10 @@
-from axvaglobe.core.schema import Schema
+from axvaglobe.core.schema import Schema, Node
 
 # Get a schema by partition
-schema_4 = Schema.get_schema(4)
+schema_4: Schema = Schema.get_schema(4)
 
 # Get a node by its index in the schema
-node_25 = schema_4.get_node(25)
+node_25: Node = schema_4.get_node(25)
 
 # Investigate the node
 
@@ -18,7 +18,7 @@ print(node_25.IN_LAYER_INDEX)
 # 9
 
 # Get another node by its index in the schema
-node_100 = schema_4.get_node(100)
+node_100: Node = schema_4.get_node(100)
 
 # Investigate the node
 
