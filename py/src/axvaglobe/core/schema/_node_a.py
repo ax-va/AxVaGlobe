@@ -36,7 +36,7 @@ class _NodeA(_BaseNode):
     def get_positions_of_neighbor_nodes(
         self,
     ) -> tuple[
-        # 6 neighboring nodes indices
+        # 6 neighbor nodes indices
         tuple[int, int],  # (layer_index, in_layer_index)
         tuple[int, int],
         tuple[int, int],
@@ -44,7 +44,7 @@ class _NodeA(_BaseNode):
         tuple[int, int],
         tuple[int, int],
     ]:
-        """Returns 6 neighboring nodes indices (layer_index, in_layer_index)."""
+        """Returns 6 neighbor nodes indices (layer_index, in_layer_index)."""
         layer_index_up: int = self.LAYER_INDEX - 1
         layer_index_down: int = self.LAYER_INDEX + 1
         in_layer_index_left: int = self.IN_LAYER_INDEX - 1
