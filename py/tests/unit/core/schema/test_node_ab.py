@@ -19,7 +19,7 @@ from axvaglobe.core.schema.partition import Partition
         (15, 2, 9),
     ],
 )
-def test_creation_of_node_ab_for_partition_two(
+def test_creating_node_ab_for_partition_two(
     index,
     layer_index,
     in_layer_index,
@@ -56,7 +56,7 @@ def test_creation_of_node_ab_for_partition_two(
         (30, 3, 14),
     ],
 )
-def test_creation_of_node_ab_for_partition_three(
+def test_creating_node_ab_for_partition_three(
     index,
     layer_index,
     in_layer_index,
@@ -98,7 +98,7 @@ def test_creation_of_node_ab_for_partition_three(
         (50, 4, 19),
     ],
 )
-def test_creation_of_node_ab_for_partition_four(
+def test_creating_node_ab_for_partition_four(
     index,
     layer_index,
     in_layer_index,

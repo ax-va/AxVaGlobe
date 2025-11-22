@@ -14,7 +14,7 @@ from axvaglobe.core.schema.partition import Partition
         (40, 5, 4),
     ],
 )
-def test_creation_of_node_c_for_partition_two(
+def test_creating_node_c_for_partition_two(
     index,
     layer_index,
     in_layer_index,
@@ -51,7 +51,7 @@ def test_creation_of_node_c_for_partition_two(
         (90, 8, 4),
     ],
 )
-def test_creation_of_node_c_for_partition_three(
+def test_creating_node_c_for_partition_three(
     index,
     layer_index,
     in_layer_index,
@@ -103,7 +103,7 @@ def test_creation_of_node_c_for_partition_three(
         (160, 11, 4),
     ],
 )
-def test_creation_of_node_c_for_partition_four(
+def test_creating_node_c_for_partition_four(
     index,
     layer_index,
     in_layer_index,
@@ -118,3 +118,16 @@ def test_creation_of_node_c_for_partition_four(
     assert node_c.INDEX == index
     assert node_c.LAYER_INDEX == layer_index
     assert node_c.IN_LAYER_INDEX == in_layer_index
+
+
+@pytest.mark.parametrize(
+    "node_position,positions_of_neighbor_nodes",
+    [
+
+    ],
+)
+def test_getting_positions_of_neighbor_nodes_of_node_c_for_partition_two(
+    node_position,
+    positions_of_neighbor_nodes,
+):
+    ...

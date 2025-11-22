@@ -36,7 +36,7 @@ class _NodeB(_BaseNode):
 
         return node
 
-    def get_layer_and_in_layer_indices_of_neighboring_nodes(
+    def get_positions_of_neighbor_nodes(
         self,
     ) -> tuple[
         # 6 neighboring nodes indices
@@ -60,13 +60,14 @@ class _NodeB(_BaseNode):
         layer_index_4: int = layer_index_down  # down
         layer_index_5: int = self.LAYER_INDEX
 
-        end_node_in_layer_index = self._layer_obj.END_NODE_IN_LAYER_INDEX
         if self.IN_LAYER_INDEX != 0:
+            # The node is not on the last edge
             in_layer_index_0: int = in_layer_index_left  # left
             in_layer_index_1: int = self.IN_LAYER_INDEX
             in_layer_index_2: int = (
                 in_layer_index_right
-                if self.IN_LAYER_INDEX != end_node_in_layer_index
+                # The node is not in front of the last edge
+                if self.IN_LAYER_INDEX != self._layer_obj.LAST_IN_LAYER_INDEX
                 else 0
             )
             in_layer_index_3: int = in_layer_index_2
@@ -74,12 +75,13 @@ class _NodeB(_BaseNode):
             in_layer_index_5: int = in_layer_index_left  # left
 
         else:
-            in_layer_index_0: int = end_node_in_layer_index
+            # The node is on the last edge
+            in_layer_index_0: int = self._layer_obj.LAST_IN_LAYER_INDEX
             in_layer_index_1: int = 0
             in_layer_index_2: int = 1
             in_layer_index_3: int = 1
             in_layer_index_4: int = 0
-            in_layer_index_5: int = end_node_in_layer_index
+            in_layer_index_5: int = self._layer_obj.LAST_IN_LAYER_INDEX
 
         return (
             (layer_index_0, in_layer_index_0),

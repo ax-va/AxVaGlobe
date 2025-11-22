@@ -30,3 +30,11 @@ print(node_100.LAYER_INDEX)
 # 7
 print(node_100.IN_LAYER_INDEX)
 # 9
+
+schema_2 = Schema.get_schema(2)
+for i in range(16, 26):
+    node_i = schema_2.get_node(i)
+    print(node_i.LAYER_INDEX, node_i.IN_LAYER_INDEX)
+    neighbors = node_i.get_positions_of_neighbor_nodes()
+    print(neighbors)
+    print("-"*20)

@@ -14,7 +14,7 @@ from axvaglobe.core.schema.partition import Partition
         (5, 1, 4),
     ],
 )
-def test_creation_of_node_a_for_partition_two(
+def test_creating_node_a_for_partition_two(
     index,
     layer_index,
     in_layer_index,
@@ -51,7 +51,7 @@ def test_creation_of_node_a_for_partition_two(
         (15, 2, 9),
     ],
 )
-def test_creation_of_node_a_for_partition_three(
+def test_creating_node_a_for_partition_three(
     index,
     layer_index,
     in_layer_index,
@@ -103,7 +103,7 @@ def test_creation_of_node_a_for_partition_three(
         (30, 3, 14),
     ],
 )
-def test_creation_of_node_a_for_partition_four(
+def test_creating_node_a_for_partition_four(
     index,
     layer_index,
     in_layer_index,
@@ -175,7 +175,7 @@ def test_creation_of_node_a_for_partition_four(
         (50, 4, 19),
     ],
 )
-def test_creation_of_node_a_for_partition_five(
+def test_creating_node_a_for_partition_five(
     index,
     layer_index,
     in_layer_index,
@@ -193,7 +193,7 @@ def test_creation_of_node_a_for_partition_five(
 
 
 @pytest.mark.parametrize(
-    "node_params,neighboring_nodes_params",
+    "node_position,positions_of_neighbor_nodes",
     [
         ((1, 0), ((0, 0), (1, 1), (2, 1), (2, 0), (2, 9), (1, 4))),  # for node index 1
         ((1, 1), ((0, 0), (1, 2), (2, 3), (2, 2), (2, 1), (1, 0))),  # for node index 2
@@ -202,21 +202,21 @@ def test_creation_of_node_a_for_partition_five(
         ((1, 4), ((0, 0), (1, 0), (2, 9), (2, 8), (2, 7), (1, 3))),  # for node index 5
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_two(
-    node_params,
-    neighboring_nodes_params,
+def test_getting_positions_of_neighbor_nodes_of_node_a_for_partition_two(
+    node_position,
+    positions_of_neighbor_nodes,
 ):
     partition_obj = Partition(2)
-    layer_index, in_layer_index = node_params
+    layer_index, in_layer_index = node_position
     node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert (
-        node_a.get_layer_and_in_layer_indices_of_neighboring_nodes()
-        == neighboring_nodes_params
+        node_a.get_positions_of_neighbor_nodes()
+        == positions_of_neighbor_nodes
     )
 
 
 @pytest.mark.parametrize(
-    "node_params,neighboring_nodes_params",
+    "node_position,positions_of_neighbor_nodes",
     [
         ((1, 0), ((0, 0), (1, 1), (2, 1), (2, 0), (2, 9), (1, 4))),  # for node index 1
         ((1, 1), ((0, 0), (1, 2), (2, 3), (2, 2), (2, 1), (1, 0))),  # for node index 2
@@ -247,21 +247,21 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_t
         ),  # for node index 15
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_three(
-    node_params,
-    neighboring_nodes_params,
+def test_getting_positions_of_neighbor_nodes_of_node_a_for_partition_three(
+    node_position,
+    positions_of_neighbor_nodes,
 ):
     partition_obj = Partition(3)
-    layer_index, in_layer_index = node_params
+    layer_index, in_layer_index = node_position
     node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert (
-        node_a.get_layer_and_in_layer_indices_of_neighboring_nodes()
-        == neighboring_nodes_params
+        node_a.get_positions_of_neighbor_nodes()
+        == positions_of_neighbor_nodes
     )
 
 
 @pytest.mark.parametrize(
-    "node_params,neighboring_nodes_params",
+    "node_position,positions_of_neighbor_nodes",
     [
         ((1, 0), ((0, 0), (1, 1), (2, 1), (2, 0), (2, 9), (1, 4))),  # for node index 1
         ((1, 1), ((0, 0), (1, 2), (2, 3), (2, 2), (2, 1), (1, 0))),  # for node index 2
@@ -334,14 +334,14 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_t
         ),  # for node index 30
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_four(
-    node_params,
-    neighboring_nodes_params,
+def test_getting_positions_of_neighbor_nodes_of_node_a_for_partition_four(
+    node_position,
+    positions_of_neighbor_nodes,
 ):
     partition_obj = Partition(4)
-    layer_index, in_layer_index = node_params
+    layer_index, in_layer_index = node_position
     node_a = _NodeA(layer_index, in_layer_index, partition_obj)
     assert (
-        node_a.get_layer_and_in_layer_indices_of_neighboring_nodes()
-        == neighboring_nodes_params
+        node_a.get_positions_of_neighbor_nodes()
+        == positions_of_neighbor_nodes
     )

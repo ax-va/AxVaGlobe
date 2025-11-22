@@ -5,7 +5,7 @@ from axvaglobe.core.schema.partition import Partition
 
 
 @pytest.mark.parametrize("index,layer_index,in_layer_index", ([41, 6, 0],))
-def test_creation_of_node_sp_for_partition_two(
+def test_creating_node_sp_for_partition_two(
     index,
     layer_index,
     in_layer_index,
@@ -23,7 +23,7 @@ def test_creation_of_node_sp_for_partition_two(
 
 
 @pytest.mark.parametrize("index,layer_index,in_layer_index", ([91, 9, 0],))
-def test_creation_of_node_sp_for_partition_three(
+def test_creating_node_sp_for_partition_three(
     index,
     layer_index,
     in_layer_index,
@@ -41,7 +41,7 @@ def test_creation_of_node_sp_for_partition_three(
 
 
 @pytest.mark.parametrize("index,layer_index,in_layer_index", ([161, 12, 0],))
-def test_creation_of_node_sp_for_partition_four(
+def test_creating_node_sp_for_partition_four(
     index,
     layer_index,
     in_layer_index,

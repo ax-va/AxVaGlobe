@@ -33,7 +33,7 @@ class _NodeA(_BaseNode):
 
         return node
 
-    def get_layer_and_in_layer_indices_of_neighboring_nodes(
+    def get_positions_of_neighbor_nodes(
         self,
     ) -> tuple[
         # 6 neighboring nodes indices
@@ -58,7 +58,6 @@ class _NodeA(_BaseNode):
         layer_index_4: int = layer_index_down  # down
         layer_index_5: int = self.LAYER_INDEX
 
-        end_node_in_layer_index = self._layer_obj.END_NODE_IN_LAYER_INDEX
         if rem != 0:  # This node is not on the edge of the icosahedron
             layer_index_1: int = layer_index_up  # up
             layer_index_2: int = self.LAYER_INDEX
@@ -69,7 +68,7 @@ class _NodeA(_BaseNode):
             in_layer_index_3: int = in_layer_index_4 + 1
 
             if (
-                self.IN_LAYER_INDEX < end_node_in_layer_index
+                self.IN_LAYER_INDEX < self._layer_obj.LAST_IN_LAYER_INDEX
             ):  # This node is not the last node in the layer
                 in_layer_index_1: int = self.IN_LAYER_INDEX - num
                 in_layer_index_2: int = in_layer_index_right
@@ -89,7 +88,7 @@ class _NodeA(_BaseNode):
                 in_layer_index_0: int = self.IN_LAYER_INDEX - num
                 in_layer_index_1: int = (
                     in_layer_index_right
-                    if self.IN_LAYER_INDEX != end_node_in_layer_index
+                    if self.IN_LAYER_INDEX != self._layer_obj.LAST_IN_LAYER_INDEX
                     else 0
                 )
                 in_layer_index_5: int = in_layer_index_left
@@ -100,7 +99,7 @@ class _NodeA(_BaseNode):
                 in_layer_index_2: int = 1
                 in_layer_index_3: int = 0
                 in_layer_index_4: int = layer_index_down * 5 - 1
-                in_layer_index_5: int = self._layer_obj.END_NODE_IN_LAYER_INDEX
+                in_layer_index_5: int = self._layer_obj.LAST_IN_LAYER_INDEX
 
         return (
             (layer_index_0, in_layer_index_0),

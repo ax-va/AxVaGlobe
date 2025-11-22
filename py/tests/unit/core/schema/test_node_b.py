@@ -19,7 +19,7 @@ from axvaglobe.core.schema.partition import Partition
         (25, 3, 9),
     ],
 )
-def test_creation_of_node_b_for_partition_two(
+def test_creating_node_b_for_partition_two(
     index,
     layer_index,
     in_layer_index,
@@ -71,7 +71,7 @@ def test_creation_of_node_b_for_partition_two(
         (60, 5, 14),
     ],
 )
-def test_creation_of_node_b_for_partition_three(
+def test_creating_node_b_for_partition_three(
     index,
     layer_index,
     in_layer_index,
@@ -153,7 +153,7 @@ def test_creation_of_node_b_for_partition_three(
         (110, 7, 19),
     ],
 )
-def test_creation_of_node_b_for_partition_four(
+def test_creating_node_b_for_partition_four(
     index,
     layer_index,
     in_layer_index,
@@ -171,7 +171,7 @@ def test_creation_of_node_b_for_partition_four(
 
 
 @pytest.mark.parametrize(
-    "node_params,neighboring_nodes_params",
+    "node_position,positions_of_neighbor_nodes",
     [
         ((3, 0), ((2, 9), (2, 0), (3, 1), (4, 1), (4, 0), (3, 9))),  # for node index 16
         ((3, 1), ((2, 0), (2, 1), (3, 2), (4, 2), (4, 1), (3, 0))),  # for node index 17
@@ -185,21 +185,21 @@ def test_creation_of_node_b_for_partition_four(
         ((3, 9), ((2, 8), (2, 9), (3, 0), (4, 0), (4, 9), (3, 8))),  # for node index 25
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_two(
-    node_params,
-    neighboring_nodes_params,
+def test_getting_positions_of_neighbor_nodes_of_node_b_for_partition_two(
+    node_position,
+    positions_of_neighbor_nodes,
 ):
     partition_obj = Partition(2)
-    layer_index, in_layer_index = node_params
+    layer_index, in_layer_index = node_position
     node_b = _NodeB(layer_index, in_layer_index, partition_obj)
     assert (
-        node_b.get_layer_and_in_layer_indices_of_neighboring_nodes()
-        == neighboring_nodes_params
+        node_b.get_positions_of_neighbor_nodes()
+        == positions_of_neighbor_nodes
     )
 
 
 @pytest.mark.parametrize(
-    "node_params,neighboring_nodes_params",
+    "node_position,positions_of_neighbor_nodes",
     [
         (
             (4, 0),
@@ -275,21 +275,21 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_t
         ),  # for node index 60
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_three(
-    node_params,
-    neighboring_nodes_params,
+def test_getting_positions_of_neighbor_nodes_of_node_b_for_partition_three(
+    node_position,
+    positions_of_neighbor_nodes,
 ):
     partition_obj = Partition(3)
-    layer_index, in_layer_index = node_params
+    layer_index, in_layer_index = node_position
     node_b = _NodeB(layer_index, in_layer_index, partition_obj)
     assert (
-        node_b.get_layer_and_in_layer_indices_of_neighboring_nodes()
-        == neighboring_nodes_params
+        node_b.get_positions_of_neighbor_nodes()
+        == positions_of_neighbor_nodes
     )
 
 
 @pytest.mark.parametrize(
-    "node_params,neighboring_nodes_params",
+    "node_position,positions_of_neighbor_nodes",
     [
         (
             (5, 0),
@@ -455,14 +455,14 @@ def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_t
         ),  # node_index 110
     ],
 )
-def test_getting_layer_and_in_layer_indices_of_neighboring_nodes_for_partition_four(
-    node_params,
-    neighboring_nodes_params,
+def test_getting_positions_of_neighbor_nodes_of_node_b_for_partition_four(
+    node_position,
+    positions_of_neighbor_nodes,
 ):
     partition_obj = Partition(4)
-    layer_index, in_layer_index = node_params
+    layer_index, in_layer_index = node_position
     node_b = _NodeB(layer_index, in_layer_index, partition_obj)
     assert (
-        node_b.get_layer_and_in_layer_indices_of_neighboring_nodes()
-        == neighboring_nodes_params
+        node_b.get_positions_of_neighbor_nodes()
+        == positions_of_neighbor_nodes
     )

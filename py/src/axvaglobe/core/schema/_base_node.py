@@ -45,7 +45,7 @@ class _BaseNode(ABC):
         return self._layer_obj
 
     # @abstractmethod
-    # def get_layer_and_in_layer_indices_of_neighboring_nodes(self):
+    # def get_positions_of_neighbor_nodes(self):
     #     pass
 
     def __repr__(self):

@@ -34,6 +34,21 @@ class _NodeC(_BaseNode):
 
         return node
 
+    def get_positions_of_neighbor_nodes(
+        self,
+    ) -> tuple[
+        # 6 neighboring nodes indices
+        tuple[int, int],  # (layer_index, in_layer_index)
+        tuple[int, int],
+        tuple[int, int],
+        tuple[int, int],
+        tuple[int, int],
+        tuple[int, int],
+    ]:
+        """Returns 6 neighboring nodes indices (layer_index, in_layer_index)."""
+        ...
+
+
     @staticmethod
     def _get_layer_index_and_index_offset_for_layer(
         index: int,
