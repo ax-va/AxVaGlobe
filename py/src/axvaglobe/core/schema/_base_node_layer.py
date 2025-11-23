@@ -13,8 +13,8 @@ class _BaseNodeLayer(ABC):
         index: int,
         partition_obj: Partition,
     ):
-        self._partition_obj: Partition = partition_obj
         self._index: int = index  # node layer index
+        self._partition_obj: Partition = partition_obj
         # lazy
         self._node_index_offset: int | None = None
         self._number_of_nodes: int | None = None
