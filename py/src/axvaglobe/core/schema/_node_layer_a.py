@@ -8,14 +8,14 @@ class _NodeLayerA(_BaseNodeLayer):
     """
 
     @property
-    def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
-        if self._node_index_offset_for_layer is None:
+    def NODE_INDEX_OFFSET(self) -> int:
+        if self._node_index_offset is None:
             index_offset_for_area_a: int = self._partition_obj.area_a.node_layers.START
             sum_of_previous_layer_indices: int = self.INDEX * (self.INDEX - 1) // 2
-            self._node_index_offset_for_layer: int = (
+            self._node_index_offset: int = (
                 sum_of_previous_layer_indices * 5 + index_offset_for_area_a
             )
-        return self._node_index_offset_for_layer
+        return self._node_index_offset
 
     @property
     def NUMBER_OF_NODES(self) -> int:

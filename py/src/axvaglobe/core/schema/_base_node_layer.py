@@ -16,7 +16,7 @@ class _BaseNodeLayer(ABC):
         self._partition_obj: Partition = partition_obj
         self._index: int = index  # layer index
         # lazy
-        self._node_index_offset_for_layer: int | None = None
+        self._node_index_offset: int | None = None
         self._number_of_nodes: int | None = None
         self._last_in_layer_index: int | None = None
 
@@ -26,7 +26,7 @@ class _BaseNodeLayer(ABC):
 
     @property
     @abstractmethod
-    def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
+    def NODE_INDEX_OFFSET(self) -> int:
         pass
 
     @property

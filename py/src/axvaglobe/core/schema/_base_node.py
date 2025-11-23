@@ -37,7 +37,7 @@ class _BaseNode(ABC):
     @property
     def INDEX(self) -> int:
         if self._index is None:
-            self._index = self._layer_obj.NODE_INDEX_OFFSET_FOR_LAYER + self.IN_LAYER_INDEX
+            self._index = self._layer_obj.NODE_INDEX_OFFSET + self.IN_LAYER_INDEX
         return self._index
 
     @property

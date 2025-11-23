@@ -8,10 +8,10 @@ class _NodeLayerAB(_BaseNodeLayer):
     """
 
     @property
-    def NODE_INDEX_OFFSET_FOR_LAYER(self) -> int:
-        if self._node_index_offset_for_layer is None:
-            self._node_index_offset_for_layer: int = self._partition_obj.border_ab.nodes.START
-        return self._node_index_offset_for_layer
+    def NODE_INDEX_OFFSET(self) -> int:
+        if self._node_index_offset is None:
+            self._node_index_offset: int = self._partition_obj.border_ab.nodes.START
+        return self._node_index_offset
 
     @property
     def NUMBER_OF_NODES(self) -> int:
