@@ -1,15 +1,16 @@
 [tool.poetry]
 name = "AxVaGlobe"
 version = "0.1.0"
-description = "AxVaGlobe is a project for creating globes using hexagon- and pentagon-like polygons, with support for navigation on them."
+description = "A project for creating globes using hexagon- and pentagon-like polygons, with support for navigation on them."
 authors = ["ax-va"]
 license = "BSD-3-Clause OR MIT OR Apache-2.0"
 readme = "README.md"
 packages = [{ include = "axvaglobe", from = "src" }]
+keywords = ["globe", "navigation", "simulation", "game-engine"]
 
 [tool.poetry.urls]
 homepage = "https://github.com/ax-va/AxVaGlobe"
-repository = "https://github.com/ax-va/AxVaGlobe/tree/main/py"
+repository = "https://github.com/ax-va/AxVaGlobe"
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -59,6 +60,7 @@ select = [
 ignore = [
   "E501",  # Ingnore "line too long" (handled by formatter) to avoid double-reporting the same thing
 ]
+fixable = ["ALL"]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]  # Ignore F401 "imported but unused" (from Pyflakes) only in `__init__.py` files
